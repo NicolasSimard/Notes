@@ -1,0 +1,634 @@
+\documentclass[twoside,10pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[top=1in, left=1.25in, right=1in, bottom=1in]{geometry}%Pour des pages plus larges
+\renewcommand*\familydefault{\sfdefault}%Pour des lettres sans serif
+
+\usepackage{graphicx}%Pour les images
+
+\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref} 
+\hypersetup{linkcolor=blue,citecolor=red,filecolor=dullmagenta,urlcolor=darkblue}
+
+%\usepackage{palatino}%Pour utiliser l'écriture Palatino
+\usepackage{euler}%Change l'aspect des formules mathématiques
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{defn}{Definition}
+\newtheorem{coro}{Corollary}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\rarr}{\rightarrow}
+\newcommand{\esp}{\hspace{1cm}}
+\newcommand{\for}{\hspace{1cm}\textrm{for }}
+\newcommand{\where}{\hspace{1cm}\textrm{where }}
+\newcommand{\Res}{\textrm{Res}}
+\newcommand{\LT}{\textrm{LT}}
+\newcommand{\Gal}{\text{Gal}}
+
+\newcommand{\dashk}{\vert_{k}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\G}{\Gamma}
+\newcommand{\SL}{\textrm{SL}_2(\mathbb{Z})}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\ida}{\mathfrak{a}}
+\newcommand{\idb}{\mathfrak{b}}
+\newcommand{\idc}{\mathfrak{c}}
+\newcommand{\idd}{\mathfrak{d}}
+\newcommand{\del}{\partial}
+\newcommand{\Clk}{\text{Cl}_K}
+\newcommand{\ord}{\text{ord}}
+\renewcommand{\O}{\mathcal{O}}
+
+\renewcommand{\d}{\text{d}}
+
+\newcommand{\tpsi}{\theta_\psi}
+\newcommand{\tida}{\theta_\mathfrak{a}}
+\newcommand{\runi}{w_K}
+
+\author{Nicolas Simard}
+\date{\today}
+\title{A formula for the Petersson norm of theta series attached to imaginary quadratic field}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section*{Introduction}
+In these notes, we find a formula for the Petersson norm of the theta series $\tpsi$ attached to an imaginary quadratic field $K$ and a Hecke character of infinity type $2\ell$. The formula is
+\[\langle\tpsi,\tpsi\rangle=\text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{|D|^\ell}{2^{2\ell}}\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell}}\del_2^{2\ell-1}E_{2}(\tau_\ida)\]
+if $\ell>0$ and
+\[\langle\tpsi,\tpsi\rangle =-\text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2)\]
+if $\ell=0$ and $\psi$ is not a genus character. Here $\del_2^{2\ell-1}E_2$ is the non-holomorphic derivative of the non-holomorphic Eisenstein series of weight $2$ and level $1$. In the last section, we will see that one can make sense of the first formula even for $\ell=0$ and that it gives back exactly the second formula!
+
+Before proving the formula, we first recall a few facts about Hecke characters, eisenstein series and the Rankin-Selberg method. Then we introduce the theta functions $\tpsi$. In the following section, we show how the Petersson norm of the $\tpsi$ is related to the Hecke $L$-function of $\psi^2$. Finally, we relate the Hecke $L$-function of $\psi^2$ to non-holomorphic Eisenstein series and use this relation to establish the two formulas.
+
+If $\psi$ is a genus character, $\tpsi$ is an Eisenstein series and one should use the regularized Petersson inner product. I think a similar formula holds. I will try this soon.
+
+\section{Setup and notation}
+Throughout, $K=\Q(\sqrt{D})$ denotes an imaginary quadratic field of discriminant $D<-4$ and $\O_K$ denotes its ring of integers.
+
+\section{Preliminaries}
+\subsection{Hecke Grossencharacters}
+Let $I_K$ be the multiplicative group of fractional ideals of $K$. Given an integer $\ell\geq 0$, let $\psi_\ell$ denote a \emph{Hecke Grossencharacter} of conductor $1$ and infinity type $2\ell$, that is a group homomorphism
+\[\psi_\ell:I_K\rarr \C^\times\]
+such that
+\[\psi_\ell((\alpha))=\alpha^{2\ell},\esp\forall \alpha\in K^\times.\]
+Note that this is well-defined since $\O_K^\times = \{\pm1\}$ by assumption.
+
+Those Hecke characters are not of the form considered in the books of Miyake \cite[Ch. 3, Sec. 3]{Miya} or Iwaniec \cite[Ch. 12, Sec. 2]{Iwan}. For clarity, we call the ones they define \emph{unitary}. Let $N:I_K\rarr \Q$ denote the norm map on ideals. Then the character
+\[\psi_\ell N^{-\ell}:I_K\rarr \C^\times\]
+is unitary of conductor $1$ and of infinity type $2\ell$ (take $u_\sigma+iv_\sigma=2\ell$ in their definition, where $\sigma:K\hookrightarrow\C$ is a complex embedding). 
+
+To a Hecke character $\psi$ (unitary or not), one attaches the Dirichlet $L$-series
+\[L(\psi,s) = \sum_\ida \frac{\psi(\ida)}{N(\ida)^s},\]
+which converges for $s$ in some right-half plane in $\C$. Clearly, multiplying $\psi$ with a power of the norm $N^\ell$ simply shifts the $L$-function by $\ell$:
+\[L(\psi,s-\ell)=L(\psi\circ N^\ell,s).\]
+Define the completed $L$-function of $L(\psi_\ell,s)$ as
+\[\Lambda(\psi_\ell,s)=|D|^{s/2}(2\pi)^{-s}\Gamma(s)L(\psi_\ell,s).\]
+
+\begin{theorem}[Hecke]
+\begin{enumerate}
+	\item $\Lambda$ can be analytically continued to a meromorphic function on $\C$ and satisfies the functional equation
+\[\Lambda(\psi_\ell,s)=w(\psi_\ell)\Lambda(\overline{\psi_\ell},2\ell+1-s),\]
+where $|w(\psi_\ell)|=1$.%Compute $w(\psi_\ell)$ explicitly?
+	\item $\Lambda(\psi_\ell,s)$ is holomorphic on $\C$, except when $\psi_\ell$ is the trivial character (this can only happen when $\ell = 0$), in which case is has a pole at $s=0$ and $s=1$.
+	\item $L(\psi_\ell,s)$ is holomorphic on $\C$, except when $\psi_\ell$ is the trivial character, in which case it has a pole at $s=1$ with residue
+	\[\frac{2\pi h_K}{\runi \sqrt{|D|}},\]
+	where $h_K$ is the class number of $K$ and $\runi=2$ is the number of roots of unity in $K$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+	See \cite[Ch. 3, Sec. 3]{Miya}.
+\end{proof}
+
+
+\subsection{Eisenstein series: holomorphic and non-holomorphic}\label{sec:Eisen}
+Eisenstein series will be useful in many ways in these notes. Recall that they can be defined in essentially two (closely related) ways: as Poincare series and as sum over lattice points. The first type is used in the Rankin-Selberg method, while the second is linked to Hecke $L$-functions of imaginary quadratic fields. We recall a few basic facts about these series. Our main references are \cite[Ch.9]{Shi1}, \cite[A3]{Shi1} and \cite[Ch.7]{Miya}
+
+Let $N\geq 1$ and $k\geq 0$ be integers. As usual, define
+\[\Gamma_0(N)=\left \{\begin{pmatrix}
+a & b \\ 
+c & d
+\end{pmatrix} :c\equiv 0\pmod N\right \}\]
+and for $f:\H\rarr\C$ a function on the upper half plane and $\gamma\in\SL$, define the slash-k as operator
+\[(f\vert_k\gamma)(z)=j(\gamma,z)^{-k}f(\gamma z),\]
+where $\SL$ acts on $\H$ in the usual way and
+\[j\left (\begin{pmatrix}
+a & b \\ 
+c & d
+\end{pmatrix},z\right )=cz+d.\]
+Let also $\Gamma_\infty$ be the stabilizer of the cusp at infinity in $\SL$, i.e.
+\[\Gamma_\infty=\left \{\pm\begin{pmatrix}
+1 & m \\ 
+0 & 1
+\end{pmatrix} :m\in\Z\right \}\]
+
+%As in Shimura for N=1, p=q=0
+For $(z,s)\in\H\times\C$, define the \emph{non-holomorphic Eisenstein series of weight $k$} as
+\[G_k(z,s)=\Im(z)^s\sum_{m,n}(mz+n)^{-k}|mz+n|^{-2s},\]
+where the sum is over all integers $m$ and $n$, not both $0$. This sum converges for $\Re(2s)+k>2$.
+
+Since
+\[\Im(\gamma z)^s=|j(\gamma,z)|^{-2s}\Im(z)^s,\]
+the non-holomorphic Eisenstein series satisfies the following functional equation:
+\[G_k(\gamma z,s)=j(\gamma,z)^kG_k(z,s).\]
+In particular, $k$ must be even.
+
+For $k>2$, the series converges absolutely at $s=0$ and equals the usual Eisenstein series of weight $k$ and level $1$. For $k=2$, it does not converge absolutely at $s=0$. However, for $k>0$ there is a real analytic function of $(z,s)\in\H\times\C$ which is holomorphic in $s$ and coincides with $\Gamma(s+k)G_k(z,s)$ for $\Re(2s)+k>2$ (\cite[Thm A3.5]{Shi1}). Therefore it still makes sense to consider $G_2(z,0)$. Define
+\[E_2(z)=(2\pi i)^{-2}G_2(z,0).\]
+Then $E_2$ is  an \emph{almost holomorphic} modular form of weight $2$ and level $1$ with Fourier expansion
+\[E_2(z)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma_1(n)q^n,\]
+which clearly has algebraic Fourier coefficients. Almost holomorphic modular forms are defined as in \cite[Sec. 5.3]{Zag}\footnote{Shimura calls those functions nearly holomorphic in \cite{Shi1}, but we prefer to use this term to refer to modular forms with (possibly) poles at infinity.}. In particular,
+\[E_2\vert_2\gamma=E_2,\esp\forall\gamma\in\SL.\]
+
+Consider now the following Eisenstein series:
+\[E_k^N(z,s)=\sum_{\gamma\in\Gamma_\infty\setminus\Gamma_0(N)}\Im(z)^s\dashk\gamma=Im(z)^s\sum_{\gamma\in\Gamma_\infty\setminus\Gamma_0(N)}j(\gamma,z)^{-k}|j(\gamma,z)|^{-2s}.\]
+This series also converges absolutely for $\Re(2s)+k>2$ and can be analytically continued to a holomorphic function in $s$, except when $k=0$, in which case $E_0^N(z,s)$ has a pole at $s=1$ with residue
+\[\Res_{s=1}E_0^N(z,s)=\text{Vol}(\Gamma_0(N)\setminus\H)^{-1}.\]
+
+
+%In the region of convergence, the sum defining $G_k^N(z,s)$ can be rearranged as follows
+%\[\Im(z)^s\sum_{m,n}'(mz+n)^{-k}(mz+n)^{-2s}=\Im(z)^s\sum_{r=1}^\infty\sum_{(m,n)=r,m\equiv 0\pmod N}(mz+n)^{-k}(mz+n)^{-2s}\]
+%\[=2\zeta(k+2s)\Im(z)^s\sum_{(c,d)=1,c\equiv0\pmod N,d>0}(cz+d)^{-k}(cz+d)^{-2s},\]
+%where we are using the fact that $k$ is even and $\zeta(s)$ is the Riemann zeta function. The map
+%\[\begin{pmatrix}
+%* & * \\ 
+%c & d
+%\end{pmatrix} \mapsto(c,d)\]
+%induces a bijection between $\Gamma_\infty\setminus\Gamma_0(N)$ and the set
+%\[\{(c,d)\in\Z^2:(c,d)=1,c\equiv0\pmod N,d>0\}\]
+%(\cite[Lemma 7.1.6]{Miya}), so the above computation proves that
+%\[2\zeta_N(k+2s)G_k^N(z,s)=E_k^N(z,s),\]
+%where $E_k^N(z,s)$ is defined as
+
+\subsection{Rankin-Selberg method in level $N$}
+The Rankin-Selberg is well-known. We sketch it here mainly to make sure that the normalizations are correct. Our main reference is \cite{Shi2}.
+
+Let $f(z),g(z)\in\S_k(\Gamma_0(N),\chi)$ be two cusp forms of weight $k$, level $N$ and Nebentypus $\chi$. Then the function
+\[F(z)=f(z)\overline{g(z)}\Im(z)^k\]
+if $\Gamma_0(N)$-invariant and tends to $0$ rapidly as $\Im(z)$ tends to $\infty$, so it makes sense to define the \emph{Petersson inner product} of $f$ and $g$ as
+\[\langle f,g\rangle=\frac{1}{\text{Vol}(\Gamma_0(N)\setminus\H)}\int\int_{\Gamma_0(N)\setminus\H}F(z)\d\mu(z),\]
+where we integrate over a fundamental domain for the action of $\Gamma_0(N)$ on $\H$ and
+\[\d\mu(z)=\frac{\d x\d y}{y^2}\]
+is the $\SL$-invariant measure on $\H$.
+
+Now for $\Re(s)$ large enough, the series for $E_0^N(z,s)$ converges absolutely and the following manipulations are justified:
+\begin{align*}
+\int\int_{\Gamma_0(N)\setminus\H}F(z)E_0^N(z,s)\d\mu(z) &=\int\int_{\Gamma_0(N)\setminus\H}\sum_{\gamma\in\Gamma_\infty\setminus\Gamma_0(N)}F(z)\Im(\gamma z)^s\d\mu(z)\\
+														&=\sum_{\gamma\in\Gamma_\infty\setminus\Gamma_0(N)}\int\int_{\Gamma_0(N)\setminus\H}F(\gamma z)\Im(\gamma z)^s\d\mu(z)\\
+														&=\int\int_{\Gamma_\infty\setminus\H}F(z)\Im(z)^s\d\mu(z)\\
+\end{align*}
+
+As a functions of $s$, the last integral has a residue at $s=1$. Using the value of $\Res_{s=1}E^N_0(z,s)$ given above, one sees that
+\[\Res_{s=1}\int\int_{\Gamma_\infty\setminus\H}F(z)\Im(z)^s\d\mu(z)=\Res_{s=1}\int\int_{\Gamma_0(N)\setminus\H}F(z)E_0^N(z,s)\d\mu(z)=\langle f,g\rangle.\]
+Note that it is important that $\Res_{s=1}E^N_0(z,s)$ does not depend on $z$.
+
+On the other hand, let
+\[f(z)=\sum_{n=1}^\infty a_nq^n\esp\text{and}\esp g(z)=\sum_{n=1}^\infty b_nq^n\]
+be the $q$-expansions of $f$ and $g$. Then
+\[f(z)\overline{g(z)}=\sum_{m,n=1}^\infty a_n\overline{b_m}e^{2\pi inz}e^{-2\pi i m\bar{z}}=\sum_{m,n=1}^\infty a_n\overline{b_m}e^{2\pi i(n-m)x}e^{-2\pi (m+n)y},\]
+where $z=x+iy$, so 
+\[\int_0^1F(z)\Im(z)^s\d x=\sum_{n=1}^\infty a_n\overline{b_n}e^{-4\pi ny}y^{k+s}\]
+and
+\[\int\int_{\Gamma_\infty\setminus\H}F(z)\Im(z)^s\d\mu(z)=\int_0^\infty\left (\int_0^1F(z)\Im(z)^s\d x\right )\frac{\d y}{y^2}=\frac{\Gamma(s+k-1)}{(4\pi)^{s+k-1}}\sum_{n=1}^\infty\frac{a_n\overline{b_n}}{n^{s+k-1}}.\]
+
+Comparing the expressions for
+\[\Res_{s=1}\int\int_{\Gamma_\infty\setminus\H}F(z)\Im(z)^s\d\mu(z),\]
+gives the formula
+\begin{equation}\label{RankinSelberg}
+	\langle f,g\rangle=\Gamma(k)(4\pi)^{-k}Res_{s=k}D(f,g_\rho,s),
+\end{equation}
+where
+\[D(f,g,s)=\sum_{n=1}^\infty\frac{a_nb_n}{n^{s}}\]
+and
+\[g_\rho(z)=\overline{g(-\bar{z})}=\sum_{n=1}^\infty \overline{b_n} q^n.\]
+
+\section{Theta series attached to imaginary quadratic fields}
+Let $\ell\geq 0$ and $\psi=\psi_\ell$ be a Hecke character of infinity type $2\ell$. Consider the theta series
+\[\tpsi(z)=\sum_{\ida}\psi(\ida)q^{N(\ida)},\]
+where the sum runs over all integral ideals of $\O_K$. It is well known (\cite[Thm. 12.5]{Iwan}) that
+\[\tpsi(z)\in M_{2\ell+1}(\Gamma_0(|D|),\chi_D),\]
+where $\chi_D$ is the quadratic character attached to $K$ (i.e. the Kronecker symbol).\footnote{Note that the Hecke characters $\psi_\ell$ have conductor $\O_K$, so they are automatically primitive.}
+
+If $\ell>0$, $\tpsi$ is in fact a cusp form. If $\ell=0$, this is also true, unless $\psi$ is a genus character (i.e. $\psi^2=1$), in which case it is an Eisenstein series. In any case,
+\[L(\tpsi,s)=L(\psi,s),\]
+so the $L$-function of $\tpsi$ has an Euler product\footnote{One reason to choose the non-unitary Hecke characters $\psi_\ell$ is to have simpler formulas, like this one.}. It follows that $\tpsi$ is a normalized (i.e. $a_1(\tpsi)=1$) eigenform for all Hecke operators (see \cite[Thm. 5.9.2]{DiSh}). Moreover,
+\[a_n(\tpsi)=\sum_{N(\ida)=n}\psi(\ida),\]
+where the sum is over all integral ideals of $K$ of norm $n$. It follows that
+\[a_p(\tpsi)=\begin{cases}
+	0	&\text{if } \chi_D(p)=-1\\
+	\psi(\p)+\psi(\bar{\p}) &\text{if } \chi_D(p)=1 \text{ and }p\O_K=\p\bar{\p}\\
+	\psi(\p)&\text{if }  \chi_D(p)=0 \text{ and }p\O_K=\p^2\\
+\end{cases},\]
+in accordance with the equality between the $L$-functions of $\tpsi$ and $\psi$.
+
+Using the fact that the adjoint of the Hecke operators $T_p$ acting on $S_{2\ell+1}(\Gamma_0(|D|),\chi_D)$ with respect to the Petersson inner product is
+\[T_p^*=\overline{\chi_D}(p)T_p\]
+for all $p$ not dividing $D$ (see \cite[Thm. 5.5.3]{DiSh}), one sees that 
+\[a_p(\tpsi)=\chi_D(p)\overline{a_p(\tpsi)}\]
+for all $p$ not dividing $D$, whenever $\tpsi$ is a cusp form.
+
+\begin{lemma}\label{realFourrier}
+	\[a_n(\tpsi)\in\R\]
+	whenever $\tpsi$ is a cusp form.
+\end{lemma}
+\begin{proof}
+	By the multiplicativity property of the $a_n(\tpsi)$, it suffices to prove the result for $n=p^k=$a prime power. Recall that
+	\[a_{p^{k+1}}(\tpsi)=a_{p}(\tpsi)a_{p^k}(\tpsi)-\chi_D(p)p^{2\ell}a_{p^{k-1}}(\tpsi),\]
+	for all $k\geq1$.
+	
+	If $p$ is inert in $K$, $a_p(\tpsi)=0$ and so $a_{p^k}(\tpsi)=0$ for all $k\geq 0$.
+	
+	If $p$ splits in $K$, $a_{p}(\tpsi)=\chi_D(p)\overline{a_{p}(\tpsi)}=\overline{a_{p}(\tpsi)}$, so $\overline{a_{p}(\tpsi)}\in\R$ and the claim follows from the recursive formula.
+	
+	Finally if $p$ ramifies, say $p\O_K=\p^2$, then $a_{p}(\tpsi)=\pm p^\ell$ since
+	\[p^{2\ell}=\psi((p))=\psi(\p^2)=\psi(\p)^2\]
+	and the claim follows again from the recursive formula.
+\end{proof}
+
+\section{The Petersson norm of $\tpsi$}
+In this section, suppose $\tpsi$ is a cusp form, i.e. $\psi^2\neq 1$. We will prove that the Petersson norm of $\tpsi$ is
+\begin{equation}\label{NormLpsi}
+\langle\tpsi,\tpsi\rangle=\zeta(2)^{-1}(4\pi)^{-2\ell-1}\Gamma(2\ell+1)L(\chi_D,1)\prod_{p|D}(1+p^{-1})^{-1}L(\psi^2,2\ell+1)
+\end{equation}
+Note that if $\psi^2=1$, $\ell=0$ and so $L(\psi^2,s)$ has a pole at $s=1$.
+
+For each prime $p$, the $L$-function of $\tpsi$ has Euler factor at $p$ equal to
+\[1-a_p(\tpsi)p^{-s}+\chi_D(p)p^{2l-2s}=(1-\alpha_pp^{-s})(1-\beta_pp^{-s}),\]
+where we set $\beta_p=0$ if $p|D$. One can then define the symmetric square $L$-function of $\tpsi$ as
+\[L(\text{Sym}^2\tpsi,s)=\prod_{p}((1-\alpha_p^2p^{-s})(1-\alpha_p\beta_pp^{-s})(1-\beta_p^2p^{-s}))^{-1}\]
+for $\Re(s)$ large enough. This $L$-function can be analytically continued to a meromorphic funtion on the whole complex plane, with (possibly) poles at $s=2\ell$ and $s=2\ell+1$ (see \cite[Thm. 2]{Shi2}).
+
+Using the description of $a_p(\tpsi)$ given in the previous section, one sees that
+\[\{\alpha_p,\beta_p\}=\begin{cases}
+	\{\pm p^\ell,\mp p^\ell\}	&\text{if } \chi_D(p)=-1\\
+	\{\psi(\p),\psi(\bar{\p})\}&\text{if } \chi_D(p)=1 \text{ and }p\O_K=\p\bar{\p}\\
+	\{\psi(\p),0\}&\text{if }  \chi_D(p)=0 \text{ and }p\O_K=\p^2\\
+\end{cases}.\]
+
+The proof of formula \ref{NormLpsi} relies on the Rankin-Selberg method:
+\[\langle\tpsi,\tpsi\rangle=(4\pi)^{-2\ell-1}\Gamma(2\ell+1)\Res_{s=2\ell+1}D(\tpsi,\tpsi,s),\]
+where we used the fact that $\tpsi$ has real Fourrier coefficients (Lemma \ref{realFourrier}). Before proving the formula, we mention the following Lemma of Shimura (see \cite[Ch.3, Lem.1]{Shi3}).
+
+\begin{lemma}
+	Suppose we have formally
+	\[\sum_{n=1}^\infty\frac{a_n}{n^s}=\prod_{p}((1-\alpha_pp^{-s})(1-\beta_pp^{-s}))^{-1},\]
+	\[\sum_{n=1}^\infty\frac{b_n}{n^s}=\prod_{p}((1-\alpha_p'p^{-s})(1-\beta_p'p^{-s}))^{-1}.\]
+	Then
+	\[\sum_{n=1}^\infty\frac{a_nb_n}{n^s}=\prod_{p}(1-\alpha_p\beta_p\alpha_p'\beta_p'p^{-2s})((1-\alpha_p\alpha_p'p^{-s})(1-\alpha_p\beta_p'p^{-s})(1-\beta_p\alpha_p'p^{-s})(1-\beta_p\beta_p'p^{-s}))^{-1}.\]
+\end{lemma}
+
+The first step in the proof is the following.
+
+\begin{lemma}
+	For all $s$, one has
+	\[\zeta_D(2s-4\ell)D(\tpsi,\tpsi,s)=L(\textrm{Sym}^2\tpsi,s)L(\chi_D,s-2\ell),\]
+	where $\zeta_D(s)$ is the usual Riemann zeta function with the Euler factors at $p|D$ removed and $L(\chi_D,s)$ is the Dirichlet $L$-function attached to $\chi_D$.
+\end{lemma}
+\begin{proof}
+	The idea is to compare the Euler factors at each prime on each side for $\Re(s)$ large enough, using Shimura's lemma.
+	
+	For $p$ split or inert, the Euler factor on the left simplifies to
+	\[(1-p^{4\ell-2s})^{-1}(1-p^{4\ell-2s})((1-\alpha_p^2p^{-s})(1-\alpha_p\beta_pp^{-s})(1-\beta_p^2p^{-s}))^{-1}(1-\chi_D(p)p^{2\ell-s})^{-1},\]
+	while the one on the right is
+	\[((1-\alpha_p^2p^{-s})(1-\alpha_p\beta_pp^{-s})(1-\beta_p^2p^{-s}))^{-1}(1-\chi_D(p)p^{2\ell-s})^{-1}.\]
+	
+	If $p$ ramifies, $\beta_p=0$ and $\chi_D(p)=0$. Then the Euler factor on the left is
+	\[(1-p^{2\ell-s})^{-1},\]
+	which is also equal to the one on the right.	
+\end{proof}
+
+The last step is to relate $L(\textrm{Sym}^2\tpsi,s)$ to $L(\psi^2,s)$.
+
+\begin{lemma}
+	For all $s$, one has
+	\[L(\textrm{Sym}^2\tpsi,s)=L(\psi^2,s)\zeta_D(s-2\ell).\]
+\end{lemma}
+\begin{proof}
+	Again, it suffices to compare the euler factors on both sides for $\Re(s)$ large enough.
+	
+	If $p$ is inert, the Euler factor on the left is
+	\[((1-p^{2\ell-s})(1+p^{2\ell-s})(1-p^{2\ell-s}))^{-1},\]
+	while the one on the right is
+	\[(1-\psi^2((p))p^{-2s})^{-1}(1-p^{2\ell-s})^{-1}=(1-p^{4\ell-2s})^{-1}(1-p^{2\ell-s})^{-1}.\]
+	
+	If $p$ splits as $p\O_K=\p\bar{\p}$, the Euler factor on the left is
+	\[(1-\psi^2(\p)p^{-s})(1-\psi(\p)\psi(\bar{\p})p^{-s})(1-\psi^2(\bar{\p})p^{-s}))^{-1}=((1-\psi^2(\p)p^{-s})(1-\psi^2(\bar{\p})p^{-s}))^{-1}(1-p^{2\ell-s})^{-1},\]
+	which is clearly equal to the one on the right.
+	
+	The case $p$ ramified is similar.
+\end{proof}
+
+Putting those two lemmas together gives
+\[\zeta_D(2s-4\ell)D(\tpsi,\tpsi,s)=L(\chi_D,s-2\ell)\zeta_D(s-2\ell)L(\psi^2,s).\]
+Formula \ref{NormLpsi} then follows by taking residues on both sides of this equation at $s=2\ell+1$, using the fact that $L(\psi^2,s)$ is analytic at $2\ell+1$,
+\[\Res_{s=2\ell+1}\zeta_D(s-2\ell)=\prod_{p|D}(1-p^{-1})\Res_{s=1}\zeta(s)=\prod_{p|D}(1-p^{-1})\]
+and
+\[\zeta_D(2)=\prod_{p|D}(1-p^{-2})\zeta(2).\]
+
+\section{Special values of Hecke L-functions and Eisenstein series}
+In this section, we first relate $L(\psi^2,s)$ to non-holomorphic Eisenstein series. Then we use this relation to express the special value of $L(\psi^2,s)$ at $2\ell+1$ in terms of derivatives of $E_2$ evaluated at $CM$ points when $\ell>0$. The case $\ell=0$ is different and must be treated separately.
+
+\subsection{Hecke $L$-functions and non-holomorphic Eisenstein series}
+Throughout this subsection, fix an integer $\ell\geq0$ and a Hecke character $\psi=\psi_\ell$ of infinity type $2\ell$.
+
+For an integral ideal $\ida$ of $\O_K$, fix an $\Z$-basis of it of the form
+\[\ida=\left [a,\frac{b+\sqrt{D}}{2}\right ],\]
+where $a=N(\ida)$, $b$ is determined mod $2a$ and $b^2\equiv D\pmod{4a}$. For such an ideal $\ida$, let
+\[\tau_\ida=\frac{b+\sqrt{D}}{2a}\in\H.\]
+
+Now define
+\[L_{\ida,\ell}(s)=\frac{1}{w_K}\sum_{\lambda\in\ida}\frac{\overline{\lambda}^{4\ell}}{|\lambda|^{2s}},\]
+where the sum runs over the non-zero elements of $\ida$. This series, which clearly converges for $\Re(s)$ large enough, can be seen as a sort of partial Hecke $L$-function. In fact,
+\begin{equation}\label{eq:partialDec}
+L(\psi^2,s)=\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell-s}}L_{\ida,\ell}(s),
+\end{equation}
+where the sum runs over a set of integral representatives of the class group $\Clk$. Note that the sum does not depend on the choice of class representatives.
+
+To prove formula \ref{eq:partialDec}, first write
+\[L(\psi^2,s)=\sum_{[\ida]\in\Clk}\sum_{\idc\in[\ida]}\frac{\psi^2(\idc)}{N(\idc)^s},\]
+where the inner sum runs over the integral ideals $\idc$ in the class of $\ida$. Now fix $\idb\in[\ida]^{-1}$ such that $1\in\idb$. Then $\idc\in[\ida]$ with $\idc\subseteq\O_K$ if and only if $\idc\idb=\lambda\O_K$ with $\lambda\in\idb$. Note that $\lambda$ is unique up to an element of $\O_K^\times$ and $N(\idc)=N(\lambda)N(\idb)^{-1}$. It follows that
+\[\sum_{\idc\in[\ida]}\frac{\psi^2(\idc)}{N(\idc)^s}=\frac{1}{w_K}\frac{N(\idb)^s}{\psi^2(\idb)}\sum_{\lambda\in\idb}\frac{\lambda^{4\ell}}{|\lambda|^{2s}}.\]
+Since $\ida\bar{\ida}=N(\ida)\O_K$, one can take $\idb=\bar{\ida}N(\ida)^{-1}$ (which contains $1$) and then a short computation shows that the previous formula becomes
+\[\sum_{\idc\in[\ida]}\frac{\psi^2(\idc)}{N(\idc)^s}=\frac{1}{w_K}\frac{N(\idb)^s}{\psi^2(\idb)}\sum_{\lambda\in\idb}\frac{\lambda^{4\ell}}{|\lambda|^{2s}}=\frac{1}{w_K}\frac{\psi^2(\ida)}{N(\ida)^{4\ell-s}}\sum_{\lambda\in\ida}\frac{\bar{\lambda}^{4\ell}}{|\lambda|^{2s}}.\]
+This proves formula \ref{eq:partialDec}.
+
+The partial Hecke $L$-function $L_{\ida,\ell}(s)$ is related to non-holomorphic Eisenstein series in the following way.
+
+\begin{prop}
+	For all $s\in\C$, one has
+	\[L_{\ida,\ell}(s)=\frac{1}{w_K}N(\ida)^{-s}\left (\frac{2}{\sqrt{|D|}}\right )^{s-4\ell}G_{4\ell}(\tau_\ida,s-4\ell).\]
+\end{prop}
+\begin{proof}
+	The proof is a simple computation. For $\Re(s)$ large enough, the series defining $L_{\ida,\ell}(s)$ converges absolutely and
+	\[L_{\ida,\ell}(s)=\frac{1}{w_K}\sum_{m,n}\frac{(m\overline{\tau}_\ida+n)^{4\ell}a^{4\ell}}{|m\tau_\ida+n|^{2s}a^{2s}}=\frac{a^{4l-2s}}{w_K}\sum_{m,n}(m\tau_\ida+n)^{-4\ell}|m\tau_\ida+n|^{-2(s-4\ell)}.\]
+	Since $a=N(\ida)$ and
+	\[a=\left( \frac{2\Im(\tau_\ida)}{\sqrt{|D|}}\right )^{-1},\]
+	we have
+	\[a^{4\ell-2s}=a^{-s}\left( \frac{2\Im(\tau_\ida)}{\sqrt{|D|}}\right )^{s-4\ell}=\left (\frac{2}{\sqrt{|D|}}\right )^{s-4\ell}\Im(\tau_\ida)^{s-4\ell}N(\ida)^{-s}.\]
+	Using
+	\[\Im(\tau_\ida)^{s-4\ell}\sum_{m,n}(m\tau_\ida+n)^{-4\ell}|m\tau_\ida+n|^{-2(s-4\ell)}=G_{4\ell}(\tau_\ida,s-4\ell),\]
+	the equality of the proposition follows in some right half plane. We then have equality for all $s$ by analytic continuation.
+\end{proof}
+
+\begin{coro}\label{eq:LpsiE4l}
+	For all $s\in\C$, one has
+	\[L(\psi^2,s)=\frac{1}{w_K}\left (\frac{2}{\sqrt{|D|}}\right )^{s-4\ell}\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell}}G_{4\ell}(\tau_\ida,s-4\ell).\]
+\end{coro}
+
+\subsection{The case $\ell=0$: kronecker limit formula}
+When $\ell=0$, Corollary \ref{eq:LpsiE4l} gives
+\begin{equation}\label{eq:casel=0}
+L(\psi^2,s)=\frac{1}{w_K}\left (\frac{2}{\sqrt{|D|}}\right )^{s}\sum_{[\ida]\in\Clk}\psi^2(\ida)G_0(\tau_\ida,s).
+\end{equation}
+Recall that we are interested in the value of $L(\psi^2,s)$ at $s=2\ell+1=1$. Since the non-holomorphic Eisenstein series of weight $0$ has a pole at $s=1$, we need to look at the next term in the Taylor expansion around $s=1$.
+
+\begin{theorem}[Kronecker Limit Formula]
+	Define the eta-function as
+	\[\eta(z)=q^{1/24}\prod_{n=1}^\infty(1-q^n),\]
+	where $q=e^{2\pi iz}$ and let
+	\[G_0(z,s)=\Im(z)^s\sum_{m,n}|mz+n|^{-2s}\]
+	be the non-holomorphic Eisenstein series of weight $0$. Then
+	\[G_0(z,s)=\pi\left (\frac{1}{s-1}+C(z)+O(s-1)\right ),\]
+	where
+	\[C(z)=2\gamma-\log 4-2\log(\Im(z)^{1/2}|\eta(z)|^2)\]
+	($\gamma=$Euler's constant).
+\end{theorem}
+\begin{proof}
+	See \cite[Thm. 10.4.6]{Cohe}. Note that our definition of $G_0(z,s)$ differs from Cohen's by a factor of $1/2$.
+\end{proof}
+
+When $\psi^2$ is the trivial character, formula \ref{eq:casel=0} is nothing else but the well-known decomposition of the Dedekind zeta function of $K$ into a sum of Epstein zeta functions. Comparing the residues gives the class number formula for imaginary quadratic fields:
+\[\Res_{s=1}\zeta_K(s)=L(\chi_D,1)=\frac{2\pi h_K}{w_K\sqrt{|D|}}\]
+and comparing the constant terms gives the Chowla-Selberg formula.
+
+When $\psi^2$ is not trivial, the function $L(\psi^2,s)$ is analytic at $s=1$\footnote{Note again the importance of the fact that the residue of the non-holomorphic Eisenstein series at $s=1$ does not depend on $z$.} and has value
+\[L(\psi^2,1)=-\frac{4\pi}{w_K\sqrt{|D|}}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2).\]
+Putting this in formula \ref{NormLpsi}, we get
+\[\langle\tpsi,\tpsi,\rangle =-\frac{6}{\pi^2}\frac{1}{4\pi}\frac{2\pi h_K}{w_K\sqrt{|D|}}\prod_{p|D}(1+p^{-1})^{-1}\frac{4\pi}{w_K\sqrt{|D|}}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2)\]
+which simplifies to
+\begin{equation}\label{eq:filall=0}
+	\langle\tpsi,\tpsi\rangle =-\text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2),
+\end{equation}
+where we used the fact that
+\[\text{Vol}(\Gamma_0(|D|)\setminus\H)=\text{Vol}(\SL\setminus\H)[\SL:\Gamma_0(|D|)]=\frac{\pi}{3}|D|\prod_{p|D}(1+p^{-1}).\]
+Note that factoring out the volume helps understanding the algebraic properties of the quantity on the right. This formula tells us that normalizing the Petersson inner product by dividing by the volume, as we did, artificially introduces transcendental numbers in the Petersson norm. We will come back to this point after we treat the case $\ell>0$.
+
+\subsection{The case $\ell>0$: derivative of almost holomorphic Eisenstein series}\label{sec:caselgeq1}
+Define as usual the following differential operators on function on the upper half-plane
+\[\frac{\del}{\del z}=\frac{1}{2}\left (\frac{\del}{\del x}-i\frac{\del }{\del y}\right ).\]
+
+For any integer $k$ and congruence subgroup $\Gamma$, let $\hat{M}_k(\Gamma)$ be the space of \emph{almost holomorphic modular forms} of weight $k$ and level $\Gamma$. An element of this space is a $\dashk\gamma$-invariant function for all $\gamma\in\Gamma$, but instead of being holomorphic on $\H$, it is a polynomial in $1/\Im(z)$ with holomorphic coefficients satisfying some growth condition at infinity. The simplest example (and the only one we need) of almost holomorphic modular form is $E_2\in\hat{M}_2(\SL)$.
+
+If $f\in \hat{M}_k(\Gamma)$ is an almost holomorphic modular form, the operator $\del_k$ defined as
+\[\del_k f=\frac{1}{2\pi i}\frac{\del f}{\del z}-\frac{k}{4\pi\Im(z)}f\]
+takes $f$ to an element of $\hat{M}_{k+2}(\Gamma)$. To simplify the notation, define
+\[\del_k^n=\del_{k+2n-2}\circ\dots\circ\del_{k+2}\circ\del_k.\]
+
+The following lemma is the starting point of our investigation.
+
+\begin{lemma}
+	Let $G_k(z,s)$ be the non-holomorphic Eisenstein series of weight $k$ defined in section \ref{sec:Eisen}. Then
+	\[\del_k^nG_k(z,s)=(-4\pi)^{-n}\frac{\Gamma(k+s+n)}{\Gamma(s+k)}G_{k+2n}(z,s-n)\]
+\end{lemma}
+\begin{proof}
+	This is \cite[Formula 9.12]{Shi1} with $N=1$ and $p=q=0$. Note also that our $\del_k$ is Shimura's $D_k$ (we follows Zagier's notation).
+\end{proof}
+
+\begin{coro}
+	For $\ell>0$,
+	\[\del_2^{2\ell-1}G_2(z,s)=(-4\pi)^{-2\ell+1}\frac{\Gamma(s+2\ell+1)}{\Gamma(s+2)}G_{4\ell}(z,s-2\ell+1).\]
+\end{coro}
+
+Now the previous Corollary and Corollary \ref{eq:LpsiE4l} at $s+2\ell+1$ give
+\begin{align*}
+L(\psi^2,s+2\ell+1)&=\frac{1}{w_K}\left (\frac{2}{\sqrt{|D|}}\right )^{s-2\ell+1}\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell}}G_{4\ell}(\tau_\ida,s-2\ell+1)\\
+&=\frac{\Gamma(s+2)}{\Gamma(s+2\ell+1)}\frac{(-4\pi)^{2\ell-1}}{w_K}\left (\frac{2}{\sqrt{|D|}}\right )^{s-2\ell+1}\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell}}\del_2^{2\ell-1}G_{2}(\tau_\ida,s).
+\end{align*}
+Evaluating at $s=0$ gives the following formula:
+\[L(\psi^2,2\ell+1)=\frac{1}{w_K}\frac{(-4\pi)^{2\ell-1}}{\Gamma(2\ell+1)}\left (\frac{\sqrt{|D|}}{2}\right )^{2\ell-1}\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell}}\del_2^{2\ell-1}G_{2}(\tau_\ida,0).\]
+Using this value for $L(\psi^2,2\ell+1)$ in formula \ref{NormLpsi} and simplifying finally gives
+\[\langle\tpsi,\tpsi\rangle = \text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{|D|^\ell}{2^{2\ell}}\frac{2h_K}{w_K^2}\frac{-1}{(2\pi)^2}\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell}}\del_2^{2\ell-1}G_{2}(\tau_\ida,0).\]
+Using the following definition of $E_2$
+\[E_2(z)=2^{-1}(2\pi i)^{-2}G_2(z,0),\]
+the equation can be rewritten as
+\begin{equation}\label{eq:finallgeq1}
+\langle\tpsi,\tpsi\rangle=\text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{|D|^\ell}{2^{2\ell}}\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell}}\del_2^{2\ell-1}E_{2}(\tau_\ida).
+\end{equation}
+
+\begin{coro}\label{coro:algebraicitytpsi}
+	For $\ell>0$,
+	\[\text{Vol}(\Gamma_0(|D|)\setminus\H)\langle\tpsi,\tpsi\rangle=\alpha\Omega_K^{4\ell},\]
+	where $\alpha$ is an algebraic number and $\Omega_K$ is the Chowla-Selberg period attached to $K$ and depends only on $K$.
+\end{coro}
+\begin{proof}
+	From the Corollary of Proposition 27 in \cite{Zag}, it follows that
+	\[\del_2^{2\ell-1}E_2(\tau)\]
+	is an algebraic multiple of $\Omega_K^{2+2(2\ell-1)}=\Omega_K^{4\ell}$, whenever $\tau\in K\cap\H$ is a CM point. The Corollary follows from the fact that the values of the Hecke characters $\psi_\ell$ and all the other quantities in formula \ref{eq:finallgeq1} are algebraic.
+\end{proof}
+
+Note the necessity of removing the factor $\text{Vol}(\Gamma_0(|D|)\setminus\H)$ to have results like that one.
+
+\subsection{The case $\ell=0$ revisited}
+Strictly speaking, formula \ref{eq:finallgeq1} does not make sense for $\ell=0$. However, it is natural to define $\del_2^{-1}$ as a weight $0$ "modular form" $f$ such that
+\[\del_0 f(z)=E_2(z).\]
+We claim that
+\[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-E_2(z),\]
+where
+\[\del_0=\frac{1}{2\pi i}\frac{\del}{\del z}.\]
+This follows from the well known fact (see \cite[Prop. 7]{Zag}) that
+\[\frac{1}{2\pi i}\frac{\del}{\del z}\log\Delta(z)=1-24\sum_{n=1}^\infty\sigma_1(n)q^n\]
+and the identity
+\[\Delta(z)=\eta(z)^{24}.\]
+Indeed, since
+\[\log|\Delta(z)|=\Re(\log\Delta(z)),\]
+this implies
+\[\frac{\del}{\del z}\log|\Delta(z)|=\frac{1}{2}\frac{\del}{\del z}\log\Delta(z)\]
+(recall that $\frac{\del\bar{f}}{\del z}=\overline{\frac{\del f}{\del \bar{z}}}=0$ if $f(z)$ is holomorphic).
+
+The equality
+\[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-E_2(z)\]
+implies that formula \ref{eq:finallgeq1} also makes sense for $\ell=0$ and gives back exactly formula \ref{eq:filall=0}. Note also that $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is $\SL$-invariant, as desired. However, I don't think $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is almost holomorphic.
+
+\section{Theta functions attached to ideals in quadratic fields}
+In this section we define theta series attached to ideals in imaginary quadratic fields and certain spherical polynomials and see how these theta functions are relate to the theta functions $\tpsi$.
+
+Throughout this section, fix an integer $\ell\geq 0$.
+
+Let $\ida$ be a fractional ideal of $K$ and define the theta function attached to $\ida$ (and $\ell$) as
+\[\tida(z)=\sum_{\lambda\in\ida}\lambda^{2\ell}q^{N(\lambda)/N(\ida)},\]
+where we define $0^0=1$ in case $\ell=0$. Then we have the following
+\begin{prop}
+	The function $\tida$ is a modular form of weight $2\ell+1$, level $\Gamma_0(|D|)$ and Nebentypus $\chi_D$. Moreover, it is a cusp form if $\ell>0$.
+\end{prop}
+\begin{proof}
+	This is well-know, but tedious to prove! A good reference for that is \cite[Thm. 10.9]{Iwan}. The point is that the function $\lambda\mapsto\lambda^{2\ell}$ is a spherical polynomial for the binary quadratic form $N(\lambda)/N(\ida)$. 
+\end{proof}
+
+If $\psi$ is a Hecke character of infinity type $2\ell$, the theta function $\tpsi$ decomposes as follows:
+\begin{equation}\label{eq:tpsidec}
+\tpsi=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\psi(\ida)^{-1}\tida,
+\end{equation}
+where the sum runs over representatives of the class group. Note that $\tida$ depends on the choice of $\ida$ in $[\ida]$, since
+\[\theta_{\alpha\mathfrak{a}}=\alpha^{2\ell}\tida,\]
+but the sum is still independent of this choice. To prove formula \ref{eq:tpsidec}, one uses the same trick as we used before:
+\[\tpsi=\sum_{[\ida]\in\Clk}\sum_{\idc\in[\ida]}\psi(\idc)q^{N(\idc)}=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\psi(\idb_{\ida})^{-1}\theta_{\idb_{\ida}},\]
+where $\idb_\ida$ is an ideal in the inverse class of $\ida$ containing $1$. As $[\ida]$ varies through the different classes in $\Clk$, $\idb_\ida$ does the same, so the sum can be rearranged to give formula \ref{eq:tpsidec}.
+
+Note that choosing $\idb=\bar{\ida}N(\ida)^{-1}$ above gives
+\[\tpsi=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\psi(\bar{\ida})^{-1}\theta_{\bar{\ida}}=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\frac{\psi(\ida)}{N(\ida)^{2\ell}}\theta_{\bar{\ida}},\]
+which gives the decomposition \ref{eq:partialDec} after taking Mellin transform on each sides (just note that the $L$-function of $\tida$ is $L_{\ida,\ell}(s)$).
+
+Our next goal is to write $\tida$ in terms of the $\tpsi$. For this, the following Lemma is useful.
+
+\begin{lemma}\label{orthorel}
+	Fix an integer $\ell\geq 0$ and let $\idc$ be a fractional ideal of $K$. Then
+	\[\sum_{\psi}\psi(\idc)=\begin{cases}
+	0	&\text{if } [\idc]\neq[\O_K]\\
+	\lambda^{2\ell}h_K &\text{if } \idc=\lambda\O_K\\
+\end{cases},\]
+where the sum runs over all Hecke characters of $K$ of infinity type $2\ell$.
+\end{lemma}
+\begin{proof}
+	Fix a Hecke character $\chi$ of infinity type $2\ell$. Then
+	\[\sum_{\psi}\psi\chi^{-1}(\idc)=\begin{cases}
+	0	&\text{if } [\idc]\neq[\O_K]\\
+	h_k &\text{if } \idc=\lambda\O_K\\
+\end{cases},\]
+	by the orthogonality relations of finite abelian group characters, since $\psi\chi^{-1}$ is a character of $\Clk$. The claim follows by multiplying both sides by $\chi(\idc)$ since $\chi(\lambda\O_K)=\lambda^{2\ell}$.
+\end{proof}
+
+This leads to the following
+\begin{prop}\label{thetaadecomp}
+	With $\tida$ defined as above,
+	\[\tida=\frac{w_K}{h_K}\sum_{\psi}\psi(\ida)\tpsi,\]
+	where the sum runs over all Hecke characters of infinity type $2\ell$.
+\end{prop}
+\begin{proof}
+	This follows formally from the previous Lemma and the expression for $\tpsi$ in terms of the $\theta_\ida$.
+\end{proof}
+
+Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\ell>0$, one can compute $\langle\tida,\theta_\idb\rangle$ in terms of the Petersson norm of the $\tpsi$. When $\ell=0$, the $\tpsi$ are not always cusp forms and we have not found a way to compute (or even define) the Petersson norm of all the $\tpsi$. However, we still have the following
+
+\begin{prop}
+	Let $\ell>0$ and let $\theta_\idc$ and $\theta_\idd$ be defined as above. Then
+	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\ida)^{2\ell}\sum_{[\idc]^2=[\ida]^{-1}[\idb]}\overline{\lambda_\idc}^{-2\ell}\del^{2\ell-1}E_2(\tau_\idc),\]
+	where the sum runs over all ideal classes $[\idc]\in\Clk$ such that $\idc^2\ida\idb^{-1}=\lambda_\idc\O_K$ fro some $\lambda_\idc\in K$ and
+	 \[C_K=4 \text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{|D|^\ell}{2^{2\ell-1}}.\]
+	 In particular, $\theta_\ida$ and $\theta_\idb$ are orthogonal if $\ida$ and $\idb$ are not in the same genus.
+%	if $\idc$ and $\idd$ are in a different genus (i.e. $[\idc][\idd]^{-1}\not\in\Clk^2$). If they are in the same genus, then $\idc = \ida\idb^{-1}$ and $\idd=\ida\idb$ for some fractional ideals $\ida$ and $\idb$ in $K$ and
+%	\[\langle\theta_{\ida\idb^{-1}},\theta_{\ida\idb}\rangle =C_K N(\ida\idb^{-1})^{2\ell}\sum_{[\mathcal{A}]^2=1}N(\mathcal{A})^{-4\ell}\del^{2\ell-1}E_2(\tau_{\idb\mathcal{A}}),\]
+%	where the sum runs over all ambiguous classes $[\mathcal{A}]$ in $\Clk$ and
+%	\[C_K=4 \text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{|D|^\ell}{2^{2\ell-1}}.\]
+%	In particular, if $D=-p$ is prime, the only ambiguous class is the class of $\O_K$ and the formula simplifies to
+%	\[\langle\theta_{\ida\idb^{-1}},\theta_{\ida\idb}\rangle =C_K N(\ida\idb^{-1})^{2\ell}\del^{2\ell-1}E_2(\tau_{\idb}).\]
+\end{prop}
+\begin{proof}
+	First, we compute
+	\begin{align*}
+		\langle\theta_\ida,\theta_\idb\rangle &= \frac{h_K^2}{w_K^2}\sum_{\psi,\chi}\psi(\ida)\overline{\chi}(\idb)\langle\theta_\psi,\theta_\chi\rangle\\
+		&= \frac{h_K^2}{w_K^2}\sum_{\psi}\psi(\ida)\overline{\psi}(\idb)\langle\theta_\psi,\theta_\psi\rangle\\
+		&= \frac{h_K^2}{w_K^2}\sum_{\psi}\psi(\ida)N(\idb)^{2\ell}\psi^{-1}(\idb)\langle\theta_\psi,\theta_\psi\rangle\\
+		&= \frac{C_K}{h_K}N(\idb)^{2\ell}\sum_{\psi,[\idc]}\psi(\ida\idb^{-1}\idc^2)N(\idc)^{-4\ell}\del^{2\ell-1}E_2(\tau_\idc),
+	\end{align*}
+	where the first sum is a double sum over al Hecke characters of infinity type $2\ell$, we used the orthogonality of the newforms $\tpsi$ in the second equality and the last sum is a double sum over $\psi$ as above and $[\idc]\in\Clk$.
+	
+	Summing over $\psi$ first and using Lemma \ref{orthorel}, we see that
+	\[\langle\theta_\ida,\theta_\idb\rangle=0\]
+	if for all $[\idc]\in\Clk$, $\ida\idb^{-1}\idc^2$ is not principal, i.e. $\ida$ and $\idb$ are not in the same genus. Otherwise, if $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$ for some $\lambda_\idc\in K$, then
+	\[\sum_{\psi}\psi(\ida\idb^{-1}\idc^2)=\lambda_\idc^{2\ell} h_K\]
+	and the last line of the above computation becomes
+	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{[\idc^2\ida\idb^{-1}]=1}N(\idc)^{-4\ell}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\tau_\idc).\]
+	Now using the relation
+	\[N(\idc^2\ida\idb^{-1})^{2\ell}=N(\lambda_\idc)^{2\ell},\]
+	we see that
+	\[N(\idc)^{-4\ell}\lambda_\idc^{2\ell}=N(\ida\idb^{-1})^{2\ell}\overline{\lambda_\idc}^{-2\ell}\]
+	the proposition follows.
+\end{proof}
+
+
+\begin{coro}
+	Fix $\ell>0$ and let $\tida$ and $\theta_\idb$ be defined as above, then
+	\[\text{Vol}(\Gamma_0(|D|)\setminus\H)\langle\tida,\theta_\idb\rangle=\alpha\Omega_K^{4\ell},\]
+	where $\alpha$ is some algebraic number and $\Omega_K$ is the Chowla-Selberg period attached to $K$.
+\end{coro}
+
+
+
+\begin{thebibliography}{DDDD}%
+	\bibitem[Cohe]{Cohe}
+    {\scshape\itshape Cohen, H.}, \emph{Number Theory, Volume II: Analytic and Modern Tools}, Springer Graduate Texts in Mathematics, 2007.
+
+    \bibitem[DiSh]{DiSh}
+    {\scshape\itshape Diamond, F., Shurman, J.}, \emph{A First Course in Modular Forms}, Springer Graduate Texts in Mathematics, 2005.
+    
+    \bibitem[Iwan]{Iwan}
+	{\scshape\itshape Iwaniec, H.}, \emph{Topics in Classical Automorphic Forms}, Graduate Studies in Mathematics, Volume 17, American Mathematical Society, Providence, 1991.
+	
+	\bibitem[Miya]{Miya}
+    {\scshape\itshape Miyake, T.}, \emph{Modular Forms}, Springer Monographs in Mathematics, 2006.
+    
+    \bibitem[Shi1]{Shi1}
+    {\scshape\itshape Shimura, G.}, \emph{Elementary Dirichlet Series
+and Modular Forms}, Springer Monographs in Mathematics, 2007.
+    
+    \bibitem[Shi2]{Shi2}
+    {\scshape\itshape Shimura, G.}, \emph{On the Holomorphy of Certain Dirichlet Series}, Proc. London Math. Soc. (3) 31 (1975), 79-98.
+
+	\bibitem[Shi3]{Shi3}
+    {\scshape\itshape Shimura, G.}, \emph{The special Values of the Zeta Functions Associated with Cusp Forms}, Communications on Pure and Applied Mathematics, Vol. XXIX, 1976.
+    
+	\bibitem[Zag]{Zag}
+    {\scshape\itshape Zagier, D.}, \emph{Elliptic modular forms and their applications} in \emph{1-2-3 of Modular Forms}, Universitext, Springer-Verlag Berlin Heidelberg, 2008.
+\end{thebibliography}
+\end{document}
+
