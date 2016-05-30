@@ -469,9 +469,13 @@ This leads to the following
 Using the fact that
 \[2^{-1}(2\pi i)^{-k}\Gamma(k)G_k(z,0)=E_k(z),\]
 for all $k\geq 2$, where
-\[E_2(z)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma_1(n)q^n\]
+\begin{equation}\label{def:E2}
+E_2(z)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma_1(n)q^n
+\end{equation}
 and
-\[E_k=-\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n\]
+\begin{equation}\label{def:Ek}
+E_k=-\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n
+\end{equation}
 is the usual holomorphic Eisenstein series for $k\geq 4$ (see \cite[Sec 9.2]{Shi1}), one sees that the previous Corollary relates certain special values of the Hecke $L$-function attached to $\psi$ to the derivatives of the usual Eisenstein series.
 
 Applying the previous Corollary to $\psi^2$ with $m=2\ell+1$, we get
@@ -575,18 +579,12 @@ This leads to the following
 
 Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\ell>0$, one can compute $\langle\tida,\theta_\idb\rangle$ in terms of the Petersson norm of the $\tpsi$. When $\ell=0$, the $\tpsi$ are not always cusp forms and we have not found a way to compute (or even define) the Petersson norm of all the $\tpsi$. However, we still have the following
 
-\begin{prop}
+\begin{prop}\label{formula:innerprod}
 	Let $\ell>0$ and let $\theta_\ida$ and $\theta_\idb$ be defined as above. Then
 	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc),\]
 	where the sum runs over all ideal classes $[\idc]\in\Clk$ such that $\idc^2\ida\idb^{-1}=\lambda_\idc\O_K$ for some $\lambda_\idc\in K$ and
 	 \[C_K=4V_D^{-1}(|D|/4)^\ell.\]
 	 In particular, $\theta_\ida$ and $\theta_\idb$ are orthogonal if $\ida$ and $\idb$ are not in the same genus.
-%	if $\idc$ and $\idd$ are in a different genus (i.e. $[\idc][\idd]^{-1}\not\in\Clk^2$). If they are in the same genus, then $\idc = \ida\idb^{-1}$ and $\idd=\ida\idb$ for some fractional ideals $\ida$ and $\idb$ in $K$ and
-%	\[\langle\theta_{\ida\idb^{-1}},\theta_{\ida\idb}\rangle =C_K N(\ida\idb^{-1})^{2\ell}\sum_{[\mathcal{A}]^2=1}N(\mathcal{A})^{-4\ell}\del^{2\ell-1}E_2(\tau_{\idb\mathcal{A}}),\]
-%	where the sum runs over all ambiguous classes $[\mathcal{A}]$ in $\Clk$ and
-%	\[C_K=4 \text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{|D|^\ell}{2^{2\ell-1}}.\]
-%	In particular, if $D=-p$ is prime, the only ambiguous class is the class of $\O_K$ and the formula simplifies to
-%	\[\langle\theta_{\ida\idb^{-1}},\theta_{\ida\idb}\rangle =C_K N(\ida\idb^{-1})^{2\ell}\del^{2\ell-1}E_2(\tau_{\idb}).\]
 \end{prop}
 \begin{proof}
 	First, we compute
@@ -611,6 +609,83 @@ Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\
 	\[\text{Vol}(\Gamma_0(|D|)\setminus\H)\langle\tida,\theta_\idb\rangle=\alpha\Omega_K^{4\ell},\]
 	where $\alpha$ is some algebraic number and $\Omega_K$ is the Chowla-Selberg period attached to $K$.
 \end{coro}
+
+\section{An efficient algorithm to compute the Petersson inner product of binary theta series}
+Formula \ref{formula:innerprod} can be used to numerically evaluate the Petersson inner product of theta series attached to imaginary quadratic fields in an efficient way ($1000$ decimals in a few seconds!). To implement this formula, one should be able to find the derivatives of $E_2$, to evaluate them at lattices and find, for fixed ideals $\ida$ and $\idb$, all ideal classes $\idc$ such that $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$. We talk about those problems in the next section and then we give a pseudo-algorithm to solve our initial problem of computing $\langle\tida,\theta_\idb\rangle$.\footnote{A PARI/GP implementation of this algorithm is available on {https://github.com/NicolasSimard/ENT}.}
+
+\subsection{Towards the algorithm}
+\subsubsection{Derivatives of almost holomorphic modular forms}
+First, recall that the ring of almost holomorphic of level $1$ is isomorphic as a $\C$-algebra to
+\[\C[E_2,E_4,E_6].\]
+It follows that in order to compute $\del^nE_2$, it suffices to know $\del E_2,\del E_4$ and $\del E_6$. For this, we have the following
+
+\begin{prop}
+	Let $E_2,E_4$ and $E_6$ be the almost holomorphic modular forms defined by equation \ref{def:E2} and \ref{def:Ek} and let
+	\[\del_k=\frac{1}{2\pi i}\frac{\del}{\del z}-\frac{k}{4\pi\Im(z)}\].
+	Then
+	\[\del E_2=\frac{5}{6}E_4-2E_2^2,\hspace{1cm}\del E_4=\frac{7}{10}E_6-8E_2E_4,\hspace{1cm}\del E_6=\frac{400}{7}E_4^2-12E_2E_6.\]
+\end{prop}
+\begin{proof}
+	This is in \cite[Sec 9.2]{Shi1}, plus the fact that
+	\[120E_4^2=E_8.\]
+\end{proof}
+
+\subsubsection{Evaluating Eisenstein series at CM points}
+By the above, the problem reduces to evaluating $E_2,E_4$ and $E_6$ at lattices. Generally, the Fourier expansions of these Eisenstein series converge very quickly. However, we have some freedom in choosing the lattice at which we evaluate them. As the following example shows, one should really take advantage of that.
+
+Take $K=\Q(\sqrt{-26})$. Then $D=-104$, and $\Clk$ is cyclic of order $6$, generated by any prime above $5$. In fact, since
+\[N(109-12\sqrt{-26})=5^6,\]
+\[\p_5^6=\lambda\O_K,\]
+where $\lambda=109+12\sqrt{-26}$ and $\p_5$ is one of the two primes above $5$ (chosen so that the equation holds). Using PARI/GP, we find $\Z$-basis for $\p_5^4$  and $\p_5^{-2}$:
+\[\p_5^4=[625,43+\sqrt{-26}],\hspace{1cm}\p_5^{-2}=[1,(7+\sqrt{-26})/25].\]
+From the equality $\p_5^4=\lambda\p_5^{-2}$, we deduce that
+\[\del^{n}E_2(\p_5^4)=\lambda^{-(2+2n)}\del^{n}E_2(\p_5^{-2})\]
+and using the above $\Z$-basis, we have
+\[625^{-(2+2n)}\del^nE_2((43+\sqrt{-26})/625)=\lambda^{-(2+2n)}\del^n E_2((7+\sqrt{-26})/25).\]
+For $n=1$ and working with $500$ digits of precision, the left-hand side of the equation takes about $30$ times more time to evaluate than the right-hand side (which takes around 1sec to evaluate on my desktop computer)! This proves that the running time of the algorithm depends in a crucial way on the choice of class representatives in a given ideal class.
+
+The reason for the large difference in computation time in the above example is of course that the imaginary part of $(43+\sqrt{-26})/625$ is smaller than the imaginary part of $(7+\sqrt{-26})/25$. Using the correspondence between ideal classes and equivalence classes of positive definite integral binary quadratic forms, we see that the ideal corresponding to the quadratic form $[a,b,c]$ has $\Z$-basis
+\[[a,(-b+\sqrt{D})/2]\]
+and the imaginary part of the corresponding point in the upper-half plane is
+\[\frac{\sqrt{|D|}}{2a}.\]
+For fixed $D$, our problem is then to minimize $a$. It turns out that in a given class, the quadratic form with minimal $a$ is the unique reduced quadratic form in that class. Moreover, for any reduced form, one has the following upper bound for $a$
+\[a\leq \sqrt{|D|}/3,\]
+which leads to a lower bound on the imaginary part of to corresponding point in the upper-half plane. This proves the following
+
+\begin{prop}
+	Let $K$ be an imaginary quadratic field and let $\mathcal{C}$ be an ideal class in $\Clk$. Then there exists an explicit positively oriented ideal $\latbasis$ such that
+	\[\frac{3}{2}\leq\Im(\omquot).\]
+\end{prop}
+
+This discussion leads to the following simple algorithm to evaluate $\del^nE_2$ at an ideal in an imaginary quadratic field: find the class to which this ideal belongs and use the CM point corresponding to the reduced form in that class to evaluate $\del^nE_2$. The lower bound above is a kind of guarantee on the speed of this algorithm.
+
+\subsubsection{Ambiguous classes}
+The last problem in computing $\langle\tida,\theta_\idb\rangle$ is to find all ideal classes $\idc$ such that $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$ (and find $\lambda_\idc$ too). Given a set of generators for $\Clk$, it is easy to determine if the class $\ida\idb^{-1}$ is a square in $\Clk$ and to find a class $\idc_0$ such that
+\[\ida\idb^{-1}\idc_0^2=\lambda\O_K.\]
+Indeed, write $\ida\idb^{-1}$ in term of those generators and check that only even powers of the generators occur. The following proposition completes the task.
+
+\begin{prop}
+	Let $\ida\idb^{-1}\idc_0^2=\lambda\O_K$ for some ideal $\idc_0$. Let
+	\[\{\ida_1,\dots,\ida_g\}\]
+	be representatives of $\Clk[2]$ and define $\alpha_i$ for $1\leq i\leq g$ as
+	\[\ida_i^2=\alpha_i\O_K.\]
+	Then
+	\[\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc)=\lambda^{2\ell}\sum_{i=1}^g\alpha_i^{2\ell}\del^{2\ell-1}E_2(\idc_0\ida_i).\]
+\end{prop}
+\begin{proof}
+	It suffices to note that any ideal $\idc$ such that
+	\[\ida\idb^{-1}\idc^2=\lambda_\idc\O_K\]
+	is equivalent to $\idc_0\ida_i$ for some $i$ and that 
+	\[\ida\idb^{-1}(\idc_0\ida_i)^2=\lambda\alpha_i\O_K.\]
+\end{proof}
+
+The $2$-torsion classes in $\Clk$ are also known as the ambiguous classes of $K$. They are easy to compute using the theory of binary quadratic forms\footnote{Indeed, the inverse of the positive definite binary quadratic form $[a,b,c]$ is $[a,-b,c]$ and forcing these forms to be equivalent puts big restrictions on $a,b$ and $c$.} and there are exactly $g$ of them, where $g$ is the number of genera in $K$ (i.e. $g=|\Clk/\Clk^2|$).
+
+\subsection{The algorithm}
+
+
+\section{Computing some special values of Hecke $L$-functions}
+
 
 \begin{thebibliography}{DDDD}%
 	\bibitem[Cohe]{Cohe}
