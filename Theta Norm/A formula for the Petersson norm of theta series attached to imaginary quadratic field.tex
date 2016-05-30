@@ -61,7 +61,7 @@
 
 \author{Nicolas Simard}
 \date{\today}
-\title{A formula for the Petersson norm of theta series attached to imaginary quadratic field}
+\title{Petersson norm of theta series and derivatives of Eisenstein series}
 
 \begin{document}
 \maketitle
@@ -265,7 +265,7 @@ for all $p$ not dividing $D$, whenever $\tpsi$ is a cusp form.
 \section{The Petersson norm of $\tpsi$}
 In this section, suppose $\tpsi$ is a cusp form, i.e. $\psi^2\neq 1$. We will prove that the Petersson norm of $\tpsi$ is
 \begin{equation}\label{NormLpsi}
-\langle\tpsi,\tpsi\rangle=\zeta(2)^{-1}(4\pi)^{-2\ell-1}\Gamma(2\ell+1)L(\chi_D,1)\prod_{p|D}(1+p^{-1})^{-1}L(\psi^2,2\ell+1)
+\langle\tpsi,\tpsi\rangle=\zeta(2)^{-1}\frac{\Gamma(2\ell+1)}{(4\pi)^{2\ell+1}}L(\chi_D,1)\prod_{p|D}(1+p^{-1})^{-1}L(\psi^2,2\ell+1)
 \end{equation}
 Note that if $\psi^2=1$, $\ell=0$ and so $L(\psi^2,s)$ has a pole at $s=1$.
 
@@ -478,14 +478,14 @@ Applying the previous Corollary to $\psi^2$ with $m=2\ell+1$, we get
 \[L(\psi^2,2\ell+1)=\frac{1}{w_K}\frac{(-4\pi)^{2\ell-1}}{\Gamma(2\ell+1)}\left (\frac{\sqrt{|D|}}{2}\right )^{2\ell-1}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}G_{2}(\omquot,0).\]
 
 Using this value of $L(\psi^2,2\ell+1)$ in formula \ref{NormLpsi} and simplifying finally gives
-\[\langle\tpsi,\tpsi\rangle = V_D^{-1}\frac{|D|^\ell}{2^{2\ell}}\frac{h_K}{w_K^2}\frac{-2}{(2\pi)^2}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}G_{2}(\omquot,0),\]
+\[\langle\tpsi,\tpsi\rangle = V_D^{-1}\frac{|D|^\ell}{2^{2\ell}}\frac{4h_K}{w_K^2}\frac{1}{2(2\pi i)^2}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}G_{2}(\omquot,0),\]
 which can be rewritten as
 \begin{equation}\label{eq:finallgeq1}
-\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{h_K}{w_K^2}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}E_{2}(\omquot).
+\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}E_{2}(\omquot).
 \end{equation}
 
 Note that this can also be written in homogeneous form as
-\[\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{h_K}{w_K^2}\sum_{[\ida]}\psi^2(\ida)\del^{2\ell-1}E_{2}(\ida).\]
+\[\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\del^{2\ell-1}E_{2}(\ida).\]
 
 \begin{coro}\label{coro:algebraicitytpsi}
 	For $\ell>0$,
@@ -519,13 +519,13 @@ The equality
 \[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-E_2(z)\]
 implies that formula \ref{eq:finallgeq1} also makes sense for $\ell=0$ and gives back exactly formula \ref{eq:filall=0}. Note also that $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is $\SL$-invariant, as desired. However, I don't think $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is almost holomorphic.
 
-\section{Theta functions attached to ideals in quadratic fields}
+\section{Theta functions attached to ideals in imaginary quadratic fields}
 In this section we define theta series attached to ideals in imaginary quadratic fields and certain spherical polynomials and see how these theta functions are relate to the theta functions $\tpsi$.
 
 Throughout this section, fix an integer $\ell\geq 0$.
 
 Let $\ida$ be a fractional ideal of $K$ and define the theta function attached to $\ida$ (and $\ell$) as
-\[\tida(z)=\sum_{\lambda\in\ida}\lambda^{2\ell}q^{N(\lambda)/N(\ida)},\]
+\[\theta_\ida^{(2\ell)}=\tida(z)=\sum_{\lambda\in\ida}\lambda^{2\ell}q^{N(\lambda)/N(\ida)},\]
 where we define $0^0=1$ in case $\ell=0$. Then we have the following
 \begin{prop}
 	The function $\tida$ is a modular form of weight $2\ell+1$, level $\Gamma_0(|D|)$ and Nebentypus $\chi_D$. Moreover, it is a cusp form if $\ell>0$.
@@ -539,14 +539,10 @@ If $\psi$ is a Hecke character of infinity type $2\ell$, the theta function $\tp
 \tpsi=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\psi(\ida)^{-1}\tida,
 \end{equation}
 where the sum runs over representatives of the class group. Note that $\tida$ depends on the choice of $\ida$ in $[\ida]$, since
-\[\theta_{\alpha\mathfrak{a}}=\alpha^{2\ell}\tida,\]
-but the sum is still independent of this choice. To prove formula \ref{eq:tpsidec}, one uses the same trick as we used before:
-\[\tpsi=\sum_{[\ida]\in\Clk}\sum_{\idc\in[\ida]}\psi(\idc)q^{N(\idc)}=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\psi(\idb_{\ida})^{-1}\theta_{\idb_{\ida}},\]
-where $\idb_\ida$ is an ideal in the inverse class of $\ida$ containing $1$. As $[\ida]$ varies through the different classes in $\Clk$, $\idb_\ida$ does the same, so the sum can be rearranged to give formula \ref{eq:tpsidec}.
+\[\theta_{\mu\mathfrak{a}}=\mu^{2\ell}\tida\]
+for any $\mu\in K^\times$, but the sum is still independent of this choice. To prove formula \ref{eq:tpsidec}, one uses the same trick as in the proof of Proposition \ref{eq:partialdec}.
 
-Note that choosing $\idb=\bar{\ida}N(\ida)^{-1}$ above gives
-\[\tpsi=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\psi(\bar{\ida})^{-1}\theta_{\bar{\ida}}=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\frac{\psi(\ida)}{N(\ida)^{2\ell}}\theta_{\bar{\ida}},\]
-which gives the decomposition \ref{eq:partialDec} after taking Mellin transform on each sides (just note that the $L$-function of $\tida$ is $L_{\ida,\ell}(s)$).
+Note that the $L$-function attached to $\theta_\ida^{(2\ell)}$ is the partial Hecke $L$-function $L^{(2\ell)}(\overline{\ida},s)$ introduced before.
 
 Our next goal is to write $\tida$ in terms of the $\tpsi$. For this, the following Lemma is useful.
 
@@ -580,10 +576,10 @@ This leads to the following
 Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\ell>0$, one can compute $\langle\tida,\theta_\idb\rangle$ in terms of the Petersson norm of the $\tpsi$. When $\ell=0$, the $\tpsi$ are not always cusp forms and we have not found a way to compute (or even define) the Petersson norm of all the $\tpsi$. However, we still have the following
 
 \begin{prop}
-	Let $\ell>0$ and let $\theta_\idc$ and $\theta_\idd$ be defined as above. Then
-	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\ida)^{2\ell}\sum_{[\idc]^2=[\ida]^{-1}[\idb]}\overline{\lambda_\idc}^{-2\ell}\del^{2\ell-1}E_2(\tau_\idc),\]
-	where the sum runs over all ideal classes $[\idc]\in\Clk$ such that $\idc^2\ida\idb^{-1}=\lambda_\idc\O_K$ fro some $\lambda_\idc\in K$ and
-	 \[C_K=4 \text{Vol}(\Gamma_0(|D|)\setminus\H)^{-1}\frac{|D|^\ell}{2^{2\ell-1}}.\]
+	Let $\ell>0$ and let $\theta_\ida$ and $\theta_\idb$ be defined as above. Then
+	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc),\]
+	where the sum runs over all ideal classes $[\idc]\in\Clk$ such that $\idc^2\ida\idb^{-1}=\lambda_\idc\O_K$ for some $\lambda_\idc\in K$ and
+	 \[C_K=4V_D^{-1}(|D|/4)^\ell.\]
 	 In particular, $\theta_\ida$ and $\theta_\idb$ are orthogonal if $\ida$ and $\idb$ are not in the same genus.
 %	if $\idc$ and $\idd$ are in a different genus (i.e. $[\idc][\idd]^{-1}\not\in\Clk^2$). If they are in the same genus, then $\idc = \ida\idb^{-1}$ and $\idd=\ida\idb$ for some fractional ideals $\ida$ and $\idb$ in $K$ and
 %	\[\langle\theta_{\ida\idb^{-1}},\theta_{\ida\idb}\rangle =C_K N(\ida\idb^{-1})^{2\ell}\sum_{[\mathcal{A}]^2=1}N(\mathcal{A})^{-4\ell}\del^{2\ell-1}E_2(\tau_{\idb\mathcal{A}}),\]
@@ -595,34 +591,26 @@ Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\
 \begin{proof}
 	First, we compute
 	\begin{align*}
-		\langle\theta_\ida,\theta_\idb\rangle &= \frac{h_K^2}{w_K^2}\sum_{\psi,\chi}\psi(\ida)\overline{\chi}(\idb)\langle\theta_\psi,\theta_\chi\rangle\\
-		&= \frac{h_K^2}{w_K^2}\sum_{\psi}\psi(\ida)\overline{\psi}(\idb)\langle\theta_\psi,\theta_\psi\rangle\\
-		&= \frac{h_K^2}{w_K^2}\sum_{\psi}\psi(\ida)N(\idb)^{2\ell}\psi^{-1}(\idb)\langle\theta_\psi,\theta_\psi\rangle\\
-		&= \frac{C_K}{h_K}N(\idb)^{2\ell}\sum_{\psi,[\idc]}\psi(\ida\idb^{-1}\idc^2)N(\idc)^{-4\ell}\del^{2\ell-1}E_2(\tau_\idc),
+		\langle\theta_\ida,\theta_\idb\rangle &= \frac{w_K^2}{h_K^2}\sum_{\psi,\chi}\psi(\ida)\overline{\chi}(\idb)\langle\theta_\psi,\theta_\chi\rangle\\
+		&= \frac{w_K^2}{h_K^2}\sum_{\psi}\psi(\ida)\overline{\psi}(\idb)\langle\theta_\psi,\theta_\psi\rangle\\
+		&= \frac{w_K^2}{h_K^2}\sum_{\psi}\psi(\ida)N(\idb)^{2\ell}\psi^{-1}(\idb)\langle\theta_\psi,\theta_\psi\rangle\\
+		&= \frac{C_K}{h_K}N(\idb)^{2\ell}\sum_{\psi,[\idc]}\psi(\ida\idb^{-1}\idc^2)\del^{2\ell-1}E_2(\idc),
 	\end{align*}
-	where the first sum is a double sum over al Hecke characters of infinity type $2\ell$, we used the orthogonality of the newforms $\tpsi$ in the second equality and the last sum is a double sum over $\psi$ as above and $[\idc]\in\Clk$.
+	where the first sum is a double sum over all Hecke characters of infinity type $2\ell$ and we used the orthogonality of the newforms $\tpsi$ in the second equality.
 	
-	Summing over $\psi$ first and using Lemma \ref{orthorel}, we see that
+	Summing the last sum over $\psi$ first and using Lemma \ref{orthorel}, we see that
 	\[\langle\theta_\ida,\theta_\idb\rangle=0\]
 	if for all $[\idc]\in\Clk$, $\ida\idb^{-1}\idc^2$ is not principal, i.e. $\ida$ and $\idb$ are not in the same genus. Otherwise, if $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$ for some $\lambda_\idc\in K$, then
 	\[\sum_{\psi}\psi(\ida\idb^{-1}\idc^2)=\lambda_\idc^{2\ell} h_K\]
 	and the last line of the above computation becomes
-	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{[\idc^2\ida\idb^{-1}]=1}N(\idc)^{-4\ell}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\tau_\idc).\]
-	Now using the relation
-	\[N(\idc^2\ida\idb^{-1})^{2\ell}=N(\lambda_\idc)^{2\ell},\]
-	we see that
-	\[N(\idc)^{-4\ell}\lambda_\idc^{2\ell}=N(\ida\idb^{-1})^{2\ell}\overline{\lambda_\idc}^{-2\ell}\]
-	the proposition follows.
+	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc).\]
 \end{proof}
 
-
 \begin{coro}
-	Fix $\ell>0$ and let $\tida$ and $\theta_\idb$ be defined as above, then
+	Fix $\ell>0$ and let $\tida$ and $\theta_\idb$ be defined as above. Then
 	\[\text{Vol}(\Gamma_0(|D|)\setminus\H)\langle\tida,\theta_\idb\rangle=\alpha\Omega_K^{4\ell},\]
 	where $\alpha$ is some algebraic number and $\Omega_K$ is the Chowla-Selberg period attached to $K$.
 \end{coro}
-
-
 
 \begin{thebibliography}{DDDD}%
 	\bibitem[Cohe]{Cohe}
