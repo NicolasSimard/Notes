@@ -49,10 +49,15 @@
 \renewcommand{\O}{\mathcal{O}}
 
 \renewcommand{\d}{\text{d}}
+%\newcommand{\Im}{\mathfrak{I}}
+%\newcommand{\Re}{\mathfrak{R}}
+
 
 \newcommand{\tpsi}{\theta_\psi}
 \newcommand{\tida}{\theta_\mathfrak{a}}
 \newcommand{\runi}{w_K}
+\newcommand{\latbasis}{[\omega_1,\omega_2]}
+\newcommand{\omquot}{\omega_1/\omega_2}
 
 \author{Nicolas Simard}
 \date{\today}
@@ -338,52 +343,69 @@ and
 \section{Special values of Hecke L-functions and Eisenstein series}
 In this section, we first relate $L(\psi^2,s)$ to non-holomorphic Eisenstein series. Then we use this relation to express the special value of $L(\psi^2,s)$ at $2\ell+1$ in terms of derivatives of $E_2$ evaluated at $CM$ points when $\ell>0$. The case $\ell=0$ is different and must be treated separately.
 
+Throughout this section, fix a Hecke character $\psi$ of $K$ of infinity type $2\ell$.
+
 \subsection{Hecke $L$-functions and non-holomorphic Eisenstein series}
-Throughout this subsection, fix an integer $\ell\geq0$ and a Hecke character $\psi=\psi_\ell$ of infinity type $2\ell$.
+Recall that is $f$ is a $\dashk\gamma$-invariant function for all $\gamma$ in $\SL$, then one can define a weight $k$ homogeneous function $F$ on the space of (positively) oriented lattices in $\C$ as
+\[F(\omega_1\Z+\omega_2\Z)=\omega_2^{-k}f(\omega_1/\omega_2).\]
+Recall that an oriented lattice is a lattice $\ida$ equipped with a $\Z$-basis $\latbasis$, where the order of the basis elements is important. If $\Im(\omquot)>0$, $\ida$ is called positively oriented. If the $\Z$-basis $\latbasis$ is not positively oriented, the basis $[\omega_2,\omega_1]$ is, so that any lattice $\ida$ can be positively oriented. Note that we do not make any holomorphy assumptions on $f$.
 
-For an integral ideal $\ida$ of $\O_K$, fix an $\Z$-basis of it of the form
-\[\ida=\left [a,\frac{b+\sqrt{D}}{2}\right ],\]
-where $a=N(\ida)$, $b$ is determined mod $2a$ and $b^2\equiv D\pmod{4a}$. For such an ideal $\ida$, let
-\[\tau_\ida=\frac{b+\sqrt{D}}{2a}\in\H.\]
+Recall that he non-holomorphic Eisenstein series $G_k(z,s)$ of weight $k$ is defined as
+\[G_k(z,s)=\Im(z)^s\sum_{m,n}(mz+n)^{-k}|mz+n|^{-2s},\]
+where the sum runs over all integers $m$ and $n$ not both $0$. If $\ida$ is any fractional $\O_K$-ideal with oriented basis $\latbasis$, define
+\[G_k(\ida,s)=\omega_2^{-k}\left (\frac{\sqrt{|D|}N(\ida)}{2}\right )^{-s}G_k(\omquot,s),\]
+where $D$ is the discriminant of $K$. To see that this definition makes sense, first note that
+\[\Im(\omquot)=|\omega_2|^{-2}\left (\frac{\sqrt{|D|}N(\ida)}{2}\right ).\]
+Then
+\[G_k(\ida,s)=\sum_{m,n}(m\omega_1+n\omega_2)^{-k}|m\omega_1+n\omega_2|^{-2s},\]
+so that $G_k(\ida,0)$ is the usual weight $k$ Eisenstein series on lattices for $k>2$. Moreover,
+\[G_k(\mu\ida,s)=\mu^{-k}|\mu|^{-2s}G_k(\ida,s)\]
+for any $\mu\in K^\times$.
 
-Now define
-\[L_{\ida,\ell}(s)=\frac{1}{w_K}\sum_{\lambda\in\ida}\frac{\overline{\lambda}^{4\ell}}{|\lambda|^{2s}},\]
-where the sum runs over the non-zero elements of $\ida$. This series, which clearly converges for $\Re(s)$ large enough, can be seen as a sort of partial Hecke $L$-function. In fact,
-\begin{equation}\label{eq:partialDec}
-L(\psi^2,s)=\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell-s}}L_{\ida,\ell}(s),
-\end{equation}
-where the sum runs over a set of integral representatives of the class group $\Clk$. Note that the sum does not depend on the choice of class representatives.
-
-To prove formula \ref{eq:partialDec}, first write
-\[L(\psi^2,s)=\sum_{[\ida]\in\Clk}\sum_{\idc\in[\ida]}\frac{\psi^2(\idc)}{N(\idc)^s},\]
-where the inner sum runs over the integral ideals $\idc$ in the class of $\ida$. Now fix $\idb\in[\ida]^{-1}$ such that $1\in\idb$. Then $\idc\in[\ida]$ with $\idc\subseteq\O_K$ if and only if $\idc\idb=\lambda\O_K$ with $\lambda\in\idb$. Note that $\lambda$ is unique up to an element of $\O_K^\times$ and $N(\idc)=N(\lambda)N(\idb)^{-1}$. It follows that
-\[\sum_{\idc\in[\ida]}\frac{\psi^2(\idc)}{N(\idc)^s}=\frac{1}{w_K}\frac{N(\idb)^s}{\psi^2(\idb)}\sum_{\lambda\in\idb}\frac{\lambda^{4\ell}}{|\lambda|^{2s}}.\]
-Since $\ida\bar{\ida}=N(\ida)\O_K$, one can take $\idb=\bar{\ida}N(\ida)^{-1}$ (which contains $1$) and then a short computation shows that the previous formula becomes
-\[\sum_{\idc\in[\ida]}\frac{\psi^2(\idc)}{N(\idc)^s}=\frac{1}{w_K}\frac{N(\idb)^s}{\psi^2(\idb)}\sum_{\lambda\in\idb}\frac{\lambda^{4\ell}}{|\lambda|^{2s}}=\frac{1}{w_K}\frac{\psi^2(\ida)}{N(\ida)^{4\ell-s}}\sum_{\lambda\in\ida}\frac{\bar{\lambda}^{4\ell}}{|\lambda|^{2s}}.\]
-This proves formula \ref{eq:partialDec}.
-
-The partial Hecke $L$-function $L_{\ida,\ell}(s)$ is related to non-holomorphic Eisenstein series in the following way.
-
-\begin{prop}
-	For all $s\in\C$, one has
-	\[L_{\ida,\ell}(s)=\frac{1}{w_K}N(\ida)^{-s}\left (\frac{2}{\sqrt{|D|}}\right )^{s-4\ell}G_{4\ell}(\tau_\ida,s-4\ell).\]
+Consider now the following partial Hecke $L$-function
+\[L^{(2\ell)}(\ida,s)=\sum_{\lambda\in\ida-{0}}\frac{\overline{\lambda}^{2\ell}}{|\lambda|^{2s}}.\]
+The first basic relation between Eisenstein series and Hecke $L$-functions is based on the following
+\begin{prop}\label{eq:partialdec}
+	Let $\psi$ be a Hecke character of infinity type $2\ell$ as above. Then
+	\[L(\psi,s)=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\frac{\psi(\ida)}{N(\ida)^{2\ell-s}}L^{(2\ell)}(\ida,s),\]
+	where the sum runs over (any choice of) representatives of the ideal class group of $K$. 
 \end{prop}
 \begin{proof}
-	The proof is a simple computation. For $\Re(s)$ large enough, the series defining $L_{\ida,\ell}(s)$ converges absolutely and
-	\[L_{\ida,\ell}(s)=\frac{1}{w_K}\sum_{m,n}\frac{(m\overline{\tau}_\ida+n)^{4\ell}a^{4\ell}}{|m\tau_\ida+n|^{2s}a^{2s}}=\frac{a^{4l-2s}}{w_K}\sum_{m,n}(m\tau_\ida+n)^{-4\ell}|m\tau_\ida+n|^{-2(s-4\ell)}.\]
-	Since $a=N(\ida)$ and
-	\[a=\left( \frac{2\Im(\tau_\ida)}{\sqrt{|D|}}\right )^{-1},\]
-	we have
-	\[a^{4\ell-2s}=a^{-s}\left( \frac{2\Im(\tau_\ida)}{\sqrt{|D|}}\right )^{s-4\ell}=\left (\frac{2}{\sqrt{|D|}}\right )^{s-4\ell}\Im(\tau_\ida)^{s-4\ell}N(\ida)^{-s}.\]
-	Using
-	\[\Im(\tau_\ida)^{s-4\ell}\sum_{m,n}(m\tau_\ida+n)^{-4\ell}|m\tau_\ida+n|^{-2(s-4\ell)}=G_{4\ell}(\tau_\ida,s-4\ell),\]
-	the equality of the proposition follows in some right half plane. We then have equality for all $s$ by analytic continuation.
+	The fact that the sum does not depend on the choice of representatives of $\Clk$ follows from the fact that
+	\[L^{(2\ell)}(\mu\ida,s)=\overline{\mu}^{-2\ell}|\mu|^{-2s}L^{(2\ell)}(\ida,s).\]
+	To prove formula, first write
+\[L(\psi,s)=\sum_{[\ida]\in\Clk}\sum_{\idc\in[\ida]}\frac{\psi(\idc)}{N(\idc)^s},\]
+where the inner sum runs over the integral ideals $\idc$ in the class of $\ida$. Now fix $\idb\in[\ida]^{-1}$ such that $1\in\idb$. Then $\idc\in[\ida]$ with $\idc\subseteq\O_K$ if and only if $\idc\idb=\lambda\O_K$ with $\lambda\in\idb$. Note that $\lambda$ is unique up to an element of $\O_K^\times$ and $N(\idc)=N(\lambda)N(\idb)^{-1}$. It follows that
+\[\sum_{\idc\in[\ida]}\frac{\psi(\idc)}{N(\idc)^s}=\frac{1}{w_K}\frac{N(\idb)^s}{\psi(\idb)}\sum_{\lambda\in\idb}\frac{\lambda^{2\ell}}{|\lambda|^{2s}}.\]
+Since $\ida\bar{\ida}=N(\ida)\O_K$, one can take $\idb=\bar{\ida}N(\ida)^{-1}$ (which contains $1$) and then a short computation shows that the previous formula becomes
+\[\sum_{\idc\in[\ida]}\frac{\psi(\idc)}{N(\idc)^s}=\frac{1}{w_K}\frac{N(\idb)^s}{\psi(\idb)}\sum_{\lambda\in\idb}\frac{\lambda^{2\ell}}{|\lambda|^{2s}}=\frac{1}{w_K}\frac{\psi(\ida)}{N(\ida)^{2\ell-s}}\sum_{\lambda\in\ida}\frac{\bar{\lambda}^{2\ell}}{|\lambda|^{2s}}=\frac{1}{w_K}\frac{\psi(\ida)}{N(\ida)^{2\ell-s}}L^{(2\ell)}(\ida,s).\]
 \end{proof}
 
-\begin{coro}\label{eq:LpsiE4l}
-	For all $s\in\C$, one has
-	\[L(\psi^2,s)=\frac{1}{w_K}\left (\frac{2}{\sqrt{|D|}}\right )^{s-4\ell}\sum_{[\ida]\in\Clk}\frac{\psi^2(\ida)}{N(\ida)^{4\ell}}G_{4\ell}(\tau_\ida,s-4\ell).\]
+Since
+\[L^{(2\ell)}(\ida,s)=G_{2\ell}(\ida,s-2\ell),\]
+we obtain
+
+\begin{coro}\label{eq:Eisensteindec}
+	Let $\psi$ be a Hecke character of infinity type $2\ell$ as above. Then
+	\[L(\psi,s)=\frac{1}{w_K}\sum_{[\ida]\in\Clk}\frac{\psi(\ida)}{N(\ida)^{2\ell-s}}G_{2\ell}(\ida,s-2\ell)=\frac{1}{w_K}\left (\frac{2}{\sqrt{|D|}}\right )^{s-2\ell}\sum_{[\ida]=[\latbasis]}\frac{\psi(\ida)}{\omega_2^{2\ell}}G_{2\ell}(\omquot,s-2\ell),\]
+	where the first sum runs over (any choice of) representatives of the ideal class group of $K$ and in the second one, $\latbasis$ is a positively oriented basis of $\ida$. 
 \end{coro}
+
+
+
+
+
+
+
+
+
+
+
+
+%For an integral ideal $\ida$ of $\O_K$, fix an $\Z$-basis of it of the form
+%\[\ida=\left [a,\frac{b+\sqrt{D}}{2}\right ],\]
+%where $a=N(\ida)$, $b$ is determined mod $2a$ and $b^2\equiv D\pmod{4a}$. For such an ideal $\ida$, let
+%\[\tau_\ida=\frac{b+\sqrt{D}}{2a}\in\H.\]
 
 \subsection{The case $\ell=0$: kronecker limit formula}
 When $\ell=0$, Corollary \ref{eq:LpsiE4l} gives
