@@ -681,7 +681,42 @@ Indeed, write $\ida\idb^{-1}$ in term of those generators and check that only ev
 
 The $2$-torsion classes in $\Clk$ are also known as the ambiguous classes of $K$. They are easy to compute using the theory of binary quadratic forms\footnote{Indeed, the inverse of the positive definite binary quadratic form $[a,b,c]$ is $[a,-b,c]$ and forcing these forms to be equivalent puts big restrictions on $a,b$ and $c$.} and there are exactly $g$ of them, where $g$ is the number of genera in $K$ (i.e. $g=|\Clk/\Clk^2|$).
 
-\subsection{The algorithm}
+\subsection{A pseudo algorithm}
+At this point, the problem is purely computational. Our goal is to compute
+$\langle\tida,\theta_\idb\rangle$,
+for fixed quadratic field $K$ of discriminant $D$ and varying $\ida,\idb$ and $\ell$. To do so, first define an initializing function which takes a fundamental discriminant $D$ as input and returns a list $L(D)$ of length $4$ of the form
+\[L(D)=[K,\mathcal{R},\mathcal{A},M],\]
+where
+\begin{itemize}
+	\item $K$ is the quadratic field of discriminant $D$;
+	\item $\mathcal{R}$ is a list of representatives of $\Clk$ corresponding to reduced quadratic forms;
+	\item $\mathcal{A}$ is a list of representatives of $\Clk[2]$ (the $\ida_i$s) together with the $\alpha_i$s such that $\ida_i=\alpha_i\O_K$.
+	\item $M$ is a $3\times h_K$ matrix where $M[k,d]=E_{2k}(f_d)$ for $1\leq k\leq 3$ and $f_d\in\mathcal{R}$.
+\end{itemize}
+
+The most time consuming part when computing this vector is of course to compute $M$, but this is done as efficiently as possible by our choice of representatives of $\Clk$.
+
+Now given $L(D)$, it is a simple exercise to compute
+\[\langle\tida,\theta_\idb\rangle.\]
+A systematic way of doing this is to follow these steps:
+
+\begin{enumerate}
+	\item Determine if $\ida\idb^{-1}$ is a square. If it is not, return $0$. Otherwise, find  $\idc_0$ and $\lambda$ such that
+	\[\ida\idb^{-1}\idc_0^2=\lambda\O_K.\]
+	\item Express $\del^{2\ell-1}E_2$ as a polynomial on $E_2,E_4$ and $E_6$.
+	\item Compute $\del^{2\ell-1}E_2(\idc_0\ida_i)$ for all $\ida_i\in\mathcal{A}$(using $M$).
+	\item Compute
+	\[\langle\tida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\lambda^{2\ell}\sum_{i=1}^g\alpha_i^{2\ell}\del^{2\ell-1}E_2(\idc_0\ida_i).\]
+\end{enumerate}
+
+Each step is very quick, given the previously computed data $L(D)$. Note that to evaluate $\del^{2\ell-1}E_2(\idc_0\ida_i)$ in step $3.$, one must find $f_d\in\mathcal{R}$ and $\mu\in K^\times$ such that
+\[\idc_0\ida_i=\mu f_d\]
+and so
+\[\del^{2\ell-1}E_2(\idc_0\ida_i)=\mu^{-4\ell}\del^{2\ell-1}E_2(f_d),\]
+which is easy to compute using $M$ and step $2.$.
+
+
+\subsection{Numerical examples.}
 
 
 \section{Computing some special values of Hecke $L$-functions}
