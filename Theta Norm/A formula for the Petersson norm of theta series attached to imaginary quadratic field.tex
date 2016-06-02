@@ -476,7 +476,10 @@ and
 \begin{equation}\label{def:Ek}
 E_k=-\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n
 \end{equation}
-is the usual holomorphic Eisenstein series for $k\geq 4$ (see \cite[Sec 9.2]{Shi1}), one sees that the previous Corollary relates certain special values of the Hecke $L$-function attached to $\psi$ to the derivatives of the usual Eisenstein series.
+is the usual holomorphic Eisenstein series for $k\geq 4$ (see \cite[Sec 9.2]{Shi1}), one sees that the previous Corollary relates certain special values of the Hecke $L$-function attached to $\psi$ to the derivatives of the usual Eisenstein series. Indeed, the formula becomes
+\begin{equation}\label{eq:Heckespecialvalues2}
+	L(\psi,m) = (-1)^\ell\sqrt{|D|}^{2\ell-m}\frac{(2\pi)^m}{\Gamma(m)}\sum_{[\ida]\in\Clk}\psi(\ida)\del^{2\ell-m}E_{2m-2\ell}(\ida).
+\end{equation}
 
 Applying the previous Corollary to $\psi^2$ with $m=2\ell+1$, we get
 \[L(\psi^2,2\ell+1)=\frac{1}{w_K}\frac{(-4\pi)^{2\ell-1}}{\Gamma(2\ell+1)}\left (\frac{\sqrt{|D|}}{2}\right )^{2\ell-1}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}G_{2}(\omquot,0).\]
@@ -717,9 +720,14 @@ which is easy to compute using $M$ and step $2.$.
 
 
 \subsection{Numerical examples.}
+\subsubsection{$D=-23$}
 
+\subsubsection{$D=-104$}
+
+\subsubsection{$D=-2660$}
 
 \section{Computing some special values of Hecke $L$-functions}
+Use formula for $D=-23$ and infinity type 2.
 
 
 \begin{thebibliography}{DDDD}%
