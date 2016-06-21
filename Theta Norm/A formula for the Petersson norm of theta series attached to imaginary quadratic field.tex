@@ -497,7 +497,7 @@ Note that this can also be written in homogeneous form as
 
 \begin{coro}\label{coro:algebraicitytpsi}
 	For $\ell>0$,
-	\[\text{Vol}(\Gamma_0(|D|)\setminus\H)\langle\tpsi,\tpsi\rangle=\alpha\Omega_K^{4\ell},\]
+	\[V_D\langle\tpsi,\tpsi\rangle=\alpha\Omega_K^{4\ell},\]
 	where $\alpha$ is an algebraic number and $\Omega_K$ is the Chowla-Selberg period attached to $K$ and depends only on $K$.
 \end{coro}
 \begin{proof}
@@ -608,9 +608,9 @@ Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\
 	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc).\]
 \end{proof}
 
-\begin{coro}
+\begin{coro}\label{coro:algebraicitypip}
 	Fix $\ell>0$ and let $\tida$ and $\theta_\idb$ be defined as above. Then
-	\[\text{Vol}(\Gamma_0(|D|)\setminus\H)\langle\tida,\theta_\idb\rangle=\alpha\Omega_K^{4\ell},\]
+	\[V_D\langle\tida,\theta_\idb\rangle=\alpha\Omega_K^{4\ell},\]
 	where $\alpha$ is some algebraic number and $\Omega_K$ is the Chowla-Selberg period attached to $K$.
 \end{coro}
 
@@ -722,8 +722,34 @@ and so
 which is easy to compute using $M$ and step $2.$.
 
 
-\subsection{Numerical examples}
-\subsubsection{Class number $1$}
+\section{Numerical examples}
+In this section, we give numerical examples of computations using the above formulas when $\ell>0$. Our goal is to compute the determinant of the matrix
+\[M_\mathcal{R}(\ell)=(V_D\langle\theta_{\ida_i}^{(2\ell)},\theta_{\ida_j}^{(2\ell)}\rangle)_{1\leq i,j\leq h_K},\]
+where $\mathcal{R}=\{\ida_1,\dots,\ida_h\}$ is a set of representatives of the class group of $K$. Of course, $M_\mathcal{R}(\ell)$ depends on $\mathcal{R}$. In fact, if $\mathcal{R}'$ is the set of representatives obtained from $\mathcal{R}$ by changing one of the $\ida_i$ by $\mu\ida_i$ for some $\mu\in K^\times$, one sees immediately that
+\[\det M_{\mathcal{R}'}(\ell)=N(\mu)^{2\ell}\det M_\mathcal{R}(\ell).\]
+Note that by Proposition \ref{formula:innerprod}, $M_\mathcal{R}(\ell)$ is a block diagonal matrix (after reordering the ideals of $\mathcal{R}$, if necessary).
+
+When $\ell>0$, the determinant of $M_\mathcal{R}$ is explicitly related to the determinant of the diagonal matrix
+\[M_K(\ell)=\begin{pmatrix}
+V_D\langle\theta_{\psi_1}, \theta_{\psi_1}\rangle&  &  &  \\ 
+ & V_D\langle\theta_{\psi_2}, \theta_{\psi_2}\rangle &  &  \\ 
+ &  & \ddots &  \\ 
+ &  &  & V_D\langle\theta_{\psi_h}, \theta_{\psi_h}\rangle
+\end{pmatrix},
+\]
+where the $\psi_i$ are the Hecke characters of $K$ of infinity type $2\ell$. Note that $M_K(\ell)$ is canonically attached to $K$ and $\ell$ and that its determinant is a product of special values of Hecke $L$-functions by Formula \ref{NormLpsi}.
+
+Both matrices have transcendental entries. However, it is possible to explicitly normalize the entries to make them algebraic, as was proved in Corollaries \ref{coro:algebraicitytpsi} and \ref{coro:algebraicitypip}. In the computations that follow, we normalize using the Chowla-Selberg attached to $K$, defined here as
+\[\Omega_K = \frac{1}{\sqrt{4\pi|D|}}\left (\prod_{j=1}^{|D|-1}\Gamma(j/|D|)^{\chi_D(j)}\right )^{w_K/(4h_K)}.\]
+
+
+
+\subsection{Class number $1$}
+If $K$ has class number $1$, there is only one theta series and
+\[\theta_{\O_K}=\theta_{\psi_0},\]
+where $\psi_0$ is the only Hecke character of infinity type $2\ell$. In the following table, we find numerically the algebraic number
+\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell},\]
+for all imaginary quadratic fields of class number one and for $1\leq \ell\leq 4$.
 
 \renewcommand{\arraystretch}{1.5}
 \begin{tabular}{cc|*{2}{l|}*{2}{p{3.5cm}|}}
@@ -753,7 +779,18 @@ which is easy to compute using $M$ and step $2.$.
 \cline{1-6}
 \end{tabular}
 
-\subsubsection{Class number $2$}
+Note that the entries are rational integers (and even integers most of the time).
+
+\subsection{Class number $2$}
+If $K$ has class number $2$, there are $2$ genera and each of them contains a single class. If $\ida$ is a representative of the non-trivial ideal class of $K$, one sees using formula \ref{formula:innerprod} that 
+\[\langle\theta_\ida,\theta_{\O_K}\rangle = \langle\theta_{\O_K},\theta_\ida\rangle=0\]
+and
+\[\langle\theta_\ida,\theta_\ida\rangle=N(\ida)^{2\ell}\langle\theta_{\O_K},\theta_{\O_K}\rangle,\]
+so
+\[\det M_{\{\O_K,\ida\}}=N(\ida)^{2\ell}\langle\theta_{\O_K},\theta_{\O_K}\rangle^2.\]
+Therefore, it suffices to analyse the numbers $\langle\theta_{\O_K},\theta_{\O_K}\rangle$. In the following table, we find numerically the algebraic number
+\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell},\]
+for all imaginary quadratic fields of class number two and for $1\leq \ell\leq 4$.
 
 \begin{tabular}{cc|*{3}{p{3cm}|}p{3.5cm}|}
 \cline{3-6}
@@ -815,7 +852,13 @@ which is easy to compute using $M$ and step $2.$.
 \cline{1-6}
 \end{tabular}
 
-\subsubsection{Idoneal numbers}
+Note again that these quantities are rational integers (and integers most of the time).
+
+For the $\theta_\psi$, we see that
+\[\langle\theta_{\psi_1}, \theta_{\psi_1}\rangle=\langle\theta_{\psi_2}, \theta_{\psi_2}\rangle,\]
+where $\psi_1$ and $\psi_2$ are the two Hecke characters of $K$ of infinity type $2\ell$, since $\psi_1^2=\psi_2^2$. It also turns out that $\langle\theta_{\psi_1}, \theta_{\psi_1}\rangle$ and $\langle\theta_{\O_K},\theta_{\O_K}\rangle$ are essentially equal (up to powers of $2$).
+
+\subsection{Idoneal numbers}
 
 \begin{tabular}{cc|*{3}{p{3cm}|p{3.5cm}|}}
 \cline{3-6}
@@ -898,9 +941,9 @@ which is easy to compute using $M$ and step $2.$.
 \cline{1-6}
 \end{tabular}
 
-\subsubsection{$D=-104$}
+\subsection{$D=-104$}
 
-\subsubsection{$D=-2660$}
+\subsection{$D=-2660$}
 
 \section{Computing some special values of Hecke $L$-functions}
 Use formula for $D=-23$ and infinity type 2. Show how formula \ref{eq:Heckespecialvalues2} fits into Deligne's conjectures (see Watkins sec. 5.3.2).
