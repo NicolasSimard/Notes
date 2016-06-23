@@ -791,7 +791,7 @@ for all imaginary quadratic fields of class number one and for $1\leq \ell\leq 4
 Note that the entries are rational integers (and even integers most of the time).
 
 \subsection{Class number $2$}
-If $K$ has class number $2$, there are $2$ genera and each of them contains a single class. If $\ida$ is a representative of the non-trivial ideal class of $K$, one sees using formula \ref{formula:innerprod} that 
+If $K$ has class number $2$, there are $2$ genus and each of them contains a single class. If $\ida$ is a representative of the non-trivial ideal class of $K$, one sees using formula \ref{formula:innerprod} that 
 \[\langle\theta_\ida,\theta_{\O_K}\rangle = \langle\theta_{\O_K},\theta_\ida\rangle=0\]
 and
 \[\langle\theta_\ida,\theta_\ida\rangle=N(\ida)^{2\ell}\langle\theta_{\O_K},\theta_{\O_K}\rangle,\]
@@ -868,86 +868,93 @@ For the $\theta_\psi$, we see that
 where $\psi_1$ and $\psi_2$ are the two Hecke characters of $K$ of infinity type $2\ell$, since $\psi_1^2=\psi_2^2$. It also turns out that $\langle\theta_{\psi_1}, \theta_{\psi_1}\rangle$ and $\langle\theta_{\O_K},\theta_{\O_K}\rangle$ are essentially equal (up to powers of $2$).
 
 \subsection{Idoneal numbers}
+The computations  when the class number is $2$ are greatly simplified by the fact that one only needs to compute the quantity
+\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell},\]
+since there is only one class per genus. That there is only one class per genus is equivalent to saying that the class group has exponent $2$ (i.e. is two-torsion). An even discriminant such that the corresponding number field has this property is called an \emph{idoneal number}. Conjecturally (but proved under GRH), there are only finitely many idoneal numbers. For those discriminants, it suffices to compute the same quantity as above, which turns out to be an integer.
 
-\begin{tabular}{cc|*{3}{p{3cm}|p{3.5cm}|}}
-\cline{3-6}
-& & \multicolumn{4}{ c| }{$\ell$} \\ \cline{3-6}
-& & 1 & 2 & 3 & 4\\ \cline{1-6}
-\multicolumn{1}{|c|}{\multirow{20}{*}{$D$}}& \multicolumn{1}{|c|}{$-84$}
-& $-2^{9}$ & $-2^{4}3\cdot2897$ & $-2^{13}3\cdot3877$ & $-2^{7}3^{2}7\cdot7282459$\\
-\cline{2-6}
+When the class group of $K$ has exponent $2$, every character of the class group is a genus character, so all the theta series attached to the Hecke characters of $K$ of infinity type $2\ell$ have the same Petersson norm (this can be seen in Formula \ref{NormLpsi}). In the following table, we compute
+\[V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell},\]
+for some (arbitrary) Hecke character of $K$, for $1\leq \ell\leq 3$ and for those $K$ whose class group has exponent $2$.
+
+\begin{tabular}{cc|l|p{4.5cm}|p{5.25cm}|}
+\cline{3-5}
+& & \multicolumn{3}{ c| }{$\ell$} \\ \cline{3-5}
+& & 1 & 2 & 3\\ \cline{1-5}
+\multicolumn{1}{|c|}{\multirow{25}{*}{$D$}}& \multicolumn{1}{|c|}{$-84$}
+& $-2^{9}$ & $-2^{4}3\cdot2897$ & $-2^{13}3\cdot3877$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-120$}
-& $-2^{3}233$ & $-2^{4}3\cdot103\cdot257$ & $-2^{6}3\cdot5\cdot7\cdot359\cdot769$ & $-2^{7}3^{2}5\cdot31\cdot30659543$\\
-\cline{2-6}
+& $-2^{3}233$ & $-2^{4}3\cdot103\cdot257$ & $-2^{6}3\cdot5\cdot7\cdot359\cdot769$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-132$}
-& $-2^{4}151$ & $-2^{4}3\cdot13^{2}233$ & $-2^{7}3\cdot11941247$ & $-2^{7}3^{2}12365291437$\\
-\cline{2-6}
+& $-2^{4}151$ & $-2^{4}3\cdot13^{2}233$ & $-2^{7}3\cdot11941247$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-168$}
-& $-2^{3}13\cdot61$ & $-2^{4}3\cdot227\cdot1093$ & $-2^{6}3\cdot113\cdot2216989$ & $-2^{7}3^{2}7\cdot51546898267$\\
-\cline{2-6}
+& $-2^{3}13\cdot61$ & $-2^{4}3\cdot227\cdot1093$ & $-2^{6}3\cdot113\cdot2216989$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-228$}
-& $-2^{4}5\cdot283$ & $-2^{4}3\cdot163\cdot14699$ & $-2^{7}3\cdot773\cdot5097683$ & $-2^{7}3^{2}5\cdot3389\cdot2048278621$\\
-\cline{2-6}
+& $-2^{4}5\cdot283$ & $-2^{4}3\cdot163\cdot14699$ & $-2^{7}3\cdot773\cdot5097683$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-280$}
-& $-2^{3}23\cdot211$ & $-2^{4}11\cdot2047063$ & $-2^{6}3^{2}5\cdot11\cdot9011\cdot26759$ & $-2^{7}5\cdot7\cdot112583\cdot569016817$\\
-\cline{2-6}
+& $-2^{3}23\cdot211$ & $-2^{4}11\cdot2047063$ & $-2^{6}3^{2}5\cdot11\cdot9011\cdot26759$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-312$}
-& $-2^{3}31\cdot421$ & $-2^{4}3\cdot11\cdot71\cdot57251$ & $-2^{6}3\cdot554176930991$ & $-2^{7}3^{2}41\cdot1433519\cdot133798411$\\
-\cline{2-6}
+& $-2^{3}31\cdot421$ & $-2^{4}3\cdot11\cdot71\cdot57251$ & $-2^{6}3\cdot554176930991$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-340$}
-& $-2^{5}29\cdot97$ & $-2^{4}105209333$ & $-2^{8}3^{3}5\cdot7\cdot377853659$ & $-2^{7}5\cdot23\cdot59\cdot7948500647621$\\
-\cline{2-6}
+& $-2^{5}29\cdot97$ & $-2^{4}105209333$ & $-2^{8}3^{3}5\cdot7\cdot377853659$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-372$}
-& $-2^{6}13\cdot17\cdot19$ & $-2^{4}3\cdot5\cdot17\cdot463\cdot6563$ & $-2^{9}3\cdot43\cdot8783\cdot2336771$ & $-2^{7}3^{2}19\cdot59\cdot103\cdot887\cdot2671\cdot962131$\\
-\cline{2-6}
+& $-2^{6}13\cdot17\cdot19$ & $-2^{4}3\cdot5\cdot17\cdot463\cdot6563$ & $-2^{9}3\cdot43\cdot8783\cdot2336771$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-408$}
-& $-2^{3}7\cdot31\cdot263$ & $-2^{4}3\cdot722719007$ & $-2^{6}3\cdot398557\cdot84903367$ & $-2^{7}3^{2}43\cdot83\cdot514247587049069$\\
-\cline{2-6}
+& $-2^{3}7\cdot31\cdot263$ & $-2^{4}3\cdot722719007$ & $-2^{6}3\cdot398557\cdot84903367$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-420$}
-& $-2^{8}151$ & $-2^{5}3\cdot47\cdot49417$ & $-2^{11}3\cdot5\cdot19\cdot409\cdot14221$ & $-2^{8}3^{2}5\cdot7\cdot43\cdot21735127133$\\
-\cline{2-6}
+& $-2^{9}151$ & $-2^{6}3\cdot47\cdot49417$ & $-2^{12}3\cdot5\cdot19\cdot409\cdot14221$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-520$}
-& $-2^{3}7\cdot16519$ & $-2^{4}107\cdot83439599$ & $-2^{6}3\cdot5\cdot151\cdot3517\cdot99178571$ & $-2^{7}5\cdot241\cdot31815617\cdot7280136961$\\
-\cline{2-6}
+& $-2^{3}7\cdot16519$ & $-2^{4}107\cdot83439599$ & $-2^{6}3\cdot5\cdot151\cdot3517\cdot99178571$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-532$}
-& $-2^{9}5\cdot313$ & $-2^{4}83\cdot84815009$ & $-2^{13}3\cdot43\cdot40813878811$ & $-2^{7}5\cdot7\cdot521\cdot9580507980739999$\\
-\cline{2-6}
+& $-2^{9}5\cdot313$ & $-2^{4}83\cdot84815009$ & $-2^{13}3\cdot43\cdot40813878811$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-660$}
-& $-2^{6}4019$ & $-2^{5}3\cdot84955769$ & $-2^{9}3\cdot5\cdot769\cdot3079\cdot29129$ & $-2^{8}3^{2}5\cdot23^{2}12826651596377$\\
-\cline{2-6}
+& $-2^{7}4019$ & $-2^{6}3\cdot84955769$ & $-2^{10}3\cdot5\cdot769\cdot3079\cdot29129$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-708$}
-& $-2^{4}211\cdot5233$ & $-2^{4}3\cdot14083\cdot55570667$ & $-2^{7}3\cdot38281\cdot13122545866403$ & $-2^{7}3^{2}631\cdot112237\cdot22318536285190567$\\
-\cline{2-6}
+& $-2^{4}211\cdot5233$ & $-2^{4}3\cdot14083\cdot55570667$ & $-2^{7}3\cdot38281\cdot13122545866403$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-760$}
-& $-2^{3}3^{2}148331$ & $-2^{4}7\cdot137\cdot986380123$ & $-2^{6}3^{2}5\cdot17958574802156873$ & $-2^{7}5\cdot19793\cdot53777\cdot1053071\cdot442405567$\\
-\cline{2-6}
+& $-2^{3}3^{2}148331$ & $-2^{4}7\cdot137\cdot986380123$ & $-2^{6}3^{2}5\cdot17958574802156873$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-840$}
-& $-2^{4}179\cdot347$ & $-2^{5}3\cdot61\cdot1597\cdot10103$ & $-2^{7}3\cdot5\cdot11^{2}90223100377$ & $-2^{8}3^{2}5\cdot7\cdot661\cdot709\cdot1511\cdot155380321$\\
-\cline{2-6}
+& $-2^{5}179\cdot347$ & $-2^{6}3\cdot61\cdot1597\cdot10103$ & $-2^{8}3\cdot5\cdot11^{2}90223100377$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-1012$}
-& $-2^{7}3\cdot47\cdot2473$ & $-2^{4}16504437324451$ & $-2^{10}3^{2}7^{2}13\cdot4463\cdot145619278193$ & $-2^{7}1663\cdot93287\cdot115469\cdot37218419688193$\\
-\cline{2-6}
+& $-2^{7}3\cdot47\cdot2473$ & $-2^{4}16504437324451$ & $-2^{10}3^{2}7^{2}13\cdot4463\cdot145619278193$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-1092$}
-& $-2^{5}5\cdot17359$ & $-2^{5}3\cdot9721\cdot768881$ & $-2^{8}3\cdot167\cdot12647\cdot264316363$ & $-2^{8}3^{2}5\cdot7\cdot59\cdot241\cdot423292626320989$\\
-\cline{2-6}
+& $-2^{6}5\cdot17359$ & $-2^{6}3\cdot9721\cdot768881$ & $-2^{9}3\cdot167\cdot12647\cdot264316363$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-1320$}
-& $-2^{4}47\cdot16069$ & $-2^{5}3\cdot47\cdot367\cdot6613879$ & $-2^{7}3\cdot5\cdot13\cdot6874687\cdot139706417$ & $-2^{8}3^{2}5\cdot103\cdot1867\cdot6737\cdot1468799\cdot4281731$\\
-\cline{2-6}
+& $-2^{5}47\cdot16069$ & $-2^{6}3\cdot47\cdot367\cdot6613879$ & $-2^{8}3\cdot5\cdot13\cdot6874687\cdot139706417$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-1380$}
-& $-2^{7}7\cdot16349$ & $-2^{5}3\cdot13\cdot97\cdot487\cdot287117$ & $-2^{10}3\cdot5\cdot31\cdot395027\cdot228192919$ & $-2^{8}3^{2}5\cdot18597324231281857131113$\\
-\cline{2-6}
+& $-2^{8}7\cdot16349$ & $-2^{6}3\cdot13\cdot97\cdot487\cdot287117$ & $-2^{11}3\cdot5\cdot31\cdot395027\cdot228192919$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-1428$}
-& $-2^{11}79\cdot83$ & $-2^{5}3\cdot47\cdot8527\cdot382999$ & $-2^{15}3\cdot348685527772061$ & $-2^{8}3^{2}7\cdot11\cdot344171\cdot2964701350076467$\\
-\cline{2-6}
+& $-2^{12}79\cdot83$ & $-2^{6}3\cdot47\cdot8527\cdot382999$ & $-2^{16}3\cdot348685527772061$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-1540$}
-& $-2^{5}3\cdot59\cdot1747$ & $-2^{5}1289\cdot184546987$ & $-2^{8}3^{4}5\cdot13\cdot23\cdot421\cdot1169291867$ & $-2^{8}5\cdot7\cdot631\cdot16369\cdot39779\cdot14329084171$\\
-\cline{2-6}
+& $-2^{6}3\cdot59\cdot1747$ & $-2^{6}1289\cdot184546987$ & $-2^{9}3^{4}5\cdot13\cdot23\cdot421\cdot1169291867$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-1848$}
-& $-2^{4}37\cdot53\cdot2689$ & $-2^{5}3\cdot4820737472711$ & $-2^{7}3\cdot19\cdot659\cdot1693\cdot744556639889$ & $-2^{8}3^{2}7\cdot14447\cdot635872200295961350853$\\
-\cline{2-6}
+& $-2^{5}37\cdot53\cdot2689$ & $-2^{6}3\cdot4820737472711$ & $-2^{8}3\cdot19\cdot659\cdot1693\cdot744556639889$\\
+\cline{2-5}
 \multicolumn{1}{ |c| }{}& \multicolumn{1}{|c|}{$-5460$}
-& $-2^{7}337\cdot27239$ & $-2^{6}3\cdot11\cdot127\cdot997\cdot2711\cdot59999$ & $-2^{10}3\cdot5\cdot29\cdot53\cdot109\cdot1490472400622759$ & $-2^{9}3^{2}5\cdot7\cdot859\cdot1070081\cdot2882267\cdot1549429199063$\\
-\cline{1-6}
+& $-2^{9}337\cdot27239$ & $-2^{8}3\cdot11\cdot127\cdot997\cdot2711\cdot59999$ & $-2^{12}3\cdot5\cdot29\cdot53\cdot109\cdot1490472400622759$\\
+\cline{1-5}
 \end{tabular}
 
 \subsection{$D=-23$: Class number 3, one genera}
@@ -1106,16 +1113,11 @@ Here we will only analyse the algebraic quantities
 \[N(\psi,\ell) = V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}.\]
 These quantities have a similar behaviour as in the case of $\Q(\sqrt{-23})$. Indeed for $\ell=1,2,3$ and $4$, the numbers $N(\psi_i,\ell)^5$ are the (distinct) roots of a degree $5$ polynomial. For example, the numbers $N(\psi_i,\ell)^5$ are the roots of
 \[x^5 - 101253156250x^4 +\dots- 45258661022880985938603887557983398437500000.\]
+Those degree $5$ polynomials do not generate the Hilbert class field over $K$.
+
 When $\ell=5$ or $10$, one of the $N(i,\ell)$ is an integer and the fifth power of the four others are roots of a degree $4$ polynomial. For example, after possibly reordering the characters
 \[N(\psi_0,5) = 29975233350\]
 and the $N(\psi_i,5)^5$, for $1\leq i\leq 4$, are the roots of a degree $4$ polynomial with constant term an integer with more than $200$ digits. The following table presents the results of some of our computations.
-
-
-
-
-
-
-
 
 \begin{tabular}{|c|c|}
 \hline
@@ -1137,9 +1139,9 @@ $6$ & $-2^{35}3^{26}5^{4}11^{4}41\cdot47^{2}433\cdot27299\cdot982047751879879\cd
 
 We stop at $\ell=6$ because the numbers become too large to write down (and hard to factor). Indeed for $\ell=7$ and over, the quantity $\det(M_K(\ell))/\Omega_K^{20\ell}$ is an integer with more than $100$ digits.
 
-\subsection{$D=-104$}
+\subsection{$D=-104$: class number $6$, two genera}
 
-\subsection{$D=-2660$}
+\subsection{$D=-2660$: class number $24$, eight genera}
 
 \section{Computing some special values of Hecke $L$-functions}
 Use formula for $D=-23$ and infinity type 2. Show how formula \ref{eq:Heckespecialvalues2} fits into Deligne's conjectures (see Watkins sec. 5.3.2).
