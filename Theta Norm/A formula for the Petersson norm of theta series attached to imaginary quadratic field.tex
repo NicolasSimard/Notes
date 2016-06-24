@@ -531,7 +531,7 @@ this implies
 
 The equality
 \[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-E_2(z)\]
-implies that formula \ref{eq:finallgeq1} also makes sense for $\ell=0$ and gives back exactly formula \ref{eq:filall=0}. Note also that $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is $\SL$-invariant, as desired. However, I don't think $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is almost holomorphic.
+implies that formula \ref{eq:finallgeq1} also makes sense for $\ell=0$ and gives back exactly formula \ref{eq:filall=0}. Note also that $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is $\SL$-invariant, as desired. However, $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is not an almost holomorphic modular form.
 
 \section{Theta functions attached to ideals in imaginary quadratic fields}
 In this section we define theta series attached to ideals in imaginary quadratic fields and certain spherical polynomials and see how these theta functions are relate to the theta functions $\tpsi$.
@@ -556,9 +556,9 @@ where the sum runs over representatives of the class group. Note that $\tida$ de
 \[\theta_{\mu\mathfrak{a}}=\mu^{2\ell}\tida\]
 for any $\mu\in K^\times$, but the sum is still independent of this choice. To prove formula \ref{eq:tpsidec}, one uses the same trick as in the proof of Proposition \ref{eq:partialdec}.
 
-Note that the $L$-function attached to $\theta_\ida^{(2\ell)}$ is the partial Hecke $L$-function $L^{(2\ell)}(\overline{\ida},s)$ introduced before.
+Note that the $L$-function attached to $\theta_\ida^{(2\ell)}$ is the partial Hecke $L$-function $L^{(2\ell)}(\overline{\ida},s)$ introduced in the previous section.
 
-Our next goal is to write $\tida$ in terms of the $\tpsi$. For this, the following Lemma is useful.
+Our next goal is to express $\tida$ in terms of the $\tpsi$. For this, the following Lemma is useful.
 
 \begin{lemma}\label{orthorel}
 	Fix an integer $\ell\geq 0$ and let $\idc$ be a fractional ideal of $K$. Then
@@ -587,7 +587,7 @@ This leads to the following
 	This follows formally from the previous Lemma and the expression for $\tpsi$ in terms of the $\theta_\ida$.
 \end{proof}
 
-Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\ell>0$, one can compute $\langle\tida,\theta_\idb\rangle$ in terms of the Petersson norm of the $\tpsi$. When $\ell=0$, the $\tpsi$ are not always cusp forms and we have not found a way to compute (or even define) the Petersson norm of all the $\tpsi$. However, we still have the following
+Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\ell>0$, one can compute $\langle\tida,\theta_\idb\rangle$ in terms of the Petersson norm of the $\tpsi$. When $\ell=0$, the $\tpsi$ are not always cusp forms and we have not computed the Petersson norm of all the $\tpsi$. However, we still have the following
 
 \begin{prop}\label{formula:innerprod}
 	Let $\ell>0$ and let $\theta_\ida$ and $\theta_\idb$ be defined as above. Then
@@ -611,7 +611,7 @@ Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\
 	if for all $[\idc]\in\Clk$, $\ida\idb^{-1}\idc^2$ is not principal, i.e. $\ida$ and $\idb$ are not in the same genus. Otherwise, if $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$ for some $\lambda_\idc\in K$, then
 	\[\sum_{\psi}\psi(\ida\idb^{-1}\idc^2)=\lambda_\idc^{2\ell} h_K\]
 	and the last line of the above computation becomes
-	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc).\]
+	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc).\]
 \end{proof}
 
 The folowing corollary can be seen as a way to "factor" inner products of theta series.
@@ -794,10 +794,10 @@ for all imaginary quadratic fields of class number one and for $1\leq \ell\leq 4
 \cline{1-6}
 \end{tabular}
 
-Note that the entries are rational integers (and even integers most of the time).
+Note that the entries are rational integers (and integers most of the time).
 
 \subsection{Class number $2$}
-If $K$ has class number $2$, there are $2$ genus and each of them contains a single class. If $\ida$ is a representative of the non-trivial ideal class of $K$, one sees using formula \ref{formula:innerprod} that 
+If $K$ has class number $2$, there are $2$ genera and each of them contains a single class. If $\ida$ is a representative of the non-trivial ideal class of $K$, one sees using formula \ref{formula:innerprod} that 
 \[\langle\theta_\ida,\theta_{\O_K}\rangle = \langle\theta_{\O_K},\theta_\ida\rangle=0\]
 and
 \[\langle\theta_\ida,\theta_\ida\rangle=N(\ida)^{2\ell}\langle\theta_{\O_K},\theta_{\O_K}\rangle,\]
@@ -874,13 +874,11 @@ For the $\theta_\psi$, we see that
 where $\psi_1$ and $\psi_2$ are the two Hecke characters of $K$ of infinity type $2\ell$, since $\psi_1^2=\psi_2^2$. It also turns out that $\langle\theta_{\psi_1}, \theta_{\psi_1}\rangle$ and $\langle\theta_{\O_K},\theta_{\O_K}\rangle$ are essentially equal (up to powers of $2$).
 
 \subsection{Idoneal numbers}
-The computations  when the class number is $2$ are greatly simplified by the fact that one only needs to compute the quantity
-\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell},\]
-since there is only one class per genus. That there is only one class per genus is equivalent to saying that the class group has exponent $2$ (i.e. is two-torsion). An even discriminant such that the corresponding number field has this property is called an \emph{idoneal number} (see Cox, page 60). Conjecturally (but proved under GRH), there are only finitely many idoneal numbers. For those discriminants, it suffices to compute the same quantity as above (which turns out to be an integer).
+The computations when the class number is $2$ are greatly simplified since there is only one class per genus. An even discriminant such that the corresponding number field has only one class per genus in its class group is called an \emph{idoneal number} (see Cox, page 60). Conjecturally, there are only finitely many idoneal numbers.\footnote{This has been proved under GRH.} For those numbers, it suffices to compute $V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle$ (which turns out to be an integer).
 
-When the class group of $K$ has exponent $2$, every character of the class group is a genus character, so all the theta series attached to the Hecke characters of $K$ of infinity type $2\ell$ have the same Petersson norm (this can be seen in Formula \ref{NormLpsi}). In the following table, we compute
-\[V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell},\]
-for some (arbitrary) Hecke character of $K$, for $1\leq \ell\leq 3$ and for (possibly all) imaginary quadratic fields $K$ of class number $>2$ whose discriminant is an idoneal number.
+When the class group of $K$ has only one class per genus, it has exponent $2$, so every character of the class group is a genus character and all the theta series attached to the Hecke characters of $K$ of infinity type $2\ell$ have the same Petersson norm.
+
+In the following table, we compute $V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}$ for a (arbitrary) Hecke character of $K$, for $1\leq \ell\leq 3$ and for (possibly all) imaginary quadratic fields $K$ of class number $>2$ whose discriminant is an idoneal number.
 
 \begin{tabular}{cc|l|p{4.5cm}|p{5.25cm}|}
 \cline{3-5}
@@ -968,18 +966,18 @@ In this section, we consider the case $K=\Q(\sqrt{-23})$, which has cyclic class
 
 Using Corolary \ref{coro:factorpip} and the structure of the class group, we see that one only needs to compute
 \[\langle\theta_{\p_2^i},\theta_{\O_K}\rangle\]
-for $0\leq i\leq 2$ and since $\p_2^2\sim\bar{\p2}$ in the class group and $\langle\theta_{\bar{\p_2}},\theta_{\O_K}\rangle=\overline{\langle\theta_{\p_2},\theta_{\O_K}\rangle}$, we only care about $\langle\theta_{\p_2},\theta_{\O_K}\rangle$ and $\langle\theta_{\O_K},\theta_{\O_K}\rangle$.
+for $0\leq i\leq 2$ and since $\p_2^2\sim\bar{\p}_2$ in the class group and $\langle\theta_{\bar{\p}_2},\theta_{\O_K}\rangle=\overline{\langle\theta_{\p_2},\theta_{\O_K}\rangle}$, we only care about $\langle\theta_{\p_2},\theta_{\O_K}\rangle$ and $\langle\theta_{\O_K},\theta_{\O_K}\rangle$.
 
 We first look at the algebraic number
 \[a(\ell)=V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
-For $\ell=1,2$ and $4$, we find that $a(\ell)^3$ is a root of a monic degree $3$ polynomial and generates the Hilbert class field over $K$. For example, we find that $a(1)$ is a root of the polynomial
+For $\ell=1,2$ and $4$, we find that $a(\ell)^3$ is a root of a monic cubic polynomial and generates the Hilbert class field over $K$. For example, $a(1)$ is a root of the polynomial
 \[x^9 - 2816x^6 - 905216x^3 - 89915392\]
 and using the command $\texttt{polredbest}$ in PARI/GP we find that
 \[x^3 - 2816x^2 - 905216x - 89915392\]
-generates the Hilbert class field of $K$ (which is generated by the roots of $x^3-x-1$).
-When $l=3,6$ and $9$, we find that $a(\ell)$ is a root of a cubic polynomial and gererates the Hilbert class field over $K$. For example, $a(3)$ is a root of
+generates the Hilbert class field of $K$ (which is generated over $K$ by the roots of $x^3-x-1$).
+When $\ell=3,6$ and $9$, we find that $a(\ell)$ is a root of a cubic polynomial and gererates the Hilbert class field over $K$. For example, $a(3)$ is a root of
 \[x^3 - 6740x^2 - 169034720x - 1027491892288.\]
-Note that there seems to be a dependance on $\ell$ modulo $3$. Also, all these quantities are algebraic integers.
+Note that there seems to be a dependence on $\ell$ modulo $3$. Also, all these quantities are algebraic integers.
 
 We now look at the algebraic number
 \[b(\ell)=V_D\langle\theta_{\p_2},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
@@ -989,11 +987,11 @@ For $\ell=3,6$ and $9$, $b(\ell)$ is a root of a degree $6$ polynomial. It is al
 \[x^6 - 3x^5 + 5x^4 - 5x^3 + 5x^2 - 3x + 1.\]
 So far, I didn't figure out where this polynomial comes from!
 
-With this data, it is possible to compute the matrix $M_{\{\O_K,\p_2,\bar{\p_2}\}}$ and its determinant for small values of $\ell$. We find:
+With this data, it is possible to compute the matrix $M_{\{\O_K,\p_2,\bar{\p}_2\}}$ and its determinant for small values of $\ell$. We find:
 
 \begin{tabular}{|c|c|}
 \hline
-$\ell$ & $\det M_{\{\O_K,\p_2,\bar{\p_2}\}}(\ell)/\Omega_K^{12\ell}$ \\
+$\ell$ & $\det(M_{\{\O_K,\p_2,\bar{\p}_2\}}(\ell))/\Omega_K^{12\ell}$ \\
 \hline
 $1$ & $-2^{10}23$ \\
 \hline
@@ -1017,17 +1015,17 @@ $10$ & $-2^{46}5^{3}19^{2}23\cdot40322967540986794792203928785469127547464962765
 \hline
 \end{tabular}
 
-It is surprising at first that although the entries of the matrix $M_{\{\O_K,\p_2,\bar{\p_2}\}}$ are algebraic of high degree (up to $18$) and belong to different fields, the determinant is rational.
+It is surprising that although the entries of the matrix $M_{\{\O_K,\p_2,\bar{\p}_2\}}$ are algebraic of high degree (up to $18$) and belong to different fields, the determinant is rational.
 
 Next, we consider the algebraic quantities
 \[N(\psi,\ell) = V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}.\]
-In this section, we only present the results. For more details on how to compute these quantities, in particular how to numerically evaluate the $L$-function attached to Hecke characters of quadratic fields, see the next chapter. For fixed $\ell$, let $\psi_0,\psi_1$ and $\psi_2$ be the Hecke characters of infinity type $2\ell$.
+For more details on how to compute these quantities, in particular how to numerically evaluate the $L$-function attached to Hecke characters of quadratic fields, see the next chapter. For fixed $\ell$, let $\psi_0,\psi_1$ and $\psi_2$ be the Hecke characters of infinity type $2\ell$.
 
 For $\ell=1,2,4$ and $5$, the numbers $N(\psi_i,\ell)$, for $0\leq i\leq 2$, are distinct and their cube are the three real roots of a monic cubic polynomial. For example, the numbers $N(\psi_i,1)^3$, for $0\leq i\leq 2$, are the three roots of the irreducible polynomial
 \[x^3 - 6966x^2 + 11569230x - 239483061.\]
 Note that the constant term is $621^3=(3^323)^3$, a perfect cube. It follows that the determinant of $M_K(\ell)$ is $621$, an integer.
 
-For $\ell=3,6$ and $9$, the situation is slightly different. For one of the characters, suppose it is $\psi_0$, the algebraic number $N(\psi_0,\ell)$ is an \emph{integer}. For the two others, we find that their cube are the roots of a monic quadratic polynomial. For example,
+For $\ell=3,6$ and $9$, the situation is slightly different. For one of the characters, say $\psi_0$, the algebraic number $N(\psi_0,\ell)$ is an \emph{integer}. For the two others, we find that their cube are the roots of a monic quadratic polynomial. For example,
 \[N(\psi_0,3) = 5055 = 3\cdot5\cdot337\]
 and $N(\psi_1,3)^3$ and $N(\psi_2,3)^3$ are the roots of
 \[x^2 - 16287872873193x + 30021979248651078296845875.\]
@@ -1037,7 +1035,7 @@ In the following table, we compute the determinant of the matrix $M_K(\ell)$ for
 
 \begin{tabular}{|c|c|}
 \hline
-$\ell$ & $\det M_K(\ell)/\Omega_K^{12\ell}$ \\
+$\ell$ & $\det(M_K(\ell))/\Omega_K^{12\ell}$ \\
 \hline
 $1$ & $-3^{3}23$ \\
 \hline
@@ -1061,7 +1059,7 @@ $10$ & $-3^{3}5^{3}19^{2}23\cdot403229675409867947922039287854691275474649627654
 \hline
 \end{tabular}
 
-As one can see, the entries of the last two tables are very similar, but they differ by powers of $2$ and $3$. This is explained in part by our choice of representatives $\{\O_K,\p_2,\bar{\p_2}\}$ for the class group, since $\p_2$ has norm $2$ (recall that the matrix $M_\mathcal{R}(\ell)$ depends on the choice of representatives for the class group). The matrix $M_K(\ell)$ on the other hand depends only on $K$ and $\ell$ and so it makes sense to say that its determinant is an integer. It also seems that the Petersson norms of the $\theta_\psi$ exhibit a simpler structure, since their cube are the roots of a cubic polynomial when $\ell$ is not divisible by $3$. The fact that only one of the norms is an integral multiple $\Omega_k^{4\ell}$ when $3$ divides $\ell$ seems mysterious for the moment.
+As one can see, the entries of the last two tables are very similar, but they differ by powers of $2$ and $3$. This is explained in part by our choice of representatives $\{\O_K,\p_2,\bar{\p}_2\}$ for the class group, since $\p_2$ has norm $2$. The matrix $M_K(\ell)$ on the other hand depends only on $K$ and $\ell$ and so it makes sense to say that its determinant is an integer. It also seems that the Petersson norms of the $\theta_\psi$ exhibit a simpler structure, since their cube are the roots of a cubic polynomial when $\ell$ is not divisible by $3$. The fact that only one of the norms is an integral multiple $\Omega_k^{4\ell}$ when $3$ divides $\ell$ seems mysterious for the moment.
 
 \subsection{$D=-56$: Class number $4$, two genera}
 In this section, we consider the case $K=\Q(\sqrt{-56})$. The class group is cyclic of order $4$ and generated by a prime above $3$, say $\p_3$. Since $\Clk[2]=\{\O_K,\p_3^2\}$, there are two genera, each containing two classes. Let $\mathcal{G}_0=\{\O_K,\p_3^2\}$ be the principal genus and let $\mathcal{G}_1=\{\p_3,\p_3^3\}$ be the other one. The matrix $M_{\mathcal{G}_0\cup\mathcal{G}_1}(\ell)$ is of the form
