@@ -1067,7 +1067,7 @@ In this section, we consider the case $K=\Q(\sqrt{-56})$. The class group is cyc
 M_{\mathcal{G}_0}(\ell) & 0 \\ 
 0 & M_{\mathcal{G}_1}(\ell)
 \end{pmatrix},\]
-with the obvious notation for $M_{\mathcal{G}_0}(\ell)$ and $M_{\mathcal{G}_1}(\ell)$. For $ell=1,\dots,10$, the quantities $\det(M_{\mathcal{G}_i}(\ell))/\Omega_K^{8\ell}$  are not integral, but their squares are. For example, $\det(M_{\mathcal{G}_0}(1))/\Omega_K^{8\ell}$ is a root of
+with the obvious notation for $M_{\mathcal{G}_0}(\ell)$ and $M_{\mathcal{G}_1}(\ell)$. For $\ell=1,\dots,10$, the quantities $\det(M_{\mathcal{G}_i}(\ell))/\Omega_K^{8\ell}$  are not integral, but their squares are. For example, $\det(M_{\mathcal{G}_0}(1))/\Omega_K^{8\ell}$ is a root of
 \[x^2 - 2868031660032\]
 and
 $\det(M_{\mathcal{G}_0}(1))/\Omega_K^{8\ell}$ is a root of
@@ -1108,7 +1108,7 @@ where $\psi_0$ and $\psi_1$ were chosen so that $\psi_0/\psi_1$ is not a genus c
 \[V_D\langle\theta_{\psi_0},\theta_{\psi_0}\rangle/\Omega_K^{4\ell} = 168\]
 while $V_D\langle\theta_{\psi_1},\theta_{\psi_1}\rangle/\Omega_K^{4\ell}$ is a root of
 \[x^2 - 15488.\]
-It is also interesting to note that for those values of $\ell$, whenever $V_D\langle\theta_{\psi_0},\theta_{\psi_0}\rangle/\Omega_K^{4\ell}$ is not an integer, it generates the genus field $\Q(\sqrt{2})$ over $K$. For example, the roots of $x^2 - 15488$ are $\pm2^{3}11\sqrt{2}$.
+It is also interesting to note that for those values of $\ell$, whenever $V_D\langle\theta_{\psi_0},\theta_{\psi_0}\rangle/\Omega_K^{4\ell}$ is not an integer, it generates the field $\Q(\sqrt{2})$. For example, the roots of $x^2 - 15488$ are $\pm2^{3}11\sqrt{2}$.
 
 \subsection{$D=-47$: Class number $5$, one genus}
 In this section , we consider the case $K=\Q(\sqrt{-47})$. Then the class group is cyclic of order $5$, so there is only one genera (of course, this last assertion also follows directly from the fact that $K$ has prime discriminant).
@@ -1119,7 +1119,7 @@ These quantities have a similar behaviour as in the case of $\Q(\sqrt{-23})$. In
 \[x^5 - 101253156250x^4 +\dots- 45258661022880985938603887557983398437500000.\]
 Those degree $5$ polynomials do not generate the Hilbert class field over $K$.
 
-When $\ell=5$ or $10$, one of the $N(i,\ell)$ is an integer and the fifth power of the four others are roots of a degree $4$ polynomial. For example, after possibly reordering the characters
+When $\ell=5$ or $10$, one of the $N(\psi_i,\ell)$ is an integer and the fifth power of the four others are roots of a degree $4$ polynomial. For example, after possibly reordering the characters,
 \[N(\psi_0,5) = 29975233350\]
 and the $N(\psi_i,5)^5$, for $1\leq i\leq 4$, are the roots of a degree $4$ polynomial with constant term an integer with more than $200$ digits. The following table presents the results of some of our computations.
 
@@ -1141,7 +1141,7 @@ $6$ & $-2^{35}3^{26}5^{4}11^{4}41\cdot47^{2}433\cdot27299\cdot982047751879879\cd
 \hline
 \end{tabular}
 
-We stop at $\ell=6$ because the numbers become too large to write down (and hard to factor). Indeed for $\ell=7$ and over, the quantity $\det(M_K(\ell))/\Omega_K^{20\ell}$ is an integer with more than $100$ digits.
+We stop at $\ell=6$ because the numbers become too large to write down (and hard to factor). Indeed, for $\ell=7$ and over, the quantity $\det(M_K(\ell))/\Omega_K^{20\ell}$ is an integer with more than $100$ digits.
 
 \subsection{$D=-104$: class number $6$, two genera}
 I didn't have time to write it down yet!
@@ -1152,7 +1152,7 @@ I didn't have time to write it down yet!
 \section{Computing some special values of Hecke $L$-functions}
 In the previous section, we used special values
 \[L(\psi^2,2\ell+1),\]
-where $\psi$ is a Hecke character of infinity type $2\ell$, to compute the norm of the theta functions $\theta_psi$ using formula \ref{NormLpsi}. Those special values were computed using Formula \ref{eq:Heckespecialvalues2}, which reduces the problem to evaluating the derivatives of Eisenstein series at CM points (using the techniques presented in section \ref{sec:algorithm}) and evaluation Hecke characters at ideals of $K$. In the next section we present the naive approach to evaluating Hecke characters at ideals. Then we use our algorithm to compute special values of $L$-functions attached to some Hecke characters of $K=\Q(\sqrt{-23})$.
+where $\psi$ is a Hecke character of infinity type $2\ell$, to compute the norm of the theta functions $\theta_\psi$ using formula \ref{NormLpsi}. Those special values were computed using Formula \ref{eq:Heckespecialvalues2}, which reduces the problem to evaluating the derivatives of Eisenstein series at CM points (using the techniques presented in section \ref{sec:algorithm}) and evaluation Hecke characters at ideals of $K$. In the next section we present the naive approach to evaluating Hecke characters at ideals. Then we use our algorithm to compute special values of $L$-functions attached to some Hecke characters of $K=\Q(\sqrt{-23})$.
 
 \subsection{Evaluating Hecke characters}
 As before, let $K$ be an imaginary quadratic field and let $\Clk$ be its class group. Then $\Clk$ decomposes as a direct sum of $d$ cyclic groups of order $o_i$ and generator $g_i$, i.e.
@@ -1166,7 +1166,7 @@ where $r_i$ is some root of $x^{o_i}-\lambda_i^{2\ell}$. Then if $\ida = \mu g_1
 Each choice of root $r_i$ gives a different Hecke character and so there are exactly $h_K$ such characters. Since choosing a different root corresponds to multiplying by a root of unity, one sees explicitly that all Hecke characters of fixed infinity type differ by a character of the class group.
 
 \subsection{Examples for $K=\Q(\sqrt{-23})$}
-Let $K=\Q(\sqrt{-23})$. Then $Clk$ is cyclic of order $3$ and is generated by the class of any prime above $2$, say $\p_2$. Let the $\psi_i$, for $0\leq i\leq 2$, be the Hecke characters of $K$ infinity type $2$. Using formula \ref{eq:Heckespecialvalues2} we compute
+Let $K=\Q(\sqrt{-23})$. Then $\Clk$ is cyclic of order $3$ and is generated by the class of any prime above $2$, say $\p_2$. Let the $\psi_i$, for $0\leq i\leq 2$, be the Hecke characters of $K$ infinity type $2$. Using formula \ref{eq:Heckespecialvalues2} we compute
 \[L(\psi_0,2) = 1.23819100212426040400794384794\dots,\]
 \[L(\psi_1,2) = 0.67033720866583940374792247747\dots \]
 and
