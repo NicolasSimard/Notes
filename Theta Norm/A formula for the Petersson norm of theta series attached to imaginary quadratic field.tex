@@ -71,16 +71,20 @@
 
 \section*{Introduction}
 In these notes, we find a formula for the Petersson norm of the theta series $\tpsi$ attached to an imaginary quadratic field $K$ and a Hecke character of infinity type $2\ell$. The formula is
-\[\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\del_2^{2\ell-1}E_{2}(\ida)\]
+\begin{equation}\label{form:lgreater0}
+\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\del_2^{2\ell-1}E_{2}(\ida)
+\end{equation}
 if $\ell>0$ and
-\[\langle\tpsi,\tpsi\rangle =-V_D^{-1}\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2)\]
+\begin{equation}\label{form:leq0}
+\langle\tpsi,\tpsi\rangle =-V_D^{-1}\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2)
+\end{equation}
 if $\ell=0$ and $\psi$ is not a genus character. Here $\del_2^{2\ell-1}E_2$ is the non-holomorphic derivative of the non-holomorphic Eisenstein series of weight $2$ and level $1$, viewed as a function on lattices in the usual way, and
 \[V_D = \text{Vol}(\Gamma_0(|D|)\setminus\H)=\frac{\pi}{3}|D|\prod_{p|D}(1+p^{-1}).\]
 In the last section, we will see that one can make sense of the first formula even for $\ell=0$ and that it gives back exactly the second formula!
 
-Before proving the formula, we first recall a few facts about Hecke characters, Eisenstein series and the Rankin-Selberg method. Then we introduce the theta functions $\tpsi$. In the following section, we show how the Petersson norm of the $\tpsi$ is related to the Hecke $L$-function of $\psi^2$. Finally, we relate the Hecke $L$-function of $\psi^2$ to non-holomorphic Eisenstein series and use this relation to establish the two formulas.
+Before proving the formula, we first recall a few facts about Hecke characters, Eisenstein series and the Rankin-Selberg method. Then we introduce the theta functions $\tpsi$ and show how their Petersson norm is related to the Hecke $L$-function of $\psi^2$. Finally, we relate the Hecke $L$-function of $\psi^2$ to non-holomorphic Eisenstein series and use this relation to establish the two formulas.
 
-If $\psi$ is a genus character, $\tpsi$ is an Eisenstein series and one should use the regularized Petersson inner product. I think a similar formula holds. I will try this soon.
+If $\psi$ is a genus character, $\tpsi$ is an Eisenstein series and one should use the regularized Petersson inner product. I think a similar formula holds.
 
 \section{Setup and notation}
 Throughout, $K=\Q(\sqrt{D})$ denotes an imaginary quadratic field of discriminant $D<-4$ and $\O_K$ denotes its ring of integers.
@@ -109,10 +113,10 @@ Define the completed $L$-function of $L(\psi_\ell,s)$ as
 	\item $\Lambda$ can be analytically continued to a meromorphic function on $\C$ and satisfies the functional equation
 \[\Lambda(\psi_\ell,s)=w(\psi_\ell)\Lambda(\overline{\psi_\ell},2\ell+1-s),\]
 where $|w(\psi_\ell)|=1$.%Compute $w(\psi_\ell)$ explicitly?
-	\item $\Lambda(\psi_\ell,s)$ is holomorphic on $\C$, except when $\psi_\ell$ is the trivial character (this can only happen when $\ell = 0$), in which case is has a pole at $s=0$ and $s=1$.
+	\item $\Lambda(\psi_\ell,s)$ is holomorphic on $\C$, except when $\psi_\ell$ is the trivial character (this can only happen when $\ell = 0$), in which case it has a pole at $s=0$ and $s=1$.
 	\item $L(\psi_\ell,s)$ is holomorphic on $\C$, except when $\psi_\ell$ is the trivial character, in which case it has a pole at $s=1$ with residue
 	\[\frac{2\pi h_K}{\runi \sqrt{|D|}},\]
-	where $h_K$ is the class number of $K$ and $\runi=2$ is the number of roots of unity in $K$.
+	where $h_K$ is the class number of $K$ and $\runi$ ($=2$ by assumption) is the number of roots of unity in $K$.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -121,7 +125,7 @@ where $|w(\psi_\ell)|=1$.%Compute $w(\psi_\ell)$ explicitly?
 
 
 \subsection{Eisenstein series: holomorphic and non-holomorphic}\label{sec:Eisen}
-Eisenstein series will be useful in many ways in these notes. Recall that they can be defined in essentially two (closely related) ways: as Poincare series and as sum over lattice points. The first type is used in the Rankin-Selberg method, while the second is linked to Hecke $L$-functions of imaginary quadratic fields. We recall a few basic facts about these series. Our main references are \cite[Ch.9]{Shi1}, \cite[A3]{Shi1} and \cite[Ch.7]{Miya}
+Eisenstein series will be useful in many ways in these notes. Recall that they can be defined in essentially two (closely related) ways: as Poincare series and as sums over lattice points. The first type is used in the Rankin-Selberg method, while the second is linked to Hecke $L$-functions of imaginary quadratic fields. We recall a few basic facts about these series. Our main references are \cite[Ch.9]{Shi1}, \cite[A3]{Shi1} and \cite[Ch.7]{Miya}
 
 Let $N\geq 1$ and $k\geq 0$ be integers. As usual, define
 \[\Gamma_0(N)=\left \{\begin{pmatrix}
@@ -150,7 +154,7 @@ Since
 \[\Im(\gamma z)^s=|j(\gamma,z)|^{-2s}\Im(z)^s,\]
 the non-holomorphic Eisenstein series satisfies the following functional equation:
 \[G_k(\gamma z,s)=j(\gamma,z)^kG_k(z,s).\]
-In particular, $k$ must be even.
+In particular, $G_k(z,s) = 0$ is $k$ is odd.
 
 For $k>2$, the series converges absolutely at $s=0$ and equals the usual Eisenstein series of weight $k$ and level $1$. For $k=2$, it does not converge absolutely at $s=0$. However, for $k>0$ there is a real analytic function of $(z,s)\in\H\times\C$ which is holomorphic in $s$ and coincides with $\Gamma(s+k)G_k(z,s)$ for $\Re(2s)+k>2$ (\cite[Thm A3.5]{Shi1}). Therefore it still makes sense to consider $G_2(z,0)$. Define
 \[E_2(z)=2^{-1}(2\pi i)^{-2}G_2(z,0).\]
@@ -226,13 +230,13 @@ Let $\ell\geq 0$ and $\psi=\psi_\ell$ be a Hecke character of infinity type $2\e
 \[\tpsi(z)=\sum_{\ida}\psi(\ida)q^{N(\ida)},\]
 where the sum runs over all integral ideals of $\O_K$. It is well known (\cite[Thm. 12.5]{Iwan}) that
 \[\tpsi(z)\in M_{2\ell+1}(\Gamma_0(|D|),\chi_D),\]
-where $\chi_D$ is the quadratic character attached to $K$ (i.e. the Kronecker symbol).\footnote{Note that the Hecke characters $\psi_\ell$ have conductor $\O_K$, so they are automatically primitive.}
+where $\chi_D$ is the quadratic character attached to $K$ (i.e. the Kronecker symbol).
 
 If $\ell>0$, $\tpsi$ is in fact a cusp form. If $\ell=0$, this is also true, unless $\psi$ is a genus character (i.e. $\psi^2=1$), in which case it is an Eisenstein series. In any case,
 \[L(\tpsi,s)=L(\psi,s),\]
-so the $L$-function of $\tpsi$ has an Euler product\footnote{One reason to choose the non-unitary Hecke characters $\psi_\ell$ is to have simpler formulas, like this one.}. It follows that $\tpsi$ is a normalized (i.e. $a_1(\tpsi)=1$) eigenform for all Hecke operators (see \cite[Thm. 5.9.2]{DiSh}). Moreover,
+so the $L$-function of $\tpsi$ has an Euler product\footnote{One reason to choose the non-unitary Hecke characters $\psi_\ell$ is to have simpler formulas, like this one.}. It follows that $\tpsi$ is a normalized (i.e. $a_1(\tpsi)=1$) eigenform for all Hecke operators (see \cite[Thm. 5.9.2]{DiSh}). Since
 \[a_n(\tpsi)=\sum_{N(\ida)=n}\psi(\ida),\]
-where the sum is over all integral ideals of $K$ of norm $n$. It follows that
+where the sum is over all integral ideals of $K$ of norm $n$, it follows that
 \[a_p(\tpsi)=\begin{cases}
 	0	&\text{if } \chi_D(p)=-1\\
 	\psi(\p)+\psi(\bar{\p}) &\text{if } \chi_D(p)=1 \text{ and }p\O_K=\p\bar{\p}\\
@@ -303,7 +307,7 @@ The first step in the proof is the following.
 \begin{lemma}
 	For all $s$, one has
 	\[\zeta_D(2s-4\ell)D(\tpsi,\tpsi,s)=L(\textrm{Sym}^2\tpsi,s)L(\chi_D,s-2\ell),\]
-	where $\zeta_D(s)$ is the usual Riemann zeta function with the Euler factors at $p|D$ removed and $L(\chi_D,s)$ is the Dirichlet $L$-function attached to $\chi_D$.
+	where $\zeta_D(s)$ is the usual Riemann zeta function with the Euler factors at $p|D$ removed and $L(\chi_D,s)$ is the $L$-function attached to the Dirichlet character $\chi_D$.
 \end{lemma}
 \begin{proof}
 	The idea is to compare the Euler factors at each prime on each side for $\Re(s)$ large enough, using Shimura's lemma.
@@ -372,7 +376,7 @@ so that $G_k(\ida,0)$ is the usual weight $k$ Eisenstein series on lattices for 
 for any $\mu\in K^\times$.
 
 Consider now the following partial Hecke $L$-function
-\[L^{(2\ell)}(\ida,s)=\sum_{\lambda\in\ida-{0}}\frac{\overline{\lambda}^{2\ell}}{|\lambda|^{2s}}.\]
+\[L^{(2\ell)}(\ida,s)=\sum_{\lambda\in\ida-\{0\}}\frac{\overline{\lambda}^{2\ell}}{|\lambda|^{2s}}.\]
 The first basic relation between Eisenstein series and Hecke $L$-functions is based on the following
 \begin{prop}\label{eq:partialdec}
 	Let $\psi$ be a Hecke character of infinity type $2\ell$ as above. Then
@@ -381,7 +385,7 @@ The first basic relation between Eisenstein series and Hecke $L$-functions is ba
 \end{prop}
 \begin{proof}
 	The fact that the sum does not depend on the choice of representatives of $\Clk$ follows from the fact that
-	\[L^{(2\ell)}(\mu\ida,s)=\overline{\mu}^{-2\ell}|\mu|^{-2s}L^{(2\ell)}(\ida,s).\]
+	\[L^{(2\ell)}(\mu\ida,s)=\overline{\mu}^{2\ell}|\mu|^{-2s}L^{(2\ell)}(\ida,s).\]
 	To prove formula, first write
 \[L(\psi,s)=\sum_{[\ida]\in\Clk}\sum_{\idc\in[\ida]}\frac{\psi(\idc)}{N(\idc)^s},\]
 where the inner sum runs over the integral ideals $\idc$ in the class of $\ida$. Now fix $\idb\in[\ida]^{-1}$ such that $1\in\idb$. Then $\idc\in[\ida]$ with $\idc\subseteq\O_K$ if and only if $\idc\idb=\lambda\O_K$ with $\lambda\in\idb$. Note that $\lambda$ is unique up to an element of $\O_K^\times$ and $N(\idc)=N(\lambda)N(\idb)^{-1}$. It follows that
@@ -400,7 +404,7 @@ we obtain
 	where the first sum runs over (any choice of) representatives of the ideal class group of $K$ and in the second one, $\latbasis$ is a positively oriented basis of $\ida$. 
 \end{coro}
 
-\subsection{The case $\ell=0$: kronecker limit formula}
+\subsection{The case $\ell=0$: Kronecker's limit formula}
 When $\ell=0$, Corollary \ref{eq:Eisensteindec} applied to $\psi^2$ (of infinity type $4\ell$) gives
 \begin{equation}\label{eq:casel=0}
 L(\psi^2,s)=\frac{1}{w_K}\left (\frac{2}{\sqrt{|D|}}\right )^{s}\sum_{[\ida]=[\latbasis]}\psi^2(\ida)G_0(\omquot,s).
@@ -467,7 +471,8 @@ This leads to the following
 	Using the Lemma above with $n=2\ell-m\geq 0$ and $k=2m-2\ell\geq 2$, we see that
 	\[G_{2\ell}(z,s+m-2\ell)=(-4\pi)^{2\ell-m}\frac{\Gamma(s+2m-2\ell)}{\Gamma(s+m)}\del^{2\ell-m}G_{2m-2\ell}(z,s).\]
 	Putting this in the formula of Corollary \ref{eq:Eisensteindec} (evaluated at $s+m$), we see that
-	\[L(\psi,s+m)=\frac{1}{w_K}(-4\pi)^{2\ell-m}\frac{\Gamma(s+2m-2\ell)}{\Gamma(s+m)}\left (\frac{\sqrt{|D|}}{2}\right )^{-(s+m-2\ell)}\sum_{[\ida]=[\latbasis]}\frac{\psi(\ida)}{\omega_2^{2\ell}}\del^{2\ell-m}G_{2m-2\ell}(z,s),\]
+	\[L(\psi,s+m)=\frac{1}{w_K}(-4\pi)^{2\ell-m}\frac{\Gamma(s+2m-2\ell)}{\Gamma(s+m)}\left (\frac{\sqrt{|D|}}{2}\right )^{-(s+m-2\ell)}\sum_{[\ida]=[\latbasis]}\frac{\psi(\ida)}{\omega_2^{2\ell}}\del^{2\ell-m}G_{2m-2\ell}(z,s).\]
+	Evaluating at $s=0$ gives the result.
 \end{proof}
 
 Using the fact that
@@ -480,12 +485,13 @@ and
 \begin{equation}\label{def:Ek}
 E_k=-\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n
 \end{equation}
-is the usual holomorphic Eisenstein series for $k\geq 4$ (see \cite[Sec 9.2]{Shi1}), one sees that the previous Corollary relates certain special values of the Hecke $L$-function attached to $\psi$ to the derivatives of the usual Eisenstein series. Indeed, the formula becomes
-\begin{equation}\label{eq:Heckespecialvalues2}
-	L(\psi,m) = (-1)^\ell\sqrt{|D|}^{2\ell-m}\frac{(2\pi)^m}{\Gamma(m)}\sum_{[\ida]\in\Clk}\psi(\ida)\del^{2\ell-m}E_{2m-2\ell}(\ida).
-\end{equation}
+is the usual holomorphic Eisenstein series for $k\geq 4$ (see \cite[Sec 9.2]{Shi1}), one sees that the previous Corollary relates certain special values of the Hecke $L$-function attached to $\psi$ to the derivatives of the usual Eisenstein series. This gives
+\begin{coro}\label{eq:Heckespecialvalues2}
+Let $\psi$ be a Hecke character of infinity type $2\ell>2$ as above and let $m$ be an integer such that $\ell+1\leq m\leq 2\ell$. Then
+	\[L(\psi,m) = (-1)^\ell\sqrt{|D|}^{2\ell-m}\frac{(2\pi)^m}{\Gamma(m)}\sum_{[\ida]\in\Clk}\psi(\ida)\del^{2\ell-m}E_{2m-2\ell}(\ida).\]
+\end{coro}
 
-Applying this formula to $\psi^2$ with $m=2\ell+1$, we get
+Applying this formula to $\psi^2$, which has infinity type $4\ell$, with $m=2\ell+1$, we get
 \[L(\psi^2,2\ell+1)=\sqrt{|D|}^{2\ell-1}\frac{(2\pi)^{2\ell+1}}{\Gamma(2\ell+1)}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}E_{2}(\omquot).\]
 
 Using this value of $L(\psi^2,2\ell+1)$ in formula \ref{NormLpsi} and simplifying finally gives
@@ -507,7 +513,7 @@ Note that this can also be written in homogeneous form as
 \end{proof}
 
 \subsection{The case $\ell=0$ revisited}
-Strictly speaking, formula \ref{eq:finallgeq1} does not make sense for $\ell=0$. However, it is natural to define $\del_2^{-1}$ as a weight $0$ "modular form" $f$ such that
+Strictly speaking, Formula \ref{eq:finallgeq1} does not make sense for $\ell=0$. However, it is natural to define $\del_2^{-1}$ as a weight $0$ "modular form" $f$ such that
 \[\del_0 f(z)=E_2(z).\]
 We claim that
 \[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-E_2(z),\]
