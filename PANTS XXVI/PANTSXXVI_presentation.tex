@@ -107,17 +107,84 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	
 \end{frame}	
 	
-\begin{frame}
+\frame{
 	\frametitle{$q$-expansion of modular forms}
 	Every modular form $f$ has a Taylor (or Fourrier) expansion at infinity, called its $q$-expansion:
 	\[f(z)=\sum_{n=0}^\infty a_nq^n,\]
-	where $q=exp(2\pi iz)$.
+	where $q=exp(2\pi iz)$. If
+	\[a_0(f)=0,\]
+	$f$ is called a \emph{cusp form}.
+}
+
+\frame{
+	\frametitle{Example: weight $k$ Eisenstein series}
+	Let $k\geq4$ be an even integer and define
+	\[G_k(z)=\sum_{m,n}\frac{1}{(mz+n)^k}\in M_k(\Gamma_0(1),1).\]
+	After renormalisation, the $q$-expansion of $G_k$ is
+	\[E_k(z) = -\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n.\]
+}
+
+\frame{
+	\frametitle{Important non-example: weight $2$ Eisenstein series}
+	In level $1$, there are no modular forms of weight $2$. However, one can still define the weight $2$ Eisenstein series as
+	\[E_2(2)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma(n)q^n.\]
+	It is an example of an \emph{almost holomorphic} modular form of level $1$ and weight $2$.
+}
+
+\subsection{Spaces of modular forms}
+\frame{
+	\frametitle{Spaces of modular forms}
+	\begin{itemize}
+		\item<1-> $M_k(\Gamma_0(N),\chi)$ is finite dimensional.
+		\item<2-> For every integer $n\geq1$, one can define a \emph{Hecke operator} $T_n$ (depending on $k$, $N$ and $\chi$) which acts on $M_k(\Gamma_0(N),\chi)$.
+		\item<3-> There exists a basis of common eigenvectors for all Hecke operators $T_n$ with $(n,N)=1$.
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Petersson inner product}
+	Let $f,g\in S_k(\Gamma_0(N),\chi)$ be two cusp forms. The Petersson inner product of $f$ and $g$ is defined as
+	\[\langle f,g\rangle =\frac{1}{\text{Vol}(\Gamma_0(N)\setminus\H)}\int_{\Gamma_0(N)\setminus\H}f(x+iy)\overline{g(x+iy)}y^k\text{d}\mu,\]
+	where
+	\[\text{d}\mu=\frac{\text{d}x\text{d}y}{y^2}\]
+	is the $\text{SL}_2(\R)$-invariant measure on $\H$.
+	Note that the intergal does not converge if neither $f$ nor $g$ is a cusp form.
+}
+
+\subsection{Newforms}
+\frame{
+	\frametitle{Newforms}
+	The space $S_k(\Gamma_0(N),\chi)$ splits naturally as
+	\[S_k(\Gamma_0(N),\chi)=S_k(\Gamma_0(N),\chi)^{\text{new}}\oplus S_k(\Gamma_0(N),\chi)^\text{old}.\]
+	\begin{theorem}
+		The space $S_k(\Gamma_0(N),\chi)^{\text{new}}$ has an \emph{orthogonal} basis of eigenvectors for \emph{all} Hecke operators. Elements of this basis are called newforms (after suitable normalization).
+	\end{theorem}
+}
+
+\frame{
+	\frametitle{Summary}
+	\begin{enumerate}
+		\item<1-> The space $S_k(\Gamma_0(N),\chi)$ is a finite dimensional inner product space, equiped with an action of Hecke operators.
+		\item<2-> The subspace $S_k(\Gamma_0(N),\chi)^\text{new}$ has distinguished elements (the newforms)  which are mutually orthogonal and are eigenvectors for all Hecke operators.
+	\end{enumerate}
+}
+
+\section{Theta Series}
+\subsection{The simplest example}
+\frame{
+	\frametitle{A half-integral weight theta series}
+	Consider the function
+	\[\theta(z) = \sum_{x\in\Z}q^{x^2}=1+2q+2q^4+O(q^5).\]
+	Then
+	\[\theta(\gamma z)=\epsilon(cz+d)^{1/2}\theta(z),\]
+	for all $\gamma\in\Gamma_0(4)$ and some $\epsilon_{c,d}\in\lbrace\pm1,\pm i\rbrace$.
+}
+
+\subsection{Theta series attached to imaginary quadratic fields}
+\frame{
+	\frametitle{The setup for this talk}
 	
-	\begin{ex} Let $k\geq4$ be an even integer and define
-	\[G_k(z)=\sum_{m,n}\frac{1}{(mz+n)^k}.\]
-	After renormalisation, its $q$-expansion is
-	\[E_k(z) = \frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n.\]
-	\end{ex}
-\end{frame}
+}
+
 
 \end{document}
