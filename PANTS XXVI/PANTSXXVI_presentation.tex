@@ -1,0 +1,123 @@
+\documentclass{beamer}
+\usetheme{Singapore}
+
+% --------------------------------------------------------------------
+% Packages pour la couleur
+\usepackage{color}
+
+% --------------------------------------------------------------------
+% Packages pour les accents français.
+\usepackage[latin1]{inputenc}	% L'option "latin1" désigne l'encodage ISO-8859-1, typique sous Linux.
+\usepackage[T1]{fontenc}	% Pour les accents
+\usepackage[frenchb]{babel}
+
+% --------------------------------------------------------------------
+% Voici certains packages souvent utilisés.
+\usepackage{graphicx}		% Importation du package permettant d'inclure d'images dans le document.
+\usepackage{amsmath, amsfonts}	% Pour écrire selon les standards de l'AMS.
+\usepackage{epstopdf}		% Package permettant l'inclusion d'images eps, pour la compilation en pdf.
+\usepackage{epsfig}
+\usepackage{hyperref}
+%\usepackage{subfig}
+
+% --------------------------------------------------------------------
+% Le package "palatino" charge la police Palatino en mode texte et le package "euler" charge la police Euler en mode mathématique. Pour retrouver les polices par défaut, effacez les deux lignes de commandes qui suivent.
+\usepackage{palatino}
+\usepackage{euler}
+
+% --------------------------------------------------------------------
+% --------------------------------------------------------------------
+% Commande rapide
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\H}{\mathcal{H}}
+
+\newcommand{\abcdmat}{\begin{pmatrix}
+a & b \\ 
+c & d
+\end{pmatrix}}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+
+%Groupe modulo
+\newcommand*{\modulo}[2]
+{\raisebox{.6ex}{ \newline \ensuremath{#1}}\!/\!\raisebox{-.6ex}{\ensuremath{#2}}}
+
+% --------------------------------------------------------------------
+% --------------------------------------------------------------------
+% --------------------------------------------------------------------
+
+\title{Petersson Inner Product of Binary Theta Series}
+\subtitle{A computational approach}
+\author{Nicolas \textsc{Simard}}
+\institute{McGill University}
+\date{September 17th, 2016}
+
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\section{Background and setup}
+\subsection{Modular forms}
+
+\begin{frame}
+\frametitle{Mobius transformations}
+Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts on $\H$ via Mobius transformations:
+\[\abcdmat z=\frac{az+b}{cz+d}.\]
+\begin{defn}
+	Let $N\geq1$ and define the Hecke subgroup of level $N$ as
+	\[\Gamma_0(N)=\left\lbrace\abcdmat \in\text{SL}_2(\Z)| c\equiv 0\pmod N\right\rbrace.\]
+\end{defn}
+	
+\end{frame}
+
+\begin{frame}
+\frametitle{Level $N$ modular forms with characters}
+
+\begin{defn}
+	Let $N\geq1$ and $k\geq0$ be integers and let $\chi$ be a Dirichlet character mod $N$. A modular form of weight $k$, level $N$ and character $\chi$ is a holomorphic function
+	\[f:\H\longrightarrow\C\]
+	such that
+	\[f\left(\gamma z\right)=\chi(d)(cz+d)^{-k}f(z)\]
+	for all $z\in\H$ and all $\gamma\in\Gamma_0(N)$, which satisfies certain growth conditions at the cusps.	The $\C$-vector-space of such modular forms is denoted
+	\[M_k(\Gamma_0(N),\chi).\]
+\end{defn}
+	
+\end{frame}	
+	
+\begin{frame}
+	\frametitle{$q$-expansion of modular forms}
+	Every modular form $f$ has a Taylor (or Fourrier) expansion at infinity, called its $q$-expansion:
+	\[f(z)=\sum_{n=0}^\infty a_nq^n,\]
+	where $q=exp(2\pi iz)$.
+	
+	\begin{ex} Let $k\geq4$ be an even integer and define
+	\[G_k(z)=\sum_{m,n}\frac{1}{(mz+n)^k}.\]
+	After renormalisation, its $q$-expansion is
+	\[E_k(z) = \frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n.\]
+	\end{ex}
+\end{frame}
+
+\end{document}
