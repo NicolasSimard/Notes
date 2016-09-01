@@ -19,6 +19,7 @@
 \usepackage{epsfig}
 \usepackage{hyperref}
 %\usepackage{subfig}
+\usepackage{multirow}
 
 % --------------------------------------------------------------------
 % Le package "palatino" charge la police Palatino en mode texte et le package "euler" charge la police Euler en mode mathématique. Pour retrouver les polices par défaut, effacez les deux lignes de commandes qui suivent.
@@ -156,7 +157,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	where
 	\[\text{d}\mu=\frac{\text{d}x\text{d}y}{y^2}\]
 	is the $\text{SL}_2(\R)$-invariant measure on $\H$.
-	Note that the intergal does not converge if neither $f$ nor $g$ is a cusp form.
+	Note that the integral does not converge if neither $f$ nor $g$ is a cusp form.
 }
 
 \subsection{Newforms}
@@ -172,7 +173,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 \frame{
 	\frametitle{Summary}
 	\begin{enumerate}
-		\item<1-> The space $S_k(\Gamma_0(N),\chi)$ is a finite dimensional inner product space, equiped with an action of Hecke operators.
+		\item<1-> The space $S_k(\Gamma_0(N),\chi)$ is a finite dimensional Hermitian inner product space, equipped with an action of Hecke operators.
 		\item<2-> The subspace $S_k(\Gamma_0(N),\chi)^\text{new}$ has distinguished elements (the newforms)  which are mutually orthogonal and are eigenvectors for all Hecke operators.
 	\end{enumerate}
 }
@@ -312,15 +313,96 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 \subsection{Towards an algorithm}
 \frame{
 	\frametitle{First step: compute $\partial^nE_2$}
-	This is easy! Indeed, we have the following formulas:
+	We have the following formulas:
 	\[\partial E_2=\frac{5}{6}E_4-2E_2^2 \hspace{0.5cm}\partial E_4 = \frac{7}{10}E_6-8E_2E_4\hspace{0.5cm}\partial E_6 = \frac{400}{7}E_4^2-12E_2E_6.\]
 	For example,
 	\[\partial^3E_2=-48E_2^4 + 120E_4E_2^2 - 14E_6E_2 + 25E_4^2.\]
 }
 
-\subsection{How efficient is this algorithm?}
+\frame{
+	\frametitle{Second step: Evaluate Hecke characters}
+	The idea is simple: let $\ida$ be a fractional ideal of $K$ and suppose
+	\[\ida^e=\lambda\O_K.\]
+	Then
+	\[\psi(\ida)^e=\psi(\ida^e)=\psi((\lambda))=\lambda^{2\ell},\]
+	so $\psi(\ida)$ is determined (up to a $e$-root of unity).
+}
+
+\frame{
+	\frametitle{Other second step}
+	Given ideals $\ida$ and $\idb$, can we efficiently find all classes $[\idc]$ such that
+	\[\ida\idb^{-1}\idc^2=\lambda_\idc\O_K,\]
+	if any? If we have representatives $\lbrace\ida_1,\dots,\ida_d\rbrace$ of $\ClK[2]$, it suffices to find one such $\idc_0$. Then the other solutions to the equation are
+	\[\idc_0\ida_i\]
+	for $i=1,\dots,d$.
+}
 
 \subsection{Examples of computations}
+\frame{
+	\frametitle{Class number $1$}
+	In this case,
+	\[\theta_{\O_K}=\theta_{\psi_0}\]
+	and we only need to compute
+	\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}\in\overline{\Q}.\]
+}
+
+\frame{
+	\frametitle{Class number $1$ case}
+	Computation of $V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}$:
+	\renewcommand{\arraystretch}{1.25}
+	\begin{tabular}{cc|*{2}{l|}}
+	\cline{3-4}
+	& & \multicolumn{2}{ c| }{$\ell$} \\ \cline{3-4}
+	& & 1 & 2 \\ \cline{1-4}
+	\multicolumn{1}{ |c| }{\multirow{7}{*}{$D$}} & \multicolumn{1}{ |c| }{-7}
+	&$2^{2}3$&$-2^{2}$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-8}
+	&$-2$&$-2^{2}5$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-11}
+	&$-2^{2}$&$-2^{3}5$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-19}
+	&$-2^{2}3^{-1}13$&$-2^{3}71$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-43}
+	&$-2^{3}3^{-1}107$&$-2^{4}5647$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-67}
+	&$-2^{2}3^{-1}7^{2}31$&$-2^{3}5\cdot86629$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-163}
+	&$-2^{3}3^{-1}150473$&$-2^{4}11\cdot461681471$\\
+	\cline{1-4}
+	\end{tabular}
+}
+
+\frame{
+	\frametitle{Class number $2$}
+	In this case, $K$ has two genera. If $\ida$ is a representative of the non-trivial class in $\ClK$, we have
+	\[\langle\theta_\ida,\theta_{\O_K}\rangle = \langle\theta_{\O_K},\theta_\ida\rangle=0\]
+	and
+	\[\langle\theta_\ida,\theta_\ida\rangle=N(\ida)^{2\ell}\langle\theta_{\O_K},\theta_{\O_K}\rangle,\]
+	so it suffices to compute the quantity
+	\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}\in\overline{\Q}.\]
+}
+
+\frame{
+	\frametitle{Class number $2$}
+	As in the class number $1$ case, the quantity
+	\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}\]
+	is an integer, except for $\ell=1$ and $D=-91,-403$ and $-427$.
+}
+
+\frame{
+	\frametitle{Class number $3$}
+	
+}
+
+\subsection{How efficient is this algorithm?}
+
+
 
 \section{Idea of the proof}
 \end{document}
