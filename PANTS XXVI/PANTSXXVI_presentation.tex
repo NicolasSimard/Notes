@@ -45,6 +45,7 @@ c & d
 \newcommand{\ida}{\mathfrak{a}}
 \newcommand{\idb}{\mathfrak{b}}
 \newcommand{\idc}{\mathfrak{c}}
+\newcommand{\p}{\mathfrak{p}}
 \newcommand{\tha}{\theta_\mathfrak{a}}
 \newcommand{\thb}{\theta_\mathfrak{b}}
 \newcommand{\tpsi}{\theta_\psi}
@@ -312,7 +313,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 \section{Numerical computations}
 \subsection{Towards an algorithm}
 \frame{
-	\frametitle{First step: compute $\partial^nE_2$}
+	\frametitle{Compute $\partial^nE_2$}
 	We have the following formulas:
 	\[\partial E_2=\frac{5}{6}E_4-2E_2^2 \hspace{0.5cm}\partial E_4 = \frac{7}{10}E_6-8E_2E_4\hspace{0.5cm}\partial E_6 = \frac{400}{7}E_4^2-12E_2E_6.\]
 	For example,
@@ -320,7 +321,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 }
 
 \frame{
-	\frametitle{Second step: Evaluate Hecke characters}
+	\frametitle{Evaluate Hecke characters}
 	The idea is simple: let $\ida$ be a fractional ideal of $K$ and suppose
 	\[\ida^e=\lambda\O_K.\]
 	Then
@@ -329,7 +330,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 }
 
 \frame{
-	\frametitle{Other second step}
+	\frametitle{Find ideals $\idc$ such that $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$}
 	Given ideals $\ida$ and $\idb$, can we efficiently find all classes $[\idc]$ such that
 	\[\ida\idb^{-1}\idc^2=\lambda_\idc\O_K,\]
 	if any? If we have representatives $\lbrace\ida_1,\dots,\ida_d\rbrace$ of $\ClK[2]$, it suffices to find one such $\idc_0$. Then the other solutions to the equation are
@@ -396,13 +397,126 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 }
 
 \frame{
-	\frametitle{Class number $3$}
-	
+	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus)}
+	In $K$, the prime $2$ splits as
+	\[2\O_K=\p_2\bar{\p}_2\]
+	and
+	\[\ClK=\lbrace 1,[\p_2],[\bar{\p}_2]\rbrace.\]
+	Moreover, we have $\langle\theta_{\bar{\p}_2},\theta_{\O_K}\rangle=\overline{\langle\theta_{\p_2},\theta_{\O_K}\rangle}$, so we only care about
+	\[\langle\theta_{\p_2},\theta_{\O_K}\rangle\hspace{0.5cm}\text{and}\hspace{0.5cm}\langle\theta_{\O_K},\theta_{\O_K}\rangle.\]
 }
 
-\subsection{How efficient is this algorithm?}
+\frame{
+	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus)}
+	Consider the algebraic number
+	\[a(\ell)=V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
+	For $\ell=1,2$ and $4$, we find that $a(\ell)^3$ is a root of a monic cubic polynomial and generates the Hilbert class field over $K$. 
+	\begin{ex}
+	$a(1)$ is a root of the polynomial
+	\[x^9 - 2816x^6 - 905216x^3 - 89915392.\]
+	\end{ex}
+}
 
+\frame{
+	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus)}
+	Consider the algebraic number
+	\[a(\ell)=V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
+	For $\ell=3,6$ and $9$, we find that $a(\ell)$ is a root of a cubic polynomial and generates the Hilbert class field over $K$.
+	\begin{ex}
+	$a(3)$ is a root of
+	\[x^3 - 6740x^2 - 169034720x - 1027491892288.\]
+	\end{ex}
+}
 
+\frame{
+	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus)}
+	A few computations of the Gramm matrix for this basis.
+	\begin{tabular}{|c|c|}
+	\hline
+	$\ell$ & $\det(V_D\langle\theta_{\ida_i}^{(2\ell)},\theta_{\ida_j}^{(2\ell)}\rangle)_{\ida_i,\ida_j\in\ClK}/(\Omega_K^{4\ell})^3$ \\
+	\hline
+	$1$ & $-2^{10}23$ \\
+	\hline
+	$2$ & $-2^{14}19\cdot23\cdot619$ \\ 
+	\hline
+	$3$ & $-2^{18}5^{2}11\cdot23\cdot337\cdot27299$ \\ 
+	\hline
+	$4$ & $-2^{22}7^{2}23\cdot163\cdot2113\cdot117741979$ \\ 
+	\hline
+	$5$ & $-2^{26}5^{3}23\cdot229\cdot23761\cdot808991\cdot20338663$ \\ 
+	\hline
+	$6$ & $-2^{30}5^{2}11^{2}13\cdot19\cdot23\cdot67^{2}101\cdot868697\cdot505912247899$ \\ 
+	\hline
+	\end{tabular}
+}
+
+\frame{
+	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus)}
+	Consider now the algebraic number
+	\[N(\psi,\ell) = V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}\]
+	For $\ell=1,2,4$ and $5$, the numbers $N(\psi_i,\ell)$, for $0\leq i\leq 2$, are distinct and their cube are the three real roots of a monic cubic polynomial. 
+	\begin{ex}
+		The numbers $N(\psi_i,1)^3$, for $0\leq i\leq 2$, are the three roots of the irreducible polynomial
+	\[x^3 - 6966x^2 + 11569230x - 239483061.\]
+	\end{ex}
+}
+
+\frame{
+	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus)}
+	Consider now the algebraic number
+	\[N(\psi,\ell) = V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}\]
+	For $\ell=3,6$ and $9$, one of the characters, say $\psi_0$, the algebraic number $N(\psi_0,\ell)$ is an \emph{integer}. For the two others, we find that their cube are the roots of a monic quadratic polynomial.
+	\begin{ex}
+	We have
+	\[N(\psi_0,3) = 5055 = 3\cdot5\cdot337\]
+	and $N(\psi_1,3)^3$ and $N(\psi_2,3)^3$ are the roots of
+	\[x^2 - 16287872873193x + 30021979248651078296845875.\]
+	\end{ex}
+}
+\frame{
+	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus)}
+	A few computations of the Gramm matrix for this basis.
+	\begin{tabular}{|c|c|}
+	\hline
+	$\ell$ & $\det(V_D\langle\theta_{\psi_i},\theta_{\psi_j}\rangle)_{1\leq i,j\leq 3}/(\Omega_K^{4\ell})^3$ \\
+	\hline
+	$1$ & $-3^{3}23$ \\
+	\hline
+	$2$ & $-3^{3}19\cdot23\cdot619$ \\ 
+	\hline
+	$3$ & $-3^{3}5^{2}11\cdot23\cdot337\cdot27299$ \\ 
+	\hline
+	$4$ & $-3^{3}7^{2}23\cdot163\cdot2113\cdot117741979$ \\ 
+	\hline
+	$5$ & $-3^{3}5^{3}23\cdot229\cdot23761\cdot808991\cdot20338663$ \\ 
+	\hline
+	$6$ & $-3^{3}5^{2}11^{2}13\cdot19\cdot23\cdot67^{2}101\cdot868697\cdot505912247899$ \\ 
+	\hline
+	\end{tabular}
+}
+
+\subsection{Is the algorithm efficient?}
+\frame[bare]{
+	\frametitle{Example of computation: $K=\Q(\sqrt{-23})$, $N(\psi_0,3)$}
+	\begin{figure}
+		\includegraphics[scale=0.65]{example2.jpg}
+	\end{figure}
+}
 
 \section{Idea of the proof}
+\frame{
+	\frametitle{Main steps in the proof (case $\ell>0$)}
+	\begin{enumerate}
+		\item<1-> Use Rankin-Selberg to prove that
+		\[\langle\tpsi,\tpsi\rangle=\textcolor{gray}{V_D^{-1}\frac{4h_k}{w_k}\sqrt{|D|}\frac{\Gamma(2\ell+1)}{(4\pi)^{2\ell+1}}}L(\psi^2,2\ell+1).\]
+		\item<2-> Relate Hecke L-series to non-holomorphic Eisenstein series:
+		\[L(\psi^2,2\ell+1)=\frac{1}{w_K}\sum_{[\ida]\in\ClK}\frac{\psi^2(\ida)}{N(\ida)^{4\ell-s}}G_{4\ell}(\ida,1-2\ell).\]
+		\item<3-> Replace non-holomorphic Eisenstein series by derivatives of Eisenstein series:
+		\[\partial^{2\ell-1}E_2(z)=\textcolor{gray}{(-4\pi)^{1-2\ell}\frac{\Gamma(s+2\ell+1)}{\Gamma(s+2)}}G_{4\ell}(z,1-2\ell).\]
+		\item<4-> Find $\langle\tha,\thb\rangle$ using $\langle\tpsi,\tpsi\rangle$.
+	\end{enumerate}
+}
+
+\section{Conclusion}
+
 \end{document}
