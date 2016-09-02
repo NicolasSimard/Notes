@@ -72,24 +72,23 @@
 \section*{Introduction}
 In these notes, we find a formula for the Petersson norm of the theta series $\tpsi$ attached to an imaginary quadratic field $K$ and a Hecke character of infinity type $2\ell$. The formula is
 \begin{equation}\label{form:lgreater0}
-\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\del_2^{2\ell-1}E_{2}(\ida)
+\langle\tpsi,\tpsi\rangle=(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\del_2^{2\ell-1}G_{2}(\ida)
 \end{equation}
 if $\ell>0$ and
 \begin{equation}\label{form:leq0}
-\langle\tpsi,\tpsi\rangle =-V_D^{-1}\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2)
+\langle\tpsi,\tpsi\rangle =-\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2)
 \end{equation}
-if $\ell=0$ and $\psi$ is not a genus character. Here $\del_2^{2\ell-1}E_2$ is the non-holomorphic derivative of the non-holomorphic Eisenstein series of weight $2$ and level $1$, viewed as a function on lattices in the usual way, and
-\[V_D = \text{Vol}(\Gamma_0(|D|)\setminus\H)=\frac{\pi}{3}|D|\prod_{p|D}(1+p^{-1}).\]
+if $\ell=0$ and $\psi$ is not a genus character. Here $\del_2^{2\ell-1}G_2$ is the non-holomorphic derivative of the non-holomorphic Eisenstein series of weight $2$ and level $1$, viewed as a function on lattices in the usual way.
+
 In the last section, we will see that one can make sense of the first formula even for $\ell=0$ and that it gives back exactly the second formula!
 
 Before proving the formula, we first recall a few facts about Hecke characters, Eisenstein series and the Rankin-Selberg method. Then we introduce the theta functions $\tpsi$ and show how their Petersson norm is related to the Hecke $L$-function of $\psi^2$. Finally, we relate the Hecke $L$-function of $\psi^2$ to non-holomorphic Eisenstein series and use this relation to establish the two formulas.
 
 If $\psi$ is a genus character, $\tpsi$ is an Eisenstein series and one should use the regularized Petersson inner product. I think a similar formula holds.
 
-\section{Setup and notation}
-Throughout, $K=\Q(\sqrt{D})$ denotes an imaginary quadratic field of discriminant $D<-4$ and $\O_K$ denotes its ring of integers.
-
 \section{Preliminaries}
+Throughout these notes, $K=\Q(\sqrt{D})$ denotes an imaginary quadratic field of discriminant $D<-4$ and $\O_K$ denotes its ring of integers. Under this assumption, the number of roots on unity in $K$, denoted $w_K$, is $2$.
+
 \subsection{Hecke Grossencharacters}
 Let $I_K$ be the multiplicative group of fractional ideals of $K$. Given an integer $\ell\geq 0$, let $\psi_\ell$ denote a \emph{Hecke Grossencharacter} of conductor $1$ and infinity type $2\ell$, that is a group homomorphism
 \[\psi_\ell:I_K\rarr \C^\times\]
@@ -175,7 +174,7 @@ The Rankin-Selberg is well-known. We sketch it here mainly to make sure that the
 Let $f(z),g(z)\in\S_k(\Gamma_0(N),\chi)$ be two cusp forms of weight $k$, level $N$ and Nebentypus $\chi$. Then the function
 \[F(z)=f(z)\overline{g(z)}\Im(z)^k\]
 if $\Gamma_0(N)$-invariant and tends to $0$ rapidly as $\Im(z)$ tends to $\infty$, so it makes sense to define the \emph{Petersson inner product} of $f$ and $g$ as
-\[\langle f,g\rangle=\frac{1}{\text{Vol}(\Gamma_0(N)\setminus\H)}\int\int_{\Gamma_0(N)\setminus\H}F(z)\d\mu(z),\]
+\[\langle f,g\rangle=\int\int_{\Gamma_0(N)\setminus\H}F(z)\d\mu(z),\]
 where we integrate over a fundamental domain for the action of $\Gamma_0(N)$ on $\H$ and
 \[\d\mu(z)=\frac{\d x\d y}{y^2}\]
 is the $\SL$-invariant measure on $\H$.
@@ -188,7 +187,7 @@ Now for $\Re(s)$ large enough, the series for $E_0^N(z,s)$ converges absolutely 
 \end{align*}
 
 As a functions of $s$, the last integral has a residue at $s=1$. Using the value of $\Res_{s=1}E^N_0(z,s)$ given above, one sees that
-\[\Res_{s=1}\int\int_{\Gamma_\infty\setminus\H}F(z)\Im(z)^s\d\mu(z)=\Res_{s=1}\int\int_{\Gamma_0(N)\setminus\H}F(z)E_0^N(z,s)\d\mu(z)=\langle f,g\rangle.\]
+\[\Res_{s=1}\int\int_{\Gamma_\infty\setminus\H}F(z)\Im(z)^s\d\mu(z)=\Res_{s=1}\int\int_{\Gamma_0(N)\setminus\H}F(z)E_0^N(z,s)\d\mu(z)=\text{Vol}(\Gamma_0(N)\setminus\H)^{-1}\langle f,g\rangle.\]
 Note that it is important that $\Res_{s=1}E^N_0(z,s)$ does not depend on $z$.
 
 On the other hand, let
@@ -204,7 +203,7 @@ Comparing the expressions for
 \[\Res_{s=1}\int\int_{\Gamma_\infty\setminus\H}F(z)\Im(z)^s\d\mu(z),\]
 gives the formula
 \begin{equation}\label{RankinSelberg}
-	\langle f,g\rangle=\Gamma(k)(4\pi)^{-k}Res_{s=k}D(f,g_\rho,s),
+	\langle f,g\rangle=\text{Vol}(\Gamma_0(N)\setminus\H)\Gamma(k)(4\pi)^{-k}Res_{s=k}D(f,g_\rho,s),
 \end{equation}
 where
 \[D(f,g,s)=\sum_{n=1}^\infty\frac{a_nb_n}{n^{s}}\]
@@ -257,9 +256,8 @@ for all $p$ not dividing $D$, whenever $\tpsi$ is a cusp form.
 \section{The Petersson norm of $\tpsi$}
 In this section, suppose $\tpsi$ is a cusp form, i.e. $\psi^2\neq 1$. We will prove that the Petersson norm of $\tpsi$ is
 \begin{equation}\label{NormLpsi}
-\langle\tpsi,\tpsi\rangle=V_D^{-1}\frac{4h_k}{w_k}\sqrt{|D|}\frac{\Gamma(2\ell+1)}{(4\pi)^{2\ell+1}}L(\psi^2,2\ell+1),
+\langle\tpsi,\tpsi\rangle=\frac{4h_k}{w_k}\sqrt{|D|}\frac{\Gamma(2\ell+1)}{(4\pi)^{2\ell+1}}L(\psi^2,2\ell+1).
 \end{equation}
-where $V_D=\text{Vol}(\Gamma_0(|D|)\setminus\H)$, as before.
 
 Note that if $\psi^2=1$, $\ell=0$ and so $L(\psi^2,s)$ has a pole at $s=1$.
 
@@ -277,7 +275,7 @@ Using the description of $a_p(\tpsi)$ given in the previous section, one sees th
 \end{cases}.\]
 
 The proof of formula \ref{NormLpsi} relies on the Rankin-Selberg method:
-\[\langle\tpsi,\tpsi\rangle=(4\pi)^{-2\ell-1}\Gamma(2\ell+1)\Res_{s=2\ell+1}D(\tpsi,\tpsi,s),\]
+\[\langle\tpsi,\tpsi\rangle=\text{Vol}(\Gamma_0(|D|)\setminus\H)(4\pi)^{-2\ell-1}\Gamma(2\ell+1)\Res_{s=2\ell+1}D(\tpsi,\tpsi,s),\]
 where we used the fact that $\tpsi$ has real Fourrier coefficients (Lemma \ref{realFourrier}). Before proving the formula, we mention the following Lemma of Shimura (see \cite[Ch.3, Lem.1]{Shi3}).
 
 \begin{lemma}
@@ -288,7 +286,7 @@ where we used the fact that $\tpsi$ has real Fourrier coefficients (Lemma \ref{r
 	\[\sum_{n=1}^\infty\frac{a_nb_n}{n^s}=\prod_{p}(1-\alpha_p\beta_p\alpha_p'\beta_p'p^{-2s})((1-\alpha_p\alpha_p'p^{-s})(1-\alpha_p\beta_p'p^{-s})(1-\beta_p\alpha_p'p^{-s})(1-\beta_p\beta_p'p^{-s}))^{-1}.\]
 \end{lemma}
 
-The first step in the proof is the following.
+The first step in the proof of Equation \ref{NormLpsi} is the following
 
 \begin{lemma}
 	For all $s$, one has
@@ -337,10 +335,14 @@ and
 \[\zeta_D(2)=\prod_{p|D}(1-p^{-2})\zeta(2),\]
 we get
 \[\langle\tpsi,\tpsi\rangle=\zeta(2)^{-1}\frac{\Gamma(2\ell+1)}{(4\pi)^{2\ell+1}}L(\chi_D,1)\prod_{p|D}(1+p^{-1})^{-1}L(\psi^2,2\ell+1).\]
-Using the Dirichlet class number formula for $L(\chi_D,1)$ gives Formula \ref{NormLpsi}.
+The Dirichlet class number formula
+\[L(\chi_D,1)=\frac{2\pi h_K}{w_K\sqrt{|D|}}\]
+and the fact that
+\[\frac{\pi}{3}|D|\prod_{p|D}(1+p^{-1}) = \text{Vol}(\Gamma_0(|D|)\setminus\H)\]
+gives Formula \ref{NormLpsi}.
 
 \section{Special values of Hecke L-functions and Eisenstein series}
-In this section, we first relate $L(\psi^2,s)$ to non-holomorphic Eisenstein series. Then we use this relation to express the special value of $L(\psi^2,s)$ at $2\ell+1$ in terms of derivatives of $E_2$ evaluated at $CM$ points when $\ell>0$. The case $\ell=0$ is different and must be treated separately.
+In this section, we first relate $L(\psi^2,s)$ to non-holomorphic Eisenstein series. Then we use this relation to express the special value of $L(\psi^2,s)$ at $2\ell+1$ in terms of derivatives of $G_2$ evaluated at $CM$ points when $\ell>0$. The case $\ell=0$ is different and must be treated separately.
 
 Throughout this section, fix a Hecke character $\psi$ of $K$ of infinity type $2\ell$.
 
@@ -412,15 +414,13 @@ Recall that we are interested in the value of $L(\psi^2,s)$ at $s=2\ell+1=1$. Si
 	See \cite[Thm. 10.4.6]{Cohe}. Note that our definition of $G_0(z,s)$ differs from Cohen's by a factor of $1/2$.
 \end{proof}
 
-When $\psi^2$ is the trivial character, formula \ref{eq:casel=0} is nothing else but the well-known decomposition of the Dedekind zeta function of $K$ into a sum of Epstein zeta functions. Comparing the residues gives the class number formula for imaginary quadratic fields:
-\[\Res_{s=1}\zeta_K(s)=L(\chi_D,1)=\frac{2\pi h_K}{w_K\sqrt{|D|}}\]
-and comparing the constant terms gives the Chowla-Selberg formula.
+When $\psi^2$ is the trivial character, formula \ref{eq:casel=0} is nothing else but the well-known decomposition of the Dedekind zeta function of $K$ into a sum of Epstein zeta functions. Comparing the residues gives the class number formula for $L(\chi_D,1)$ and comparing the constant terms gives the Chowla-Selberg formula.
 
 When $\psi^2$ is not trivial, the function $L(\psi^2,s)$ is analytic at $s=1$\footnote{Note again the importance of the fact that the residue of the non-holomorphic Eisenstein series at $s=1$ does not depend on $z$.} and has value
 \[L(\psi^2,1)=-\frac{4\pi}{w_K\sqrt{|D|}}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2).\]
 Putting this in formula \ref{NormLpsi}, we get
 \begin{equation}\label{eq:filall=0}
-	\langle\tpsi,\tpsi\rangle =-V_D^{-1}\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2).
+	\langle\tpsi,\tpsi\rangle =-\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2).
 \end{equation}
 
 Note that factoring out the volume helps understanding the algebraic properties of the quantity on the right. This formula tells us that normalizing the Petersson inner product by dividing by the volume, as we did, artificially introduces transcendental numbers in the Petersson norm. We will come back to this point after we treat the case $\ell>0$.
@@ -478,18 +478,15 @@ Let $\psi$ be a Hecke character of infinity type $2\ell>2$ as above and let $m$ 
 \end{coro}
 
 Applying this formula to $\psi^2$, which has infinity type $4\ell$, with $m=2\ell+1$, we get
-\[L(\psi^2,2\ell+1)=\sqrt{|D|}^{2\ell-1}\frac{(2\pi)^{2\ell+1}}{\Gamma(2\ell+1)}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}G_{2}(\omquot).\]
+\[L(\psi^2,2\ell+1)=\sqrt{|D|}^{2\ell-1}\frac{(2\pi)^{2\ell+1}}{\Gamma(2\ell+1)}\sum_{[\ida]\in \Clk}\psi^2(\ida)\del^{2\ell-1}G_{2}(\ida).\]
 
 Using this value of $L(\psi^2,2\ell+1)$ in formula \ref{NormLpsi} and simplifying finally gives
-\begin{equation}\label{eq:finallgeq1}\langle\tpsi,\tpsi\rangle = V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}G_2(\omquot).
+\begin{equation}\label{eq:finallgeq1}\langle\tpsi,\tpsi\rangle =(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in \Clk}\psi^2(\ida)\del^{2\ell-1}G_{2}(\ida).
 \end{equation}
-
-Note that this can also be written in homogeneous form as
-\[\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\del^{2\ell-1}G_2(\ida).\]
 
 \begin{coro}\label{coro:algebraicitytpsi}
 	For $\ell>0$,
-	\[V_D\langle\tpsi,\tpsi\rangle=\alpha\Omega_K^{4\ell},\]
+	\[\langle\tpsi,\tpsi\rangle=\alpha\Omega_K^{4\ell},\]
 	where $\alpha$ is an algebraic number and $\Omega_K$ is the Chowla-Selberg period attached to $K$ and depends only on $K$.
 \end{coro}
 \begin{proof}
@@ -525,7 +522,7 @@ In this section we define theta series attached to ideals in imaginary quadratic
 Throughout this section, fix an integer $\ell\geq 0$.
 
 Let $\ida$ be a fractional ideal of $K$ and define the theta function attached to $\ida$ (and $\ell$) as
-\[\theta_\ida^{(2\ell)}=\tida(z)=\sum_{\lambda\in\ida}\lambda^{2\ell}q^{N(\lambda)/N(\ida)},\]
+\[\theta_\ida^{(2\ell)}(z)=\tida(z)=\sum_{\lambda\in\ida}\lambda^{2\ell}q^{N(\lambda)/N(\ida)},\]
 where we define $0^0=1$ in case $\ell=0$. Then we have the following
 \begin{prop}
 	The function $\tida$ is a modular form of weight $2\ell+1$, level $\Gamma_0(|D|)$ and Nebentypus $\chi_D$. Moreover, it is a cusp form if $\ell>0$.
@@ -579,7 +576,7 @@ Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\
 	Let $\ell>0$ and let $\theta_\ida$ and $\theta_\idb$ be defined as above. Then
 	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}G_2(\idc),\]
 	where the sum runs over all ideal classes $[\idc]\in\Clk$ such that $\idc^2\ida\idb^{-1}=\lambda_\idc\O_K$ for some $\lambda_\idc\in K$ and
-	 \[C_K=4V_D^{-1}(|D|/4)^\ell.\]
+	 \[C_K=4(|D|/4)^\ell.\]
 	 In particular, $\theta_\ida$ and $\theta_\idb$ are orthogonal if $\ida$ and $\idb$ are not in the same genus.
 \end{prop}
 \begin{proof}
@@ -611,12 +608,12 @@ A consequence of this corollary is that the Petersson norm of the theta series a
 
 \begin{coro}\label{coro:algebraicitypip}
 	Fix $\ell>0$. Then
-	\[V_D\langle\tida,\theta_\idb\rangle=\alpha\Omega_K^{4\ell},\]
+	\[\langle\tida,\theta_\idb\rangle=\alpha\Omega_K^{4\ell},\]
 	where $\alpha$ is some algebraic number and $\Omega_K$ is the Chowla-Selberg period attached to $K$.
 \end{coro}
 
 \section{An efficient algorithm to compute the Petersson inner product of binary theta series}\label{sec:algorithm}
-Formula \ref{formula:innerprod} can be used to numerically evaluate the Petersson inner product of theta series attached to imaginary quadratic fields in an efficient way ($1000$ decimals in a few seconds!). To implement this formula, one should be able to find the derivatives of $E_2$, to evaluate them at lattices and find, for fixed ideals $\ida$ and $\idb$, all ideal classes $\idc$ such that $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$. We talk about those problems in the next section and then we give a pseudo-algorithm to solve our initial problem of computing $\langle\tida,\theta_\idb\rangle$.\footnote{A PARI/GP implementation of this algorithm is available on {https://github.com/NicolasSimard/ENT}.}
+Formula \ref{formula:innerprod} can be used to numerically evaluate the Petersson inner product of theta series attached to imaginary quadratic fields in an efficient way ($1000$ decimals in a few seconds). To implement this formula, one should be able to find the derivatives of $G_2$, to evaluate them at lattices and find, for fixed ideals $\ida$ and $\idb$, all ideal classes $\idc$ such that $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$. We talk about those problems in the next section and then we give a pseudo-algorithm to solve our initial problem of computing $\langle\tida,\theta_\idb\rangle$.\footnote{A PARI/GP implementation of this algorithm is available on {https://github.com/NicolasSimard/ENT}.}
 
 \subsection{Towards the algorithm}
 \subsubsection{Derivatives of almost holomorphic modular forms}
@@ -725,17 +722,17 @@ which is easy to compute using $M$ and step $2.$.
 
 \section{Numerical examples}
 In this section, we give numerical examples of computations using the above formulas when $\ell>0$. Our goal is to compute the determinant of the matrix
-\[M_\mathcal{R}(\ell)=(V_D\langle\theta_{\ida_i}^{(2\ell)},\theta_{\ida_j}^{(2\ell)}\rangle)_{1\leq i,j\leq h_K},\]
+\[M_\mathcal{R}(\ell)=(\langle\theta_{\ida_i}^{(2\ell)},\theta_{\ida_j}^{(2\ell)}\rangle)_{1\leq i,j\leq h_K},\]
 where $\mathcal{R}=\{\ida_1,\dots,\ida_h\}$ is a set of representatives of the class group of $K$. Of course, $M_\mathcal{R}(\ell)$ depends on $\mathcal{R}$. In fact, if $\mathcal{R}'$ is the set of representatives obtained from $\mathcal{R}$ by changing one of the $\ida_i$ by $\mu\ida_i$ for some $\mu\in K^\times$, one sees immediately that
 \[\det M_{\mathcal{R}'}(\ell)=N(\mu)^{2\ell}\det M_\mathcal{R}(\ell).\]
 Note that by Proposition \ref{formula:innerprod}, $M_\mathcal{R}(\ell)$ is a block diagonal matrix (after reordering the ideals of $\mathcal{R}$, if necessary).
 
 When $\ell>0$, the determinant of $M_\mathcal{R}$ is explicitly related to the determinant of the diagonal matrix
 \[M_K(\ell)=\begin{pmatrix}
-V_D\langle\theta_{\psi_1}, \theta_{\psi_1}\rangle&  &  &  \\ 
- & V_D\langle\theta_{\psi_2}, \theta_{\psi_2}\rangle &  &  \\ 
+\langle\theta_{\psi_1}, \theta_{\psi_1}\rangle&  &  &  \\ 
+ & \langle\theta_{\psi_2}, \theta_{\psi_2}\rangle &  &  \\ 
  &  & \ddots &  \\ 
- &  &  & V_D\langle\theta_{\psi_h}, \theta_{\psi_h}\rangle
+ &  &  & \langle\theta_{\psi_h}, \theta_{\psi_h}\rangle
 \end{pmatrix},
 \]
 where the $\psi_i$ are the Hecke characters of $K$ of infinity type $2\ell$. Note that $M_K(\ell)$ is canonically attached to $K$ and $\ell$ and that its determinant is a product of special values of Hecke $L$-functions by Formula \ref{NormLpsi}.
@@ -749,7 +746,7 @@ Both matrices have transcendental entries. However, it is possible to explicitly
 If $K$ has class number $1$, there is only one theta series and
 \[\theta_{\O_K}=\theta_{\psi_0},\]
 where $\psi_0$ is the only Hecke character of infinity type $2\ell$. In the following table, we find numerically the algebraic number
-\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell},\]
+\[\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell},\]
 for all imaginary quadratic fields of class number one and for $1\leq \ell\leq 4$.
 
 \renewcommand{\arraystretch}{1.5}
@@ -790,7 +787,7 @@ and
 so
 \[\det M_{\{\O_K,\ida\}}(\ell)=N(\ida)^{2\ell}\langle\theta_{\O_K},\theta_{\O_K}\rangle^2.\]
 Therefore, it suffices to analyse the numbers $\langle\theta_{\O_K},\theta_{\O_K}\rangle$. In the following table, we find numerically the algebraic number
-\[V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell},\]
+\[\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell},\]
 for all imaginary quadratic fields of class number two and for $1\leq \ell\leq 4$.
 
 \begin{tabular}{cc|*{3}{p{3cm}|}p{3.5cm}|}
@@ -860,11 +857,11 @@ For the $\theta_\psi$, we see that
 where $\psi_1$ and $\psi_2$ are the two Hecke characters of $K$ of infinity type $2\ell$, since $\psi_1^2=\psi_2^2$. It also turns out that $\langle\theta_{\psi_1}, \theta_{\psi_1}\rangle$ and $\langle\theta_{\O_K},\theta_{\O_K}\rangle$ are essentially equal (up to powers of $2$).
 
 \subsection{Idoneal numbers}
-The computations when the class number is $2$ are greatly simplified since there is only one class per genus. An even discriminant such that the corresponding number field has only one class per genus in its class group is called an \emph{idoneal number} (see Cox, page 60). Conjecturally, there are only finitely many idoneal numbers.\footnote{This has been proved under GRH.} For those numbers, it suffices to compute $V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle$ (which turns out to be an integer).
+The computations when the class number is $2$ are greatly simplified since there is only one class per genus. An even discriminant such that the corresponding number field has only one class per genus in its class group is called an \emph{idoneal number} (see Cox, page 60). Conjecturally, there are only finitely many idoneal numbers.\footnote{This has been proved under GRH.} For those numbers, it suffices to compute $\langle\theta_{\O_K},\theta_{\O_K}\rangle$ (which turns out to be an integer).
 
 When the class group of $K$ has only one class per genus, it has exponent $2$, so every character of the class group is a genus character and all the theta series attached to the Hecke characters of $K$ of infinity type $2\ell$ have the same Petersson norm.
 
-In the following table, we compute $V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}$ for a (arbitrary) Hecke character of $K$, for $1\leq \ell\leq 3$ and for (possibly all) imaginary quadratic fields $K$ of class number $>2$ whose discriminant is an idoneal number.
+In the following table, we compute $\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}$ for a (arbitrary) Hecke character of $K$, for $1\leq \ell\leq 3$ and for (possibly all) imaginary quadratic fields $K$ of class number $>2$ whose discriminant is an idoneal number.
 
 \begin{tabular}{cc|l|p{4.5cm}|p{5.25cm}|}
 \cline{3-5}
@@ -955,7 +952,7 @@ Using Corolary \ref{coro:factorpip} and the structure of the class group, we see
 for $0\leq i\leq 2$ and since $\p_2^2\sim\bar{\p}_2$ in the class group and $\langle\theta_{\bar{\p}_2},\theta_{\O_K}\rangle=\overline{\langle\theta_{\p_2},\theta_{\O_K}\rangle}$, we only care about $\langle\theta_{\p_2},\theta_{\O_K}\rangle$ and $\langle\theta_{\O_K},\theta_{\O_K}\rangle$.
 
 We first look at the algebraic number
-\[a(\ell)=V_D\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
+\[a(\ell)=\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
 For $\ell=1,2$ and $4$, we find that $a(\ell)^3$ is a root of a monic cubic polynomial and generates the Hilbert class field over $K$. For example, $a(1)$ is a root of the polynomial
 \[x^9 - 2816x^6 - 905216x^3 - 89915392\]
 and using the command $\texttt{polredbest}$ in PARI/GP we find that
@@ -966,7 +963,7 @@ When $\ell=3,6$ and $9$, we find that $a(\ell)$ is a root of a cubic polynomial 
 Note that there seems to be a dependence on $\ell$ modulo $3$. Also, all these quantities are algebraic integers.
 
 We now look at the algebraic number
-\[b(\ell)=V_D\langle\theta_{\p_2},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
+\[b(\ell)=\langle\theta_{\p_2},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
 For $\ell=1,2$ and $4$, $b(\ell)^3$ is a root of a monic degree $6$ polynomial. For example, $b(1)$ is a root of
 \[x^{18} + 19712x^{15} + 579022848x^{12} - 1231996846080x^9 + 2076139946246144x^6- 2333695837768515584x^3 + 2119375970242045935616.\]
 For $\ell=3,6$ and $9$, $b(\ell)$ is a root of a degree $6$ polynomial. It is also the case that all the degree $6$ polynomials encountered when dealing with $b(\ell)$ generate the same number field as the polynomial
@@ -1004,7 +1001,7 @@ $10$ & $-2^{46}5^{3}19^{2}23\cdot40322967540986794792203928785469127547464962765
 It is surprising that although the entries of the matrix $M_{\{\O_K,\p_2,\bar{\p}_2\}}$ are algebraic of high degree (up to $18$) and belong to different fields, the determinant is rational.
 
 Next, we consider the algebraic quantities
-\[N(\psi,\ell) = V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}.\]
+\[N(\psi,\ell) = \langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}.\]
 For more details on how to compute these quantities, in particular how to numerically evaluate the $L$-function attached to Hecke characters of quadratic fields, see the next chapter. For fixed $\ell$, let $\psi_0,\psi_1$ and $\psi_2$ be the Hecke characters of infinity type $2\ell$.
 
 For $\ell=1,2,4$ and $5$, the numbers $N(\psi_i,\ell)$, for $0\leq i\leq 2$, are distinct and their cube are the three real roots of a monic cubic polynomial. For example, the numbers $N(\psi_i,1)^3$, for $0\leq i\leq 2$, are the three roots of the irreducible polynomial
@@ -1089,18 +1086,18 @@ $10$ & $-2^{79}3^{2}7^{10}11^{2}23^{2}18356003^{2}23198867689^{2}574937295287233
 \end{tabular}
 
 Note that these values are perfect squares (away from the prime $2$). Since the norms of $\theta_\psi$ and $\theta_{\chi_0\psi}$, where $\chi_0$ is the non-trivial genus character, are equal by formula \ref{NormLpsi}, we have
-\[\det(M_K(\ell))/\Omega_K^{16\ell}=(V_D^2\langle\theta_{\psi_0},\theta_{\psi_0}\rangle \langle\theta_{\psi_1},\theta_{\psi_1}\rangle)^2/\Omega_K^{16\ell},\]
-where $\psi_0$ and $\psi_1$ were chosen so that $\psi_0/\psi_1$ is not a genus character. Interestingly, for $\ell=1,\dots,10$ one of $V_D\langle\theta_{\psi_i},\theta_{\psi_i}\rangle/\Omega_K^{4\ell}$ is an integer, while only the square of the other is an integer. For example, for $\ell=1$ we see that
-\[V_D\langle\theta_{\psi_0},\theta_{\psi_0}\rangle/\Omega_K^{4\ell} = 168\]
-while $V_D\langle\theta_{\psi_1},\theta_{\psi_1}\rangle/\Omega_K^{4\ell}$ is a root of
+\[\det(M_K(\ell))/\Omega_K^{16\ell}=(\langle\theta_{\psi_0},\theta_{\psi_0}\rangle \langle\theta_{\psi_1},\theta_{\psi_1}\rangle)^2/\Omega_K^{16\ell},\]
+where $\psi_0$ and $\psi_1$ were chosen so that $\psi_0/\psi_1$ is not a genus character. Interestingly, for $\ell=1,\dots,10$ one of $\langle\theta_{\psi_i},\theta_{\psi_i}\rangle/\Omega_K^{4\ell}$ is an integer, while only the square of the other is an integer. For example, for $\ell=1$ we see that
+\[\langle\theta_{\psi_0},\theta_{\psi_0}\rangle/\Omega_K^{4\ell} = 168\]
+while $\langle\theta_{\psi_1},\theta_{\psi_1}\rangle/\Omega_K^{4\ell}$ is a root of
 \[x^2 - 15488.\]
-It is also interesting to note that for those values of $\ell$, whenever $V_D\langle\theta_{\psi_0},\theta_{\psi_0}\rangle/\Omega_K^{4\ell}$ is not an integer, it generates the field $\Q(\sqrt{2})$. For example, the roots of $x^2 - 15488$ are $\pm2^{3}11\sqrt{2}$.
+It is also interesting to note that for those values of $\ell$, whenever $\langle\theta_{\psi_0},\theta_{\psi_0}\rangle/\Omega_K^{4\ell}$ is not an integer, it generates the field $\Q(\sqrt{2})$. For example, the roots of $x^2 - 15488$ are $\pm2^{3}11\sqrt{2}$.
 
 \subsection{$D=-47$: Class number $5$, one genus}
 In this section , we consider the case $K=\Q(\sqrt{-47})$. Then the class group is cyclic of order $5$, so there is only one genera (of course, this last assertion also follows directly from the fact that $K$ has prime discriminant).
 
 Here we will only analyse the algebraic quantities
-\[N(\psi,\ell) = V_D\langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}.\]
+\[N(\psi,\ell) = \langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}.\]
 These quantities have a similar behaviour as in the case of $\Q(\sqrt{-23})$. Indeed for $\ell=1,2,3$ and $4$, the numbers $N(\psi_i,\ell)^5$ are the (distinct) roots of a degree $5$ polynomial. For example, the numbers $N(\psi_i,\ell)^5$ are the roots of
 \[x^5 - 101253156250x^4 +\dots- 45258661022880985938603887557983398437500000.\]
 Those degree $5$ polynomials do not generate the Hilbert class field over $K$.
