@@ -157,31 +157,17 @@ the non-holomorphic Eisenstein series satisfies the following functional equatio
 In particular, $G_k(z,s) = 0$ is $k$ is odd.
 
 For $k>2$, the series converges absolutely at $s=0$ and equals the usual Eisenstein series of weight $k$ and level $1$. For $k=2$, it does not converge absolutely at $s=0$. However, for $k>0$ there is a real analytic function of $(z,s)\in\H\times\C$ which is holomorphic in $s$ and coincides with $\Gamma(s+k)G_k(z,s)$ for $\Re(2s)+k>2$ (\cite[Thm A3.5]{Shi1}). Therefore it still makes sense to consider $G_2(z,0)$. Define
-\[E_2(z)=2^{-1}(2\pi i)^{-2}G_2(z,0).\]
-Then $E_2$ is  an \emph{almost holomorphic} modular form of weight $2$ and level $1$ with Fourier expansion
-\[E_2(z)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma_1(n)q^n,\]
+\[G_2(z)=2^{-1}(2\pi i)^{-2}G_2(z,0).\]
+Then $G_2$ is  an \emph{almost holomorphic} modular form of weight $2$ and level $1$ with Fourier expansion
+\[G_2(z)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma_1(n)q^n,\]
 which clearly has algebraic Fourier coefficients. Almost holomorphic modular forms are defined as in \cite[Sec. 5.3]{Zag}\footnote{Shimura calls those functions nearly holomorphic in \cite{Shi1}, but we prefer to use this term to refer to modular forms with (possibly) poles at infinity.}. In particular,
-\[E_2\vert_2\gamma=E_2,\esp\forall\gamma\in\SL.\]
+\[G_2\vert_2\gamma=G_2,\esp\forall\gamma\in\SL.\]
 
 Consider now the following Eisenstein series:
 \[E_k^N(z,s)=\sum_{\gamma\in\Gamma_\infty\setminus\Gamma_0(N)}\Im(z)^s\dashk\gamma=Im(z)^s\sum_{\gamma\in\Gamma_\infty\setminus\Gamma_0(N)}j(\gamma,z)^{-k}|j(\gamma,z)|^{-2s}.\]
 This series also converges absolutely for $\Re(2s)+k>2$ and can be analytically continued to a holomorphic function in $s$, except when $k=0$, in which case $E_0^N(z,s)$ has a pole at $s=1$ with residue
 \[\Res_{s=1}E_0^N(z,s)=\text{Vol}(\Gamma_0(N)\setminus\H)^{-1}.\]
 
-
-%In the region of convergence, the sum defining $G_k^N(z,s)$ can be rearranged as follows
-%\[\Im(z)^s\sum_{m,n}'(mz+n)^{-k}(mz+n)^{-2s}=\Im(z)^s\sum_{r=1}^\infty\sum_{(m,n)=r,m\equiv 0\pmod N}(mz+n)^{-k}(mz+n)^{-2s}\]
-%\[=2\zeta(k+2s)\Im(z)^s\sum_{(c,d)=1,c\equiv0\pmod N,d>0}(cz+d)^{-k}(cz+d)^{-2s},\]
-%where we are using the fact that $k$ is even and $\zeta(s)$ is the Riemann zeta function. The map
-%\[\begin{pmatrix}
-%* & * \\ 
-%c & d
-%\end{pmatrix} \mapsto(c,d)\]
-%induces a bijection between $\Gamma_\infty\setminus\Gamma_0(N)$ and the set
-%\[\{(c,d)\in\Z^2:(c,d)=1,c\equiv0\pmod N,d>0\}\]
-%(\cite[Lemma 7.1.6]{Miya}), so the above computation proves that
-%\[2\zeta_N(k+2s)G_k^N(z,s)=E_k^N(z,s),\]
-%where $E_k^N(z,s)$ is defined as
 
 \subsection{Rankin-Selberg method in level $N$}
 The Rankin-Selberg is well-known. We sketch it here mainly to make sure that the normalizations are correct. Our main reference is \cite{Shi2}.
@@ -476,30 +462,30 @@ This leads to the following
 \end{proof}
 
 Using the fact that
-\[2^{-1}(2\pi i)^{-k}\Gamma(k)G_k(z,0)=E_k(z),\]
-for all $k\geq 2$, where
-\begin{equation}\label{def:E2}
-E_2(z)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma_1(n)q^n
+\[2^{-1}(2\pi i)^{-k}\Gamma(k)G_k(z,0)=G_k(z),\]
+for all even $k\geq 2$, where
+\begin{equation}\label{def:G2}
+G_2(z)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma_1(n)q^n
 \end{equation}
 and
-\begin{equation}\label{def:Ek}
-E_k=-\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n
+\begin{equation}\label{def:Gk}
+G_k=-\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n
 \end{equation}
 is the usual holomorphic Eisenstein series for $k\geq 4$ (see \cite[Sec 9.2]{Shi1}), one sees that the previous Corollary relates certain special values of the Hecke $L$-function attached to $\psi$ to the derivatives of the usual Eisenstein series. This gives
 \begin{coro}\label{eq:Heckespecialvalues2}
 Let $\psi$ be a Hecke character of infinity type $2\ell>2$ as above and let $m$ be an integer such that $\ell+1\leq m\leq 2\ell$. Then
-	\[L(\psi,m) = (-1)^\ell\sqrt{|D|}^{2\ell-m}\frac{(2\pi)^m}{\Gamma(m)}\sum_{[\ida]\in\Clk}\psi(\ida)\del^{2\ell-m}E_{2m-2\ell}(\ida).\]
+	\[L(\psi,m) = (-1)^\ell\sqrt{|D|}^{2\ell-m}\frac{(2\pi)^m}{\Gamma(m)}\sum_{[\ida]\in\Clk}\psi(\ida)\del^{2\ell-m}G_{2m-2\ell}(\ida).\]
 \end{coro}
 
 Applying this formula to $\psi^2$, which has infinity type $4\ell$, with $m=2\ell+1$, we get
-\[L(\psi^2,2\ell+1)=\sqrt{|D|}^{2\ell-1}\frac{(2\pi)^{2\ell+1}}{\Gamma(2\ell+1)}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}E_{2}(\omquot).\]
+\[L(\psi^2,2\ell+1)=\sqrt{|D|}^{2\ell-1}\frac{(2\pi)^{2\ell+1}}{\Gamma(2\ell+1)}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}G_{2}(\omquot).\]
 
 Using this value of $L(\psi^2,2\ell+1)$ in formula \ref{NormLpsi} and simplifying finally gives
-\begin{equation}\label{eq:finallgeq1}\langle\tpsi,\tpsi\rangle = V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}E_{2}(\omquot).
+\begin{equation}\label{eq:finallgeq1}\langle\tpsi,\tpsi\rangle = V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]=[\latbasis]}\frac{\psi^2(\ida)}{\omega_2^{4\ell}}\del^{2\ell-1}G_2(\omquot).
 \end{equation}
 
 Note that this can also be written in homogeneous form as
-\[\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\del^{2\ell-1}E_{2}(\ida).\]
+\[\langle\tpsi,\tpsi\rangle=V_D^{-1}(|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\del^{2\ell-1}G_2(\ida).\]
 
 \begin{coro}\label{coro:algebraicitytpsi}
 	For $\ell>0$,
@@ -508,15 +494,15 @@ Note that this can also be written in homogeneous form as
 \end{coro}
 \begin{proof}
 	From the Corollary of Proposition 27 in \cite{Zag}, it follows that
-	\[\del_2^{2\ell-1}E_2(\tau)\]
+	\[\del_2^{2\ell-1}G_2(\tau)\]
 	is an algebraic multiple of $\Omega_K^{2+2(2\ell-1)}=\Omega_K^{4\ell}$, whenever $\tau\in K\cap\H$ is a CM point. The Corollary follows from the fact that the values of the Hecke characters $\psi_\ell$ and all the other quantities in formula \ref{eq:finallgeq1} are algebraic.
 \end{proof}
 
 \subsection{The case $\ell=0$ revisited}
 Strictly speaking, Formula \ref{eq:finallgeq1} does not make sense for $\ell=0$. However, it is natural to define $\del_2^{-1}$ as a weight $0$ "modular form" $f$ such that
-\[\del_0 f(z)=E_2(z).\]
+\[\del_0 f(z)=G_2(z).\]
 We claim that
-\[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-E_2(z),\]
+\[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-G_2(z),\]
 where
 \[\del_0=\frac{1}{2\pi i}\frac{\del}{\del z}.\]
 This follows from the well known fact (see \cite[Prop. 7]{Zag}) that
@@ -530,7 +516,7 @@ this implies
 (recall that $\frac{\del\bar{f}}{\del z}=\overline{\frac{\del f}{\del \bar{z}}}=0$ if $f(z)$ is holomorphic).
 
 The equality
-\[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-E_2(z)\]
+\[\del_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-G_2(z)\]
 implies that formula \ref{eq:finallgeq1} also makes sense for $\ell=0$ and gives back exactly formula \ref{eq:filall=0}. Note also that $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is $\SL$-invariant, as desired. However, $\log(\Im(z)^{1/2}|\eta(z)|^2)$ is not an almost holomorphic modular form.
 
 \section{Theta functions attached to ideals in imaginary quadratic fields}
@@ -591,7 +577,7 @@ Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\
 
 \begin{prop}\label{formula:innerprod}
 	Let $\ell>0$ and let $\theta_\ida$ and $\theta_\idb$ be defined as above. Then
-	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc),\]
+	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}G_2(\idc),\]
 	where the sum runs over all ideal classes $[\idc]\in\Clk$ such that $\idc^2\ida\idb^{-1}=\lambda_\idc\O_K$ for some $\lambda_\idc\in K$ and
 	 \[C_K=4V_D^{-1}(|D|/4)^\ell.\]
 	 In particular, $\theta_\ida$ and $\theta_\idb$ are orthogonal if $\ida$ and $\idb$ are not in the same genus.
@@ -602,7 +588,7 @@ Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\
 		\langle\theta_\ida,\theta_\idb\rangle &= \frac{w_K^2}{h_K^2}\sum_{\psi,\chi}\psi(\ida)\overline{\chi}(\idb)\langle\theta_\psi,\theta_\chi\rangle\\
 		&= \frac{w_K^2}{h_K^2}\sum_{\psi}\psi(\ida)\overline{\psi}(\idb)\langle\theta_\psi,\theta_\psi\rangle\\
 		&= \frac{w_K^2}{h_K^2}\sum_{\psi}\psi(\ida)N(\idb)^{2\ell}\psi^{-1}(\idb)\langle\theta_\psi,\theta_\psi\rangle\\
-		&= \frac{C_K}{h_K}N(\idb)^{2\ell}\sum_{\psi,[\idc]}\psi(\ida\idb^{-1}\idc^2)\del^{2\ell-1}E_2(\idc),
+		&= \frac{C_K}{h_K}N(\idb)^{2\ell}\sum_{\psi,[\idc]}\psi(\ida\idb^{-1}\idc^2)\del^{2\ell-1}G_2(\idc),
 	\end{align*}
 	where the first sum is a double sum over all Hecke characters of infinity type $2\ell$ and we used the orthogonality of the newforms $\tpsi$ in the second equality.
 	
@@ -611,7 +597,7 @@ Using the orthogonality of the $\tpsi$ under the Petersson inner product when $\
 	if for all $[\idc]\in\Clk$, $\ida\idb^{-1}\idc^2$ is not principal, i.e. $\ida$ and $\idb$ are not in the same genus. Otherwise, if $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$ for some $\lambda_\idc\in K$, then
 	\[\sum_{\psi}\psi(\ida\idb^{-1}\idc^2)=\lambda_\idc^{2\ell} h_K\]
 	and the last line of the above computation becomes
-	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc).\]
+	\[\langle\theta_\ida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}G_2(\idc).\]
 \end{proof}
 
 The folowing corollary can be seen as a way to "factor" inner products of theta series.
@@ -635,24 +621,24 @@ Formula \ref{formula:innerprod} can be used to numerically evaluate the Petersso
 \subsection{Towards the algorithm}
 \subsubsection{Derivatives of almost holomorphic modular forms}
 First, recall that the ring of almost holomorphic of level $1$ is isomorphic as a $\C$-algebra to
-\[\C[E_2,E_4,E_6].\]
-It follows that in order to compute $\del^nE_2$, it suffices to know $\del E_2,\del E_4$ and $\del E_6$. For this, we have the following
+\[\C[G_2,G_4,G_6].\]
+It follows that in order to compute $\del^nG_2$, it suffices to know $\del G_2,\del G_4$ and $\del G_6$. For this, we have the following
 
 \begin{prop}
-	Let $E_2,E_4$ and $E_6$ be the almost holomorphic modular forms defined by equation \ref{def:E2} and \ref{def:Ek} and let
-	\[\del_k=\frac{1}{2\pi i}\frac{\del}{\del z}-\frac{k}{4\pi\Im(z)}\].
+	Let $G_2,G_4$ and $G_6$ be the almost holomorphic modular forms defined by equation \ref{def:G2} and \ref{def:Gk} and let
+	\[\del_k=\frac{1}{2\pi i}\frac{\del}{\del z}-\frac{k}{4\pi\Im(z)}.\]
 	Then
-	\[\del E_2=\frac{5}{6}E_4-2E_2^2,\hspace{1cm}\del E_4=\frac{7}{10}E_6-8E_2E_4,\hspace{1cm}\del E_6=\frac{400}{7}E_4^2-12E_2E_6.\]
+	\[\del G_2=\frac{5}{6}G_4-2G_2^2,\hspace{1cm}\del G_4=\frac{7}{10}G_6-8G_2G_4,\hspace{1cm}\del G_6=\frac{400}{7}G_4^2-12G_2G_6.\]
 \end{prop}
 \begin{proof}
 	This is in \cite[Sec 9.2]{Shi1}, plus the fact that
-	\[120E_4^2=E_8.\]
+	\[120G_4^2=G_8.\]
 \end{proof}
 
-\emph{Add recursive formula to express $E_K$ as a polynomial in $E_4$ and $E_6$.}
+%\emph{Add recursive formula to express $G_k$ as a polynomial in $G_4$ and $G_6$.}
 
 \subsubsection{Evaluating Eisenstein series at CM points}
-By the above, the problem reduces to evaluating $E_2,E_4$ and $E_6$ at lattices. Generally, the Fourier expansions of these Eisenstein series converge very quickly. However, we have some freedom in choosing the lattice at which we evaluate them. As the following example shows, one should really take advantage of that.
+By the above, the problem reduces to evaluating $G_2,G_4$ and $G_6$ at lattices. Generally, the Fourier expansions of these Eisenstein series converge very quickly. However, we have some freedom in choosing the lattice at which we evaluate them. As the following example shows, one should really take advantage of that.
 
 Take $K=\Q(\sqrt{-26})$. Then $D=-104$, and $\Clk$ is cyclic of order $6$, generated by any prime above $5$. In fact, since
 \[N(109-12\sqrt{-26})=5^6,\]
@@ -660,9 +646,9 @@ Take $K=\Q(\sqrt{-26})$. Then $D=-104$, and $\Clk$ is cyclic of order $6$, gener
 where $\lambda=109+12\sqrt{-26}$ and $\p_5$ is one of the two primes above $5$ (chosen so that the equation holds). Using PARI/GP, we find $\Z$-basis for $\p_5^4$  and $\p_5^{-2}$:
 \[\p_5^4=[625,43+\sqrt{-26}],\hspace{1cm}\p_5^{-2}=[1,(7+\sqrt{-26})/25].\]
 From the equality $\p_5^4=\lambda\p_5^{-2}$, we deduce that
-\[\del^{n}E_2(\p_5^4)=\lambda^{-(2+2n)}\del^{n}E_2(\p_5^{-2})\]
+\[\del^{n}G_2(\p_5^4)=\lambda^{-(2+2n)}\del^{n}G_2(\p_5^{-2})\]
 and using the above $\Z$-basis, we have
-\[625^{-(2+2n)}\del^nE_2((43+\sqrt{-26})/625)=\lambda^{-(2+2n)}\del^n E_2((7+\sqrt{-26})/25).\]
+\[625^{-(2+2n)}\del^nG_2((43+\sqrt{-26})/625)=\lambda^{-(2+2n)}\del^n G_2((7+\sqrt{-26})/25).\]
 For $n=1$ and working with $500$ digits of precision, the left-hand side of the equation takes about $30$ times more time to evaluate than the right-hand side (which takes around 1sec to evaluate on my desktop computer)! This proves that the running time of the algorithm depends in a crucial way on the choice of class representatives in a given ideal class.
 
 The reason for the large difference in computation time in the above example is of course that the imaginary part of $(43+\sqrt{-26})/625$ is smaller than the imaginary part of $(7+\sqrt{-26})/25$. Using the correspondence between ideal classes and equivalence classes of positive definite integral binary quadratic forms, we see that the ideal corresponding to the quadratic form $[a,b,c]$ has $\Z$-basis
@@ -678,7 +664,7 @@ which leads to a lower bound on the imaginary part of to corresponding point in 
 	\[\frac{3}{2}\leq\Im(\omquot).\]
 \end{prop}
 
-This discussion leads to the following simple algorithm to evaluate $\del^nE_2$ at an ideal in an imaginary quadratic field: find the class to which this ideal belongs and use the CM point corresponding to the reduced form in that class to evaluate $\del^nE_2$. The lower bound above is a kind of guarantee on the speed of this algorithm.
+This discussion leads to the following simple algorithm to evaluate $\del^nG_2$ at an ideal in an imaginary quadratic field: find the class to which this ideal belongs and use the CM point corresponding to the reduced form in that class to evaluate $\del^nG_2$. The lower bound above is a kind of guarantee on the speed of this algorithm.
 
 \subsubsection{Ambiguous classes}
 The last problem in computing $\langle\tida,\theta_\idb\rangle$ is to find all ideal classes $\idc$ such that $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$ (and find $\lambda_\idc$ too). Given a set of generators for $\Clk$, it is easy to determine if the class $\ida\idb^{-1}$ is a square in $\Clk$ and to find a class $\idc_0$ such that
@@ -691,7 +677,7 @@ Indeed, write $\ida\idb^{-1}$ in term of those generators and check that only ev
 	be representatives of $\Clk[2]$ and define $\alpha_i$ for $1\leq i\leq g$ as
 	\[\ida_i^2=\alpha_i\O_K.\]
 	Then
-	\[\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}E_2(\idc)=\lambda^{2\ell}\sum_{i=1}^g\alpha_i^{2\ell}\del^{2\ell-1}E_2(\idc_0\ida_i).\]
+	\[\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\del^{2\ell-1}G_2(\idc)=\lambda^{2\ell}\sum_{i=1}^g\alpha_i^{2\ell}\del^{2\ell-1}G_2(\idc_0\ida_i).\]
 \end{prop}
 \begin{proof}
 	It suffices to note that any ideal $\idc$ such that
@@ -712,7 +698,7 @@ where
 	\item $K$ is the quadratic field of discriminant $D$;
 	\item $\mathcal{R}$ is a list of representatives of $\Clk$ corresponding to reduced quadratic forms;
 	\item $\mathcal{A}$ is a list of representatives of $\Clk[2]$ (the $\ida_i$s) together with the $\alpha_i$s such that $\ida_i=\alpha_i\O_K$.
-	\item $M$ is a $3\times h_K$ matrix where $M[k,d]=E_{2k}(f_d)$ for $1\leq k\leq 3$ and $f_d\in\mathcal{R}$.
+	\item $M$ is a $3\times h_K$ matrix where $M[k,d]=G_{2k}(f_d)$ for $1\leq k\leq 3$ and $f_d\in\mathcal{R}$.
 \end{itemize}
 
 The most time consuming part when computing this vector is of course to compute $M$, but this is done as efficiently as possible by our choice of representatives of $\Clk$.
@@ -724,16 +710,16 @@ A systematic way of doing this is to follow these steps:
 \begin{enumerate}
 	\item Determine if $\ida\idb^{-1}$ is a square. If it is not, return $0$. Otherwise, find  $\idc_0$ and $\lambda$ such that
 	\[\ida\idb^{-1}\idc_0^2=\lambda\O_K.\]
-	\item Express $\del^{2\ell-1}E_2$ as a polynomial on $E_2,E_4$ and $E_6$.
-	\item Compute $\del^{2\ell-1}E_2(\idc_0\ida_i)$ for all $\ida_i\in\mathcal{A}$(using $M$).
+	\item Express $\del^{2\ell-1}G_2$ as a polynomial on $G_2,G_4$ and $G_6$.
+	\item Compute $\del^{2\ell-1}G_2(\idc_0\ida_i)$ for all $\ida_i\in\mathcal{A}$(using $M$).
 	\item Compute
-	\[\langle\tida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\lambda^{2\ell}\sum_{i=1}^g\alpha_i^{2\ell}\del^{2\ell-1}E_2(\idc_0\ida_i).\]
+	\[\langle\tida,\theta_\idb\rangle=C_K N(\idb)^{2\ell}\lambda^{2\ell}\sum_{i=1}^g\alpha_i^{2\ell}\del^{2\ell-1}G_2(\idc_0\ida_i).\]
 \end{enumerate}
 
 Each step is very quick, given the previously computed data $L(D)$. Note that to evaluate $\del^{2\ell-1}E_2(\idc_0\ida_i)$ in step $3.$, one must find $f_d\in\mathcal{R}$ and $\mu\in K^\times$ such that
 \[\idc_0\ida_i=\mu f_d\]
 and so
-\[\del^{2\ell-1}E_2(\idc_0\ida_i)=\mu^{-4\ell}\del^{2\ell-1}E_2(f_d),\]
+\[\del^{2\ell-1}G_2(\idc_0\ida_i)=\mu^{-4\ell}\del^{2\ell-1}G_2(f_d),\]
 which is easy to compute using $M$ and step $2.$.
 
 
@@ -1143,11 +1129,11 @@ $6$ & $-2^{35}3^{26}5^{4}11^{4}41\cdot47^{2}433\cdot27299\cdot982047751879879\cd
 
 We stop at $\ell=6$ because the numbers become too large to write down (and hard to factor). Indeed, for $\ell=7$ and over, the quantity $\det(M_K(\ell))/\Omega_K^{20\ell}$ is an integer with more than $100$ digits.
 
-\subsection{$D=-104$: class number $6$, two genera}
-I didn't have time to write it down yet!
-
-\subsection{$D=-2660$: class number $24$, eight genera}
-I didn't have time to write it down yet!
+%\subsection{$D=-104$: class number $6$, two genera}
+%I didn't have time to write it down yet!
+%
+%\subsection{$D=-2660$: class number $24$, eight genera}
+%I didn't have time to write it down yet!
 
 \section{Computing some special values of Hecke $L$-functions}
 In the previous section, we used special values
