@@ -81,13 +81,13 @@ c & d
 \titlepage
 \end{frame}
 
-\AtBeginSection[]
-{
-  \begin{frame}
-    \frametitle{Table of Contents}
-    \tableofcontents[currentsection]
-  \end{frame}
-}
+%\AtBeginSection[]
+%{
+%  \begin{frame}
+%    \frametitle{Table of Contents}
+%    \tableofcontents[currentsection]
+%  \end{frame}
+%}
 
 \section{Background and setup}
 \subsection{Modular forms}
@@ -110,7 +110,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	Let $N\geq1$ and $k\geq0$ be integers and let $\chi$ be a Dirichlet character mod $N$. A modular form of weight $k$, level $N$ and character $\chi$ is a holomorphic function
 	\[f:\H\longrightarrow\C\]
 	such that
-	\[f\left(\gamma z\right)=\chi(d)(cz+d)^{-k}f(z)\]
+	\[f\left(\gamma z\right)=\chi(d)(cz+d)^kf(z)\]
 	for all $z\in\H$ and all $\gamma\in\Gamma_0(N)$, which satisfies certain growth conditions at the cusps.	The $\C$-vector-space of such modular forms is denoted
 	\[M_k(\Gamma_0(N),\chi).\]
 \end{defn}
@@ -123,32 +123,50 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	\[f(z)=\sum_{n=0}^\infty a_nq^n,\]
 	where $q=exp(2\pi iz)$. If
 	\[a_0(f)=0,\]
-	(at all cusps) $f$ is called a \emph{cusp form}.
+	(at all cusps) $f$ is called a \emph{cusp form}. The space of cusp forms is denoted
+	\[S_k(\Gamma_0(N),\chi).\]
 }
 
 \frame{
 	\frametitle{Example: weight $k$ Eisenstein series}
 	Let $k\geq4$ be an even integer. Then the series
 	\[\sum_{m,n}\frac{1}{(mz+n)^k}\]
-	converges and is a modular form in $M_k(\text{SL}_2(\Z))$. After renormalisation, the $q$-expansion of this Eisenstein series is
+	converges absolutely and defines a modular form in $M_k(\text{SL}_2(\Z))$. After renormalization, the $q$-expansion of this Eisenstein series is
 	\[G_k(z) = -\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n.\]
 }
 
 \frame{
 	\frametitle{Important non-example: weight $2$ Eisenstein series}
 	In level $1$, there are no modular forms of weight $2$. However, one can still define the weight $2$ Eisenstein series as
-	\[G_2(2)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma(n)q^n.\]
+	\[G_2(z)=\frac{1}{8\pi\Im(z)}-\frac{1}{24}+\sum_{n=1}^\infty\sigma(n)q^n.\]
 	It is an example of an \emph{almost holomorphic} modular form of level $1$ and weight $2$.
 }
 
 \subsection{Spaces of modular forms}
+%\frame{
+%	\frametitle{Spaces of modular forms}
+%	\begin{itemize}
+%		\item<1-> $M_k(\Gamma_0(N),\chi)$ is finite dimensional.
+%		\item<2-> For every integer $n\geq1$, one can define a \emph{Hecke operator} $T_n$ (depending on $k$, $N$ and $\chi$) which acts on $M_k(\Gamma_0(N),\chi)$.
+%		\item<3-> There exists a basis of common eigenvectors for all Hecke operators $T_n$ with $(n,N)=1$.
+%	\end{itemize}
+%}
+
 \frame{
-	\frametitle{Spaces of modular forms}
+	\frametitle{Finite dimensionality of spaces of modular forms}
+	\begin{theorem}
+		The space $M_k(\Gamma_0(N),\chi)$ is finite dimensional as a $\C$-vector-space.
+	\end{theorem}
+	\begin{ex}
+	In level $N=1$, we have
 	\begin{itemize}
-		\item<1-> $M_k(\Gamma_0(N),\chi)$ is finite dimensional.
-		\item<2-> For every integer $n\geq1$, one can define a \emph{Hecke operator} $T_n$ (depending on $k$, $N$ and $\chi$) which acts on $M_k(\Gamma_0(N),\chi)$.
-		\item<3-> There exists a basis of common eigenvectors for all Hecke operators $T_n$ with $(n,N)=1$.
+		\item $M_0(\text{SL}_2(\Z))=\C$.
+		\item $M_2(\text{SL}_2(\Z))=0$.
+		\item $M_k(\text{SL}_2(\Z))=\C G_k$ for $4\leq k\leq 10$.
+		\item $M_{12}(\text{SL}_2(\Z))=\C G_{12}\oplus\C\Delta$, where $\Delta\in S_{12}(\text{SL}_2(\Z))$.
+		\item $\bigoplus_{k=0}^\infty M_k(\text{SL}_2(\Z))=\C[G_4,G_6]$.
 	\end{itemize}
+	\end{ex}
 }
 
 \frame{
@@ -161,22 +179,13 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	Note that the integral does not converge if neither $f$ nor $g$ is a cusp form.
 }
 
-\subsection{Newforms}
 \frame{
 	\frametitle{Newforms}
 	The space $S_k(\Gamma_0(N),\chi)$ splits naturally as
 	\[S_k(\Gamma_0(N),\chi)=S_k(\Gamma_0(N),\chi)^{\text{new}}\oplus S_k(\Gamma_0(N),\chi)^\text{old}.\]
 	\begin{theorem}
-		The space $S_k(\Gamma_0(N),\chi)^{\text{new}}$ has an \emph{orthogonal} basis of eigenvectors for \emph{all} Hecke operators. Elements of this basis are called newforms (after suitable normalization).
+		The space $S_k(\Gamma_0(N),\chi)^{\text{new}}$ has an \emph{orthogonal} basis of so called newforms (after suitable normalization). Those newforms are eigenvalues for all Hecke operators.
 	\end{theorem}
-}
-
-\frame{
-	\frametitle{Summary}
-	\begin{enumerate}
-		\item<1-> The space $S_k(\Gamma_0(N),\chi)$ is a finite dimensional Hermitian inner product space, equipped with an action of Hecke operators.
-		\item<2-> The subspace $S_k(\Gamma_0(N),\chi)^\text{new}$ has distinguished elements (the newforms)  which are mutually orthogonal and are eigenvectors for all Hecke operators.
-	\end{enumerate}
 }
 
 \section{Theta Series}
@@ -300,13 +309,13 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 
 \subsection{The case $\ell=0$}
 \frame{
+	\frametitle{The case $\ell=0$}
 	If $\ell=0$, the modular form $\tha$ is not a cusp form. But for $\tpsi$, we have the following
 	\begin{theorem}
 		Let $\tpsi$ be a Hecke character of infinity type $0$ and suppose that $\psi^2\neq 1$. Then
 		\[\langle\tpsi,\tpsi\rangle = -\frac{4h_K}{w_K^2}\sum_{[\ida]\in\ClK}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2),\]
 		where $\tau_\ida\in\H$ is the complex root attached to $\ida$ and
-		\[\eta(z)=exp(2\pi i/24)\prod_{n=1}^\infty(1-q^n)\]
-		is the standard eta-function.
+		\[\eta(z)=exp(2\pi i/24)\prod_{n=1}^\infty(1-q^n).\]
 	\end{theorem}
 }
 
@@ -496,7 +505,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 }
 
 \subsection{Is the algorithm efficient?}
-\frame[bare]{
+\frame{
 	\frametitle{Example of computation: $K=\Q(\sqrt{-23})$, $N(\psi_0,3)$}
 	\begin{figure}
 		\includegraphics[scale=0.65]{example2.jpg}
@@ -518,5 +527,22 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 }
 
 \section{Conclusion}
+\frame{
+	\frametitle{What we have so far}
+	\begin{enumerate}
+		\item<1-> Formulas for the Petersson inner products of theta series in terms of derivatives of Eisenstein series int the case $\ell>0$.
+		\item<2-> Formulas for the Petersson inner product of cuspidal weight one theta series.
+		\item<3-> An algorithm to compute those quantities.
+	\end{enumerate}
+}
+
+\frame{
+	\frametitle{What we would like to know}
+	\begin{enumerate}
+		\item<1-> Can we say something about the Petersson inner product of non-cuspidal weight one theta series?
+		\item<2-> Can we explain what can be ovserved from the computations?
+		\item<3-> What are the $p$-adic properties of those quantities as $\ell$ varies? In particular, does the case $\ell>0$ tend to the case $\ell=0$ $p$-adically?
+	\end{enumerate}
+}
 
 \end{document}
