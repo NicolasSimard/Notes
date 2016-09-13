@@ -77,9 +77,9 @@ c & d
 
 \begin{document}
 
-\begin{frame}
-\titlepage
-\end{frame}
+\frame{
+	\titlepage
+}
 
 %\AtBeginSection[]
 %{
@@ -89,37 +89,41 @@ c & d
 %  \end{frame}
 %}
 
-\section{Background and setup}
-\subsection{Modular forms}
+\section{Introduction and Background}
+\subsection{Introduction}
+\frame{
+	\frametitle{Stark's idea}
+	Coming...
+}
 
-\begin{frame}
-\frametitle{Mobius transformations}
-Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts on $\H$ via Mobius transformations:
+\subsection{Modular forms}
+\frame{
+	\frametitle{Mobius transformations}
+Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts on $\H$ via Mobius transformations:
 \[\abcdmat z=\frac{az+b}{cz+d}.\]
 \begin{defn}
 	Let $N\geq1$ and define the Hecke subgroup of level $N$ as
 	\[\Gamma_0(N)=\left\lbrace\abcdmat \in\text{SL}_2(\Z)| c\equiv 0\pmod N\right\rbrace.\]
 \end{defn}
 	
-\end{frame}
+}
 
-\begin{frame}
-\frametitle{Level $N$ modular forms with characters}
+\frame{
+	\frametitle{Level $N$ modular forms with characters}
 
 \begin{defn}
 	Let $N\geq1$ and $k\geq0$ be integers and let $\chi$ be a Dirichlet character mod $N$. A modular form of weight $k$, level $N$ and character $\chi$ is a holomorphic function
 	\[f:\H\longrightarrow\C\]
 	such that
-	\[f\left(\gamma z\right)=\chi(d)(cz+d)^kf(z)\]
+	\[f\left(\frac{az+b}{cz+d}\right)=\chi(d)(cz+d)^kf(z)\]
 	for all $z\in\H$ and all $\gamma\in\Gamma_0(N)$, which satisfies certain growth conditions at the cusps.	The $\C$-vector-space of such modular forms is denoted
 	\[M_k(\Gamma_0(N),\chi).\]
 \end{defn}
-	
-\end{frame}	
+}	
 	
 \frame{
 	\frametitle{$q$-expansion of modular forms}
-	Every modular form $f$ has a Taylor (or Fourrier) expansion at infinity, called its $q$-expansion:
+	Every modular form $f$ has a Taylor (or Fourier) expansion at infinity, called its $q$-expansion:
 	\[f(z)=\sum_{n=0}^\infty a_nq^n,\]
 	where $q=exp(2\pi iz)$. If
 	\[a_0(f)=0,\]
@@ -132,7 +136,9 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	Let $k\geq4$ be an even integer. Then the series
 	\[\sum_{m,n}\frac{1}{(mz+n)^k}\]
 	converges absolutely and defines a modular form in $M_k(\text{SL}_2(\Z))$. After renormalization, the $q$-expansion of this Eisenstein series is
-	\[G_k(z) = -\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n.\]
+	\[G_k(z) = -\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n,\]
+	where
+	\[\sigma_{k-1}(n)=\sum_{d|n}d^{k-1}.\]
 }
 
 \frame{
@@ -143,15 +149,6 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 }
 
 \subsection{Spaces of modular forms}
-%\frame{
-%	\frametitle{Spaces of modular forms}
-%	\begin{itemize}
-%		\item<1-> $M_k(\Gamma_0(N),\chi)$ is finite dimensional.
-%		\item<2-> For every integer $n\geq1$, one can define a \emph{Hecke operator} $T_n$ (depending on $k$, $N$ and $\chi$) which acts on $M_k(\Gamma_0(N),\chi)$.
-%		\item<3-> There exists a basis of common eigenvectors for all Hecke operators $T_n$ with $(n,N)=1$.
-%	\end{itemize}
-%}
-
 \frame{
 	\frametitle{Finite dimensionality of spaces of modular forms}
 	\begin{theorem}
@@ -177,15 +174,6 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	\[\text{d}\mu=\frac{\text{d}x\text{d}y}{y^2}\]
 	is the $\text{SL}_2(\R)$-invariant measure on $\H$.
 	Note that the integral does not converge if neither $f$ nor $g$ is a cusp form.
-}
-
-\frame{
-	\frametitle{Newforms}
-	The space $S_k(\Gamma_0(N),\chi)$ splits naturally as
-	\[S_k(\Gamma_0(N),\chi)=S_k(\Gamma_0(N),\chi)^{\text{new}}\oplus S_k(\Gamma_0(N),\chi)^\text{old}.\]
-	\begin{theorem}
-		The space $S_k(\Gamma_0(N),\chi)^{\text{new}}$ has an \emph{orthogonal} basis of so called newforms (after suitable normalization). Those newforms are eigenvalues for all Hecke operators.
-	\end{theorem}
 }
 
 \section{Theta Series}
@@ -218,7 +206,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 		\[\tha\in S_{2\ell+1}(\Gamma_0(|D|),\chi_D).\]
 		\item If $\lambda\in K^\times$, then
 		\[\theta_{\lambda\ida}=\lambda^{2\ell}\tha.\]
-		So there are essentially $h_D$ theta series attached to $K$.
+		So there are essentially $h_K$ theta series attached to $K$.
 		\item In general, the $\tha$ are \emph{not} newforms.
 	\end{enumerate}
 }
@@ -265,7 +253,7 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	\frametitle{Petersson norm of the $\tpsi$ (with $\ell>0$)}
 	\begin{theorem}
 		Let $\psi$ be a Hecke character of $K$ of infinity type $2\ell$, where $\ell>0$. Then
-		\[\langle\tpsi,\tpsi\rangle = (|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{[\ida]\in\ClK}\psi^2(\ida)\partial^{2\ell-1}G_2(\ida).\]
+		\[\langle\tpsi,\tpsi\rangle = h_K(|D|/4)^\ell\sum_{[\ida]\in\ClK}\psi^2(\ida)\partial^{2\ell-1}G_2(\ida).\]
 	\end{theorem}
 	Here,
 	\[\partial f=\frac{1}{2\pi i}\frac{\partial f}{\partial z}-\frac{k}{4\pi\Im(z)}f\]
@@ -313,38 +301,36 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 	If $\ell=0$, the modular form $\tha$ is not a cusp form. But for $\tpsi$, we have the following
 	\begin{theorem}
 		Let $\tpsi$ be a Hecke character of infinity type $0$ and suppose that $\psi^2\neq 1$. Then
-		\[\langle\tpsi,\tpsi\rangle = -\frac{4h_K}{w_K^2}\sum_{[\ida]\in\ClK}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2),\]
+		\[\langle\tpsi,\tpsi\rangle = -h_K\sum_{[\ida]\in\ClK}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2),\]
 		where $\tau_\ida\in\H$ is the complex root attached to $\ida$ and
 		\[\eta(z)=exp(2\pi i/24)\prod_{n=1}^\infty(1-q^n).\]
 	\end{theorem}
 }
 
-\section{Numerical computations}
-\subsection{Towards an algorithm}
+\subsection{The case $\ell=0$ revisited}
 \frame{
-	\frametitle{Compute $\partial^nG_2$}
-	We have the following formulas:
+	\frametitle{Formally obtaining the case $\ell=0$ from the case $\ell>0$}
+	Strictly speaking, the formula
+	\[\langle\tpsi,\tpsi\rangle = h_K(|D|/4)^\ell\sum_{[\ida]\in\ClK}\psi^2(\ida)\partial^{2\ell-1}G_2(\ida).\]	
+	does not make sense for $\ell=0$, since the expression
+	\[\partial^{-1}G_2\]
+	is not well-defined. However, we observe that
+	\[\partial_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-G_2(z),\]
+	so
+	\["\partial^{-1}G_2=-\log(\Im(z)^{1/2}|\eta(z)|^2)"\]
+	and we \emph{formally} obtain the case $\ell=0$ from the case $\ell>0$.
+}
+
+\section{Numerical computations}
+\subsection{A remark on using the formula}
+\frame{
+	\frametitle{Computing $\partial^nG_2$}
+	To compute
+	\[\partial^nG_2\]
+	we have the following formulas:
 	\[\partial G_2=\frac{5}{6}G_4-2G_2^2 \hspace{0.5cm}\partial G_4 = \frac{7}{10}G_6-8G_2G_4\hspace{0.5cm}\partial G_6 = \frac{400}{7}G_4^2-12G_2G_6.\]
 	For example,
 	\[\partial^3G_2=-48G_2^4 + 120G_4G_2^2 - 14G_6G_2 + 25G_4^2.\]
-}
-
-\frame{
-	\frametitle{Evaluate Hecke characters}
-	The idea is simple: let $\ida$ be a fractional ideal of $K$ and suppose
-	\[\ida^e=\lambda\O_K.\]
-	Then
-	\[\psi(\ida)^e=\psi(\ida^e)=\psi((\lambda))=\lambda^{2\ell},\]
-	so $\psi(\ida)$ is determined (up to a $e$-root of unity).
-}
-
-\frame{
-	\frametitle{Find ideals $\idc$ such that $\ida\idb^{-1}\idc^2=\lambda_\idc\O_K$}
-	Given ideals $\ida$ and $\idb$, can we efficiently find all classes $[\idc]$ such that
-	\[\ida\idb^{-1}\idc^2=\lambda_\idc\O_K,\]
-	if any? If we have representatives $\lbrace\ida_1,\dots,\ida_d\rbrace$ of $\ClK[2]$, it suffices to find one such $\idc_0$. Then the other solutions to the equation are
-	\[\idc_0\ida_i\]
-	for $i=1,\dots,d$.
 }
 
 \subsection{Examples of computations}
@@ -530,19 +516,10 @@ Let $\H$ be the Poincarre upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts
 \section{Conclusion}
 \subsection{Conclusion}
 \frame{
-	\frametitle{What we have so far}
-	\begin{enumerate}
-		\item<1-> Formulas for the Petersson inner products of theta series in terms of derivatives of Eisenstein series int the case $\ell>0$.
-		\item<2-> Formulas for the Petersson inner product of cuspidal weight one theta series.
-		\item<3-> An algorithm to compute those quantities.
-	\end{enumerate}
-}
-
-\frame{
 	\frametitle{What we would like to know}
 	\begin{enumerate}
 		\item<1-> Can we say something about the Petersson inner product of non-cuspidal weight one theta series?
-		\item<2-> Can we explain what can be ovserved from the computations?
+		\item<2-> Can we explain what can be observed from the computations?
 		\item<3-> What are the $p$-adic properties of those quantities as $\ell$ varies? In particular, does the case $\ell>0$ tend to the case $\ell=0$ $p$-adically?
 	\end{enumerate}
 }
