@@ -61,14 +61,6 @@ c & d
 \newtheorem{ex}[thm]{Example}
 \newtheorem{qu}{Question}
 
-%Groupe modulo
-\newcommand*{\modulo}[2]
-{\raisebox{.6ex}{ \newline \ensuremath{#1}}\!/\!\raisebox{-.6ex}{\ensuremath{#2}}}
-
-% --------------------------------------------------------------------
-% --------------------------------------------------------------------
-% --------------------------------------------------------------------
-
 \title{Petersson Inner Product of Binary Theta Series}
 \subtitle{A computational approach}
 \author{Nicolas \textsc{Simard}}
@@ -82,25 +74,17 @@ c & d
 	\titlepage
 }
 
-%\AtBeginSection[]
-%{
-%  \begin{frame}
-%    \frametitle{Table of Contents}
-%    \tableofcontents[currentsection]
-%  \end{frame}
-%}
-
 \section{Introduction and Background}
 \subsection{Introduction}
 \frame{
 	\frametitle{Motivation: Stark's remark}
-	In the last paragraph of his well-known article \emph{"L-functions at $s=1$. II. Artin L-functions with Rational Characters"}, Stark makes the following remark:
+	In \emph{"L-functions at $s=1$. II. Artin L-functions with Rational Characters"}, Stark makes the following remark:
 	\begin{quotation}
 		An application of Theorem $1$ gives
 		\[L'(0,\chi,H/\Q) = \log\epsilon,\]
 		where $\epsilon$ is the real root of
 		\[x^3-x-1=0\]
-		Actually, it is easier to note that $L(1,\chi,H/\Q)$ is the residue at $s=1$ of the zeta function of the real quadratic subfield of $K$. In any case,
+		Actually, it is easier to note that $L(1,\chi,H/\Q)$ is the residue at $s=1$ of the zeta function of the real quadratic subfield of $H$. In any case,
 		\[\langle f,f\rangle = 3\log\epsilon.\]
 	\end{quotation}
 }
@@ -119,24 +103,28 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 
 \frame{
 	\frametitle{Level $N$ modular forms with characters}
-
 \begin{defn}
 	Let $N\geq1$ and $k\geq0$ be integers and let $\chi$ be a Dirichlet character mod $N$. A modular form of weight $k$, level $N$ and character $\chi$ is a holomorphic function
 	\[f:\H\longrightarrow\C\]
 	such that
 	\[f\left(\frac{az+b}{cz+d}\right)=\chi(d)(cz+d)^kf(z)\]
-	for all $z\in\H$ and all $\gamma\in\Gamma_0(N)$, which satisfies certain growth conditions at the cusps.	The $\C$-vector-space of such modular forms is denoted
-	\[M_k(\Gamma_0(N),\chi).\]
+	for all $z\in\H$ and all
+	\[\abcdmat\in\Gamma_0(N)=\left\lbrace\abcdmat \in\text{SL}_2(\Z)| c\equiv 0\pmod N\right\rbrace\]
+	which satisfies certain growth conditions at the cusps.
 \end{defn}
 }	
 	
 \frame{
 	\frametitle{$q$-expansion of modular forms}
-	Every modular form $f$ has a Taylor (or Fourier) expansion at infinity, called its $q$-expansion:
+	Every modular form $f$ has a Taylor (or Fourier) expansion
 	\[f(z)=\sum_{n=0}^\infty a_nq^n,\]
-	where $q=exp(2\pi iz)$. If
+	where $q=exp(2\pi iz)$. We call it the $q$ expansion of $f$. If
 	\[a_0(f)=0,\]
-	(at all cusps) $f$ is called a \emph{cusp form}. The space of cusp forms is denoted
+	(at all cusps) $f$ is called a \emph{cusp form}.
+		
+	The space of modular forms is denoted
+	\[M_k(\Gamma_0(N),\chi),\]
+	while the space of cusp forms is denoted
 	\[S_k(\Gamma_0(N),\chi).\]
 }
 
@@ -144,7 +132,7 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\frametitle{Example: weight $k$ Eisenstein series}
 	Let $k\geq4$ be an even integer. Then the series
 	\[\sum_{m,n}\frac{1}{(mz+n)^k}\]
-	converges absolutely and defines a modular form in $M_k(\text{SL}_2(\Z))$. After renormalization, the $q$-expansion of this Eisenstein series is
+	converges absolutely and defines a modular form in $M_k(\text{SL}_2(\Z))$. After renormalization, the $q$-expansion of this modular form is the Eisenstein series
 	\[-\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n:=G_k(z),\]
 	where
 	\[\sigma_{k-1}(n)=\sum_{d|n}d^{k-1}.\]
@@ -182,7 +170,7 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	where
 	\[\text{d}\mu=\frac{\text{d}x\text{d}y}{y^2}\]
 	is the $\text{SL}_2(\R)$-invariant measure on $\H$.
-	Note that the integral does not converge if neither $f$ nor $g$ is a cusp form.
+	Note that the integral does not converge if both $f$ and $g$ are not cusp forms.
 }
 
 \section{Theta Series}
@@ -192,8 +180,8 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	Consider the function
 	\[\theta(z) = \sum_{x\in\Z}q^{x^2}=1+2q+2q^4+O(q^5).\]
 	Then
-	\[\theta(\gamma z)=\epsilon(cz+d)^{1/2}\theta(z),\]
-	for all $\gamma\in\Gamma_0(4)$ and some $\epsilon_{c,d}\in\lbrace\pm1,\pm i\rbrace$.
+	\[\theta\left(\frac{az+b}{cz+d}\right)=\epsilon(cz+d)^{1/2}\theta(z),\]
+	whenever $4|c$, where $\epsilon_{c,d}\in\lbrace\pm1,\pm i\rbrace$.
 }
 
 \subsection{Theta series attached to imaginary quadratic fields}
@@ -222,11 +210,14 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 
 \frame{
 	\frametitle{Theta series attached to Hecke characters of $K$}
-	Let $I_K$ denote the group of fractional ideals of $K$. A Hecke character $\psi$ of $K$ of infinity type $2\ell$ (and conductor $1$) is a homomorphism
+	Let $I_K$ denote the group of fractional ideals of $K$.
+	\begin{defn}
+	A Hecke character $\psi$ of $K$ of infinity type $2\ell$ (and conductor $1$) is a homomorphism
 	\[\psi:I_K\longrightarrow \C^\times\]
 	such that
 	\[\psi((\alpha))=\alpha^{2\ell},\hspace{1cm}\forall\alpha\in K^\times.\]
-	One can define
+	\end{defn}
+	One defines
 	\[\tpsi=\sum_{\ida\subseteq\O_K}\psi(\ida)q^{N(\ida)}.\]
 }
 
@@ -247,7 +238,7 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 
 \frame{
 	\frametitle{Stark's example}
-	To obtain Stark's example, take
+	Let
 	\[K=\Q(\sqrt{-23})\]
 	and let $\psi$ be a non-trivial Hecke character of infinity type $0$, i.e. a non-trivial character of the class group. Then
 	\[\text{Stark's }f =\text{our }\tpsi\in M_1(\Gamma_0(23),\chi_{-23}).\]
@@ -302,12 +293,12 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 
 \frame{
 	\frametitle{Petersson inner product of the theta series $\tha$}
-	\begin{theorem}
+	\begin{coro}
 		Let $\ida$ and $\idb$ be ideals of $K$ and suppose $\ell>0$. Then
 		\[\langle\tha,\thb\rangle=C_K^{(2\ell)}N(\idb)^{2\ell}\sum_{\ida\idb^{-1}\idc^2=\lambda_\idc\O_K}\lambda_\idc^{2\ell}\partial^{2\ell-1}G_2(\idc),\]
 		where
 		\[C_K^{(2\ell)}=4(|D|/4)^\ell.\]
-	\end{theorem}
+	\end{coro}
 }
 
 \frame{
@@ -342,13 +333,14 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\[\langle\tpsi,\tpsi\rangle = h_K(|D|/4)^\ell\sum_{[\ida]\in\ClK}\psi^2(\ida)\partial^{2\ell-1}G_2(\ida).\]	
 	does not make sense for $\ell=0$, since the expression
 	\[\partial^{-1}G_2\]
-	is not well-defined. However, we observe that
+	is not well-defined. \only<2->{However, we observe that
 	\[\partial_0 \log(\Im(z)^{1/2}|\eta(z)|^2)=-G_2(z),\]
 	so
 	\["\partial^{-1}G_2(z)=-\log(\Im(z)^{1/2}|\eta(z)|^2)"\]
-	and we \emph{formally} obtain the case $\ell=0$ from the case $\ell>0$.
+	and we \emph{formally} obtain the case $\ell=0$ from the case $\ell>0$.}
 }
 
+\section{Numerical computations}
 \subsection{A remark on using the formula}
 \frame{
 	\frametitle{Computing $\partial^nG_2$}
@@ -360,48 +352,7 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\[\partial^3G_2=-48G_2^4 + 120G_4G_2^2 - 14G_6G_2 + 25G_4^2.\]
 }
 
-\section{Numerical computations}
 \subsection{Examples of computations}
-
-\frame{
-	\frametitle{Class number $1$ case}
-	In this case,
-	\[\theta_{\O_K}=\theta_{\psi_0}\]
-	and we only need to compute
-	\[\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}\in\overline{\Q}.\]
-}
-
-\frame{
-	\frametitle{Class number $1$ case}
-	Computation of $\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}$:
-	\renewcommand{\arraystretch}{1.25}
-	\begin{tabular}{cc|*{2}{l|}}
-	\cline{3-4}
-	& & \multicolumn{2}{ c| }{$\ell$} \\ \cline{3-4}
-	& & 1 & 2 \\ \cline{1-4}
-	\multicolumn{1}{ |c| }{\multirow{7}{*}{$D$}} & \multicolumn{1}{ |c| }{-7}
-	&$2^{2}3$&$-2^{2}$\\
-	\cline{2-4}
-	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-8}
-	&$-2$&$-2^{2}5$\\
-	\cline{2-4}
-	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-11}
-	&$-2^{2}$&$-2^{3}5$\\
-	\cline{2-4}
-	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-19}
-	&$-2^{2}3^{-1}13$&$-2^{3}71$\\
-	\cline{2-4}
-	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-43}
-	&$-2^{3}3^{-1}107$&$-2^{4}5647$\\
-	\cline{2-4}
-	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-67}
-	&$-2^{2}3^{-1}7^{2}31$&$-2^{3}5\cdot86629$\\
-	\cline{2-4}
-	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-163}
-	&$-2^{3}3^{-1}150473$&$-2^{4}11\cdot461681471$\\
-	\cline{1-4}
-	\end{tabular}
-}
 
 %\frame{
 %	\frametitle{Class number $2$}
@@ -437,15 +388,15 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\[2\O_K=\p_2\bar{\p}_2\]
 	and
 	\[\ClK=\lbrace 1,[\p_2],[\bar{\p}_2]\rbrace.\]
-	Moreover, we have $\langle\theta_{\bar{\p}_2},\theta_{\O_K}\rangle=\overline{\langle\theta_{\p_2},\theta_{\O_K}\rangle}$, so we only care about
-	\[\langle\theta_{\p_2},\theta_{\O_K}\rangle\hspace{0.5cm}\text{and}\hspace{0.5cm}\langle\theta_{\O_K},\theta_{\O_K}\rangle.\]
+	Moreover, we have $\langle\theta_{\bar{\p}_2},\theta_{\O_K}\rangle=\overline{\langle\theta_{\p_2},\theta_{\O_K}\rangle}$. We will focus on
+	\[\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
 }
 
 \frame{
 	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus): $\ell>0$}
 	Consider the algebraic number
 	\[a(\ell)=\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}.\]
-	For $\ell=1,2$ and $4$, we find that $a(\ell)^3$ is a root of a monic cubic polynomial and generates the Hilbert class field over $K$. 
+	For $\ell=1,2,4$ and $5$, we find that $a(\ell)^3$ is a root of a monic cubic polynomial and generates the Hilbert class field over $K$. 
 	\begin{ex}
 	$a(1)$ is a root of the polynomial
 	\[x^9 - 2816x^6 - 905216x^3 - 89915392.\]
@@ -530,6 +481,46 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\end{tabular}
 }
 
+\frame{
+	\frametitle{Class number $1$ case}
+	In this case,
+	\[\theta_{\O_K}=\theta_{\psi_0}\]
+	and we only need to compute
+	\[\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}\in\overline{\Q}.\]
+}
+
+\frame{
+	\frametitle{Class number $1$ case}
+	Computation of $\langle\theta_{\O_K},\theta_{\O_K}\rangle/\Omega_K^{4\ell}$:
+	\renewcommand{\arraystretch}{1.25}
+	\begin{tabular}{cc|*{2}{l|}}
+	\cline{3-4}
+	& & \multicolumn{2}{ c| }{$\ell$} \\ \cline{3-4}
+	& & 1 & 2 \\ \cline{1-4}
+	\multicolumn{1}{ |c| }{\multirow{7}{*}{$D$}} & \multicolumn{1}{ |c| }{-7}
+	&$2^{2}3$&$-2^{2}$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-8}
+	&$-2$&$-2^{2}5$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-11}
+	&$-2^{2}$&$-2^{3}5$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-19}
+	&$-2^{2}3^{-1}13$&$-2^{3}71$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-43}
+	&$-2^{3}3^{-1}107$&$-2^{4}5647$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-67}
+	&$-2^{2}3^{-1}7^{2}31$&$-2^{3}5\cdot86629$\\
+	\cline{2-4}
+	\multicolumn{1}{ |c| }{}&\multicolumn{1}{ |c| }{-163}
+	&$-2^{3}3^{-1}150473$&$-2^{4}11\cdot461681471$\\
+	\cline{1-4}
+	\end{tabular}
+}
+
 \subsection{Is the algorithm efficient?}
 \frame{
 	\frametitle{Example of computation for $K=\Q(\sqrt{-23})$: $N(\psi_0,3)$}
@@ -545,9 +536,9 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\begin{enumerate}
 		\item<1-> Use Rankin-Selberg to prove that
 		\[\langle\tpsi,\tpsi\rangle=\textcolor{gray}{\frac{4h_k}{w_k}\sqrt{|D|}\frac{\Gamma(2\ell+1)}{(4\pi)^{2\ell+1}}}L(\psi^2,2\ell+1).\]
-		\item<2-> Relate Hecke L-series to non-holomorphic Eisenstein series:
+		\item<2-> Relate Hecke L-series of imaginary quadratic fields to real-analytic Eisenstein series:
 		\[L(\psi^2,2\ell+1)=\frac{1}{w_K}\sum_{[\ida]\in\ClK}\frac{\psi^2(\ida)}{N(\ida)^{4\ell-s}}G_{4\ell}(\ida,1-2\ell).\]
-		\item<3-> Replace non-holomorphic Eisenstein series by derivatives of Eisenstein series:
+		\item<3-> Replace real-analytic Eisenstein series by derivatives of Eisenstein series:
 		\[\partial^{2\ell-1}G_2(z)=\textcolor{gray}{(-4\pi)^{1-2\ell}\frac{\Gamma(s+2\ell+1)}{\Gamma(s+2)}}G_{4\ell}(z,1-2\ell).\]
 		\item<4-> Find $\langle\tha,\thb\rangle$ using $\langle\tpsi,\tpsi\rangle$.
 	\end{enumerate}
