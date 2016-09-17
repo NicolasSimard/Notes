@@ -90,16 +90,15 @@ c & d
 }
 
 \subsection{Modular forms}
-\frame{
-	\frametitle{Mobius transformations}
-Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts on $\H$ via Mobius transformations:
-\[\abcdmat z=\frac{az+b}{cz+d}.\]
-\begin{defn}
-	Let $N\geq1$ and define the Hecke subgroup of level $N$ as
-	\[\Gamma_0(N)=\left\lbrace\abcdmat \in\text{SL}_2(\Z)| c\equiv 0\pmod N\right\rbrace.\]
-\end{defn}
-	
-}
+%\frame{
+%	\frametitle{Mobius transformations}
+%Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ acts on $\H$ via Mobius transformations:
+%\[\abcdmat z=\frac{az+b}{cz+d}.\]
+%\begin{defn}
+%	Let $N\geq1$ and define the Hecke subgroup of level $N$ as
+%	\[\Gamma_0(N)=\left\lbrace\abcdmat \in\text{SL}_2(\Z)| c\equiv 0\pmod N\right\rbrace.\]
+%\end{defn}	
+%}
 
 \frame{
 	\frametitle{Level $N$ modular forms with characters}
@@ -118,7 +117,7 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\frametitle{$q$-expansion of modular forms}
 	Every modular form $f$ has a Taylor (or Fourier) expansion
 	\[f(z)=\sum_{n=0}^\infty a_nq^n,\]
-	where $q=exp(2\pi iz)$. We call it the $q$ expansion of $f$. If
+	where $q=exp(2\pi iz)$. We call it the $q$-expansion of $f$. If
 	\[a_0(f)=0,\]
 	(at all cusps) $f$ is called a \emph{cusp form}.
 		
@@ -199,7 +198,7 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\begin{enumerate}
 		\item<1-> We have
 		\[\tha=\sum_{x\in\ida}x^{2\ell}q^{N(x)/N(\ida)}\in M_{2\ell+1}(\Gamma_0(|D|),\chi_D),\]
-		where $\chi_D$ is the Kronecker symbol. If $\ell\neq0$, then
+		where $\chi_D$ is the Kronecker symbol. If $\ell>0$, then
 		\[\tha\in S_{2\ell+1}(\Gamma_0(|D|),\chi_D).\]
 		\item<2-> If $\lambda\in K^\times$, then
 		\[\theta_{\lambda\ida}=\lambda^{2\ell}\tha.\]
@@ -451,7 +450,7 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 	\frametitle{$K=\Q(\sqrt{-23})$ (class number $3$, one genus): $\ell>0$}
 	Consider now the algebraic number
 	\[N(\psi,\ell) = \langle\theta_{\psi},\theta_{\psi}\rangle/\Omega_K^{4\ell}\]
-	For $\ell=3,6$ and $9$, one of the characters, say $\psi_0$, the algebraic number $N(\psi_0,\ell)$ is an \emph{integer}. For the two others, we find that their cube are the roots of a monic quadratic polynomial.
+	When $\ell=3,6$ and $9$, for one of the characters, say $\psi_0$, the algebraic number $N(\psi_0,\ell)$ is an \emph{integer}. For the two others, we find that their cube are the roots of a monic quadratic polynomial.
 	\begin{ex}
 	We have
 	\[N(\psi_0,3) = 5055 = 3\cdot5\cdot337\]
@@ -549,7 +548,7 @@ Let $\H$ be the Poincar\'e upper-half plane. Recall that $\text{GL}_2(\R)_+$ act
 \frame{
 	\frametitle{What we would like to know}
 	\begin{enumerate}
-		\item Can we explain what can be observed from the computations?
+		\item Can we explain what we observed in the computations?
 		\item Can we say something about the Petersson inner product of non-cuspidal weight one theta series?
 		
 	\end{enumerate}
