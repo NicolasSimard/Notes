@@ -76,7 +76,7 @@ In these notes, we find a formula for the Petersson norm of the theta series $\t
 \end{equation}
 if $\ell>0$ and
 \begin{equation}\label{form:leq0}
-\langle\tpsi,\tpsi\rangle =-\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2)
+\langle\tpsi,\tpsi\rangle =-\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(N(\ida)^{1/2}|\eta(\ida)|^2)
 \end{equation}
 if $\ell=0$ and $\psi$ is not a genus character. Here $\del_2^{2\ell-1}G_2$ is the non-holomorphic derivative of the non-holomorphic Eisenstein series of weight $2$ and level $1$, viewed as a function on lattices in the usual way.
 
@@ -356,7 +356,9 @@ Recall that he non-holomorphic Eisenstein series $G_k(z,s)$ of weight $k$ is def
 where the sum runs over all integers $m$ and $n$ not both $0$. If $\ida$ is any fractional $\O_K$-ideal with oriented basis $\latbasis$, define
 \[G_k(\ida,s)=\omega_2^{-k}\left (\frac{\sqrt{|D|}N(\ida)}{2}\right )^{-s}G_k(\omquot,s),\]
 where $D$ is the discriminant of $K$. To see that this definition makes sense, first note that
-\[\Im(\omquot)=|\omega_2|^{-2}\left (\frac{\sqrt{|D|}N(\ida)}{2}\right ).\]
+\begin{equation}\label{eq:idealnorm}
+\Im(\omquot)=|\omega_2|^{-2}\left (\frac{\sqrt{|D|}N(\ida)}{2}\right ).
+\end{equation}
 Then
 \[G_k(\ida,s)=\sum_{m,n}(m\omega_1+n\omega_2)^{-k}|m\omega_1+n\omega_2|^{-2s},\]
 so that $G_k(\ida,0)$ is the usual weight $k$ Eisenstein series on lattices for $k>2$. Moreover,
@@ -420,8 +422,16 @@ When $\psi^2$ is not trivial, the function $L(\psi^2,s)$ is analytic at $s=1$\fo
 \[L(\psi^2,1)=-\frac{4\pi}{w_K\sqrt{|D|}}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2).\]
 Putting this in formula \ref{NormLpsi}, we get
 \begin{equation}\label{eq:filall=0}
-	\langle\tpsi,\tpsi\rangle =-\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2).
+	\langle\tpsi,\tpsi\rangle =-\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2),
 \end{equation}
+where $\tau_\ida=\omega_1/\omega_2$ if $[\omega_1,\omega_2]$ is an oriented $\Z$-basis of $\ida$. Note that the quantity $\Im(\tau_\ida)^{1/2}|\eta(\tau_\ida)|^2$ depends only on the ideal class of $\ida$. This is easily seen when the formula is written in homogeneous form
+\begin{equation}\label{eq:homonormell=0}
+	\langle\tpsi,\tpsi\rangle =-\frac{4h_K}{w_K^2}\sum_{[\ida]\in\Clk}\psi^2(\ida)\log(N(\ida)^{1/2}|\eta(\ida)|^2),
+\end{equation}
+where we used Equation \ref{eq:idealnorm} and the well-known fact that
+\[\eta(\lambda\ida)^2=\lambda^{-1}\eta(\ida).\]
+This proves Equation \ref{form:leq0}.
+
 
 \subsection{The case $\ell>0$: derivative of almost holomorphic Eisenstein series}\label{sec:caselgeq1}
 Define as usual the following differential operators on real analytic functions on the upper half-plane
