@@ -64,7 +64,7 @@
 \newcommand{\smsp}{\vspace{0.5cm}}
 
 
-\title{Proving the Tchebotarev density theorem}
+\title{Proving the Chebotarev density theorem}
 \date{\today}
 \author{Nicolas Simard}
 
@@ -75,15 +75,15 @@
 Dirichlet's theorem on primes in arithmetic progression tells us that
 \[\lim_{N\rightarrow\infty}\frac{\#\{p\text{ prime}|p\leq N\text{ and }p\equiv a\pmod q\}}{\pi(N)}=\frac{1}{\phi(q)}\]
 
-In these notes, we will explain and prove the following theorem, due to Tchebotarev:
+In these notes, we will explain and prove the following theorem, due to Chebotarev:
 
-\begin{theorem}[Tchebotarev's Theorem]\label{th:Tche}
+\begin{theorem}[Chebotarev's Theorem]\label{th:Tche}
 	Let $L/K$ be a Galois extension of number fields with Galois group $G$ and let $c$ be the conjugacy class in $G$. Then the set $\PP_{L/K}(c)=\left \{\p\text{ prime in }K\left |\Frob{E/K}{\p}=c\right .\right \}$ has Dirichlet density $\frac{|c|}{|G|}$.
 \end{theorem}
 
-To do so, we will proceed in three steps. First, we will reinterpret Dirichlet's theorem in terms of ideals. This will allows us to generalise his theorem to number fields. Then, using the main results of class field theory, we will obtain version of Tchebotarev's theorem valid for abelian extensions. Finally, we will prove Theorem \ref{th:Tche} by using this abelian version of it and by carefully analysing the decomposition of primes in Galois extensions.
+To do so, we will proceed in three steps. First, we will reinterpret Dirichlet's theorem in terms of ideals. This will allows us to generalise his theorem to number fields. Then, using the main results of class field theory, we will obtain version of Chebotarev's theorem valid for abelian extensions. Finally, we will prove Theorem \ref{th:Tche} by using this abelian version of it and by carefully analysing the decomposition of primes in Galois extensions.
 
-Along the way, we will recall the important concepts needed to understand and prove Tchebotarev's theorem. We assume that the reader is familiar with Galois theory, classical algebraic number theory (number fields, primes decomposition, ideal class group, etc.) and the theory of ``classical`` Dirichlet L-functions. The Artin map will be defined and the main results of class field theory will be stated (without proof!). For an easy-to-read first contact with class field theory, Cox's book \cite{Cox} is excellent!
+Along the way, we will recall the important concepts needed to understand and prove Chebotarev's theorem. We assume that the reader is familiar with Galois theory, classical algebraic number theory (number fields, primes decomposition, ideal class group, etc.) and the theory of ``classical`` Dirichlet L-functions. The Artin map will be defined and the main results of class field theory will be stated (without proof!). For an easy-to-read first contact with class field theory, Cox's book \cite{Cox} is excellent!
 
 \section{From rational numbers to ideals}
 As we said in the introduction, our first objective is to generalise Dirichlet's theorem on primes in arithmetic progression to number fields. Unfortunately, we cannot do this directly for one good reason: the integers in number fields do not factor uniquely in general. In fact, it is known that the ring of integers in imaginary quadratic fields is a unique factorisation domain in only 9 cases. For real quadratic fields, the question is still open. Our first challenge will be to define Dirichlet L-series in number fields. But what is the correct analogue of a character of $(\Z/m\Z)^\times$?
@@ -195,7 +195,7 @@ The above realisation of $(\Z/q\Z)^\times$ as a quotient of a group of ideals ma
 			For a proof of $(3)$, see \cite{Neu} Chapter V, Theorem $2.2$ and \cite{Jan}, Chapter IV, Theorem $2.14$.			
 		\end{proof}
 		
-		Recall that the proof of Dirichlet's theorem on primes in arithmetic progressions relies crucially on the fact that $\zeta_\Q(s)=\zeta(s)$ has a simple pole at $s=1$ and $L(s,\chi)$ is defined and non-vanishing at $s=1$. This theorem generalises those results and will also play a very important role in  the proof of Tchebotarev's theorem. It is worth noting that the formula giving the residue of $\zeta_K(s)$ at $s=1$ is called the \emph{class number formula}. 
+		Recall that the proof of Dirichlet's theorem on primes in arithmetic progressions relies crucially on the fact that $\zeta_\Q(s)=\zeta(s)$ has a simple pole at $s=1$ and $L(s,\chi)$ is defined and non-vanishing at $s=1$. This theorem generalises those results and will also play a very important role in  the proof of Chebotarev's theorem. It is worth noting that the formula giving the residue of $\zeta_K(s)$ at $s=1$ is called the \emph{class number formula}. 
 	
 		\begin{ex}\end{ex} Using the class number formula for the field $\Q$, we see that $\zeta(s)$ has residue $1$ at $s=1$. This could be seen using much simpler methods!
 		
@@ -210,7 +210,7 @@ The above realisation of $(\Z/q\Z)^\times$ as a quotient of a group of ideals ma
 		Here the correspondence with Dirichlet's class number formula is slightly less trivial. This is because the form class group is isomorphic to the narrow-class group of $K$, so $h_K=h_+$ or $2h_+$, where $h_+$ is the narrow-class number of $K$. Thus the formula above essentially gives Dirichlet's class number formula, modulo a factor of $2$, depending on the sign of the norm of the fundamental unit.
 		
 		\section{Dirichlet density}
-			Before starting the proof of the Tchebotarev density theorem, we need to define the notion of Dirichlet density. First, we introduce some notation. Given functions $f$ and $g$, we write $f\sim g$ if $f-g$ is analytic in some neighbourhood of $s=1$. 
+			Before starting the proof of the Chebotarev density theorem, we need to define the notion of Dirichlet density. First, we introduce some notation. Given functions $f$ and $g$, we write $f\sim g$ if $f-g$ is analytic in some neighbourhood of $s=1$. 
 			\begin{defn}
 				Let $K$ be a number field and let $\mathcal{S}$ be a set of finite primes of $K$. The Dirichlet density of $\S$, denotes $\delta(\S)$ is defined as
 				\[\dS=\lim_{s\rightarrow 1^+}\frac{\sum_{\p\in\S}\N(\p)^{-s}}{\sum_{\p}\N(\p)^{-s}}=\lim_{s\rightarrow 1^+}\frac{\sum_{\p\in\S}\N(\p)^{-s}}{-\log(s-1)}\]
@@ -279,7 +279,7 @@ The above realisation of $(\Z/q\Z)^\times$ as a quotient of a group of ideals ma
 		If we take $K$ to be $\Q$ and $\m$ to be $m\infty$, we obtain directly Dirichlet's theorem. Note the importance of theorem \ref{thm:Lseries} in the proof: the two main ingredients were the simple pole of $L_\m(s,\chi_0)$ at $s=1$ and the non-vanishing of $\Lms$ at $s=1$ for $\chi\neq\chi_0$.
 		
 		\section{Class field theory}
-		In the previous section, we completed the first step of our three step proof of the Tchebotarev theorem. In order to complete the second one, we will need to translate our result about the density of primes lying in certain residue classes into a result involving the Galois group of certain extensions. We will do so with the help of class field theory. 
+		In the previous section, we completed the first step of our three step proof of the Chebotarev theorem. In order to complete the second one, we will need to translate our result about the density of primes lying in certain residue classes into a result involving the Galois group of certain extensions. We will do so with the help of class field theory. 
 		
 		Class field theory is one of the most elegant part of algebraic number theory. The main results are easy to state and relatively simple to understand. However, the proofs are long and use many tools. In this section, we will start by briefly recalling the construction of the Artin map. Then we will state (without proof), the two main results of class field theory, namely the \emph{Artin Reciprocity Law} and the \emph{Existence Theorem}.
 		
@@ -321,7 +321,7 @@ The above realisation of $(\Z/q\Z)^\times$ as a quotient of a group of ideals ma
 		
 		If $L/K$ is not abelian, we define
 		\[\Frob{L/K}{\p}=\left \{\Frob{L/K}{\P}\left| \P\text{ divides }\p\right .\right \}\]
-		In other words, since the Artin symbol depends on the prime we choose above $\P$, we take all of them. By what we saw above, this is a conjugacy class in $\Gal(L/K)$. We will need this more general point of view to state Tchebotarev's theorem. 
+		In other words, since the Artin symbol depends on the prime we choose above $\P$, we take all of them. By what we saw above, this is a conjugacy class in $\Gal(L/K)$. We will need this more general point of view to state Chebotarev's theorem. 
 		
 		We can now state the first main theorem of class field theory.
 		
@@ -345,7 +345,7 @@ The above realisation of $(\Z/q\Z)^\times$ as a quotient of a group of ideals ma
 			\[\Gal(L/K)\simeq \IKm/H^\m\]
 		\end{theorem}
 
-		This Existence Theorem will be the main ingredient in the second step of the proof of Tchebotarev's theorem.
+		This Existence Theorem will be the main ingredient in the second step of the proof of Chebotarev's theorem.
 		
 		To conclude this section on class field theory, one may ask if the correspondence between abelian extensions of $K$ and congruence subgroups is bijective. The answer is no. The problem is that many congruence subgroups can correspond to a given abelian extension of $K$, by playing with the exponents of the modulus, for example. This problem can be solved by introducing a certain equivalence relation on the congruence subgroups. Then the abelian extensions correspond in a bijective way to these equivalence classes. To learn more about this, a good reference is \cite{Jan}, Chapter V, section 6.
 		
@@ -365,14 +365,14 @@ The above realisation of $(\Z/q\Z)^\times$ as a quotient of a group of ideals ma
 			\[\delta(\PP_{L/K}(\sigma))=\delta(\PP(\mathfrak{h}_1))+\dots+\delta(\PP(\mathfrak{h}_n))=\frac{(H^\m:\imath(\Kmo))}{|C_\m|}=\frac{(H^\m:\imath(\Kmo))}{(\IKm:\imath(\Kmo))}=\frac{1}{|G|}\]
 		\end{proof}
 		
-		This theorem is in fact the abelian version of Tchebotarev's theorem.
+		This theorem is in fact the abelian version of Chebotarev's theorem.
 		
-		\section{Proof of Tchebotarev's theorem}
+		\section{Proof of Chebotarev's theorem}
 		We are finally ready to prove the main theorem of the notes. Before, we introduce a bit more notation. As we said above, if $L/K$ is a non-abelian Galois extension of number fields and $\p$ is a prime of $K$, then $\Frob{L/K}{\p}$ is a conjugacy class $c$ in $\Gal(L/K)$. In this case, we define 
 		\[\PP_{L/K}(c)=\left \{\p\text{ unramified prime of }K\left |\Frob{L/K}{\p}=c\right .\right \}\]
 		Note that this definition makes sense for abelian extensions also, since any conjugacy class contains a single element in an abelian group. Therefore $\PP_{L/K}(\sigma)=\PP_{L/K}(c)$, where $c=\{\sigma\}$ is the conjugacy class of $\sigma$. We can now state and prove
 		
-		\begin{theorem}[Tchebotarev's Theorem]
+		\begin{theorem}[Chebotarev's Theorem]
 			Let $L/K$ be a Galois extension of number fields with Galois group $G$ and let $c$ be a conjugacy class in $G$. Then
 			\[\delta(\PP_{L/K}(c))=\frac{|c|}{|G|}\]
 		\end{theorem}
@@ -395,14 +395,14 @@ The above realisation of $(\Z/q\Z)^\times$ as a quotient of a group of ideals ma
 			It is an easy exercise in group theory to prove that $|C_G(\sigma)|=|G|/|c|$ (just let $G$ act on $H$ by conjugation). This completes the proof. 
 		\end{proof}
 		
-		\section{A few applications of Tchebotarev's theorem}
-			As the reader may guess, Tchebotarev's theorem has a lot of applications. Here we will only give a few results that follow easily from the theorem and that have nice consequences.
+		\section{A few applications of Chebotarev's theorem}
+			As the reader may guess, Chebotarev's theorem has a lot of applications. Here we will only give a few results that follow easily from the theorem and that have nice consequences.
 			
 			\begin{coro}
 				Let $L/K$ be a Galois extension of number fields. Then the density of the primes of $K$ that split completely in $L$ is $\frac{1}{[L:K]}$.
 			\end{coro}
 			\begin{proof}
-				Take the conjugacy class of $1$ in $\Gal(L/K)$. By Tchebotarev's theorem
+				Take the conjugacy class of $1$ in $\Gal(L/K)$. By Chebotarev's theorem
 				\[\PP_{L/K}(1)=\left \{\p\text{ unramified prime of }K\left |\Frob{L/K}{\p}=1\right .\right \}\]
 				has density $1/[L:K]$. But we know that if $\P$ divides $\p$ in $L$, $\Frob{L/K}{\P}$ has order exactly $f(\P/\p)$. We deduce that if $\p\in\PP_{L/K}(1)$, then $f(\P/\p)=1$ for any $\P$ in $L$ dividing $\p$.
 			\end{proof}
