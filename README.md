@@ -1,6 +1,6 @@
 # Notes
 
-This repo contains notes, expositary articles and beamer presentations on various topics.
+This repo contains notes, expository articles and beamer presentations on various topics.
 
 ## Talk slides
 
@@ -24,7 +24,7 @@ This repo contains notes, expositary articles and beamer presentations on variou
 
 4. ___'Tchebotarev Theorem/': Notes on Tchebotarev's Theorem___
 
-    Those note were written for an analytic number theory course. The goeal in to give an almost self-contained profof of Tchebotarev's density theorem.
+    Those note were written for an analytic number theory course. The goal is to give an almost self-contained proof of Tchebotarev's density theorem.
 
 5. ___'Galois Infinie/': Notes on infinite Galois theory___
 
