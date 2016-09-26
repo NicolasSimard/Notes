@@ -1,0 +1,250 @@
+\documentclass[twoside,10pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[top=1in, left=1.25in, right=1in, bottom=1in]{geometry}%Pour des pages plus larges
+\renewcommand*\familydefault{\sfdefault}%Pour des lettres sans serif
+
+\usepackage{graphicx}%Pour les images
+\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref} 
+\hypersetup{linkcolor=blue,citecolor=red,filecolor=dullmagenta,urlcolor=blue}
+
+%\usepackage{palatino}%Pour utiliser l'écriture Palatino
+\usepackage{euler}%Change l'aspect des formules mathématiques
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{defn}{Definition}
+\newtheorem{coro}{Corollary}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\Af}{\mathbb{A}_f}
+
+\newcommand{\rarr}{\rightarrow}
+\newcommand{\for}{\hspace{1cm}\textrm{for }}
+\newcommand{\where}{\hspace{1cm}\textrm{where }}
+\newcommand{\Gal}{\text{Gal}}
+
+
+\renewcommand{\L}{L^2(\textrm{GL}_n(\Q)A\setminus\textrm{GL}_n(\mathbb{A}))}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\G}{\Gamma}
+\newcommand{\SL}{\textrm{SL}_2(\mathbb{Z})}
+\newcommand{\SLn}{\textrm{SL}_n}
+\newcommand{\GL}{\textrm{GL}_2}
+\newcommand{\GLn}{\textrm{GL}_n}
+\newcommand{\ord}{\text{ord}}
+
+\renewcommand{\d}{\text{d}}
+
+\author{Nicolas Simard}
+\date{\today}
+\title{Notes on Scholze's results}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section*{Notation}
+As usual, $\A$ denotes the ring of adeles of $\Q$ and $\Af=\hat{\Z}\otimes \Q$ is the ring of finite adeles of $\Q$.
+
+Throughout these notes, we mainly work with $\GLn$. Let $K$ be a compact open subgroup of $\GLn(\Af)$ and $K_\infty\leq\GLn(\R)$ be $\text{O}_n(\R)$, a maximal compact open subgroup of $\GLn(\R)$. Finally, let $A=\R_{>0}$ be the set of scalar matrices with positive real entries on the diagonal.
+
+Most of the statements in these notes remain true with $\Q$ replaced by a number field, $\GLn$ replaced by an affine connected reductive group scheme over $\Q$, $K_\infty$ replaced by any maximal compact subgroup and $A$ by the identity component of the maximal $\Q$-split torus in the center of the group.
+
+\section{Locally symmetric spaces}
+In this section, we introduce the spaces $X_K$ attached to $\GLn$, $K_\infty$ and $K$. We chose the adelic setting because it is more compatible with the theory of automorphic representations. Let
+\[D=A\setminus \GLn(\R)/K_\infty\]
+and
+\[X_K=\GLn(\Q)\setminus\GLn(\A)/AK_\infty K=\GLn(\Q)\setminus(D\times\GLn(\Af)/K).\]
+
+By a theorem of Borel, the set
+\[\GLn(\Q)\setminus\GLn(\Af)/K\]
+is finite. Let $\{g_1,\dots,g_d\}\subseteq\GLn(\Af)$ be a set of representatives of this double quotient. Then the map
+\[\Gamma_ix\longmapsto\GLn(\Q)(x,g_i)K: \coprod_{i}\Gamma_i\setminus D\longrightarrow X_K,\]
+	where $\Gamma_i=g_i^{-1}Kg_i\cap\GLn(\Q)$, is a bijection.
+	
+Since we are working with $\GLn$, it is possible to find a simpler description of $D$, by noting that the natural map from $\SLn(\R)$ to $D$ induces an isomorphism
+	\[\H_n:=\SLn(\R)/\textrm{SO}_n(\R)\longrightarrow A\setminus \GLn(\R)/K_\infty=D.\]
+	
+Note that for $n=2$, $\textrm{SL}_2(\R)$ acts transitively on the upper-half plane $\H=\{z\in\C|\Im(z) > 0\}$. The stabilizer of the imaginary unit $\imath$ is $\textrm{SO}_2(\R)$, so
+	\[\H_2=\H,\]
+which justifies the notation $\H_n$.
+	
+It follows that $X_K$ is a finite union of quotients of $\H_n$ by subgroups of the form $\mathcal{U}\cap\GLn(\Q)$, where $\mathcal{U}$ is a compact open subgroup of $\GLn(\Af)$. In particular, for $n=2$, $X_K$ is a finite union of \emph{non-compact} modular curves.
+	
+This discussion motivates the following definition.
+
+\begin{defn}
+	A subgroup $H$ of $GLn(\Q)$ is called \textbf{arithmetic} if $H\cap\GLn(\Z)$ has finite index in $H$ and $\GLn(\Z)$ (i.e. it is commensurable with $\GLn(\Z)$) and \textbf{congruence} if it is of the form $\mathcal{U}\cap\GLn(\Q)$ for some compact open subgroup $\mathcal{U}$ of $\GLn(\Af)$.
+\end{defn}
+
+\textbf{Example: }Let $N$ be a positive integer and define
+\[K(N)=\prod_{\ell<\infty}\mathcal{U}_l(\text{ord}_\ell(N)),\]
+where $\text{ord}_\ell(N)$ is the $\ell$-adic valuation of $N$ and for $k\geq 0$
+\[\mathcal{U}_l(k)=\{\gamma\in\textrm{SL}_2(\Z_\ell)|\gamma\equiv I\pmod{\ell^k}\}.\]
+As $N$ varies, the sets $K(N)$ form a basis of open neighbourhoods of $1$ in $\textrm{SL}_2(\Af)$. It follows that for any compact open subgroup $\mathcal{U}$ in $\textrm{SL}_2(\Af)$,
+\[\mathcal{U}\cap\textrm{SL}_2(\Q)\supseteq K(N)\cap\textrm{SL}_2(\Q)=\Gamma(N)\]
+for some integer $N$, where
+\[\Gamma(N)=\{\gamma\in\SL|\gamma\equiv I\pmod N\}.\]
+It follows that the above definition of congruence subgroup for $\textrm{SL}_2$ (just replace $\GLn$ by $\textrm{SL}_2$) is consistent with the usual definition of a congruence subgroup of $\textrm{SL}_2(\Z)$.
+
+\textbf{Note: }One could ask if arithmetic subgroups are congruence. In general, this is not the case. It is known for example that $\SL$ has infinitely many subgroups of finite index that are not congruence subgroups. However, every finite index subgroup of $\SLn(\Z)$ is congruence, whenever $n>2$. These considerations are related to the so-called congruence subgroup problem.
+
+So far, the spaces $X_K$ were only considered as topological spaces. A natural question is to ask if these spaces are smooth manifolds. If this is the case, are they complex manifolds or even algebraic varieties? In general, these spaces will not be algebraic varieties or complex manifolds. For example, $\H_3$ has \emph{odd} dimension. However, if $K$ is small enough, the $X_K$ are smooth manifolds.\footnote{Any compact open subgroup $K$ of $\GLn(\Af)$ contains a so-called \textbf{neat} subgroup $K'$ of finite index and for such neat subgroup, $X_{K'}$ is a smooth manifold. See \cite[Sec 15.1]{Get} for details.}
+
+\begin{defn}
+	An \textbf{arithmetic manifold} is a double quotient space
+	\[\Gamma\setminus G(\R)/K_\infty,\]
+	where
+	\begin{enumerate}
+		\item $G$ is a semisimple algebraic group over $\Q$,
+		\item $K_\infty\leq G(\R)$ is a maximal compact subgroup of $G(\R)$,
+		\item $\Gamma\leq G(\Q)$ is an arithmetic subgroup of $G$.
+	\end{enumerate}
+\end{defn}
+
+An algebraic group $G$ is called \textbf{semisimple} if the maximal connected normal subgroup of $G_{\bar{\Q}}$ such that $G(\bar{\Q)}$ is solvable is $\{\text{id}\}$.
+
+\textbf{Example: }$\SLn$ is semisimple, but not $\GLn$. An example of maximal compact subgroup of $\SLn(\R)$ is $\textrm{SO}_n(\R)$. It follows that the quotients $\Gamma\setminus\H_n$, where $\Gamma$ is an arithmetic subgroup, are examples of arithmetic manifolds. In particular, modular curves are arithmetic manifolds.
+
+The space $D=G(\R)/K_\infty$ can be given the structure of a Riemanian manifold. Moreover, $D$ is a \textbf{Riemannian symmetric space}. This means that for each point $x$ of $D$, there is an isometry which maps $x$ to itself and has derivative equal to $-1$ at $x$. Then the arithmetic manifold $\Gamma\setminus D$ is a locally Riemannian symmetric space, meaning that at each point of $\Gamma\setminus D$ there is a map as before, but now it may only be defined locally around that point.
+
+
+\section{Hecke operators and automorphic representations}
+The simplest definition of an automorphic representation of $\GLn(\A)$ is an irreducible $\GLn(\A)$-module isomorphic to a subquotient of
+\[L^2(\textrm{GL}_n(\Q)A\setminus\textrm{GL}_n(\mathbb{A})).\]
+This is the definition given in \cite[Sec 4.7]{Wei}. One can consider separately the action of $\GLn(\R)$ and $\GLn(\Af)$ in such a representation and with some work, one can show that this definition is equivalent to the definition given previously in the seminar.
+
+\begin{defn}
+	An automorphic representation of $\GLn(\A)$ is an admissible $(\textrm{Lie}(\GLn(\R)),K_\infty)\times\GLn(\Af)$-module isomorphic to a subquotient of $\L$.
+\end{defn}
+
+An \textbf{admissible} $(\textrm{Lie}(\GLn(\R)),K_\infty)\times\GLn(\Af)$-module is a module of the form $\pi_\infty\otimes\pi_f$, where $\pi_\infty$ is an admissible $(\textrm{Lie}(\GLn(\R)),K_\infty)$-module (see Shan's notes or \cite[Sec 5.3]{Get} for a definition) and $\pi_f$ is an admissible $\GLn(\Af)$-module, which means that $V^U$ is finite dimensional for any compact open subgroup $U$ of $\GLn(\Af)$, where $V$ is the space of $\pi_f$.
+
+As we saw in a previous talk, every automorphic representation $\pi=\pi_\infty\otimes\pi_f$ factors as
+\[\pi=\pi_\infty\otimes\bigotimes_{p<\infty}'\pi_p,\]
+where $\pi_p$ is an irreducible representation of $\GLn(\Q_p)$. Moreover, for almost all primes $p<\infty$, $\pi_p$ is \textbf{unramified}, i.e. $V^{\GLn(\Z_p)}\neq 0$ if $V$ is the space of $\pi_p$. 
+
+\begin{defn}
+	The non-archimedian Hecke algebra, denoted $\H^\infty$, is the algebra of compactly supported smooth functions on $\GLn(\Af)$. More precisely,
+	\[\H^\infty=C_c^\infty(\GLn(\Af))=\{h:\GLn(\Af)\rightarrow\C|f\text{ is locally constant and compactly supported}\},\]
+	together with the convolution product
+	\[(h_1*h_2)(g)=\int_{\GLn(\Af)}h_1(x)h_2(x^{-1}g)\d x\]
+	with respect to a Haar measure on $\GLn(\Af)$.	
+\end{defn}
+
+The Hecke algebra $\H^\infty$ is associative, but not unitary. One can also define an archimedian Hecke algebra $\H_\infty$ (see \cite[Sec 3.3]{Get}). Then $\H^\infty\otimes\H_\infty$ acts naturally on $\L$ (see \cite[Sec 3.4]{Get}) and an automorphic representation of $\GLn(\A)$ can be defined as an admissible representation of $\H^\infty\otimes\H_\infty$. As before, an admissible representation of $\H^\infty\otimes\H_\infty$ is a module of the form $\pi_\infty\otimes\pi_f$, where $\pi_\infty$ is an admissible $\H_\infty$-module (see \cite[Sec 3.3]{Get}) and $\pi_f$ is an admissible $\H^\infty$-module, which means that $\pi_f$ is non-degenerate and $V^{\pi_f(\I_{U})}$ is finite dimensional for any compact open subgroup $U$ of $\GLn(\Af)$, where $V$ is the space of $\pi_f$ and $\I_U$ is the indicator function of $U$.
+
+The non-archimedian Hecke algebra factors as
+\[\H^\infty\cong\bigotimes_{p<\infty}'C_c^\infty(\GLn(\Q_p)),\]
+where $C_c^\infty(\GLn(\Q_p))$ is the convolution algebra of compactly supported locally constant complex-valued functions on $\GLn(\Q_p)$ and the $\otimes'$ is the restricted tensor product (see \cite[Sec 7.1]{Get} for more details). Given a smooth representation
+\[\pi_p:\GLn(\Q_p)\rightarrow\textrm{GL}(V),\]
+where $\textrm{GL}(V)$ has the discrete topology,\footnote{Equivalently, $\pi_p$ is smooth if for any $0\neq v\in V$ the set $\{g\in\GLn(\Q_p)|\pi_p(g)(v)=v\}$ is open.} one can define an action of $C_c^\infty(\GLn(\Q_p))$ on $V$ as follows: for any $h\in C_c^\infty(\GLn(\Q_p))$ and $v\in V$, define
+\[h*v=\int_{\GLn(\Q_p)}h(x)\pi_p(x)(v)\d x.\]
+This integral in fact reduces to a finite sum. To see this, first note that since $\pi_p$ is smooth, one can choose $U$ compact open and small enough so that every element of $\pi_p(U)$ fixes $v$. By shrinking $U$ if necessary, one can also suppose that $U$ small enough so that $h=\sum_{i=1}^dh(g_i)\I_{g_iU}$. Then,
+\[\int_{\GLn(\Q_p)}h(x)\pi_p(x)(v)\d x=\sum_{i=1}^dh(g_i)\int_{g_iU}\pi(x)(v)\d x=\textrm{Vol}(U)\sum_{i=1}^dh(g_i)\pi(g_i)(v).\]
+
+To summarise, an automorphic representation can be seen as a representation of the Hecke algebra $\H_\infty\otimes\H^\infty$. In particular, this gives rise to an $\H^\infty$-module $\pi_f$ (which is also a $\GLn(\Af)$-module). This module $\pi_f$ decomposes as $\pi_f\cong\bigotimes_{p<\infty}'\pi_p$ and the action of $\GLn(\Q_p)$ on $\pi_p$ induces a natural action of $C_c^\infty(\GLn(\Q_p))$ on the space of $\pi_p$. Finally, one can show that the action of $\H^\infty$ on $\pi_f$ is then compatible with the decompositions of $\H^\infty$ and $\pi_f$ as restricted tensor products.
+
+The above considerations reduces our study of an automorphic representation to the study of the $(\textrm{Lie}(\GLn(\R)),K_\infty)$-module $\pi_\infty$ and the $C_c^\infty(\GLn(\Q_p))$-modules $\pi_p$. In these notes, we will focus on the local components at the finite primes. To do so, it is convenient to introduce the so-called \textbf{spherical Hecke algebras}.
+
+\begin{defn}
+	The spherical Hecke algebra of $\GLn$ at $p<\infty$, denoted $\H_p$ or $C_c^\infty(\GLn(\Q_p)//\GLn(\Z_p))$, is defined as the subalgebra of left and right $\GLn(\Z_p)$ invariant functions of $C_c^\infty(\GLn(\Q_p))$. More precisely,
+	\[\H_p=\{h\in C_c^\infty(\GLn(\Q_p))|h(kgk')=h(g)\textrm{ for all }k,k'\in\GLn(\Z_p)\text{ and }g\in\GLn(\Q_p)\}\] 
+\end{defn}
+
+This algebra has the big advantage of being unitary and commutative. When $\pi_p$ is unramified (this is true for almost all primes $p<\infty$), it turns out that $V^{\GLn(\Z_p)}$ is one dimensional, where $V$ is the space of $\pi_p$. By restricting the action of $C_c^\infty(\GLn(\Q_p))$ to $\H_p$, we obtain a character
+\[C_c^\infty(\GLn(\Q_p)//\GLn(\Z_p))\longrightarrow \C,\]
+called the \textbf{Hecke character} of the local representation.
+
+In our case, i.e. for $\GLn$, the spherical Hecke algebra has a canonical set of $n$ generators. For $1\leq r\leq n$, define
+\[\I_r=\I_{\GLn(\Z_p)D(r,n-r)\GLn(\Z_p)},\]
+where $D(k,\ell)$ is the diagonal matrix with $k$ $p$ on the diagonal followed by $\ell$ $1$. For $n=2$, the two generators are
+\[\I_{\GLn(\Z_p)\begin{pmatrix}
+p & 0 \\ 
+0 & 1
+\end{pmatrix} \GLn(\Z_p)}\text{ and }\I_{\GLn(\Z_p)\begin{pmatrix}
+p & 0 \\ 
+0 & p
+\end{pmatrix} \GLn(\Z_p)}.\]
+By viewing classical modular forms as automorphic forms for $\textrm{GL}_2$ it can be shown (I didn't verify it personally) that these operators coincide with the classical Hecke operators $T_p$ and $\langle p\rangle$.
+
+Evaluating the Hecke character of an unramified $\pi_p$ at those $n$ generators, one obtains $n$ complex numbers, which then determine a conjugacy class in $\GLn(\C)$. These $n$ complex numbers are called the Satake parameters of $\pi_p$. It follows from the Satake isomorphism that there is a bijection between the semisimple conjugacy classes in $\GLn(\C)$ and the isomorphism classes of irreducible unramified representations of $\GLn(\Q_p)$.
+
+
+\section{Hecke operators and cohomology}
+Our next goal is to define an action of the non-archimedian Hecke algebra on a cohomology group attached to the spaces $X_K$. Recall that
+\[X_K=\GLn(\Q)\setminus(D\times\GLn(\Af)/K),\]
+where $K$ is a compact open subgroup of $\GLn(\Af)$.
+
+Given any $g\in\GLn(\Af)$ and $K'$ a compact open subgroup of $\GLn(\Af)$ such that $K'\subseteq gKg^{-1}$, one has a well-defined map
+\[T_g:X_{K'}\longrightarrow X_K\]
+which sends the class $\GLn(\Q)(x,hK')$ to the class $\GLn(\Q)(x,hgK)$. For $K'=gKg^{-1}$, this map is bijective. This gives a correspondence $T(g)$
+\[X_K\longleftarrow X_{K\cap gKg^{-1}}\longrightarrow X_{gKg^{-1}}\simeq X_K,\]
+called a Hecke correspondence, which then induces an endomorphism  $T(g)$ of the compactly supported Betti cohomology group with coefficients in $\C$, denoted $H^*_c(X_K,\C)$.
+
+Using those endomorphisms, one can define an action of the non-archimedian Hecke algebra $C_c^\infty(\GLn(\Af))$ on
+\[H^*_c:=\lim_{\rightarrow K}H^*_c(X_K,\C)\]
+by letting the indicator function of $UgU$ act on a class in $H^*_c(X_K,\C)$ via the action of $T(g)$ on $H^*_c(X_{K\cap U},\C)$.
+
+At this point, we have two actions of the Hecke algebra $\H^\infty$: one coming from automorphic representations  (i.e. from an action of $\H_\infty\otimes\H^\infty$ on $\L$) and one coming from the action of $\H^\infty$ on $H_c^*$ via Hecke correspondences. The link between the two is contained in the following theorem:
+
+\begin{theorem}
+	Any representation of $\H^\infty$ which is isomorphic to an irreducible subquotient of $H^*_c$ comes from a cohomological automorphic representation of $\GLn(\A)$.
+\end{theorem}
+
+This is a reformulation of a theorem of Franke, which can be found in \cite[Thm 1.4]{Mor}. About the condition of an automorphic representation $\pi=\pi_\infty\otimes\pi^\infty$ being cohomological, let us just say that it is a condition on the $(\textrm{Lie}(\GLn(\R)),K_\infty)$-module $\pi_\infty$.\footnote{More precisely, it means that there exists a representation $W$ of $\GLn(\R)$ such that the $(\textrm{Lie}(\GLn(\R)),K_\infty)$-cohomology of $\pi_\infty\otimes W$ is non-zero. See \cite[Sec 15.6]{Get} for more details.} We can finally state the following theorem originally proved by Harris-Lan-Taylor-Thorne and reproved independently by Scholze.
+
+\begin{theorem}[HLTT, Scholze]
+	Let $\pi=\pi_\infty\otimes\bigotimes'_{\ell<\infty}\pi_\ell$ be a cuspidal algebraic\footnote{The condition of an automorphic representation being algebraic is a condition on $\pi_\infty$.} cohomological automorphic representation of $\GLn(\A)$ and let $p$ be a prime. Then there exists a continuous semisimple $p$-adic Galois representation
+	\[\rho_\pi:G_\Q\rightarrow\GLn(\bar{\Q}_p)\]
+	such that for all $\ell\neq p$ where $\pi_\ell$ is unramified, the conjugacy class of $\rho_\pi(\text{Frob}_\ell)$ corresponds to the conjugacy class of $\pi_\ell$ under the Satake isomorphism, where $\text{Frob}_\ell$ is the \emph{geometric} Froebenius at $\ell$.
+\end{theorem}
+
+As we saw in the previous talk, one advantage of passing from classical automorphic forms (like modular forms, for example) to cohomology is that one could hope to find a Galois representation via etale cohomology. Note however that in general, $X_K$ will not be an algebraic variety. Another advantage is that the Hecke algebra and cohomology both make sense over $\Z$.
+
+Define
+\[\H^S(\Z)=\bigotimes_{\nu\not\in S}C_c^\infty(\GLn(\Q_p)//\GLn(\Z_p),\Z),\]
+where $S$ is a finite set of primes containing $\infty$ and $C_c^\infty(\GLn(\Q_p)//\GLn(\Z_p),\Z)$ is the spherical Hecke algebra of compactly supported smooth functions with values in $\Z$ (this is a unitary algebra under convolution). Then $\H^S(\Z)$ acts naturally on
+\[H_c^*(X_K,\Z)\]
+and we have the following theorem.
+
+\begin{theorem}
+	Let $S$ be a finite set of primes. If $\phi:\H^S(\Z)\rightarrow\mathbb{F}_p$ is a character that appears in $H_c^*(X_K,\mathbb{F}_p)$, for some compact open subgroup $K=\prod_{\nu<\infty}K_\nu$ of $\GLn(\A_f)$, where $K_\nu = \GLn(\Z_\nu)$ for all $\nu\not\in S$, then there exists a semisimple Galois representation
+	\[\rho:G_\Q\rightarrow\GLn(\mathbb{F}_p)\]
+such that for all $\ell\not\in S\cup\{p\}$, $\phi\vert_{\H_\ell(\Z)}$ and $\rho(\textrm{Frob}_\ell)$ correspond under the Satake isomorphism.
+\end{theorem}
+
+\section{Notes on the litterature}
+A good reference for the ideas that go in the proof of the two main theorems of the last section is \cite{Mor}. The presentations of Scholze in 2014 at the IAS are also interesting: \cite{Sc1}, \cite{Sc2}, \cite{Sc3}. Finally, the article of Sengun on the arithmetic of Bianchi manifolds \cite{Sen} is very interesting. In particular, it gives concrete applications of the tools presented in these notes (e.g. the action of the Hecke operators on cohomology).
+
+\begin{thebibliography}{DDDD}%
+	\bibitem[Get]{Get}
+    {\scshape\itshape Getz, J.}, \emph{An Introduction to Automorphic Representations}, available at \url{http://www.math.duke.edu/~jgetz/aut_reps.pdf}.
+    
+    \bibitem[Mor]{Mor}
+    {\scshape\itshape Morel, S.}, \emph{Construction de representations Galoisiennes de torsion}, Seminaire Bourbaki, 67ieme annee, 2014-2015, no.1102.
+    
+    \bibitem[Sc1]{Sc1}
+    {\scshape\itshape Scholze, P.}, \emph{Arithmetic hyperbolic 3-manifolds, perfectoid spaces, and Galois representations I}, video of a presentation at the Institute of Advanced Study, url: \url{https://video.ias.edu/marston/2014/0210-PeterScholze}.
+    
+    \bibitem[Sc2]{Sc2}
+    {\scshape\itshape Scholze, P.}, \emph{Arithmetic hyperbolic 3-manifolds, perfectoid spaces, and Galois representations II}, video of a presentation at the Institute of Advanced Study, url: \url{https://video.ias.edu/marston/2014/0212-PeterScholze}.
+    
+    \bibitem[Sc3]{Sc3}
+    {\scshape\itshape Scholze, P.}, \emph{Arithmetic hyperbolic 3-manifolds, perfectoid spaces, and Galois representations III}, video of a presentation at the Institute of Advanced Study, url: \url{https://video.ias.edu/marston/2014/0214-PeterScholze}.
+    
+    \bibitem[Sen]{Sen}
+    {\scshape\itshape Sengun, M. H.}, \emph{Arithmetic Aspects of Bianchi Groups}, Computation with Modular Forms Proceedings of a summer school and conference, Heidelberg, August/September 2011, Contributions in Mathematical and Computational Sciences, vol. 6, Springer, 2014, pages 279-315.
+    
+    \bibitem[Wei]{Wei}
+    {\scshape\itshape Weinstein,  J.}, \emph{Reciprocity laws and Galois representations: recent breakthroughs}, Bulletin of the American Mathematical Society, Volume 53, Number 1, January 2016, pages 1-39.
+
+\end{thebibliography}
+\end{document}
+

@@ -1,0 +1,463 @@
+\documentclass[]{amsart}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{pictexwd,dcpic}
+\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref} 
+\hypersetup{linkcolor=blue,citecolor=red,filecolor=dullmagenta,urlcolor=darkblue}
+
+\usepackage{graphicx}
+\usepackage{amsmath,amsfonts, amssymb,amscd}
+\usepackage{mathtools}
+
+\usepackage{palatino}
+\usepackage{euler}
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}{Proposition}
+\newtheorem{defn}{Definition}
+\newtheorem{coro}{Corollary}
+\newtheorem{ex}{Example}
+\newtheorem{Lem}{Lemma}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\OO}{\mathit{O}}
+\newcommand{\oo}{\mathit{o}}
+\renewcommand{\S}{\mathcal{S}}
+\newcommand{\RR}{\mathcal{R}}
+\newcommand{\dS}{\delta(\mathcal{S})}
+
+\newcommand{\Spl}{\text{Spl}}
+
+\newcommand{\rarr}{\longrightarrow}
+\newcommand{\larr}{\longleftarrow}
+
+\newcommand{\mn}{\mathfrak{m}_0}
+\newcommand{\mi}{\mathfrak{m}_\infty}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\IKm}{I^\mathfrak{m}_K}
+\newcommand{\Hm}{H^{\mathfrak{m}}}
+\newcommand{\Cm}{C_\mathfrak{m}}
+\newcommand{\Km}{K_{\mathfrak{m}}}
+\newcommand{\Kmo}{K_{\mathfrak{m},1}}
+\renewcommand{\a}{\mathfrak{a}}
+\newcommand{\h}{\mathfrak{h}_0}
+
+\newcommand{\OK}{\mathcal{O}_K}
+\newcommand{\OL}{\mathcal{O}_L}
+\newcommand{\N}{\mathbb{N}}
+
+\newcommand{\Ls}{L(s,\chi)}
+\newcommand{\Lms}{L_\mathfrak{m}(s,\chi)}
+
+\newcommand{\p}{\mathfrak{p}}
+\renewcommand{\P}{\mathfrak{P}}
+\newcommand{\PP}{\mathcal{P}}
+\newcommand{\Frob}[2]{\left(\frac{#1}{#2}\right )}
+\newcommand{\Gal}{\text{Gal}}
+
+\newcommand{\smsp}{\vspace{0.5cm}}
+
+
+\title{Proving the Tchebotarev density theorem}
+\date{\today}
+\author{Nicolas Simard}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section*{Introduction}
+Dirichlet's theorem on primes in arithmetic progression tells us that
+\[\lim_{N\rightarrow\infty}\frac{\#\{p\text{ prime}|p\leq N\text{ and }p\equiv a\pmod q\}}{\pi(N)}=\frac{1}{\phi(q)}\]
+
+In these notes, we will explain and prove the following theorem, due to Tchebotarev:
+
+\begin{theorem}[Tchebotarev's Theorem]\label{th:Tche}
+	Let $L/K$ be a Galois extension of number fields with Galois group $G$ and let $c$ be the conjugacy class in $G$. Then the set $\PP_{L/K}(c)=\left \{\p\text{ prime in }K\left |\Frob{E/K}{\p}=c\right .\right \}$ has Dirichlet density $\frac{|c|}{|G|}$.
+\end{theorem}
+
+To do so, we will proceed in three steps. First, we will reinterpret Dirichlet's theorem in terms of ideals. This will allows us to generalise his theorem to number fields. Then, using the main results of class field theory, we will obtain version of Tchebotarev's theorem valid for abelian extensions. Finally, we will prove Theorem \ref{th:Tche} by using this abelian version of it and by carefully analysing the decomposition of primes in Galois extensions.
+
+Along the way, we will recall the important concepts needed to understand and prove Tchebotarev's theorem. We assume that the reader is familiar with Galois theory, classical algebraic number theory (number fields, primes decomposition, ideal class group, etc.) and the theory of ``classical`` Dirichlet L-functions. The Artin map will be defined and the main results of class field theory will be stated (without proof!). For an easy-to-read first contact with class field theory, Cox's book \cite{Cox} is excellent!
+
+\section{From rational numbers to ideals}
+As we said in the introduction, our first objective is to generalise Dirichlet's theorem on primes in arithmetic progression to number fields. Unfortunately, we cannot do this directly for one good reason: the integers in number fields do not factor uniquely in general. In fact, it is known that the ring of integers in imaginary quadratic fields is a unique factorisation domain in only 9 cases. For real quadratic fields, the question is still open. Our first challenge will be to define Dirichlet L-series in number fields. But what is the correct analogue of a character of $(\Z/m\Z)^\times$?
+
+Let's start by reinterpreting the ``classical`` Dirichlet L-series, i.e. the series of the form
+\[L(s,\chi)=\sum_{n=1}^\infty \frac{\chi(n)}{n^{s}}\]
+where $s$ is a complex number and $\chi$ is a character of $(\Z/m\Z)^\times$ extended to $\Z$ in the natural way. First, we want realise $(\Z/m\Z)^\times$ as a quotient of a certain group of (fractional) ideals (recall that in number fields, we need to consider ideals to recover unique factorisation). Our first guess might be to look at a map like
+\begin{align*}
+	\{a\Z|a\in\Z\} &\rarr (\Z/m\Z)^\times \\
+	a\Z &\longmapsto [a]
+\end{align*}
+but the set of ideals $\{a\Z|a\in\Z\}$ is not a group and the map is not well-defined if $(a,m)\neq1$. This leads naturally to the consideration of the set $I^m_\Q=\{\frac{a}{b}\Z|a,b\in\Z\text{ and }(a,m)=(b,m)=1\}$ and the map
+\begin{align*}
+	I^m_\Q &\rarr (\Z/m\Z)^\times \\
+	\frac{a}{b}\Z &\longmapsto [a][b]^{-1}
+\end{align*}
+where we choose the positive generator of $\frac{a}{b}\Z$ (i.e. $\frac{a}{b}>0$). This map is well-defined and clearly surjective. The kernel is the set of ideals $\frac{a}{b}\Z$ where the positive generator $\frac{a}{b}$ is such that $ab^{-1}\equiv 1\pmod m$ or equivalently $a\equiv b\pmod m$. If we define $\Q_{m}=\{\frac{a}{b}\in\Q|(a,m)=(b,m)=1\}$,  $\Q_{m\infty,1}=\{\frac{a}{b}\in\Q_m|a\equiv b\pmod m,\frac{a}{b}>0\}$ and $\imath:\Q_{m\infty,1}\rarr I^m_\Q$ to be the map sending a rational number to the principal ideal it generates, we proved that
+\[I^m_\Q/\imath(\Q_{m\infty,1})\simeq (\Z/q\Z)^\times\]
+The reason why we put the symbol $\infty$ in $\Q_{m\infty,1}$ will soon be apparent. 
+
+\section{Ray class groups and generalised L-series}
+The above realisation of $(\Z/q\Z)^\times$ as a quotient of a group of ideals may look sophisticated, but it has the advantage of being easy to generalise to other number fields. First, we define the analogue of $m$.
+
+\begin{defn}
+	Let $K$ be a number field. A modulus $\m$ is a formal product
+	\[\m=\prod_{\p\text{ prime}}\p^{n_\p}\]
+	where
+	\begin{enumerate}
+		\item $n_\p\geq 0$ for all primes and $n_\p>0$ for finitely many primes.
+		\item $n_\p=0$ or $1$ if $\p$ is a real infinite prime.
+		\item $n_\p=0$ if $\p$ is a complex infinite prime. 
+	\end{enumerate}
+\end{defn}
+
+	Recall that a finite prime of $K$ is a prime ideal of $\OK$, a real infinite prime is an embedding $\sigma:K\hookrightarrow\R$ and a complex infinite prime is a pair of complex conjugate embeddings $\sigma,\overline{\sigma}:K\hookrightarrow\C$, where $\sigma\neq \overline{\sigma}$. For example, a real quadratic field has two real infinite primes and no complex infinite primes, an imaginary quadratic field has no real infinite prime and one complex infinite prime and $\Q(\sqrt[3]{2})$ has one real infinite prime and one complex infinite prime. 
+	
+	Any modulus $\m$ can be written uniquely as $\m=\mn\mi$, where $\mn$ is an integral ideal of $\OK$ and $\mi$ is a formal product of distinct real infinite primes. Note that $\Q$ has only one real prime, namely the inclusion of $\Q$ in $\R$, which we denote $\infty$. With this notation, $m\infty$ is a modulus of $\Q$ for any integer $m$.
+	
+	We will now define the analogue of $I_\Q^m$. Let $\m$ be a modulus of $K$ and let $I_K$ be the group of fractional ideals of $K$, i.e. the free abelian group generated by the prime ideals of $\OK$. We define
+	\[\IKm =\{\a=\p_1^{\alpha_1}\dots \p_n^{\alpha_n}|(\p_i,\mn)=1\text{ for all }i\}\]
+	In other words, $\IKm$ is the set of ideals prime to $\mn$. It is easy to see that $\IKm$ is the subgroup of $I_K$ generated by the primes that do not divide $\m_0$. We also define
+	\[K_\m=\left \{\frac{a}{b}\in K^\times|(a\OK,\mn)=(b\OK,\mn)=1\right \}\]
+	and
+	\[\Kmo=\{x\in K^\times|x\equiv 1\pmod\m\}\]
+	where $x\equiv 1\pmod \m$ has the following meaning. First, if $\sigma$ is a real infinite prime dividing $\mi$, it means that $\sigma(x)>0$. If $\p$ divides $\mn$ to the exact power $n_\p$, it means that $\text{ord}_\p(x-1)\geq n_\p$, where $\text{ord}_\p$ is the normalised discrete valuation on $K^\times$ associated to $\p$. 
+	
+	One can easily verify that $\Km\subseteq\Kmo$. Taking $x=\frac{a}{b}\in\Km$ and using the properties of $\text{ord}_\p$, we see that $x\in\Kmo$ is equivalent to $a-b\in\p^{n_\p}$ for all the finite primes $\p$ dividing $\m$ and $\sigma(a/b)>0$ for all real infinite primes $\sigma$ dividing $\m$. This equivalent definition now coincides with the definition of $\Q_{m\infty,1}$ we gave above.
+	
+	Now letting $\imath:\Km\rarr \IKm$ be the map sending $x$ to $x\OK$, we can define the ray class groups.
+	
+	\begin{defn}
+		Let $K$ be a number field and $\m$ a modulus of $K$. The ray class group mod $\m$, denoted $C_\m$, is defined as the quotient
+		\[\IKm/\imath(\Kmo)\]
+		The order of $C_\m$ is denoted $h_\m$. 
+	\end{defn}
+	
+	The second part of this definition makes sense, as one can show that the ray class group mod $\m$ is always finite. These objects may seem very abstract at first sight, but in fact they are familiar in many cases.
+	
+	\clearpage
+	\begin{ex}\end{ex} Take the field $K$ to be $\Q$ and take the modulus $\m$ to be $m\infty$ for some integer $m$. What we actually proved at the beginning of this section is that 
+	\[C_{m\infty}\simeq (\Z/m\Z)^\times\]
+	and so $h_{m\infty}=\varphi(m)$. Note that $I_\Q^{m}=I_\Q^{m\infty}$.
+	
+	\begin{ex}\end{ex} Let $K$ be any field and let $\m=1$ be the trivial modulus. In this case $\IKm=I_K$ and $\Kmo=K^\times$, so $C_1=\text{Cl}(K)$ is the usual class group of $K$ and $h_1=h_K$ is just the class number of $K$. Therefore one should consider ray class groups as a natural generalisation of the usual class group of a field.
+	
+	\begin{ex}\end{ex} Let $K$ be a real quadratic field and let $\infty_0$ and $\infty_1$ denote its two real infinite primes. Taking $\m=\infty_0\infty_1$, we obtain the narrow-class group of $K$. Indeed, $\IKm=I_K$ and so $C_\m$ is the group of ideals modulo principal ideals generated by totally positive elements, i.e. elements that are positive under each embedding of $K$ in $\R$. In this case, $h_\m$ is denoted $h_+$ and is called the narrow-class number. One can show that $h_+=2h_K$ or $h_K$, depending on the sign of the norm of the fundamental unit.
+	
+	\begin{ex}\end{ex} Let $K$ be an imaginary quadratic field. A well-known result says that the ideal class group of $K$ is isomorphic to the group of binary quadratic forms of discriminant $D_K$, the discriminant of $K$. For a non-fundamental quadratic discriminant $D<0$, things are slightly more complicated. Writing $D$ as $D=f^2D_0$, where $D_0$ is fundamental, one can show that the form class group of discriminant $D$ is naturally isomorphic to the group of proper ideals of the order of conductor $f$ in $K$. With more work, one can show that this group is in fact a quotient of the ray class group mod $f\OK$. In this sense, the ray class groups of a quadratic imaginary field allows us to recover the correspondence between form class groups and ideal class groups in quadratic fields.
+	
+	These ray class groups will play a role analogue to $(\Z/m\Z)^\times$ in number fields other than $\Q$, as one can see in the following definition:
+	
+	\begin{defn}
+		Let $K$ be a number field, $\m$ be a modulus of $K$ and $\chi$ be a character of $C_\m=\IKm/\imath(\Kmo)$, the ray class group mod $\m$. Then a Dirichlet L-series is a series of the form 
+		\[\Lms=\sum_{\a\subseteq\OK}\frac{\chi(\a)}{\N(\a)^{s}}\]
+		where $\N(\a)=(\OK:\a)$, $\chi(\a)=0$ if $(\a,\m_0)\neq 1$ and $\chi(\a)=\chi(\a\mod{\imath(\Kmo)})$ if $(\a,\m_0)=1$. 
+	\end{defn}
+	
+	This definition is almost identical to the definition of the classical Dirichlet L-series. In fact, if we take $K=\Q$ and $\m=m\infty$, we proved that the Dirichlet L-series defined above coincide with the classical Dirichlet L-series. Note also that for an arbitrary number $K$, the Dirichlet L-series associated to the trivial modulus $\m=1$ and the trivial character $\chi_0$ coincides with the zeta function of $K$, i.e. $L_1(s,\chi_0)=\zeta_K(s)$.
+	
+	These generalized Dirichlet L-series have many properties in common with the classical L-series, as can be seen in the next theorem.
+	
+	\begin{theorem}\label{thm:Lseries}
+		Let $K$ be a number field, $\m$ a modulus and $\chi$ a character of $C_\m$. Then
+		\begin{enumerate}
+			\item For $\text{Re}(s)>1$, $\Lms$ is analytic and has an Euler product expansion:
+			\[\Lms=\prod_{\p\nmid\m_0}(1-\chi(\p)\N(\p)^{-s})^{-1}\]
+			
+			\item If $\chi\neq\chi_0$, $\Lms$ can be analytically continued to the region $\text{Re}(s)>1-1/[K:\nolinebreak[4]\Q]$. Moreover, $L_\m(1,\chi)\neq 0$ in this region.
+			
+			\item If $\chi=\chi_0$, $L_\m(s,\chi_0)$ can be analytically continued to the region $\text{Re}(s)>1-1/[K:\nolinebreak[4]\Q]$ except for a simple pole at $s=1$. Moreover, if $\m=1$, the residue of $L_1(s,\chi_0)=\zeta_K(s)$ is
+			\[\lim_{s\rightarrow 1}(s-1)\zeta_K(s)=\frac{2^{r_1}(2\pi)^{r_2}\text{Reg}(K)}{w_K\sqrt{|D_K|}}h_K\]
+			where
+			\begin{itemize}
+				\item $r_1$ is the number of real infinite primes of $K$ and $r_2$ is the number of complex infinite primes of $K$.
+				\item Reg$(K)$ is the regulator of $K$.
+				\item $w_K$, called the root number, is the number of roots of unity in $K$.
+				\item $D_K$ is the discriminant of $K$.
+				\item $h_K$ is the class number of $K$. 
+			\end{itemize}						
+		\end{enumerate}
+	\end{theorem}
+		\begin{proof}
+			We will not give a full proof of all these results here, but we will give precise references.
+			
+			For the proof of $(1)$, see \cite{Neu} Chapter V, Theorem $2.2$. Note that assuming the convergence of $\Lms$ for $\text{Re}(s)>1$, it is not hard to show the existence of the Euler product. 
+			
+			For a proof of the continuation of $\Lms$ for $\chi\neq\chi_0$, see \cite{Neu} Chapter V, Theorem $3.2$. The non-vanishing is much harder to prove. See for example \cite{Jan}, Chapter V, Proposition $10.2$. For a proof using Artin L-functions, see \cite{Neu}, Chapter V, Lemma $6.3$. Both proofs rely on the existence theorem of class field theory.
+			
+			For a proof of $(3)$, see \cite{Neu} Chapter V, Theorem $2.2$ and \cite{Jan}, Chapter IV, Theorem $2.14$.			
+		\end{proof}
+		
+		Recall that the proof of Dirichlet's theorem on primes in arithmetic progressions relies crucially on the fact that $\zeta_\Q(s)=\zeta(s)$ has a simple pole at $s=1$ and $L(s,\chi)$ is defined and non-vanishing at $s=1$. This theorem generalises those results and will also play a very important role in  the proof of Tchebotarev's theorem. It is worth noting that the formula giving the residue of $\zeta_K(s)$ at $s=1$ is called the \emph{class number formula}. 
+	
+		\begin{ex}\end{ex} Using the class number formula for the field $\Q$, we see that $\zeta(s)$ has residue $1$ at $s=1$. This could be seen using much simpler methods!
+		
+		\begin{ex}\end{ex} Let $K$ be a quadratic number field. 
+		
+		If $K$ is imaginary, then we saw that $r_2=0$ and $r_1=1$. Since $\OK^\times$ has rank $r_1+r_2-1=0$ as a $\Z$-module, Reg$(K)=1$ and the class number formula tells us that the residue at $s=1$ of $\zeta_K(s)$ is
+		\[\frac{2\pi}{w_K\sqrt{|D_K|}}h_K\]
+		Using the correspondence between quadratic forms and ideals, we see that this formula is essentially equivalent to Dirichlet's class number formula for imaginary quadratic fields.
+		
+		If $K$ is a real quadratic field, then $r_1=2$ and $r_2=0$. Moreover, $w_K=2$ and Reg$(K)=\log|\epsilon_K|$, where $\epsilon_K$ is a fundamental unit of $K$. Then the residue of $\zeta_K(s)$ at $s=1$ is simply
+		\[\frac{2\log|\epsilon_K|}{2\sqrt{D_K}}h_K=\frac{\log|\epsilon_K|}{\sqrt{D_K}}h_K\]
+		Here the correspondence with Dirichlet's class number formula is slightly less trivial. This is because the form class group is isomorphic to the narrow-class group of $K$, so $h_K=h_+$ or $2h_+$, where $h_+$ is the narrow-class number of $K$. Thus the formula above essentially gives Dirichlet's class number formula, modulo a factor of $2$, depending on the sign of the norm of the fundamental unit.
+		
+		\section{Dirichlet density}
+			Before starting the proof of the Tchebotarev density theorem, we need to define the notion of Dirichlet density. First, we introduce some notation. Given functions $f$ and $g$, we write $f\sim g$ if $f-g$ is analytic in some neighbourhood of $s=1$. 
+			\begin{defn}
+				Let $K$ be a number field and let $\mathcal{S}$ be a set of finite primes of $K$. The Dirichlet density of $\S$, denotes $\delta(\S)$ is defined as
+				\[\dS=\lim_{s\rightarrow 1^+}\frac{\sum_{\p\in\S}\N(\p)^{-s}}{\sum_{\p}\N(\p)^{-s}}=\lim_{s\rightarrow 1^+}\frac{\sum_{\p\in\S}\N(\p)^{-s}}{-\log(s-1)}\]
+				provided that the limit exists.
+			\end{defn}
+			
+			Note that the second equality in the definition follows from the fact that
+			\[\log(\zeta_K(s))=\sum_{\p}\sum_{m=1}^{\infty}\frac{1}{m\N(\p)^{sm}}=\sum_{\p}\N(\p)^{-s}+\sum_{\p}\sum_{m=2}^{\infty}\frac{1}{m\N(\p)^{sm}}\sim\sum_{\p}\N(\p)^{-s}\]
+			and
+			\[\log(\zeta_K(s))\sim-\log(s-1)\]
+			where we used the fact that if $\p$ is a prime of $K$ lying over the rational prime $p$ (i.e. $\p\cap\Z=p\Z$), then $\N(\p)=p^{f(\p/p)}$, where $f(\p/p)$ is the inertial degree of $\p$.
+			
+			The Dirichlet density has many properties. Here are a few of them:
+			\begin{prop}
+				Let $\S$ and $\mathcal{T}$ be sets of finite primes of a number field $K$ and let $\mathcal{P}_K$ be the set of all finite primes of $K$. Then 
+				\begin{enumerate}
+					\item $\delta(\mathcal{P}_K)=1$.
+					\item If $\S$ is finite, then $\delta(\S)=0$.
+					\item If $\S\subseteq\mathcal{T}$, then $\delta(\S)\leq\delta(\mathcal{T})$ whenever both densities exist.
+					\item If $\dS$ exists, $0\leq \dS\leq 1$.
+					\item If $\S$ and $\mathcal{T}$ are disjoint, then $\delta(\S\cup\mathcal{T})=\delta(\S)+\delta(\mathcal{T})$ whenever both densities exist. 
+					\item Let $\mathcal{R}=\{\p\in\mathcal{P}_K|f(\p/\Z)=1\}$ be the set of primes of relative degree $1$ over $\Q$. Then $\delta(\S)=\delta(\S\cap\mathcal{R})$, whenever the density of $\S$ exists. 
+				\end{enumerate}
+			\end{prop}
+			\begin{proof}
+				The proof of $(1)-(5)$ follows directly from the definition. For the last property, first note that if $\p\in\RR$ and $\p\cap\Z=p\Z$, then $\N(\p)=p$. If $\p\not\in\RR$, then $\N(\p)\geq p^2$ and there are at most $[K:\Q]$ primes of $K$ lying over a fixed prime of $\Q$. It follows that
+				\[\sum_{\p\in\S}\frac{1}{\N(\p)^s}=\sum_{\p\in\S\cap\RR}\frac{1}{p^{s}}+\sum_{\p\in\S\setminus\RR}\frac{1}{\N(\p)^s}\sim\sum_{\p\in\S\cap\RR}\frac{1}{p^{s}}\]
+				since the second sum is
+				\[\left |\sum_{\p\in\S\setminus\RR}\frac{1}{\N(\p)^s}\right |\leq[K:\Q]\sum_{p\in\Q}\frac{1}{p^{2\sigma}}<\infty\]
+				for any $\sigma>1$.
+			\end{proof}
+			
+			The last property of the density tells us that when we compute the density of a set of primes, we may suppose that our primes are of relative degree one over $\Q$. The fourth and the fifth property, together with the fact that only finitely many primes of $\Q$ ramify in $K$, tells us that we may also suppose that our primes are unramified.
+			
+			To conclude this section about densities, note that one can define a more natural density for a set $\S$ of primes of $K$ as follows:
+			\[\delta_{\text{nat}}(\S)=\lim_{N\rightarrow\infty}\frac{\{\p\in\S|\N(\p)\leq N\}}{\{\p\text{ prime}|\N(\p)\leq N\}}\]
+			provided that this limit exists. This density is called the \emph{natural density} of $\S$. One can show that if $\delta_{\text{nat}}(\S)$ exists, $\dS$ exists and $\delta_{\text{nat}}(\S)=\dS$. However, the natural density may fail to exist even if the Dirichlet density exists. 
+			
+		\section{Dirichlet's theorem revisited}
+		We are now ready to prove a generalized version of Dirichlet's theorem on primes in arithmetic progressions. 
+		
+		\begin{theorem}\label{thm:Dirichlet2}
+			Let $K$ be a number field, let $\m$ be a modulus of $K$ and let $\h$ be a fixed class in $C_\m$, the ray class group mod $\m$. If $\mathcal{P}(\h)$ denotes the set of primes of $K$ that are prime to $\m_0$ and congruent to $\h\mod\imath(\Kmo)$, then
+			\[\delta(\mathcal{P}(\h))=\frac{1}{|C_\m|}\] 
+		\end{theorem}
+		Before proving this theorem, recall that if $\hat{G}$ denotes the group of characters of a finite abelian group $G$, i.e. $\hat{G}=\{\text{homomorphism }\chi:G\rarr\C^\times\}$, then
+		\[\sum_{\chi\in\hat{G}}\chi(g)=\begin{cases}
+			|G| &\text{if }g=1\\
+			0	&\text{if }g\neq 1
+		\end{cases}\]
+		for any $g\in G$.
+		\begin{proof}
+			The proof is identical to the proof of Dirichlet's theorem. First, we see that for $\text{Re}(s)>1$
+			\[\log\Lms=\sum_{\p\nmid\m_0}\sum_{m=1}^\infty\frac{\chi(\p)^m}{m\N(\p)^{ms}}\sim\sum_{\p\nmid\m_0}\frac{\chi(\p)}{\N(\p)^{s}}=\sum_{\p}\frac{\chi(\p)}{\N(\p)^{s}}\]
+			It follows that
+			\[\sum_{\chi\text{ mod}\m}\chi^{-1}(\h)\log\Lms\sim\sum_{\p}\frac{\sum_{\chi\text{ mod}\m}\chi^{-1}(\h)\chi(\p)}{\N(\p)^s}=|C_\m|\sum_{\p\in\mathcal{P}(\h)}\frac{1}{\N(\p)^s}\]
+			where the sum $\sum_{\chi\text{ mod}\m}$ runs over all characters of $C_\m$. Using the first part of theorem \ref{thm:Lseries}, we see that for Re$(s)>1$,
+			\[L_\m(s,\chi_0)=\prod_{\p\nmid\m_0}(1-\N(\p)^{-s})^{-1}=\zeta_K(s)\prod_{\p|\m_0}(1-\N(\p)^{-s})\]
+			and so $\log L_\m(s,\chi_0)\sim\log\zeta_K(s)\sim-\log(s-1)$. Using this and theorem \ref{thm:Lseries} again, we see that
+			\[\log L_\m(s,\chi_0)+\sum_{\chi\neq\chi_0}\chi^{-1}(\h)\log\Lms\sim-\log(s-1)\]
+			This proves that
+			\[|C_\m|\sum_{\p\in\mathcal{P}(\h)}\frac{1}{\N(\p)^s}\sim-\log(s-1)\]
+			and completes the proof.
+		\end{proof}
+		
+		If we take $K$ to be $\Q$ and $\m$ to be $m\infty$, we obtain directly Dirichlet's theorem. Note the importance of theorem \ref{thm:Lseries} in the proof: the two main ingredients were the simple pole of $L_\m(s,\chi_0)$ at $s=1$ and the non-vanishing of $\Lms$ at $s=1$ for $\chi\neq\chi_0$.
+		
+		\section{Class field theory}
+		In the previous section, we completed the first step of our three step proof of the Tchebotarev theorem. In order to complete the second one, we will need to translate our result about the density of primes lying in certain residue classes into a result involving the Galois group of certain extensions. We will do so with the help of class field theory. 
+		
+		Class field theory is one of the most elegant part of algebraic number theory. The main results are easy to state and relatively simple to understand. However, the proofs are long and use many tools. In this section, we will start by briefly recalling the construction of the Artin map. Then we will state (without proof), the two main results of class field theory, namely the \emph{Artin Reciprocity Law} and the \emph{Existence Theorem}.
+		
+		Let $L/K$ be an extension of number fields. Then $\OK$ is a Dedekind domain and so the ideals of $K$ factor uniquely into a product of primes ideals (if not explicitly mentioned, we suppose that our primes are finite).  If $\p$ be a prime of $K$, we also know that
+		\[\p\OL=\P_1^{e_1}\dots\P_g^{e_g}\]
+		where the $\P_i$ are primes of $\OL$ and $e_i\geq 1$. Moreover, $\OL/\P_i$ is a finite extension of $\OK/\p$ and we let $f_i$ denote the degree of this extension. This $f_i$ is called the \emph{relative degree} of $\P_i$ over $\p$ (or $K$). If $L/K$ is a Galois extension, then the $e_i$ are all equal to some $e$ and the $f_i$ are all equal to $f$. This gives the very useful relation $[L:K]=efg$. Recall also that only finitely many primes of $K$ are ramified in $L$. If $\P$ is a prime of $L$ and $\p=\P\cap\OK$, so that $\p\OL=\P^{e}\dots$, we denote $e$ by $e(\P/K)$ and the relative degree of $\P$ by $f(\P/K)$. 
+		
+		\begin{prop}
+			Let $E/L/K$ be extensions of number fields. Let $\p_E$ be a prime of $E$ and let $\p_L=\p_E\cap\OL$ and $\p_K=\p_E\cap\OK$. Then 
+			\begin{enumerate}
+				\item $f(\p_E/K)=f(\p_E/L)f(\p_L/K)$.
+				\item $e(\p_E/K)=e(\p_E/L)e(\p_L/K)$.
+			\end{enumerate}
+		\end{prop}
+		\begin{proof}
+			The proof of the second point is seen by looking at the decomposition of $\p_K$ in $L$ and of $\p_L$ in $E$. The first point follows from the multiplicativity of the degree of field extensions.
+		\end{proof}
+		
+		This proposition can be used to analyse the decomposition of primes in multiple extensions. For example, if a prime in a number field $K$ is unramified in $L$, it is unramified in any field $F$ such that $L\supseteq F\supseteq K$. If a prime in a number field $K$ has relative degree one over $\Q$, it must have relative degree one over any field contained in $K$.
+		
+		Now suppose that $L/K$ is a Galois extension with Galois group $G$ and let $\P$ be a prime of $L$. Any automorphism $\sigma:L\rarr L$ induces a map $\sigma:\OL\rarr\OL/\P$, which factors through $\P$ if and only if $\sigma(\P)=\P$. The subgroup of $G$ formed by the automorphisms that preserve $\P$ (i.e. such that $\sigma(\P)=\P$) is called the \emph{decomposition group }of $\P$ and is denoted $D(\P)$. Let $\p=\P\cap\OK$ and let $k_{\P}=\OL/\P$ and $k_\p=\OK/\p$ denote the residue fields of $\P$ and $\p$. Then the reasoning above shows that we have a well defined map
+		\[\tilde{\cdot}:D(\P)\rarr\Gal(k_\P/k_\p)\]
+		sending $\sigma$ to $\tilde{\sigma}$, where $\tilde{\sigma}(\alpha+\P)=\sigma(\alpha)+\P$. The map $\tilde{\cdot}$ is clearly a homomorphism and one can show that it is also surjective. The kernel of this map, called the \emph{inertia subgroup}, is $I(\P)=\{\sigma\in G|\sigma(\alpha)\equiv\alpha\pmod\P\}$. Since $D(\P)$ has order $e(\P/K)f(\P/K)$, $I(\P)$ has order $e(\P/K)$.
+		
+		Now take a prime $\p$ in $K$ that is unramified in $L$ and fix a $\P$ of $L$ that divides $\p$. Since $\p$ is unramified, $e(\P/\p)=1$ and it follows by what we mentioned above that $D(\P)\simeq\Gal(k_\P/k_\p)$. We know that $\Gal(k_\P/k_\p)$ is cyclic and generated by the Frobenius element and so there exists a unique element of $D(\P)$ that maps to it. We denote this element by
+		\[\Frob{L/K}{\P}\in D(\P)\]
+		The symbol $\Frob{L/K}{\bullet}$ is called the \emph{Artin symbol}. 
+		
+		If we choose another prime of $L$ that divides $\p$, say $\P'$, then $\P'=\tau(\P)$ for some $\tau\in G$ (recall that such a $\tau$ always exists, as $G$ acts transitively on the set of primes of $L$ dividing $\p\OL$). We then see that $D(\P')=D(\tau(\P))=\tau D(\P)\tau^{-1}$ and similarly 
+		\[\Frob{L/K}{\P'}=\Frob{L/K}{\tau(\P)}=\tau\Frob{L/K}{\P}\tau^{-1}\]
+		
+		This relation shows that in general the Artin symbol depends on the choice of prime of $L$ dividing $\p$. However, the symbol is independant of this choice in the case where $L/K$ is abelian. Thus the symbol
+		\[\Frob{L/K}{\p}\]
+		is well-defined. If we let $\m$ be a modulus divisible by all the (finitely many) ramified primes of $K$, we obtain the so-called \emph{Artin map}
+		\[\Frob{L/K}{\bullet}:\IKm\rarr\Gal(L/K)\]
+		by defining
+		\[\Frob{L/K}{\a}=\prod_{\p\subseteq K\text{ prime}}\Frob{L/K}{\p}^{\alpha_\p}\]
+		if $\a=\prod_{\p\subseteq K\text{ prime}}\p^{\alpha_\p}$, as we would do for the Jacobi symbol. The condition on $\m$ is there to ensure that the Artin symbol is well defined (if $\p$ is ramified in $L$, there is more than one element of $\Gal(L/K)$ mapping to the Frobenius).
+		
+		If $L/K$ is not abelian, we define
+		\[\Frob{L/K}{\p}=\left \{\Frob{L/K}{\P}\left| \P\text{ divides }\p\right .\right \}\]
+		In other words, since the Artin symbol depends on the prime we choose above $\P$, we take all of them. By what we saw above, this is a conjugacy class in $\Gal(L/K)$. We will need this more general point of view to state Tchebotarev's theorem. 
+		
+		We can now state the first main theorem of class field theory.
+		
+		\begin{theorem}[Artin Reciprocity Theorem]
+			Let $L/K$ be an abelian extension of number fields. Then there exists a modulus $\m$ of $K$ divisible by all ramified primes of $K$, finite or infinite, such that the Artin map
+			\[\Frob{L/K}{\bullet}:\IKm\rarr\Gal(L/K)\]
+			is surjective. Moreover, the kernel $H^\m$ of this map contains $\imath(\Kmo)$. Consequently,
+			\[\Gal(L/K)\simeq \IKm/H^\m\]
+		\end{theorem}
+
+		A ramified infinite prime is a real infinite prime $\sigma$ of $K$ such that there exists a complex infinite prime $\tau$ of $L$ that restricts to $\sigma$ on $K$, i.e. $\tau|K=\sigma$. By definition, a complex infinite prime of $K$ cannot ramify in $L$. 	
+		
+		If $L/K$ is an extension of number fields and $\m$ is a modulus of $K$, a subgroup $H^\m\subseteq\IKm$ containing $\imath(\Kmo)$ is called a \emph{congruence subgroup} for $\m$. These congruence subgroups naturally correspond to the subgroups of the ray class group mod $\m$. Thus the Artin Recitpocity Theorem states that the Galois group of any abelian extension of $K$ can be realised as a quotient of a ray class group mod $\m$ for some modulus $\m$. This theorem is beautiful because it tells us that the abelian extensions of $K$, which live "outside of $K$", have something to do with the "internal" structure of $K$. 
+		
+		A natural question is to ask if a certain converse of this theorem is true. The answer is yes.
+		
+		\begin{theorem}[Existence Theorem]
+			Let $K$ be a number field, $\m$ be a modulus of $K$	and $H^\m$ be a congruence subgroup for $\m$, i.e. $\imath(\Kmo)\subseteq H^\m\subseteq\IKm$. Then there exists a unique abelian extension $L$ of $K$, all of whose ramified primes, finite or infinite, divide $\m$, such that the Artin map
+			\[\Frob{L/K}{\bullet}:\IKm\rarr\Gal(L/K)\]
+			has kernel $H^\m$. Consequently,
+			\[\Gal(L/K)\simeq \IKm/H^\m\]
+		\end{theorem}
+
+		This Existence Theorem will be the main ingredient in the second step of the proof of Tchebotarev's theorem.
+		
+		To conclude this section on class field theory, one may ask if the correspondence between abelian extensions of $K$ and congruence subgroups is bijective. The answer is no. The problem is that many congruence subgroups can correspond to a given abelian extension of $K$, by playing with the exponents of the modulus, for example. This problem can be solved by introducing a certain equivalence relation on the congruence subgroups. Then the abelian extensions correspond in a bijective way to these equivalence classes. To learn more about this, a good reference is \cite{Jan}, Chapter V, section 6.
+		
+		\section{Dirichlet's theorem revisited again}
+			In this section, we will reinterpret Dirichlet's theorem in the language of Galois groups of abelian extensions, using class field theory. We introduce some notation. Let $L/K$ be an abelian extension with Galois group $G$ and let $\sigma$ be any automorphism in $G$. Then we define
+			\[\PP_{L/K}(\sigma)=\left \{\p\text{ unramified prime of }K\left |\Frob{L/K}{\p}=\sigma\right .\right \}\]
+		
+		We can now restate Dirichlet's theorem in terms of Galois groups.
+		\begin{theorem}
+			Using the same notation as above, we have
+			\[\delta(\PP_{L/K}(\sigma))=\frac{1}{|G|}=\frac{1}{[L:K]}\]
+		\end{theorem}
+		\begin{proof}
+			By the Existence Theorem, there exists a modulus $\m$ of $K$ and a congruence subgroup $H^\m$ for $\m$ such that the Artin map induces an isomorphism $\IKm/H^\m\simeq G$. Since excluding a finite number of primes does not affect the density, we may suppose that no prime of $\PP_{L/K}(\sigma)$ divides $\m_0$. Let $\overline{H}^\m$ denote the image of $H^\m$ in $C_\m$, that is $\overline{H}^\m=H^\m/\imath(\Kmo)$. Then one sees that 
+			\[\PP_{L/K}(\sigma)=\left \{\p\text{ unramified prime of }K\left |\p\nmid\m_0, \p\in \a \overline{H}^\m\right .\right \}\]
+		for a certain class $\a$ in $C_\m$ (we used the isomorphism $\IKm/H^\m\simeq G$ and $\IKm/H^\m\simeq C_\m/\overline{H}^\m$). Now $\overline{H}^\m$ is itself a union of classes of $C_\m$, say $\overline{H}^\m=\{\mathfrak{h}_1,\dots,\mathfrak{h}_n\}$, where $n=(H^\m:\imath(\Kmo))$. We can now use Dirichlet's theorem \ref{thm:Dirichlet2} to say that $\delta(\PP(\mathfrak{h}_i))=1/|C_\m|$ for all $i$. Since $\PP_{L/K}(\sigma)=\PP(\mathfrak{h}_1)\cup\dots\cup\PP(\mathfrak{h}_n)$ and $\PP(\mathfrak{h}_i)\cap\PP(\mathfrak{h}_j)=\emptyset$ for $i\neq j$, we see that
+			\[\delta(\PP_{L/K}(\sigma))=\delta(\PP(\mathfrak{h}_1))+\dots+\delta(\PP(\mathfrak{h}_n))=\frac{(H^\m:\imath(\Kmo))}{|C_\m|}=\frac{(H^\m:\imath(\Kmo))}{(\IKm:\imath(\Kmo))}=\frac{1}{|G|}\]
+		\end{proof}
+		
+		This theorem is in fact the abelian version of Tchebotarev's theorem.
+		
+		\section{Proof of Tchebotarev's theorem}
+		We are finally ready to prove the main theorem of the notes. Before, we introduce a bit more notation. As we said above, if $L/K$ is a non-abelian Galois extension of number fields and $\p$ is a prime of $K$, then $\Frob{L/K}{\p}$ is a conjugacy class $c$ in $\Gal(L/K)$. In this case, we define 
+		\[\PP_{L/K}(c)=\left \{\p\text{ unramified prime of }K\left |\Frob{L/K}{\p}=c\right .\right \}\]
+		Note that this definition makes sense for abelian extensions also, since any conjugacy class contains a single element in an abelian group. Therefore $\PP_{L/K}(\sigma)=\PP_{L/K}(c)$, where $c=\{\sigma\}$ is the conjugacy class of $\sigma$. We can now state and prove
+		
+		\begin{theorem}[Tchebotarev's Theorem]
+			Let $L/K$ be a Galois extension of number fields with Galois group $G$ and let $c$ be a conjugacy class in $G$. Then
+			\[\delta(\PP_{L/K}(c))=\frac{|c|}{|G|}\]
+		\end{theorem}
+		\begin{proof}
+			Choose $\sigma\in c$, so that $c$ is the conjugacy class of $\sigma$.
+			Note that we know that the result is true if $G$ is abelian, as in this case $c=\{\sigma\}$ and the result follows from the previous theorem. The idea is to use this information and analyse the decomposition of primes to deduce the general case. Let $E$ be the fixed field of $H=\langle\sigma\rangle\leq G$ in $L$, so that $L/E$ is a cyclic extension with Galois group $H$. By the abelian case of the theorem, we know that $\delta(\PP_{L/E}(\sigma))=\frac{1}{|H|}$. Let $\S\subseteq\PP_{L/E}(\sigma)$ be the subset of primes of $E$ of relative degree one over $K$. By the properties of the Dirichlet densities, we know that $\delta(\S)=\delta(\PP_{L/E}(\sigma))=1/|H|$.
+			
+			Now note that $\PP_{L/K}(c)=\left \{\p\text{ prime of }K\left |\Frob{L/K}{\P}=\sigma\text{ for some prime }\P\text{ of }L\text{ lying over }\p\right .\right \}$. Our goal now is to relate $\S$ to $\PP_{L/K}(c)$ and then use this relation to find the density of $\PP_{L/K}(c)$. Let $\P$ be a prime of $\S$ and let $\p=\P\cap\OK$. We need to know how many primes divisors of $\p$ in $E$ are in $\S$. Fix a prime $\wp$ of $L$ that divides $\P$ and recall that $\Frob{L/E}{\P}=\sigma$. If we let $G/H=\{H\tau_1,\dots,H\tau_{[G:H]}\}$ be a system of coset representatives of $H$ in $G$, then the $\tau_i(\wp)$ are the distinct prime divisors of $\p$ in $L$. To see this, first note that
+			\[\sigma=\Frob{L/E}{\wp}=\Frob{L/K}{\wp}^{f(\P/K)}=\Frob{L/K}{\wp}\]
+			because $\P\in\S$ implies $f(\P/K)=1$ by definition. Then $D_{E/K}(\wp)=\left \langle\Frob{L/K}{\wp}\right \rangle=\langle\sigma\rangle=H$, so $f(\wp/K)=|H|$ and $g(\wp/K)=[G:H]$. It follows that the $\tau_i(\wp)$ are all distinct, which proves the claim. This also proves that the $\P_i=\tau_i(\wp)\cap\mathcal{O}_E$ are the divisors of $\p$ in $E$. Now that we found a description of these divisors, we need to know which of these $\P_i$ have relative degree one over $K$, i.e. which $\P_i$ belong to $\S$. We claim that this is the case if and only if $\tau_i^{-1}\sigma\tau_i=\sigma$, i.e. if and only if $\tau_i$ belongs to $C_G(\sigma)$, the centralizer of $\sigma$ in $G$. To see this, note that
+			\[|H|=f(\wp/\p)=f(\wp/\P_i)f(\P_i/\p)\]
+			and 
+			\[D_{L/E}(\tau_i(\wp))=\{\gamma\in H|\gamma\tau_i(\wp)=\tau_i(\wp)\}=\tau_i^{-1}H\tau_i\cap H\]
+			The claim now follows directly form the fact that $H=\langle\sigma\rangle$ and $|D_{L/E}(\tau_i(\wp))|=f(\wp/\P_i)$. 
+			
+			Finally, we can say that there are exactly $|C_G(\sigma)|/|H|$ primes in $\S$ that divide $\p$. Therefore we have
+			\[\frac{|C_G(\sigma)|}{|H|}\delta(\PP_{L/K}(c))=\delta(\S)=\frac{1}{|H|}\]
+			and so 
+			\[\delta(\PP_{L/K}(c))=\frac{1}{|C_G(\sigma)|}\]
+			It is an easy exercise in group theory to prove that $|C_G(\sigma)|=|G|/|c|$ (just let $G$ act on $H$ by conjugation). This completes the proof. 
+		\end{proof}
+		
+		\section{A few applications of Tchebotarev's theorem}
+			As the reader may guess, Tchebotarev's theorem has a lot of applications. Here we will only give a few results that follow easily from the theorem and that have nice consequences.
+			
+			\begin{coro}
+				Let $L/K$ be a Galois extension of number fields. Then the density of the primes of $K$ that split completely in $L$ is $\frac{1}{[L:K]}$.
+			\end{coro}
+			\begin{proof}
+				Take the conjugacy class of $1$ in $\Gal(L/K)$. By Tchebotarev's theorem
+				\[\PP_{L/K}(1)=\left \{\p\text{ unramified prime of }K\left |\Frob{L/K}{\p}=1\right .\right \}\]
+				has density $1/[L:K]$. But we know that if $\P$ divides $\p$ in $L$, $\Frob{L/K}{\P}$ has order exactly $f(\P/\p)$. We deduce that if $\p\in\PP_{L/K}(1)$, then $f(\P/\p)=1$ for any $\P$ in $L$ dividing $\p$.
+			\end{proof}
+			
+			We can now easily prove the following theorem:
+			
+			\begin{theorem}
+				Let $L$ and $M$ be finite Galois extensions of a number fields $K$. Then
+				\[L\subseteq M\Leftrightarrow\text{Spl}(L/K)\supseteq\Spl(M/K)\]
+				In particular, 
+				\[L=M\Leftrightarrow\text{Spl}(L/K)=\Spl(M/K)\]				
+			\end{theorem}
+			\begin{proof}
+				$\Rightarrow)$ Obvious from the properties of the inertial degree.
+				
+				$\Leftarrow)$ First, we claim that
+				\[\Spl(LM/K)=\Spl(L/K)\cap\Spl(M/K)\]
+				
+				To see this, first recall that there is a natural injection
+				\[\Gal(LM/K)\hookrightarrow\Gal(L/K)\times\Gal(M/K)\]
+				defined as $\sigma\mapsto (\sigma|L,\sigma|M)$. Therefore
+				\begin{align*}
+					\p\in\Spl(LM/K) &\Leftrightarrow \Frob{LM/K}{\p}=1\\
+									&\Leftrightarrow \Frob{LM/K}{\p}|K=1\text{ and }\Frob{LM/K}{\p}|L=1\\
+									&\Leftrightarrow \Frob{L/K}{\p}=1\text{ and }\Frob{M/K}{\p}=1\\
+									&\Leftrightarrow \p\in\Spl(L/K)\cap\Spl(M/K)\\
+				\end{align*}			
+				Using the hypothesis, we get
+				\[\Spl(LM/K)=\Spl(M/K)\]
+				
+				and so by the previous theorem, 
+				\[\frac{1}{[LM:K]}=\frac{1}{[M:K]}\]
+				which is equivalent to $L\subseteq M$.
+			\end{proof}
+			
+			\begin{ex}\end{ex}
+			Using the basic properties of quadratic fields, we can see that
+			\[\Spl(\Q(i)/\Q)=\{p\text{ prime of }\Q|(-1/p)=1\}=\{p\equiv 1\pmod 4\}\]
+			where $(-1/p)$ is the Legendre symbol. Then the theorem above tells us that $\Q(i)$ is uniquely determined, as an extension of $\Q$, by this set $\Spl(\Q(i)/\Q)$. In other words, if we find a Galois extension $K/\Q$ such that $\Spl(K/\Q)$ is the set of primes congruent to $1 \mod 4$ (up to a finite number of exceptions, since this doesn't affect the density), then $K=\Q(i)$.
+			
+			This idea that extensions of $K$ are classified in terms of some information coming from $K$ is the basic idea of class field theory. In particular, we see that in order to determine all the possible Galois extensions of $K$, one has to determine the sets $\Spl(K/\Q)\subseteq\Q$ that can occur. For abelian extensions, class field theory does that. For arbitrary Galois extensions, characterising those sets is still an open question.
+\begin{thebibliography}{DDDD}
+	\bibitem[Cox]{Cox}
+    {\scshape Cox, D. A.}, \emph{Primes of the Form $x^2 + ny^2$: Fermat, Class Field Theory, and Complex Multiplication}, Pure and Applied Mathematics: A Wiley Series of Texts, Monographs and Tracts, Wiley, 1989.
+
+    \bibitem[Jan]{Jan}
+    {\scshape Janusz, G. J.}, \emph{Algebraic Number Fields}, Advances in the Mathematical Sciences, American Mathematical Society, 1996.    
+
+	\bibitem[Mil]{Mil}
+    {\scshape Milne, J. S.}, \emph{Algebraic Number Theory}, Available at www.jmilne.org/math/, 2012. 
+
+	\bibitem[Mil]{Mil}
+    {\scshape Milne, J. S.}, \emph{Class Field Theory}, Available at www.jmilne.org/math/, 2013. 
+
+    \bibitem[Neu]{Neu}
+    {\scshape Neukirck, J.}, \emph{Class Field Theory}, Grundlehren Der Mathematischen Wissenschaften, Springer-Verlag Berlin Heidelberg, 1986.
+\end{thebibliography}
+\end{document}
