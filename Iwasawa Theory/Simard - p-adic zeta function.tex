@@ -1,0 +1,105 @@
+\documentclass[twoside,10pt]{article}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[top=1in, left=1.25in, right=1in, bottom=1in]{geometry}%Pour des pages plus larges
+\renewcommand*\familydefault{\sfdefault}%Pour des lettres sans serif
+
+\usepackage{graphicx}%Pour les images
+
+\usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref} 
+\hypersetup{linkcolor=blue,citecolor=red,filecolor=dullmagenta,urlcolor=darkblue}
+
+%\usepackage{palatino}%Pour utiliser l'écriture Palatino
+\usepackage{euler}%Change l'aspect des formules mathématiques
+
+\usepackage{multirow}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{defn}{Definition}
+\newtheorem{coro}{Corollary}
+
+\newcommand{\rarr}{\rightarrow}
+\newcommand{\esp}{\hspace{1cm}}
+\newcommand{\for}{\hspace{1cm}\textrm{for }}
+\newcommand{\where}{\hspace{1cm}\textrm{where }}
+
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\T}{\mathfrak{T}}
+\newcommand{\B}{\mathfrak{B}}
+\newcommand{\Gfrak}{\mathfrak{G}}
+\newcommand{\Hfrak}{\mathfrak{H}}
+\newcommand{\m}{\mathfrak{m}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\ida}{\mathfrak{a}}
+\newcommand{\idb}{\mathfrak{b}}
+\newcommand{\idc}{\mathfrak{c}}
+\newcommand{\idd}{\mathfrak{d}}
+
+\newcommand{\curlG}{\mathcal{G}}
+\renewcommand{\H}{\mathcal{H}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\S}{\mathcal{S}}
+\renewcommand{\O}{\mathcal{O}}
+
+\newcommand{\eqdef}{:=}
+\newcommand{\Hom}{\text{Hom}}
+\newcommand{\Step}{\text{Step}}
+\newcommand{\charf}{\varepsilon}
+\newcommand{\Gal}{\text{Gal}}
+\newcommand{\del}{\partial}
+\newcommand{\ClK}{\text{Cl}_K}
+\renewcommand{\d}{\text{d}}
+
+\author{Nicolas Simard}
+\date{\today}
+\title{Constructing the p-adic zeta function via cyclotomic units}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section*{Introduction}
+
+\section{$p$-adic measures}
+In this section, we first define $p$-adic measures and see how they are related to Iwasawa Algebras and power series rings. We then introduce operators on them and conclude with of few results on moments of measures.
+
+\subsection{$p$-adic measures, distributions and Iwasawa algebras}
+Let $\Gfrak$ be an abelian profinite group, let $\B_\Gfrak$ be the set of compact open subsets of $\Gfrak$ and let $A$ be any abelian group.
+
+\begin{defn}
+	An $A$-valued distribution $\lambda$ on $\Gfrak$ is a finitely additive function
+	\[\lambda:\T_\Gfrak\rarr A.\]
+	The set of distributions is denoted $\Lambda(\Gfrak,A)$.
+\end{defn}
+
+\textbf{Example: } If $\Gfrak$ is finite, $\B_\Gfrak = \{\{g\}|g\in\Gfrak\}$ and we have a bijection $\lambda\mapsto\sum_{g\in\Gfrak}\lambda(\{g\})g:\Lambda(\Gfrak,A)\rightarrow A[\Gfrak].$
+If $A$ is a ring, so are $A[\Gfrak]$ and $\Lambda(\Gfrak,A)$ (under convolution) and the map is an isomorphism.
+
+\textbf{Example: } In general,
+\[\Lambda(\Gfrak,A)=\varprojlim\Lambda(\Gfrak/\Hfrak,A)=\varprojlim A[\Gfrak/\Hfrak],\]
+where the limit is taken over all open subgroups $\Hfrak$ of $\Gfrak$.
+
+\textbf{Example: } If $A=\Z_p$, one obtains the usual Iwasawa algebra
+\[\Lambda(\Gfrak)\eqdef\Lambda(\Gfrak,\Z_p).\]
+
+Recall that if $f:\Gfrak\rightarrow A$ is a locally constant function, also called a step function, there exists an open subgroup $\Hfrak$ such that $f$ is well defined on $\Gfrak/\Hfrak$, i.e.
+\[f(x) = \sum_{g\mod \Hfrak}f(g)\charf_{g+\Hfrak}(x),\]
+where $\charf_{g+\Hfrak}(x)$ is the characteristic function of the coset $g+\Hfrak$. The set of Step functions from $\Gfrak$ to $A$ is denoted
+\[\Step(\Gfrak,A).\]
+\begin{prop}
+	The $A$-valued distributions on $\Gfrak$ is naturally in bijection with the set
+	\[\Hom(\Step(\Gfrak,A),A).\]
+	If $A$ is a $B$-module, the bijection is $B$-linear.
+\end{prop}
+
+\begin{thebibliography}{DDDD}%
+
+\end{thebibliography}
+\end{document}
+
