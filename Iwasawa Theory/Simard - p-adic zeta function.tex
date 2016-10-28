@@ -48,6 +48,8 @@
 \renewcommand{\O}{\mathcal{O}}
 
 \newcommand{\eqdef}{:=}
+\newcommand{\Dist}{\mathfrak{D}}
+\newcommand{\Meas}{\mathfrak{M}}
 \newcommand{\Hom}{\text{Hom}}
 \newcommand{\Step}{\text{Step}}
 \newcommand{\charf}{\varepsilon}
@@ -70,33 +72,157 @@
 In this section, we first define $p$-adic measures and see how they are related to Iwasawa Algebras and power series rings. We then introduce operators on them and conclude with of few results on moments of measures.
 
 \subsection{$p$-adic measures, distributions and Iwasawa algebras}
-Let $\Gfrak$ be an abelian profinite group, let $\B_\Gfrak$ be the set of compact open subsets of $\Gfrak$ and let $A$ be any abelian group.
+Let $\Gfrak$ be an abelian profinite group, let $\B_\Gfrak$ be the boolean algebra of open subsets of $\Gfrak$, let $\T_\Gfrak\subseteq\B_\Gfrak$ be the set of open subgroups of $\Gfrak$ and let $A$ be any abelian group.
 
 \begin{defn}
 	An $A$-valued distribution $\lambda$ on $\Gfrak$ is a finitely additive function
 	\[\lambda:\T_\Gfrak\rarr A.\]
-	The set of distributions is denoted $\Lambda(\Gfrak,A)$.
+	The set of distributions is denoted $\Dist(\Gfrak,A)$. If $A\subseteq\C_p$, the elements of $\Dist(\Gfrak,A)$ are called $p$-adic distributions.
 \end{defn}
 
-\textbf{Example: } If $\Gfrak$ is finite, $\B_\Gfrak = \{\{g\}|g\in\Gfrak\}$ and we have a bijection $\lambda\mapsto\sum_{g\in\Gfrak}\lambda(\{g\})g:\Lambda(\Gfrak,A)\rightarrow A[\Gfrak].$
-If $A$ is a ring, so are $A[\Gfrak]$ and $\Lambda(\Gfrak,A)$ (under convolution) and the map is an isomorphism.
+The set $\Dist(\Gfrak,A)$ is naturally an abelian group. If $A$ is a $B$-algebra for some ring $B$, the set $\Dist(\Gfrak,A)$ is a $B$-algebra under convolution product, which we won't bother to define here!
 
-\textbf{Example: } In general,
+\subsubsection{Distributions and Iwasawa algebras}
+If $\Gfrak$ is finite, $\B_\Gfrak = \{\{g\}|g\in\Gfrak\}$ and we have an isomorphism of abelian groups
+\[\lambda\mapsto\sum_{g\in\Gfrak}\lambda(\{g\})g:\Dist(\Gfrak,A)\rightarrow A[\Gfrak].\]
+If $A$ is a $B$-algebra for some ring $B$, so is $A[\Gfrak]$ and the isomorphism is an isomorphism of $B$-algebras. For $\Gfrak$ finite, we define
+\[\Lambda(\Gfrak,A)\eqdef A[\Gfrak]\]
+and call it an Iwasawa algebra.
+
+For $\Gfrak$ not necessarily finite, we define
 \[\Lambda(\Gfrak,A)=\varprojlim\Lambda(\Gfrak/\Hfrak,A)=\varprojlim A[\Gfrak/\Hfrak],\]
-where the limit is taken over all open subgroups $\Hfrak$ of $\Gfrak$.
+where the limit is taken over all elements of $\T_\Gfrak$. Given $\Hfrak$ in $\T_\Gfrak$, we have a natural map
+\[\lambda\mapsto\sum_{g\mod\Hfrak}\lambda(g)(g+\Hfrak):\Dist(\Gfrak,A)\rarr\Lambda(\Gfrak/\Hfrak,A).\]
+Since distributions are finitely additive, we have then a natural map
+\[\Dist(\Gfrak,A)\rarr\Lambda(\Gfrak,A),\]
+which is in fact an isomorphism. In a certain sense, the elements of the Iwasawa algebra $\Lambda(\Gfrak,A)$ are like the generating series of distributions. 
 
 \textbf{Example: } If $A=\Z_p$, one obtains the usual Iwasawa algebra
 \[\Lambda(\Gfrak)\eqdef\Lambda(\Gfrak,\Z_p).\]
 
-Recall that if $f:\Gfrak\rightarrow A$ is a locally constant function, also called a step function, there exists an open subgroup $\Hfrak$ such that $f$ is well defined on $\Gfrak/\Hfrak$, i.e.
-\[f(x) = \sum_{g\mod \Hfrak}f(g)\charf_{g+\Hfrak}(x),\]
-where $\charf_{g+\Hfrak}(x)$ is the characteristic function of the coset $g+\Hfrak$. The set of Step functions from $\Gfrak$ to $A$ is denoted
+\subsubsection{Distributions and step functions}
+From now on, suppose that $A$ is a $B$-algebra fro some ring $B$.
+
+Recall that if $s:\Gfrak\rightarrow A$ is a locally constant function, also called a step function, there exists an open subgroup $\Hfrak$ such that $s$ is well defined on $\Gfrak/\Hfrak$, i.e.
+\[s(x) = \sum_{g\in\Gfrak\Hfrak}s(g)\charf_{g}(x),\]
+where $\charf_{g}(x)$ is the characteristic function of the (open) coset $g\in\Gfrak/\Hfrak$. Note that such a representation of $s$ as a finite linear combination of characteristic functions is not unique. The set of step functions from $\Gfrak$ to $A$ is denoted
 \[\Step(\Gfrak,A).\]
+If $A$ is a $B$-algebra, $\Step(\Gfrak,A)$ is a $B$-algebra under the pointwise addition and multiplication of functions.
+
+Let $\lambda$ be an $A$-valued distribution on $\Gfrak$, let $s$ be a step function which is well-defined $\mod\Hfrak$ as above and define
+\[\int_\Gfrak s\d\lambda\eqdef\sum_{g\in \Gfrak/\Hfrak}s(g)\lambda(g).\]
+This gives a well-defined $B$-linear map
+\[\Lambda(\Gfrak,A)\rarr\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A).\]
+For convenience, the value of an element $\lambda\in\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A)$ at a step function $s(x)$ is denoted
+\[\int_{\Gfrak}s(x)\d\lambda(x)\]
+or simply
+\[\int_{\Gfrak}s\d\lambda\]
+when there is no risk of confusion. The $B$-module
+\[\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A)\]
+can be equipped with a natural $B$-algebra structure via the convolution product which is defined as follows: for $\lambda,\mu\in\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A)$, let $\lambda\ast\mu$ be defined as 
+\[\int_{\Gfrak}f\d\lambda\ast\mu=\int_{\Gfrak}\left (f(x+y)\d\lambda(x)\right )\d\mu(y).\]
+The map above is then a $B$-algebra homomorphism. In fact, it is an isomorphism. Indeed, its inverse takes a homomorphism
+$\lambda\in\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A$ to the distribution $lambda$ defined as
+\[\lambda(U)=g(\charf_U).\]
+This sketches the proof of the following proposition.
+
 \begin{prop}
-	The $A$-valued distributions on $\Gfrak$ is naturally in bijection with the set
-	\[\Hom(\Step(\Gfrak,A),A).\]
-	If $A$ is a $B$-module, the bijection is $B$-linear.
+	There is a natural $B$-algebra isomorphism
+	\[\Lambda(\Gfrak,A)\rarr\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A).\]
 \end{prop}
+
+\subsubsection{$p$-adic measures and continuous functions}
+From now on, suppose that $A$ is contained in $\C_p$ (e.g. $A=B=\Z_p$). Let
+\[C(\Gfrak,\C_p)\]
+be the set of continuous functions from $\Gfrak$ to $\C_p$. This is a $\C_p$-Banach when equipped with the norm
+\[\parallel f\parallel=\sup_{x\in\Gfrak} |f(x)|_p.\]
+The set $\Step(\Gfrak,\C_p)$ is dense in $C(\Gfrak,\C_p)$.
+
+\begin{defn}
+	A $p$-adic distribution $\lambda\in\Dist(\Gfrak,A)$ is called a $p$-adic measure if it is bounded (as a function from $\T_\Gfrak$ to $A\subseteq\C_p$). The set of $p$-adic measures is denoted $\Meas(\Gfrak,A)$.
+\end{defn}
+
+Note that if $A$ is bounded, which is the case if $A=\Z_p$ for example, then $\Meas(\Gfrak,A)=\Dist(\Gfrak,A)$. The importance of introducing measures is the following proposition.
+
+\begin{prop}
+	Let $\lambda\in\Meas(\Gfrak,\C_p)$ be viewed as an element of
+	\[\Hom_{B-\text{alg}}(\Step(\Gfrak,\C_p),\C_p)\]
+	via the above isomorphism. Then $\lambda$ extends uniquely to a continuous map
+	\[\lambda:C(\Gfrak,\C_p)\rightarrow\C_p.\]
+\end{prop}
+\begin{proof}
+	Let $\lambda$ be a $p$-adic measure and suppose that
+	\[|\lambda(U)|_p\leq M\]
+	for all $U\in\B_\Gfrak$ and some $M\in\R$. By the density of $\Step(\Gfrak,\C_p)$ in $C(\Gfrak,\C_p$, for any $f\in C(\Gfrak,\C_p)$ one can find a sequence of step functions $s_n\in\Step(\Gfrak,\C_p)$ such that
+	\[f(x)=\lim_{n\rightarrow\infty} s_n(x).\]
+	Then it is easy to see that for any integers $m$ and $n$,
+	\[\lambda(s_n-s_m)\leq M\parallel s_n-s_m\parallel.\]
+	Since the sequence $\{s_n\}$ is Cauchy, so is the sequence $\{\lambda(s_n)\}$ and is makes sense to define
+	\[\lambda(f)=\lim_{n\rightarrow\infty} \lambda(s_n).\]
+	The uniqueness is clear.
+\end{proof}
+
+For $\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)$, define
+\[\parallel\lambda\parallel=\sup_{f\in C(\Gfrak,\C_p)}\frac{|\lambda(f)|}{\parallel f\parallel},\]
+which is a finite real number by the continuity of $\lambda$. Equipped with the convolution product, this set becomes a $\C_p$-Banach algebra.
+
+In the case where $A=\Z_p$, we have $\Meas(\Gfrak,\Z_p)=\Dist(\Gfrak,\Z_p)$ and we have the following proposition.
+
+\begin{prop}
+	The image of $\Meas(\Gfrak,\Z_p)$ under the injection of the previous proposition is the set of
+	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
+	such that
+	\[\parallel\lambda\parallel\leq 1\and\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+\end{prop}
+\begin{proof}
+	Let $\lambda\in\Meas(\Gfrak,\Z_p)$ and take
+	\[s\in\Step(\Gfrak,\Q_p).\]
+	Writing
+	\[s=\sum_{g\in\Gfrak/Hfrak}s(g)\charf_g,\]
+	we see that
+	\[\int_{\Gfrak}s\d\lambda=\sum_{g\in\Gfrak/Hfrak}s(g)\lambda(g)\in\Q_p\]
+	and so
+	\[\left |\int_{\Gfrak}s\d\lambda\right |_p\leq\sup_{g\in\Gfrak/Hfrak}|s(g)|_p|\lambda(g)|_p\leq\parallel s\parallel.\]
+	From the density of $\Step(\Gfrak,\C_p)$ in $C(\Gfrak,\C_p)$ and the continuity of the norm function, it follows that
+	\[\parallel\lambda\parallel\leq 1\and\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+	
+	Conversely, let
+	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
+	be such that
+	\[\parallel\lambda\parallel\leq 1\and\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+	Then
+	\[\lambda(\charf_U)\in\Q_p\]
+	for any $U\in\B_\Gfrak$ since $\charf_U\in C(\Gfrak,\Q_p)$. Moreover,
+	\[\parallel\charf_U\parallel=1,\]
+	and $\parallel\lambda\parallel\leq 1$, so in fact
+	\[\lambda(\charf_U)\in\Z_p.\]
+	This concludes the proof.	
+\end{proof}
+
+
+\subsection{$p$-adic measures on $\Z_p$}
+
+
+\subsection{Summary}
+\begin{enumerate}
+\item For a general abelian group, we have
+\[\Dist(\Gfrak,A)\simeq\Lambda(\Gfrak,A)\]
+canonically as abelian groups. When $A$ is a $B$-algebra, this is an isomorphism of $B$-algebras.
+
+\item When $A$ is a $B$-algebra, we have
+\[\Lambda(\Gfrak,A)\simeq\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A),\]
+canonically as $B$-algebras, where the product on the right set is the convolution product.
+
+\item When $A$ is contained in $\C_p$, any $p$-adic measure $\lambda$ extends uniquely to a continuous map
+\[\lambda:C(\Gfrak,\C_p)\rightarrow\C_p.\]
+
+\item When $A=\Z_p$, the image of $\Meas(\Gfrak,\Z_p)$ under the above injection is the set of
+	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
+	such that
+	\[\parallel\lambda\parallel\leq 1\and\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+	
+\item 
+\end{enumerate}
 
 \begin{thebibliography}{DDDD}%
 
