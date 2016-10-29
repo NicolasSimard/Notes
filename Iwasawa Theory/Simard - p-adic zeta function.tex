@@ -14,6 +14,10 @@
 
 \usepackage{multirow}
 
+\usepackage[dvips,matrix,ps,pdf,color,line,graph]{xy}
+\input xy
+\xyoption{all}
+
 \newtheorem{theorem}{Theorem}
 \newtheorem{lemma}{Lemma}
 \newtheorem{prop}{Proposition}
@@ -57,9 +61,8 @@
 \newcommand{\Step}{\text{Step}}
 \newcommand{\charf}{\varepsilon}
 \newcommand{\Gal}{\text{Gal}}
-\newcommand{\del}{\partial}
-\newcommand{\ClK}{\text{Cl}_K}
 \renewcommand{\d}{\text{d}}
+\newcommand{\Res}{\text{Res}_{\Z_p^\times}}
 
 \author{Nicolas Simard}
 \date{\today}
@@ -292,11 +295,135 @@ Finally, one has the following proposition.
 \end{proof}
 
 \subsection{Operators on $p$-adic measures}
+In \cite{CS}, the authors introduce a few operators in the ring $R=\Z_p[[T]]$. Since $\Lambda(\Z_p)$ is canonically isomorphic to this ring via the Mahler transform, those operators have a corresponding simple definition on the Iwasawa algebra. By combining those operators, one obtains the restriction operator, which has a natural interpretation.
+
 \subsubsection{Operators on $R$}
+Let $g(T)$ be a power series in $R$ and define the operator
+\[\varphi:R\rarr R\]
+as
+\[\varphi(g)(T)=g((1+T)^p-1).\]
+This is well defined \emph{injective} $\Z_p$-algebra endomorphism (see \cite[Lemma 2.2.2]{CS}).
+
+One can the define trace operator
+\[\psi:R\rarr R\]
+as
+\[(\varphi\circ\psi)(g)(T)=\frac{1}{p}\sum_{\xi\in\mu_p}g(\xi(1+T)-1).\]
+This is a well-defined continuous $\Z_p$-linear map from $R$ to itself (see \cite[Proposition 2.2.3]{CS}). Moreover,
+\[\psi\circ\varphi=1_R.\]
+
+Finally, one can introduce a derivation $D$ on $R$ as follows:
+\[D(g)(T)=(1+T)\frac{\d g}{\d T}.\]
+
+It is enlightening to interpret those operators in a different way. Suppose that $g(T)$ can be written as
+\[g(T)\sum_{n=0}^\infty a_n(1+T)^n.\]
+Then $\varphi$ is simply given as
+\[\varphi(g)(T)=\sum_{n=0}^\infty a_n(1+T)^{pn}.\]
+As for $\psi$, as simple calculation shows that
+\[\psi(g)(T)=\sum_{n=0}^\infty a_{np}(1+T)^n.\]
+Moreover,
+\[D(g)(T)=\sum_{n=0}^\infty na_n(1+T)^n.\]
+Letting $q=1+T$, this proves that the $\varphi$, $\psi$ and $D$ operators correspond formally to the $V_p$, $U_p$ and $q\frac{\d}{\d q}$ operators on $q$-expansions of level $1$ modular forms. With that in mind, it is clear that $\psi\circ\phi$ is the identity on $R$.
+
 \subsubsection{Operators on $\Lambda(\Z_p)$}
+We now introduce the operators on $p$-adic measures, i.e. elements of the Iwasawa algebra $\Lambda(Z_p)$, which correspond to $\varphi$, $\psi$ and $D$ on $R$.
+
+Let $\lambda\in\Lambda(Z_p)$ be a $p$-adic measure on $\Z_p$. Then one can verify  without difficulty that the $\Z_p$-algebra endomorphism
+\[\varphi:\Lambda(Z_p)\rarr\Lambda(Z_p)\]
+defined as
+\[\int_{\Z_p}f(x)\d\varphi(\lambda)(x)\eqdef\int_{\Z_p}f(px)\d\lambda(x)\]
+corresponds, via the Mahler transform, to the operator $\varphi:R\rarr R$ introduced above.
+
+A similar calculation shows that the $\Z_p$-linear map
+\[\psi:\Lambda(Z_p)\rarr\Lambda(Z_p)\]
+defined as
+\[\int_{\Z_p}f(x)\d\psi(\lambda)(x)\eqdef\int_{\Z_p}\charf_{p\Z_p}(x)f\left (\frac{x}{p}\right )\d\lambda(x)\]
+corresponds to the $\Z_p$-linear map $\psi:R\rarr R$ introduced above.
+
+One can then see, directly or using the corresponding property on $R$, that
+\[\psi\circ\varphi=1_{\Lambda(\Z_p)}.\]
+One also sees that $\varphi\circ\psi$ corresponds to "restriction on $p\Z_p$", since
+\[\int_{\Z_p}f(x)\d(\varphi\circ\psi)(\lambda)(x)=\int_{\Z_p}f(px)\d\psi(\lambda)(x)=\int_{\Z_p}\charf_{p\Z_p}(x)f(x)\d\lambda(x).\]
+
+Now let $f_0(x)$ be any continuous function on $\Z_p$ and define the measure $f_0\lambda$ as
+\[\int_{\Z_p}f(x)\d(f_0\lambda)(x)=\int_{\Z_p}f_0(x)f(x)\d\lambda(x).\]
+For $f_0(x)=x$, one has the relation
+\[\curlM(x\lambda)=D(\curlM(\lambda)),\]
+which follows formally from the identity
+\[x\binom{x}{n}=(n+1)\binom{x}{n+1}+n\binom{x}{n}\]
+(see the proof of Lemma $3.3.5$ in \cite{CS}). Therefore the $D$ operator corresponds to the multiplication by $x$ map on $\Lambda(\Z_p)$.
+
 \subsubsection{Restriction of measures from $\Z_p$ to $\Z_p^\times$}
+We now introduce the restriction operator. In particular, this will allow us to identify the image of $\Lambda(\Z_p^\times)$ inside $\Lambda(\Z_p)$.
+
+Recall that the operator $\delta:R\rarr R$ is defined in section $3.4$ of \cite{CS} as
+\[\delta(g)(T)=g(T)-\varphi\circ\psi(g)(T)=(1-\varphi\circ\psi)(g)(T).\]
+We define the restriction operator as
+\[\Res\eqdef 1-\varphi\circ\psi.\]
+It is not so clear why this operator on power series should be viewed as a restriction operator. However, on measures we have
+\begin{align*}
+	\int_{\Z_p}f(x)\d\Res(\lambda)(x) 	&= \int_{\Z_p}f(x)\d\lambda(x)-\int_{\Z_p}f(x)\d(\varphi\circ\psi)(\lambda)(x)\\																&= \int_{\Z_p}f(x)\d\lambda(x)-\int_{\Z_p}\charf_{p\Z_p}(x)f(x)\d\lambda(x)\\
+										&= \int_{\Z_p}(1-\charf_{p\Z_p}(x))f(x)\d\lambda(x)\\
+										&= \int_{\Z_p}\charf_{\Z_p^\times}(x)f(x)\d\lambda(x)\\
+\end{align*}
+which justifies the notation. Note that the operator $\Res$ on measures is denoted $\#$ in \cite{CS}.
+
+The operator $\Res$ is a projection, i.e. $\Res\circ\Res=\Res$. A formal computation shows that
+\[\Res g(T)=g(T) \Leftrightarrow \psi(g)(T)=0\Leftrightarrow g\in R^{\psi=0},\]
+where
+\[R^{\psi=0}=\{g\in R|\psi(g)=0\}.\]
+
+\begin{prop}
+	The image of $\Lambda(\Z_p^\times)$ in $\Lambda(\Z_p)$ under the injection $\imath$ is the set of measures fixed by the $\Res$ operator. 
+\end{prop}
+\begin{proof}
+	This follows from Lemma $3.4.1$ and Lemma $3.4.2$ in \cite{CS}.
+\end{proof}
+
+This proposition means that the restriction of $p$-adic measures on $\Z_p$ can be viewed as $p$-adic measures on $\Z_p^
+times$. It also implies that the following diagram
+\[\xymatrix{
+	\Lambda(\Z_p)\ar[r]^{\curlM} & R\\
+	\Lambda(\Z_p^\times)\ar[u]^{\imath}\ar[r]^{\curlM\circ\imath} & R^{\psi=0}\ar[u]
+}\]
+is commutative.
+
+Using the analogy between $\varphi$ and $V_p$ and $\psi$ and $U_p$ discussed above, we see that the restriction operator lokks like the $p$-stabilisation operator on modular forms.
 
 \subsection{Moments of $p$-adic measures}
+The special values of the zeta function will be obtained by computing the moments of a pseudo-measure on $\Lambda(\curlG)$. We collect here a few results that help us compute those moments later.
+
+First, it is follows directly from the results of the previous section that
+\[\int_{\Z_p}x^k\d\lambda(x)=\int_{\Z_p}\d((x^k\lambda)(x))=\curlM(x^k\lambda)(0)\]
+and since
+\[\curlM(x\lambda)=D\curlM(\lambda)\]
+we have
+\[\int_{\Z_p}x^k\d\lambda(x)=D^k\curlM(\lambda)(0).\]
+
+Second, one would like to have a relation between
+\[\int_{\Z_p}x^k\d\lambda(x)\myand \int_{\Z_p}x^k\d(\Res\lambda)(x).\]
+To have a simple relation, \emph{suppose $\psi(\lambda)=\lambda$}. We compute
+\begin{align*}
+	\int_{\Z_p}x^k\d\Res(\lambda)(x) 	&= \int_{\Z_p}x^k\d(1-\varphi\circ\psi)(\lambda)(x) &\\																							&= \int_{\Z_p}x^k\d(1-\varphi)(\lambda)(x)			&\text{since $\psi(\lambda)=\lambda$}\\
+										&= \int_{\Z_p}x^k\d\lambda(x)-\int_{\Z_p}x^k\d\varphi(\lambda)(x) &\\
+										&= \int_{\Z_p}x^k\d\lambda(x)-\int_{\Z_p}(px)^k\d\psi(\lambda)(x) &\\
+										&= (1-p^k)\int_{\Z_p}x^k\d\lambda(x). &\\
+\end{align*}
+This is consistent with our observation that the restriction operator can be thought of as a $p$-stabilisation operator, since multiplication by $1-p^k$ corresponds to $p$-stabilisation on $L$-functions (i.e. removing the euler factors at $p$).
+
+Finally, moments determine measures on $\Z_p^\times$.
+
+\begin{prop}
+	Let $\lambda\in\Lambda(\curlG)$ be a measure. If
+	\[\int_\curlG\chi^k(g)\d\lambda(g)\esp\text{for }k=1,3,5,\dots,\]
+	then $\lambda\in\Lambda(\curlG)^+$. Similarly, if
+	\[\int_\curlG\chi^k(g)\d\lambda(g)\esp\text{for }k=2,4,6,\dots,\]
+	then $\lambda\in\Lambda(\curlG)^-$. In particular,
+	\[\int_\curlG\chi^k(g)\d\lambda(g)\esp\text{for all }k>0,\]
+	then $\lambda=0$. Similar statements are true for pseudo-measures.
+\end{prop}
+\begin{proof}
+	This is Lemma $4.4.2$ and Corollary $4.2.3$ of \cite{CS}.
+\end{proof}
 
 \subsection{Summary}
 \begin{enumerate}
