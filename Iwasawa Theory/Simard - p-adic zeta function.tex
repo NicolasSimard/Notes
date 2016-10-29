@@ -24,6 +24,7 @@
 \newcommand{\esp}{\hspace{1cm}}
 \newcommand{\for}{\hspace{1cm}\textrm{for }}
 \newcommand{\where}{\hspace{1cm}\textrm{where }}
+\newcommand{\myand}{\hspace{1cm}\text{and}\hspace{1cm}}
 
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -42,8 +43,10 @@
 \newcommand{\idd}{\mathfrak{d}}
 
 \newcommand{\curlG}{\mathcal{G}}
-\renewcommand{\H}{\mathcal{H}}
-\newcommand{\M}{\mathcal{M}}
+\newcommand{\curlF}{\mathcal{F}}
+\newcommand{\curlM}{\mathcal{M}}
+\newcommand{\curlH}{\mathcal{H}}
+\newcommand{\curlY}{\mathcal{Y}}
 \renewcommand{\S}{\mathcal{S}}
 \renewcommand{\O}{\mathcal{O}}
 
@@ -172,7 +175,7 @@ In the case where $A=\Z_p$, we have $\Meas(\Gfrak,\Z_p)=\Dist(\Gfrak,\Z_p)$ and 
 	The image of $\Meas(\Gfrak,\Z_p)$ under the injection of the previous proposition is the set of
 	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
 	such that
-	\[\parallel\lambda\parallel\leq 1\and\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+	\[\parallel\lambda\parallel\leq 1\hspace{1cm}\text{and}\hspace{1cm}\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
 \end{prop}
 \begin{proof}
 	Let $\lambda\in\Meas(\Gfrak,\Z_p)$ and take
@@ -189,7 +192,7 @@ In the case where $A=\Z_p$, we have $\Meas(\Gfrak,\Z_p)=\Dist(\Gfrak,\Z_p)$ and 
 	Conversely, let
 	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
 	be such that
-	\[\parallel\lambda\parallel\leq 1\and\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+	\[\parallel\lambda\parallel\leq 1\hspace{1cm}\text{and}\hspace{1cm}\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
 	Then
 	\[\lambda(\charf_U)\in\Q_p\]
 	for any $U\in\B_\Gfrak$ since $\charf_U\in C(\Gfrak,\Q_p)$. Moreover,
@@ -199,9 +202,101 @@ In the case where $A=\Z_p$, we have $\Meas(\Gfrak,\Z_p)=\Dist(\Gfrak,\Z_p)$ and 
 	This concludes the proof.	
 \end{proof}
 
+If $\rho:\Gfrak\rarr\C_p^\times$ is a character, i.e. a group homomorphism, and $\lambda,\mu\in\Meas(\Gfrak,\C_p)$ then
+\[\int_{\Gfrak}\rho\d\lambda\ast\mu=\int_\Gfrak\rho\d\lambda\int_\Gfrak\rho\d\mu.\]
+A \emph{pseudo-measure} is an element $\lambda$ of the total ring of fractions of $\Lambda(\Gfrak)$, i.e. a quotient $\lambda=\mu/\nu$ of elements $\Lambda(\Gfrak,\Z_p)$ where $\nu$ is not a zero divisor, with the property that
+\[(g-1)\lambda\in\Lambda(\Gfrak).\]
+For any pseudo-measure $\lambda$ as above and any non-trivial character $\rho$ of $\Gfrak$, define
+\[\int_\Gfrak\rho\d\lambda\eqdef\frac{\int_\Gfrak\rho\d\mu}{\int_\Gfrak\rho\d(g-1)}=\frac{\int_\Gfrak\rho\d\mu}{\rho(g)-1},\]
+where $g$ is any element of $\Gfrak$ not in the kernel of $\rho$. This definition does not depend on this choice of $g$. Note that we used the fact that for any $g\in\Gfrak$,
+\[\int_\Gfrak f\d g=f(g).\]
+In other words, the elements of $\Gfrak$ correspond to Dirac measures.
 
-\subsection{$p$-adic measures on $\Z_p$}
+\subsubsection{The Iwasawa algebra $\Lambda(\Z_p)$ and Mahler's transform}
+When $\Gfrak=\Z_p$, one can say more about $p$-adic measures. This is because the $\C_p$-Banach algebra of continuous functions on $\Z_p$ has a special \emph{Mahler basis}.
 
+For $n\in\Z_{\geq0}$, define
+\[e_n(x)\eqdef\binom{x}{n}=\frac{x(x-1)\dots(x-n+1)}{n!}.\]
+
+\begin{theorem}
+	Let $f\in C(\Z_p,\C_p)$. Then there exists a unique sequence $\{a_n\}_{n\geq 0}$ of elements of $\C_p$ such that
+	\[\lim_{n\rightarrow\infty}a_n=0\]
+	and
+	\[f(x)=\sum_{n=0}^\infty a_n\binom{x}{n}.\]
+	This is called the Mahler expansion of $f$.
+\end{theorem}
+\begin{proof}
+	This is Theorem $3.3.1$ in \cite{CS}.
+\end{proof}
+
+Knowing that elements of $\Lambda(\Z_p)$ can be viewed as continuous linear functional on $ C(\Z_p,\C_p)$, one could form their generating function with respect to the Mahler basis:
+\[\curlM(\lambda)\eqdef\sum_{n=0}^\infty T^n\int_{\Z_p}\binom{x}{n}\d\lambda.\]
+This is called the \emph{Mahler transform} of $\lambda$. Note that
+\[\curlM(\lambda)\in\Z_p[[T]].\]
+Intuitively, the Mahler transform should determine $\lambda$ (because the $e_n(x)$ form a basis of $C(\Z_p,\C_p)$). In fact, much more is true.
+
+\begin{theorem}
+	The Mahler transform
+	\[\curlM:\Lambda(\Z_p)\rarr \Z_p[[T]]\]	
+	is an isomorphism of $\Z_p$-algebras.
+\end{theorem}
+\begin{proof}
+	This is Theorem $3.3.3$ in \cite{CS}.
+\end{proof}
+
+The inverse of $\curlM$, denoted $\curlY$ in \cite{CS}, is defined as follows. If a continuous function $f$ has Mahler expansion
+\[f(x)=\sum_{n=0}^\infty a_n e_n(x)\]
+and
+\[g(T)=\sum_{n=0}^\infty b_nT^n\in\Z_p[[T]],\]
+we define
+\[\int_{\Z_p} f\d\curlY(g)=\sum_{n=0}^\infty a_nb_n.\]
+For convenience, we sometimes denote $\curlY(g)$ by $\lambda_g$.
+
+\textbf{Example: } For any $a\in\Z_p$, viewed as a constant compatible sequence in $\Lambda(\Z_p)$, one has
+\[\curlM(a)=(1+T)^a,\]
+so that the power series $(1+T)^a$ corresponds to the Dirac measures in $\Lambda(\Z_p)$.
+
+\subsubsection{The Iwasawa algebra $\Lambda(\Z_p^\times)$}
+Integration over $\Gfrak=\Z_p^\times$ is closely related to integration over $\Z_p$. Since $\Lambda(\Z_p)$ has more structure, it is desirable to relate $\Lambda(\Z_p^\times)$ to $\Lambda(\Z_p)$. Since $\Z_p^\times$ is a subset of $\Z_p$, it is natural to define a map
+\[\imath:\Lambda(\Z_p^\times)\rarr\Lambda(\Z_p)\]
+as
+\[\int_{\Z_p}f\d\imath(\lambda)\eqdef\int_{\Z_p^\times}f|_{\Z_p^\times}\d\lambda,\]
+for all $f\in C(\Z_p,\C_p)$, where $f|_{\Z_p^\times}\in C(\Z_p^\times,\C_p)$ is the restriction of $f$ to $\Z_p^\times$. One can check that this map is well-defined, i.e. that the functional 
+\[f\mapsto \int_{\Z_p}f\d\iota(\lambda)\]
+is in the image of $\Lambda(\Z_p)$ in $\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)$.
+
+The next step is to identify the image of $\Lambda(\Z_p^\times)$ inside $\Lambda(\Z_p)$. This will be done in the next section, after we introduce the trace and restriction operators. 
+
+\subsubsection{The Iwasawa algebras $\Lambda(\curlG)$ and $\Lambda(G)$}
+Recall the following notation
+\[\curlF_n=\Q(\mu_{p^{n+1}})\myand F_n=\Q(\mu_{p^{n+1}})^+.\]
+\[\curlG=\Gal(\curlF_\infty/\Q)\myand G=\Gal(F_\infty/\Q).\]
+Fixing a generator $(\zeta_{p^n})$ for the Tate module $T_p(\mu)$, we obtain an isomorphism
+\[\chi:\curlG\rarr\Z_p^\times,\]
+called the cyclotomic character. This indices an isomorphism
+\[\tilde{\chi}:\Lambda(\curlG)\rarr\Lambda(\Z_p^\times).\]
+But more is true. One can define a natural action of $\curlG$ on $\Lambda(\Z_p^\times)$ and $\Lambda(\Z_p)$ via the cyclotomic character. Then $\tilde{\chi}$ becomes a $\curlG$-isomorphism, i.e. $\tilde{\chi}(\curlG)$ is $\curlG$-equivariant.
+
+For each $n\geq0$, the CM field $\curlF_n$ has complex conjugation action $\iota_n$ and the fixed field of $\{1,\iota_n\}$ is $F_n$. This extends to a complex conjugation action $\iota$ in $\curlG$ which fixes $G$. This makes $\Lambda(\curlG)$ into a $\Z_p[\mathcal{J}]$-module, where $\mathcal{J}=\{1,\iota\}$. For $p$ odd decomposes naturally as
+\[\Lambda(\curlG)=\Lambda(\curlG)^+\oplus\Lambda(\curlG)^-,\]
+where
+\[\Lambda(\curlG)^+=\frac{1+\iota}{2}\Lambda(\curlG)\myand\Lambda(\curlG)^-=\frac{1-\iota}{2}\Lambda(\curlG).\]
+Finally, one has the following proposition.
+
+\begin{prop}
+	The restriction to $\Lambda(\curlG)^+$ of the natural surjection from $\Lambda(\curlG)$ to $\Lambda(G)$ induces an isomorphism
+	\[\Lambda(\curlG)^+\simeq\Lambda(G).\]
+\end{prop}
+\begin{proof}
+	This is Lemma $4.2.1$ of \cite{CS}.
+\end{proof}
+
+\subsection{Operators on $p$-adic measures}
+\subsubsection{Operators on $R$}
+\subsubsection{Operators on $\Lambda(\Z_p)$}
+\subsubsection{Restriction of measures from $\Z_p$ to $\Z_p^\times$}
+
+\subsection{Moments of $p$-adic measures}
 
 \subsection{Summary}
 \begin{enumerate}
@@ -219,12 +314,23 @@ canonically as $B$-algebras, where the product on the right set is the convoluti
 \item When $A=\Z_p$, the image of $\Meas(\Gfrak,\Z_p)$ under the above injection is the set of
 	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
 	such that
-	\[\parallel\lambda\parallel\leq 1\and\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+	\[\parallel\lambda\parallel\leq 1\hspace{1cm}\text{and}\hspace{1cm}\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
 	
-\item 
+\item When $A=\Z_p$ and $\Gfrak=\Z_p$, the Mahler transform $\curlM$ establishes a $\Z_p$-algebra isomorphism
+\[\curlM:\Lambda(\Z_p)\rarr\Z_p[[T]].\]
+
+\item When $A=\Z_p$ and $\Gfrak=\Z_p^\times$, we have a natural injection
+\[\iota:\Lambda(\Z_p^\times)\rarr\Lambda(\Z_p).\]
+
+\item When $A=\Z_p$ and $\Gfrak=\curlG$, we have a $\curlG$-isomorphism $\Lambda(\curlG)\approx\Lambda(\Z_p^\times)$. Moreover, $\Lambda(G)$ can be canonically identified as a $\Z_p$-submodule of $\Lambda(\curlG)$.
 \end{enumerate}
 
-\begin{thebibliography}{DDDD}%
+Here are all the maps we introduced for $\Z_p$-valued measures:
+\[\Lambda(G)\simeq\Lambda(\curlG)^+\hookrightarrow\Lambda(\curlG)\overset{\tilde{\chi}}{\approx}\Lambda(\Z_p^\times)\overset{\imath}{\hookrightarrow}\Lambda(\Z_p)\simeq\Dist(\Z_p,\Z_p)=\Meas(\Z_p,\Z_p)\hookrightarrow\Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p).\]
+
+\begin{thebibliography}{DDDD}
+\bibitem[CS]{CS}
+    {\scshape\itshape Coates, J., Sujatha, R.}, \emph{Cyclotomic Fields and zeta Values}, Springer Monographs in Mathematics, Springer, 2006.
 
 \end{thebibliography}
 \end{document}
