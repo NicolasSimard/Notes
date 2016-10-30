@@ -7,7 +7,7 @@
 \usepackage{graphicx}%Pour les images
 
 \usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref} 
-\hypersetup{linkcolor=blue,citecolor=red,filecolor=dullmagenta,urlcolor=darkblue}
+\hypersetup{linkcolor=blue,citecolor=red,filecolor=dullmagenta,urlcolor=blue}
 
 %\usepackage{palatino}%Pour utiliser l'écriture Palatino
 \usepackage{euler}%Change l'aspect des formules mathématiques
@@ -606,10 +606,67 @@ one can further lift this sequence to obtain
 
 In brief, one needs to work a little bit harder to obtain non-trivial measures on $\curlG$. This is where the cyclotomic units come in!
 
+\section{$p$-zeta function via cyclotomic units}
+At this point, the construction of the $p$-adic zeta function is almost a formality! First, recall that
+\[\curlK_n=\Q_p(\mu_{p^{n+1}}\]
+and that $\curlU_n$ is the set of units in $\curlK_n$ ($n=\geq 0$). As usual, fix a generator $(\zeta_n)$ of the Tate module $T_p(\mu)$, so that
+\[\zeta_n\in\curlU_n\myand \zeta_n^p=\zeta_{n-1}\text{ for }n\geq 1.\]
+For integers $a$ and $b$, define
+\[c_n(a,b)\frac{\zeta_n^{-a/2}-\zeta_n^{a/2}}{\zeta_n^{-b/2}-\zeta_n^{b/2}}=\zeta_n^{(a-b)/2}\frac{\zeta_n^{-a}-1}{\zeta_n^{-b}-1}.\]
+If $a$ and $b$ are not divisible by $p$, the $c_n(a,b)$ is a unit in $\curlF_n$, hence in $\curlK_n$ (this follows from \cite[Proposition 6.2(c)]{Mi}). We claim that the sequence
+\[c(a,b)\eqdef(c_n(a,b))\]
+is a norm compatible sequence of local units, i.e.
+\[c(a,b)\in\curlU_\infty.\]
+To see this, it suffices to note that
+\[N_{n,n-1}(\zeta_n)=\zeta_{n-1},\]
+where $N_{n,n-1}:\curlK_n\rarr\curlK_{n-1}$ is the norm map. This follows from the fact that $\zeta_n$ is a root of
+\[X^p-\zeta_{n-1},\]
+which is irreducible over $\curlK_{n-1}$ since
+\[(X+1)^p-\zeta_{n-1}\]
+is Eisenstein at the prime $\pi_{n-1}$. Those elements $c(a,b)$ are the key to defining the $p$-adic zeta function.
+
+Let
+\[\lambda(a,b)\eqdef\widetilde{\Res\log}(c(a,b))=\tilde{\curlL}(c(a,b)).\]
+Then
+\[\int_{\curlG}\chi(g)^k\d\lambda(a,b)=(1-p^{k-1})\delta_k(c(a,b)).\]
+The computation of $\delta_k(c(a,b))$ is done in \cite[Proposition 2.6.3]{CS}:
+\[
+\delta_k(c(a,b))=\begin{cases}
+	0	&\text{if }k=1,3,5,\dots\\
+	(b^k-a^k)\zeta(1-k)&\text{if }k=2,4,6,\dots\\
+\end{cases}.
+\]
+The $p$-adic measure $\lambda(a,b)$ is almost the $p$-adic zeta function, except the it interpolates the $p$-stabilized values of $\zeta$ at the negative integers \emph{times the factor }$b^k-a^k$. To cancel this factor, take $a$ different from $b$ and define
+\[\theta(a,b)=\sigma_b-\sigma_a\in\Lambda(\curlG)\]
+such that
+\[\chi(\theta(a,b))=b^k-a^k\in\Z_p^\times.\]
+Then
+\[\tilde{\zeta}_p=\frac{\lambda(a,b)}{\theta(a,b)}\]
+is a pseudo-measure on $\curlG$ which is independent of the choice of $a$ and $b$. More importantly,
+\[
+\int_{\curlG}\chi(g)^k\d\tilde{\zeta}_p=\begin{cases}
+	0	&\text{if }k=1,3,5,\dots\\
+	\zeta(1-k)&\text{if }k=2,4,6,\dots\\
+\end{cases}
+\]
+(see \cite[Proposition 4.2.4]{CS} for more details). Note that since pseudo-measures are determined by their moments, $\tilde{\zeta}_p$ is the unique pseudo-measure which interpolates the critical values of the Riemann zeta function.
+
+Finally, since the odd moments of $\tilde{\zeta}_p$ are zero,
+\[\tilde{\zeta}_p\in\Lambda(\curlG)^+.\]
+Letting $\zeta_p$ denote the image of $\tilde{\zeta}_p$ under the identification $\Lambda(\curlG)^+\simeq\Lambda(G)$, we have the following theorem.
+
+\begin{theorem}
+	There exists a unique pseudo-measure $\zeta_p$ on $G$ such that
+	\[\int_G\chi(g)^k\d\zeta_p=(1-p^{k-1})\zeta(1-k)\]
+	for all even integers $k\geq2$.
+\end{theorem}
 
 \begin{thebibliography}{DDDD}
 \bibitem[CS]{CS}
     {\scshape\itshape Coates, J., Sujatha, R.}, \emph{Cyclotomic Fields and zeta Values}, Springer Monographs in Mathematics, Springer, 2006.
+    
+\bibitem[Mi]{Mi}
+    {\scshape\itshape Milne, J.}, \emph{Algebraic Number Theory (v3.04)}, 2012, Available at \url{www.jmilne.org/math}.
 
 \end{thebibliography}
 \end{document}
