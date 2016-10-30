@@ -51,6 +51,10 @@
 \newcommand{\curlM}{\mathcal{M}}
 \newcommand{\curlH}{\mathcal{H}}
 \newcommand{\curlY}{\mathcal{Y}}
+\newcommand{\curlU}{\mathcal{U}}
+\newcommand{\curlK}{\mathcal{K}}
+\newcommand{\curlN}{\mathcal{N}}
+\newcommand{\curlL}{\mathcal{L}}
 \renewcommand{\S}{\mathcal{S}}
 \renewcommand{\O}{\mathcal{O}}
 
@@ -274,7 +278,7 @@ The next step is to identify the image of $\Lambda(\Z_p^\times)$ inside $\Lambda
 Recall the following notation
 \[\curlF_n=\Q(\mu_{p^{n+1}})\myand F_n=\Q(\mu_{p^{n+1}})^+.\]
 \[\curlG=\Gal(\curlF_\infty/\Q)\myand G=\Gal(F_\infty/\Q).\]
-Fixing a generator $(\zeta_{p^n})$ for the Tate module $T_p(\mu)$, we obtain an isomorphism
+A generator $(\zeta_n)$ for the Tate module $T_p(\mu)$ is a sequence of $\zeta_n\in\mu _{p^{n+1}}$ such that $\zeta_{n+1}^p=\zeta_n$. Fixing such a generator, we obtain an isomorphism
 \[\chi:\curlG\rarr\Z_p^\times,\]
 called the cyclotomic character. This indices an isomorphism
 \[\tilde{\chi}:\Lambda(\curlG)\rarr\Lambda(\Z_p^\times).\]
@@ -387,7 +391,7 @@ times$. It also implies that the following diagram
 }\]
 is commutative.
 
-Using the analogy between $\varphi$ and $V_p$ and $\psi$ and $U_p$ discussed above, we see that the restriction operator lokks like the $p$-stabilisation operator on modular forms.
+Using the analogy between $\varphi\leftrightarrow V_p$ and $\psi\leftrightarrow U_p$ discussed above, we see that the restriction operator looks like the $p$-stabilisation operator on modular forms. 
 
 \subsection{Moments of $p$-adic measures}
 The special values of the zeta function will be obtained by computing the moments of a pseudo-measure on $\Lambda(\curlG)$. We collect here a few results that help us compute those moments later.
@@ -397,7 +401,10 @@ First, it is follows directly from the results of the previous section that
 and since
 \[\curlM(x\lambda)=D\curlM(\lambda)\]
 we have
-\[\int_{\Z_p}x^k\d\lambda(x)=D^k\curlM(\lambda)(0).\]
+\begin{equation}\label{eq:momentsandD}
+	\int_{\Z_p}x^k\d\lambda(x)=D^k\curlM(\lambda)(0).
+\end{equation}
+
 
 Second, one would like to have a relation between
 \[\int_{\Z_p}x^k\d\lambda(x)\myand \int_{\Z_p}x^k\d(\Res\lambda)(x).\]
@@ -408,7 +415,12 @@ To have a simple relation, \emph{suppose $\psi(\lambda)=\lambda$}. We compute
 										&= \int_{\Z_p}x^k\d\lambda(x)-\int_{\Z_p}(px)^k\d\psi(\lambda)(x) &\\
 										&= (1-p^k)\int_{\Z_p}x^k\d\lambda(x). &\\
 \end{align*}
-This is consistent with our observation that the restriction operator can be thought of as a $p$-stabilisation operator, since multiplication by $1-p^k$ corresponds to $p$-stabilisation on $L$-functions (i.e. removing the euler factors at $p$).
+In brief,
+\begin{equation}\label{eq:momentsofres}
+	\int_{\Z_p}x^k\d\Res(\lambda)(x)=(1-p^k)\int_{\Z_p}x^k\d\lambda(x).
+\end{equation}
+
+Note that this is consistent with our observation that the restriction operator can be thought of as a $p$-stabilisation operator, since multiplication by $1-p^k$ corresponds to $p$-stabilisation on $L$-functions (i.e. removing the euler factors at $p$).
 
 Finally, moments determine measures on $\Z_p^\times$.
 
@@ -454,6 +466,146 @@ canonically as $B$-algebras, where the product on the right set is the convoluti
 
 Here are all the maps we introduced for $\Z_p$-valued measures:
 \[\Lambda(G)\simeq\Lambda(\curlG)^+\hookrightarrow\Lambda(\curlG)\overset{\tilde{\chi}}{\approx}\Lambda(\Z_p^\times)\overset{\imath}{\hookrightarrow}\Lambda(\Z_p)\simeq\Dist(\Z_p,\Z_p)=\Meas(\Z_p,\Z_p)\hookrightarrow\Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p).\]
+
+\section{$p$-adic measure attached to compatible systems of local units}
+As we know, the $p$-adic zeta function is associated with the cyclotomic units. Those units come in compatible systems, i.e. they are elements of
+\[\curlU_\infty=\varprojlim \curlU_n,\]
+where $\curlU_n$ is the group of local units in $\curlK_n=\Q_p(\mu_{p^{n+1}})$. The first step in building this pseudo-measure is to pass from units to power series via the Coleman power series. Then one uses the map
+\[\curlL:W\rarr R^{\psi=0}\]
+to get a power series which corresponds, under the inverse Mahler transform, to a measure on $\curlG$. As we will see, applying the map $\curlL$ is essentially like taking the $\log$ and then restricting it.
+
+\subsection{The map $\tilde{\curlL}:\curlU_\infty\rarr\Lambda(\curlG)$}
+The main technical tool to pass from units to $p$-adic measures is the Coleman power series attached to compatible systems of units.
+
+\begin{theorem}
+	For each $u=(u_n)\in\curlU_\infty$, there exists a unique power series $f_u(T)\in R$ such that $f_u(\pi_n)=u_n$, where
+	\[\pi_n=\zeta_n-1\]
+	for some generator $(\zeta_n)$ of the Tate module $T_p(\mu)$.
+\end{theorem}
+\begin{proof}
+	This is Theorem $2.1.2$ in \cite{CS}, which is proved in Chapter $2$.
+\end{proof}
+
+Recall that one can define a norm operator
+$\curlN:R\rarr R$
+as
+\[(\varphi\circ\curlN)(g)(T)=\prod_{\xi\in\mu_p}g(\xi(1+T)-1).\]
+The image of $\curlU_\infty$ under the map $u\mapsto f_u$ of the Theorem is
+\[W=\{g\in R^\times|\curlN(g)=g\}.\]
+See \cite[Corollary 2.3.7]{CS}. This gives an isomorphism
+\[\xymatrix{
+\curlU_\infty\ar[d]_{\text{C.P.S.}}^{\wr}\\
+W
+}\]
+which also respects the action of $\curlG$ on both sides (recall that $g\in\curlG$ acts on $R$ by sending $T$ to $(1+T)^{\chi(g)}-1$).
+
+The map
+\[\curlL:W\rarr R^{\psi=0}\]
+is defined as
+\[\curlL(g)(T)=\frac{1}{p}\log\left (\frac{g(T)^p}{\varphi(g)(T)}\right )\]
+in Lemma $2.5.1$.\footnote{Actually, the map is defined on $R^\times$, not just $W$, but the image of $\curlL$ lies in $R^{\psi=0}$.} One can this of this map as the restriction of the logarithm of power series in $W$. Indeed, we \emph{formally} have
+\begin{align*}
+	\curlL(g)(T)	&= \frac{1}{p}\log\left (\frac{g(T)^p}{\varphi(g)(T)}\right ) 	&\text{(by definition)}\\
+					&= \log g(T) - \frac{1}{p}\log\varphi(g)(T)						&\text{(formally)}\\
+					&= \log g(T) - \frac{1}{p}\log(\varphi\circ\curlN)(g)(T)		&\text{(since $g\in W$)}\\
+					&= \log g(T) - \frac{1}{p}\log\prod_{\xi\in\mu_p}g(\xi(1+T)-1)	&\text{(by definition of $\varphi\circ\curlN$)}\\
+					&= \log g(T) - \frac{1}{p}\sum_{\xi\in\mu_p}\log g(\xi(1+T)-1)	&\text{(formally)}\\
+					&= \log g(T) - (\varphi\circ\psi)(\log g(T))					&\text{(by definition of $\varphi\circ\psi$)}\\
+					&= (\Res\log)(g)(T))											&\text{(by definition of $\Res$)}
+\end{align*}
+so that we could define a map
+\[\Res\log\eqdef\curlL.\]
+Note that this is just notation, since the logarithm map is not necessarily well-defined on all $W$.
+
+At this point, we have the following diagram of maps
+\[\xymatrix{
+	\curlU_\infty\ar[d]_{\text{C.P.S.}}^{\wr}	&\\
+	W\ar[r]^{\Res\log}							& R^{\psi=0}
+}\]
+Using the isomorphism $\Lambda(\curlG)\simeq R^{\psi=0}$ of the previous section, we can lift the map $\curlL$ to a map $\tilde{\curlL}:\curlU_\infty\rarr \Lambda(\curlG)$, which we denote $\widetilde{\Res\log}$:
+\[\xymatrix{
+	\curlU_\infty\ar[d]_{\text{C.P.S.}}^{\wr}\ar[r]^{\widetilde{\Res\log}}	&\Lambda(\curlG)\ar[d]_{\wr}^{\tilde{\curlM}}\\
+	W\ar[r]^{\Res\log}							& R^{\psi=0}\\
+}\]
+
+\subsection{Moments of $p$-adic measures obtained via $\tilde{\curlL}$}
+The moments of the $p$-adic measures obtained via $\tilde{\curlL}$ are related to the so-called higher logarithm derivative map. More precisely, we prove Proposition $3.5.2$ of \cite{CS} in this section, i.e. that
+\[\int_{\curlG}\chi(g)^k\d\tilde{\curlL}(u)=\delta_k(u),\]
+where
+\[\delta_k(u)=\left (D^{k-1}\left ((1+T)\frac{f'_u(T)}{f_u(T)}\right )\right )_{T=0}.\]
+The map $\delta_k(u)$ is called the higher logarithmic derivative map.
+
+First, recall that the map
+\[\Delta(g)(T)=(1+T)\frac{g'(T)}{g(T)}\]
+takes $W$ to $R^{\psi=1}=\{g\in R|\psi(g)=g\}$ (this is Lemma $2.4.5$ in \cite{CS}). Applying the operator $1-\varphi$ (denoted $\theta$ in \cite{CS}), which is just the restriction operator, since
+\[1-\varphi=1-\varphi\circ\psi=\Res\]
+on $R^{\psi=1}$, we fall in $\R^{\psi=0}$. In the proof Theorem $2.5.2$ of \cite{CS}, we learn that the diagram
+\[\xymatrix{
+	W\ar[d]_{\Delta}\ar[r]^{\curlL}	&R^{\psi=0}\ar[d]^{D}\\
+	R^{\psi=1}\ar[r]^{\theta}		&R^{\psi=0}
+}.\]
+Using our notation, this is just saying that the $D$ and $\Res$ operators commute:
+\[D\circ\Res\log=\Res\circ D\log.\]
+
+Altogether, we have the following commutative diagram
+\[\xymatrix{
+	\curlU_\infty\ar[d]_{\text{C.P.S.}}^{\wr}\ar[r]^{\widetilde{\Res\log}}	&\Lambda(\curlG)\ar[d]_{\wr}^{\tilde{\curlM}}\\
+	W\ar[d]_{D\log}\ar[r]^{\Res\log}	&R^{\psi=0}\ar[d]^{D}\\
+	R^{\psi=1}\ar[r]^{\Res}		&R^{\psi=0}
+}.\]
+
+Using this diagram, we now compute the moments:
+\begin{align*}
+	\int_{\curlG}\chi(g)^k\d\tilde{\curlL}(u) 	&= \int_{\curlG}\chi(g)^k\d\widetilde{\Res\log}(u) 	&\text{(notation)}\\
+												&= \int_{\Z_p}x^k\d\curlY(\Res\log f_u)				&\text{(commutativity of top square)}\\
+												&= \int_{\Z_p}x^{k-1}\d x\curlY(\Res\log f_u)		&\\
+												&= \int_{\Z_p}x^{k-1}\d \curlY(D\circ\Res\log f_u)	&\text{(formula \ref{eq:momentsandD})}\\
+												&= \int_{\Z_p}x^{k-1}\d \curlY(\Res\circ D\log f_u)	&\text{(commutativity of bottom square)}\\
+												&= \int_{\Z_p}x^{k-1}\d \Res\curlY(D\log f_u)		&\\
+												&= (1-p^{k-1})\int_{\Z_p}x^{k-1}\d \curlY(D\log f_u)&\text{(formula \ref{eq:momentsofres}, since $D\log f_u\in R^{\psi=1}$)}\\
+												&= (1-p^{k-1})(D^{k-1}(D\log f_u))_{T=0}			&\text{(formula \ref{eq:momentsandD})}\\
+												&= (1-p^{k-1})\delta_k(u)							&\text{(by definition of $\delta_k(u)$)}\\
+\end{align*}
+
+
+\subsection{Measures attached to generators of the Tate module $T_p(\mu)$}
+As one can see, any generator $(\zeta_n)$ of the Tate module $T_p(\mu)$ is a norm compatible sequence of units, hence can be viewed as an element of $\curlU_\infty$. Can we obtain interesting measure from those elements? Unfortunately, no. To see this, note that since by definition $\pi_n=\zeta_n-1$, it is clear that the Coleman power series of $(\zeta_n)\in\curlU_\infty$ is simply $1+T$. But then
+\[\tilde{\curlL((\zeta_n))}=\curlL(1+T)=\frac{1}{p}\log\left (\frac{(1+T)^p}{(1+(1+T)^p-1)}\right )=\frac{1}{p}\log 1=0,\]
+so the corresponding measure on $\curlG$ is the zero measure! In fact, one has the following \emph{Fundamental Exact Sequence} of $\curlG$-modules
+\[\xymatrix{
+	0\ar[r]	&\mu_{p-1}\times T_p(\mu)\ar[r]	&\curlU_\infty\ar[r]^{\tilde{\curlL}}	&\Lambda(\curlG)\ar[r]^\beta	&T_p(\mu)\ar[r]	&0
+},\]
+where the map $\beta$ sends $\lambda$ to $(\zeta_n)^{\int_\curlG\chi\d\lambda}$ (see \cite[Theorem 3.5.1]{CS}). Note this sequence is the main ingredient in the proof of Iwasawa's theorem (Theorem $4.4.1$ in \cite{CS}).
+
+The proof this sequence is exact follows essentially from the exactness of the sequence
+\[\xymatrix{
+	0\ar[r]	&\Z_p\ar[r]	&R^{\psi=1}\ar[r]^{\theta=\Res}	&R^{\psi=0}\ar[r]^{\text{ev}_{T=0}}	&\Z_p\ar[r]	&0,
+}\]
+which is proved in \cite[Lemma 2.4.3]{CS}. Indeed, the exactness of the sequence
+\begin{equation}\label{seq:Dlog}
+	\xymatrix{0\ar[r]	&\mu_{p-1}\ar[r]	&W\ar[r]^{D\log}	& R^{\psi=1}\ar[r]	&0}
+\end{equation}
+allows us to lift this sequence to obtain the following commutative diagram
+\[\xymatrix{
+	0\ar[r]	&A\ar[r]	&W\ar[r]^{\Res\log}\ar[d]_{D\log}&R^{\psi=0}\ar[r]^{\alpha}\ar[d]^{D}		&\Z_p\ar[r]	&0\\
+	0\ar[r]	&\Z_p\ar[r]	&R^{\psi=1}\ar[r]^{\Res}	&R^{\psi=0}\ar[r]^{\text{ev}_{T=0}}	&\Z_p\ar[r]	&0,
+}\]
+where
+\[A=\{\xi(1+T)^a|\xi\in\mu_{p-1},a\in\Z_p\}\]
+and $\alpha(g)=(Dg)(0)$ (see \cite[Theorem 2.5.2]{CS}). The bottom row can be simply seen as the additive version of the top row. Finally, using the isomorphisms
+\[\xymatrix{
+	\curlU_\infty\ar[d]_{\text{C.P.S.}}^{\wr}	&\Lambda(\curlG)\ar[d]_{\wr}^{\tilde{\curlM}}\\
+	W	&R^{\psi=0}\\
+}\]
+one can further lift this sequence to obtain
+\[\xymatrix{
+	0\ar[r]	&\mu_{p-1}\times T_p(\mu)\ar[r]	&\curlU_\infty\ar[r]^{\tilde{\curlL}}\ar[d]_{\text{C.P.S.}}^{\wr}	&\Lambda(\curlG)\ar[r]^\beta\ar[d]_{\wr}^{\tilde{\curlM}}	&T_p(\mu)\ar[r]	&0\\
+	0\ar[r]	&A\ar[r]	&W\ar[r]^{\Res\log}\ar[d]_{D\log}&R^{\psi=0}\ar[r]^{\alpha}\ar[d]^{D}		&\Z_p\ar[r]	&0\\
+	0\ar[r]	&\Z_p\ar[r]	&R^{\psi=1}\ar[r]^{\Res}	&R^{\psi=0}\ar[r]^{\text{ev}_{T=0}}	&\Z_p\ar[r]	&0.
+}\]
+
+In brief, one needs to work a little bit harder to obtain non-trivial measures on $\curlG$. This is where the cyclotomic units come in!
+
 
 \begin{thebibliography}{DDDD}
 \bibitem[CS]{CS}
