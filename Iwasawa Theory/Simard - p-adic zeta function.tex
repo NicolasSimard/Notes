@@ -58,7 +58,7 @@
 \renewcommand{\S}{\mathcal{S}}
 \renewcommand{\O}{\mathcal{O}}
 
-\newcommand{\eqdef}{:=}
+\newcommand{\eqdef}{\overset{\text{def}}{=}}
 \newcommand{\Dist}{\mathfrak{D}}
 \newcommand{\Meas}{\mathfrak{M}}
 \newcommand{\Hom}{\text{Hom}}
@@ -82,92 +82,89 @@
 In this section, we first define $p$-adic measures and see how they are related to Iwasawa Algebras and power series rings. We then introduce operators on them and conclude with of few results on moments of measures.
 
 \subsection{$p$-adic measures, distributions and Iwasawa algebras}
-Let $\Gfrak$ be an abelian profinite group, let $\B_\Gfrak$ be the boolean algebra of open subsets of $\Gfrak$, let $\T_\Gfrak\subseteq\B_\Gfrak$ be the set of open subgroups of $\Gfrak$ and let $A$ be any abelian group.
+Let $\Gfrak$ be an abelian profinite group, let $\B_\Gfrak$ be the boolean algebra of compact-open subsets of $\Gfrak$, let $\T_\Gfrak\subseteq\B_\Gfrak$ be the set of open subgroups of $\Gfrak$ and let $A$ be any abelian group.
 
 \begin{defn}
 	An $A$-valued distribution $\lambda$ on $\Gfrak$ is a finitely additive function
-	\[\lambda:\T_\Gfrak\rarr A.\]
+	\[\lambda:\B_\Gfrak\rarr A.\]
 	The set of distributions is denoted $\Dist(\Gfrak,A)$. If $A\subseteq\C_p$, the elements of $\Dist(\Gfrak,A)$ are called $p$-adic distributions.
 \end{defn}
 
 The set $\Dist(\Gfrak,A)$ is naturally an abelian group. If $A$ is a $B$-algebra for some ring $B$, the set $\Dist(\Gfrak,A)$ is a $B$-algebra under convolution product, which we won't bother to define here!
 
-\subsubsection{Distributions and Iwasawa algebras}
+\subsubsection*{Distributions and Iwasawa algebras}
 If $\Gfrak$ is finite, $\B_\Gfrak = \{\{g\}|g\in\Gfrak\}$ and we have an isomorphism of abelian groups
 \[\lambda\mapsto\sum_{g\in\Gfrak}\lambda(\{g\})g:\Dist(\Gfrak,A)\rightarrow A[\Gfrak].\]
 If $A$ is a $B$-algebra for some ring $B$, so is $A[\Gfrak]$ and the isomorphism is an isomorphism of $B$-algebras. For $\Gfrak$ finite, we define
-\[\Lambda(\Gfrak,A)\eqdef A[\Gfrak]\]
-and call it an Iwasawa algebra.
+\[\Lambda(\Gfrak,A)\eqdef A[\Gfrak].\]
 
 For $\Gfrak$ not necessarily finite, we define
 \[\Lambda(\Gfrak,A)=\varprojlim\Lambda(\Gfrak/\Hfrak,A)=\varprojlim A[\Gfrak/\Hfrak],\]
 where the limit is taken over all elements of $\T_\Gfrak$. Given $\Hfrak$ in $\T_\Gfrak$, we have a natural map
-\[\lambda\mapsto\sum_{g\mod\Hfrak}\lambda(g)(g+\Hfrak):\Dist(\Gfrak,A)\rarr\Lambda(\Gfrak/\Hfrak,A).\]
+\[\lambda\mapsto\lambda_\Hfrak=\sum_{x\in\Gfrak/\Hfrak}c_\Hfrak(x)x:\Dist(\Gfrak,A)\rarr\Lambda(\Gfrak/\Hfrak,A).\]
 Since distributions are finitely additive, we have then a natural map
 \[\Dist(\Gfrak,A)\rarr\Lambda(\Gfrak,A),\]
-which is in fact an isomorphism. In a certain sense, the elements of the Iwasawa algebra $\Lambda(\Gfrak,A)$ are like the generating series of distributions. 
+which is in fact an isomorphism. In a certain sense, the elements of the Iwasawa algebra $\Lambda(\Gfrak,A)$ are the generating series of distributions. 
 
 \textbf{Example: } If $A=\Z_p$, one obtains the usual Iwasawa algebra
 \[\Lambda(\Gfrak)\eqdef\Lambda(\Gfrak,\Z_p).\]
 
-\subsubsection{Distributions and step functions}
-From now on, suppose that $A$ is a $B$-algebra fro some ring $B$.
+\subsubsection*{Distributions and step functions}
+From now on, suppose that $A$ is a $B$-algebra for some ring $B$.
 
-Recall that if $s:\Gfrak\rightarrow A$ is a locally constant function, also called a step function, there exists an open subgroup $\Hfrak$ such that $s$ is well defined on $\Gfrak/\Hfrak$, i.e.
-\[s(x) = \sum_{g\in\Gfrak\Hfrak}s(g)\charf_{g}(x),\]
-where $\charf_{g}(x)$ is the characteristic function of the (open) coset $g\in\Gfrak/\Hfrak$. Note that such a representation of $s$ as a finite linear combination of characteristic functions is not unique. The set of step functions from $\Gfrak$ to $A$ is denoted
-\[\Step(\Gfrak,A).\]
-If $A$ is a $B$-algebra, $\Step(\Gfrak,A)$ is a $B$-algebra under the pointwise addition and multiplication of functions.
+Recall that if $s:\Gfrak\rightarrow A$ is a locally constant function, also called a step function, there exists an open subgroup $\Hfrak$ such that $s$ is well defined and constant modulo $\Hfrak$. Note that this subgroup $\Hfrak$ is not unique. The set of step functions from $\Gfrak$ to $A$, denoted
+\[\Step(\Gfrak,A),\]
+is a $B$-algebra.
 
-Let $\lambda$ be an $A$-valued distribution on $\Gfrak$, let $s$ be a step function which is well-defined $\mod\Hfrak$ as above and define
+Let $\lambda$ be an $A$-valued distribution on $\Gfrak$, let $s$ be a step function which is constant modulo $\Hfrak$ and define
 \[\int_\Gfrak s\d\lambda\eqdef\sum_{g\in \Gfrak/\Hfrak}s(g)\lambda(g).\]
 This gives a well-defined $B$-linear map
-\[\Lambda(\Gfrak,A)\rarr\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A).\]
-For convenience, the value of an element $\lambda\in\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A)$ at a step function $s(x)$ is denoted
+\[\Lambda(\Gfrak,A)\rarr\Hom_{B-\text{mod}}(\Step(\Gfrak,A),A).\]
+For convenience, the value of any $B$-linear map $\lambda\in\Hom_{B-\text{mod}}(\Step(\Gfrak,A),A)$ at a step function $s(x)$ is denoted
 \[\int_{\Gfrak}s(x)\d\lambda(x)\]
 or simply
 \[\int_{\Gfrak}s\d\lambda\]
 when there is no risk of confusion. The $B$-module
-\[\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A)\]
-can be equipped with a natural $B$-algebra structure via the convolution product which is defined as follows: for $\lambda,\mu\in\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A)$, let $\lambda\ast\mu$ be defined as 
-\[\int_{\Gfrak}f\d\lambda\ast\mu=\int_{\Gfrak}\left (f(x+y)\d\lambda(x)\right )\d\mu(y).\]
-The map above is then a $B$-algebra homomorphism. In fact, it is an isomorphism. Indeed, its inverse takes a homomorphism
-$\lambda\in\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A$ to the distribution $lambda$ defined as
-\[\lambda(U)=g(\charf_U).\]
-This sketches the proof of the following proposition.
+\[\Hom_{B-\text{mod}}(\Step(\Gfrak,A),A)\]
+can be equipped with a natural $B$-algebra structure via the convolution product which is defined as follows: for $\lambda,\mu\in\Hom_{B-\text{mod}}(\Step(\Gfrak,A),A)$, let $\lambda\ast\mu$ be defined as 
+\[\int_{\Gfrak}s(x)\d(\lambda\ast\mu)(x)=\int_{\Gfrak}\left (\int_\Gfrak s(x+y)\d\lambda(x)\right )\d\mu(y).\]
+The map above is then a $B$-algebra homomorphism, which is in fact an isomorphism. Indeed, its inverse takes a $B$-linear map
+$\phi\in\Hom_{B-\text{mod}}(\Step(\Gfrak,A),A)$ to the distribution $\lambda$ defined as
+\[\lambda(U)=\phi(\charf_U)\]
+for all $U\in\B_\Gfrak$, where $\charf_U\in\Step(\Gfrak,A)$ is the characteristic function of $U$. This sketches the proof of the following proposition.
 
-\begin{prop}
+\begin{prop}\label{prop:Iwasawaalgandstep}
 	There is a natural $B$-algebra isomorphism
-	\[\Lambda(\Gfrak,A)\rarr\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A).\]
+	\[\Lambda(\Gfrak,A)\rarr\Hom_{B-\text{mod}}(\Step(\Gfrak,A),A).\]
 \end{prop}
 
-\subsubsection{$p$-adic measures and continuous functions}
+\subsubsection*{$p$-adic measures and continuous functions}
 From now on, suppose that $A$ is contained in $\C_p$ (e.g. $A=B=\Z_p$). Let
 \[C(\Gfrak,\C_p)\]
-be the set of continuous functions from $\Gfrak$ to $\C_p$. This is a $\C_p$-Banach when equipped with the norm
+be the set of continuous functions from $\Gfrak$ to $\C_p$. This is a $\C_p$-Banach algebra when equipped with the sup norm
 \[\parallel f\parallel=\sup_{x\in\Gfrak} |f(x)|_p.\]
 The set $\Step(\Gfrak,\C_p)$ is dense in $C(\Gfrak,\C_p)$.
 
 \begin{defn}
-	A $p$-adic distribution $\lambda\in\Dist(\Gfrak,A)$ is called a $p$-adic measure if it is bounded (as a function from $\T_\Gfrak$ to $A\subseteq\C_p$). The set of $p$-adic measures is denoted $\Meas(\Gfrak,A)$.
+	A $p$-adic distribution $\lambda\in\Dist(\Gfrak,A)$ is called a $p$-adic measure if it is bounded (as a function from $\B_\Gfrak$ to $A\subseteq\C_p$). The set of $p$-adic measures is denoted $\Meas(\Gfrak,A)$.
 \end{defn}
 
-Note that if $A$ is bounded, which is the case if $A=\Z_p$ for example, then $\Meas(\Gfrak,A)=\Dist(\Gfrak,A)$. The importance of introducing measures is the following proposition.
+Note that if $A$ is bounded, which is the case if $A=\Z_p$ for example, then $\Meas(\Gfrak,A)=\Dist(\Gfrak,A)$.
 
 \begin{prop}
-	Let $\lambda\in\Meas(\Gfrak,\C_p)$ be viewed as an element of
-	\[\Hom_{B-\text{alg}}(\Step(\Gfrak,\C_p),\C_p)\]
-	via the above isomorphism. Then $\lambda$ extends uniquely to a continuous map
+	Let $\lambda\in\Meas(\Gfrak,\C_p)$ be a measure, viewed as a $B$-linear map
+	\[\lambda:\Step(\Gfrak,\C_p)\rarr \C_p.\]
+	Then $\lambda$ extends uniquely to a continuous map
 	\[\lambda:C(\Gfrak,\C_p)\rightarrow\C_p.\]
 \end{prop}
 \begin{proof}
 	Let $\lambda$ be a $p$-adic measure and suppose that
 	\[|\lambda(U)|_p\leq M\]
-	for all $U\in\B_\Gfrak$ and some $M\in\R$. By the density of $\Step(\Gfrak,\C_p)$ in $C(\Gfrak,\C_p$, for any $f\in C(\Gfrak,\C_p)$ one can find a sequence of step functions $s_n\in\Step(\Gfrak,\C_p)$ such that
+	for all $U\in\B_\Gfrak$ and some $M\in\R$. By the density of $\Step(\Gfrak,\C_p)$ in $C(\Gfrak,\C_p)$, for any $f\in C(\Gfrak,\C_p)$ one can find a sequence of step functions $\{s_n\}\subseteq\Step(\Gfrak,\C_p)$ such that
 	\[f(x)=\lim_{n\rightarrow\infty} s_n(x).\]
 	Then it is easy to see that for any integers $m$ and $n$,
 	\[\lambda(s_n-s_m)\leq M\parallel s_n-s_m\parallel.\]
-	Since the sequence $\{s_n\}$ is Cauchy, so is the sequence $\{\lambda(s_n)\}$ and is makes sense to define
+	Since the sequence $\{s_n\}$ is Cauchy, so is the sequence $\{\lambda(s_n)\}$ and it makes sense to define
 	\[\lambda(f)=\lim_{n\rightarrow\infty} \lambda(s_n).\]
 	The uniqueness is clear.
 \end{proof}
@@ -176,7 +173,7 @@ For $\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)$, define
 \[\parallel\lambda\parallel=\sup_{f\in C(\Gfrak,\C_p)}\frac{|\lambda(f)|}{\parallel f\parallel},\]
 which is a finite real number by the continuity of $\lambda$. Equipped with the convolution product, this set becomes a $\C_p$-Banach algebra.
 
-In the case where $A=\Z_p$, we have $\Meas(\Gfrak,\Z_p)=\Dist(\Gfrak,\Z_p)$ and we have the following proposition.
+In the case where $A=\Z_p$, recall that $\Meas(\Gfrak,\Z_p)=\Dist(\Gfrak,\Z_p)$.
 
 \begin{prop}
 	The image of $\Meas(\Gfrak,\Z_p)$ under the injection of the previous proposition is the set of
@@ -188,13 +185,13 @@ In the case where $A=\Z_p$, we have $\Meas(\Gfrak,\Z_p)=\Dist(\Gfrak,\Z_p)$ and 
 	Let $\lambda\in\Meas(\Gfrak,\Z_p)$ and take
 	\[s\in\Step(\Gfrak,\Q_p).\]
 	Writing
-	\[s=\sum_{g\in\Gfrak/Hfrak}s(g)\charf_g,\]
+	\[s=\sum_{x\in\Gfrak/\Hfrak}s(x)\charf_x,\]
 	we see that
-	\[\int_{\Gfrak}s\d\lambda=\sum_{g\in\Gfrak/Hfrak}s(g)\lambda(g)\in\Q_p\]
+	\[\int_{\Gfrak}s\d\lambda=\sum_{x\in\Gfrak/\Hfrak}s(x)\lambda(x)\in\Q_p\]
 	and so
-	\[\left |\int_{\Gfrak}s\d\lambda\right |_p\leq\sup_{g\in\Gfrak/Hfrak}|s(g)|_p|\lambda(g)|_p\leq\parallel s\parallel.\]
+	\[\left |\int_{\Gfrak}s\d\lambda\right |_p\leq\sup_{x\in\Gfrak/\Hfrak}|s(x)|_p|\lambda(x)|_p\leq\parallel s\parallel.\]
 	From the density of $\Step(\Gfrak,\C_p)$ in $C(\Gfrak,\C_p)$ and the continuity of the norm function, it follows that
-	\[\parallel\lambda\parallel\leq 1\and\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+	\[\parallel\lambda\parallel\leq 1\myand\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
 	
 	Conversely, let
 	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
@@ -209,82 +206,85 @@ In the case where $A=\Z_p$, we have $\Meas(\Gfrak,\Z_p)=\Dist(\Gfrak,\Z_p)$ and 
 	This concludes the proof.	
 \end{proof}
 
-If $\rho:\Gfrak\rarr\C_p^\times$ is a character, i.e. a group homomorphism, and $\lambda,\mu\in\Meas(\Gfrak,\C_p)$ then
-\[\int_{\Gfrak}\rho\d\lambda\ast\mu=\int_\Gfrak\rho\d\lambda\int_\Gfrak\rho\d\mu.\]
-A \emph{pseudo-measure} is an element $\lambda$ of the total ring of fractions of $\Lambda(\Gfrak)$, i.e. a quotient $\lambda=\mu/\nu$ of elements $\Lambda(\Gfrak,\Z_p)$ where $\nu$ is not a zero divisor, with the property that
-\[(g-1)\lambda\in\Lambda(\Gfrak).\]
-For any pseudo-measure $\lambda$ as above and any non-trivial character $\rho$ of $\Gfrak$, define
-\[\int_\Gfrak\rho\d\lambda\eqdef\frac{\int_\Gfrak\rho\d\mu}{\int_\Gfrak\rho\d(g-1)}=\frac{\int_\Gfrak\rho\d\mu}{\rho(g)-1},\]
+If $\rho:\Gfrak\rarr\C_p^\times$ is a continuous character, i.e. a continuous group homomorphism, and $\lambda,\mu\in\Meas(\Gfrak,\C_p)$ then
+\[\int_{\Gfrak}\rho(x)\d(\lambda\ast\mu)(x)=\int_\Gfrak\rho(x)\d\lambda(x)\int_\Gfrak\rho(x)\d\mu(x).\]
+A \emph{pseudo-measure} is an element $\lambda$ of the total ring of fractions of $\Lambda(\Gfrak)$, i.e. a quotient $\lambda=\mu/\nu$ of elements $\Lambda(\Gfrak)$ where $\nu$ is not a zero divisor, with the property that
+\[(g-1)\lambda\in\Lambda(\Gfrak)\]
+for all $g\in\Gfrak$ (viewed as elements of $\Lambda(\Gfrak)$). For any such pseudo-measure $\lambda$ and any non-trivial character $\rho$ of $\Gfrak$, define
+\[\int_\Gfrak\rho(x)\d\lambda(x)\eqdef\frac{\int_\Gfrak\rho(x)\d((g-1)\lambda)(x)}{\int_\Gfrak\rho(x)\d(g-1)(x)}=\frac{\int_\Gfrak\rho(x)\d((g-1)\lambda)(x)}{\rho(g)-1},\]
 where $g$ is any element of $\Gfrak$ not in the kernel of $\rho$. This definition does not depend on this choice of $g$. Note that we used the fact that for any $g\in\Gfrak$,
 \[\int_\Gfrak f\d g=f(g).\]
-In other words, the elements of $\Gfrak$ correspond to Dirac measures.
+In other words, the elements of $\Gfrak$ in $\Lambda(\Gfrak)$ correspond to Dirac distributionsq.
 
-\subsubsection{The Iwasawa algebra $\Lambda(\Z_p)$ and Mahler's transform}
+\subsubsection*{The Iwasawa algebra $\Lambda(\Z_p)$ and Mahler's transform}
 When $\Gfrak=\Z_p$, one can say more about $p$-adic measures. This is because the $\C_p$-Banach algebra of continuous functions on $\Z_p$ has a special \emph{Mahler basis}.
 
-For $n\in\Z_{\geq0}$, define
+Let $e_0(x)=1$ and define $e_n(x)$ for $n\in\Z_{>0}$ as
 \[e_n(x)\eqdef\binom{x}{n}=\frac{x(x-1)\dots(x-n+1)}{n!}.\]
 
 \begin{theorem}
 	Let $f\in C(\Z_p,\C_p)$. Then there exists a unique sequence $\{a_n\}_{n\geq 0}$ of elements of $\C_p$ such that
 	\[\lim_{n\rightarrow\infty}a_n=0\]
 	and
-	\[f(x)=\sum_{n=0}^\infty a_n\binom{x}{n}.\]
-	This is called the Mahler expansion of $f$.
+	\[f(x)=\sum_{n=0}^\infty a_n\binom{x}{n}\]
+	for all $x$ in $\Z_p$. This is called the Mahler expansion of $f$.
 \end{theorem}
 \begin{proof}
 	This is Theorem $3.3.1$ in \cite{CS}.
 \end{proof}
 
-Knowing that elements of $\Lambda(\Z_p)$ can be viewed as continuous linear functional on $ C(\Z_p,\C_p)$, one could form their generating function with respect to the Mahler basis:
+Knowing that an element $\lambda$ of $\Lambda(\Z_p)$ can be viewed as a continuous linear functional on $ C(\Z_p,\C_p)$, one can form its generating function with respect to the Mahler basis:
 \[\curlM(\lambda)\eqdef\sum_{n=0}^\infty T^n\int_{\Z_p}\binom{x}{n}\d\lambda.\]
 This is called the \emph{Mahler transform} of $\lambda$. Note that
 \[\curlM(\lambda)\in\Z_p[[T]].\]
-Intuitively, the Mahler transform should determine $\lambda$ (because the $e_n(x)$ form a basis of $C(\Z_p,\C_p)$). In fact, much more is true.
+Intuitively, the Mahler transform should determine $\lambda$ (because the $e_n(x)$ form a basis of $C(\Z_p,\C_p)$). In fact, more is true.
 
 \begin{theorem}
 	The Mahler transform
-	\[\curlM:\Lambda(\Z_p)\rarr \Z_p[[T]]\]	
+	\[\curlM:\Lambda(\Z_p)\rarr R,\]	
+	where
+	\[R\eqdef\Z_p[[T]],\]
 	is an isomorphism of $\Z_p$-algebras.
 \end{theorem}
 \begin{proof}
 	This is Theorem $3.3.3$ in \cite{CS}.
 \end{proof}
 
-The inverse of $\curlM$, denoted $\curlY$ in \cite{CS}, is defined as follows. If a continuous function $f$ has Mahler expansion
+The inverse of $\curlM$, denoted $\curlY$ in \cite{CS}, is defined as follows: for a continuous function $f$ with Mahler expansion
 \[f(x)=\sum_{n=0}^\infty a_n e_n(x)\]
-and
+and for
 \[g(T)=\sum_{n=0}^\infty b_nT^n\in\Z_p[[T]],\]
 we define
 \[\int_{\Z_p} f\d\curlY(g)=\sum_{n=0}^\infty a_nb_n.\]
-For convenience, we sometimes denote $\curlY(g)$ by $\lambda_g$.
 
 \textbf{Example: } For any $a\in\Z_p$, viewed as a constant compatible sequence in $\Lambda(\Z_p)$, one has
 \[\curlM(a)=(1+T)^a,\]
-so that the power series $(1+T)^a$ corresponds to the Dirac measures in $\Lambda(\Z_p)$.
+so that the power series $(1+T)^a$ correspond to the Dirac measures in $\Lambda(\Z_p)$.
 
-\subsubsection{The Iwasawa algebra $\Lambda(\Z_p^\times)$}
-Integration over $\Gfrak=\Z_p^\times$ is closely related to integration over $\Z_p$. Since $\Lambda(\Z_p)$ has more structure, it is desirable to relate $\Lambda(\Z_p^\times)$ to $\Lambda(\Z_p)$. Since $\Z_p^\times$ is a subset of $\Z_p$, it is natural to define a map
+\subsubsection*{The Iwasawa algebra $\Lambda(\Z_p^\times)$}
+Integration over $\Gfrak=\Z_p^\times$ is closely related to integration over $\Z_p$. Since $\Lambda(\Z_p)$ has more structure, it is desirable to relate $\Lambda(\Z_p^\times)$ with $\Lambda(\Z_p)$. Since $\Z_p^\times$ is a subset of $\Z_p$, it is natural to define a map
 \[\imath:\Lambda(\Z_p^\times)\rarr\Lambda(\Z_p)\]
 as
 \[\int_{\Z_p}f\d\imath(\lambda)\eqdef\int_{\Z_p^\times}f|_{\Z_p^\times}\d\lambda,\]
 for all $f\in C(\Z_p,\C_p)$, where $f|_{\Z_p^\times}\in C(\Z_p^\times,\C_p)$ is the restriction of $f$ to $\Z_p^\times$. One can check that this map is well-defined, i.e. that the functional 
 \[f\mapsto \int_{\Z_p}f\d\iota(\lambda)\]
-is in the image of $\Lambda(\Z_p)$ in $\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)$.
+is in the image of $\Lambda(\Z_p)$ in $\Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)$.
 
-The next step is to identify the image of $\Lambda(\Z_p^\times)$ inside $\Lambda(\Z_p)$. This will be done in the next section, after we introduce the trace and restriction operators. 
+The next step is to identify the image of $\Lambda(\Z_p^\times)$ inside $\Lambda(\Z_p)$. This will be done in the next section, using the trace and restriction operators. 
 
-\subsubsection{The Iwasawa algebras $\Lambda(\curlG)$ and $\Lambda(G)$}
+\subsubsection*{The Iwasawa algebras $\Lambda(\curlG)$ and $\Lambda(G)$}
 Recall the following notation
 \[\curlF_n=\Q(\mu_{p^{n+1}})\myand F_n=\Q(\mu_{p^{n+1}})^+.\]
 \[\curlG=\Gal(\curlF_\infty/\Q)\myand G=\Gal(F_\infty/\Q).\]
-A generator $(\zeta_n)$ for the Tate module $T_p(\mu)$ is a sequence of $\zeta_n\in\mu _{p^{n+1}}$ such that $\zeta_{n+1}^p=\zeta_n$. Fixing such a generator, we obtain an isomorphism
+A generator $(\zeta_n)$ of the Tate module 
+\[T_p(\mu)=\varprojlim\mu_{p^{n+1}}\]
+is by definition a sequence of roots of unity $\zeta_n\in\mu _{p^{n+1}}$ such that $\zeta_{n+1}^p=\zeta_n$. Fixing such a generator, we obtain an isomorphism
 \[\chi:\curlG\rarr\Z_p^\times,\]
 called the cyclotomic character. This indices an isomorphism
 \[\tilde{\chi}:\Lambda(\curlG)\rarr\Lambda(\Z_p^\times).\]
-But more is true. One can define a natural action of $\curlG$ on $\Lambda(\Z_p^\times)$ and $\Lambda(\Z_p)$ via the cyclotomic character. Then $\tilde{\chi}$ becomes a $\curlG$-isomorphism, i.e. $\tilde{\chi}(\curlG)$ is $\curlG$-equivariant.
+But more is true. One can define a natural action of $\curlG$ on $\Lambda(\Z_p^\times)$ and $\Lambda(\Z_p)$ via the cyclotomic character. Then $\tilde{\chi}$ becomes a $\curlG$-isomorphism, i.e. $\tilde{\chi}$ is $\curlG$-equivariant.
 
-For each $n\geq0$, the CM field $\curlF_n$ has complex conjugation action $\iota_n$ and the fixed field of $\{1,\iota_n\}$ is $F_n$. This extends to a complex conjugation action $\iota$ in $\curlG$ which fixes $G$. This makes $\Lambda(\curlG)$ into a $\Z_p[\mathcal{J}]$-module, where $\mathcal{J}=\{1,\iota\}$. For $p$ odd decomposes naturally as
+For each $n\geq0$, the CM field $\curlF_n$ has complex conjugation action $\iota_n$ and the fixed field of $\{1,\iota_n\}$ is $F_n$. This extends to a complex conjugation action $\iota$ in $\curlG$, so $\Lambda(\curlG)$ is a $\Z_p[\mathcal{J}]$-module, where $\mathcal{J}=\{1,\iota\}$. For $p$ odd this module decomposes naturally as
 \[\Lambda(\curlG)=\Lambda(\curlG)^+\oplus\Lambda(\curlG)^-,\]
 where
 \[\Lambda(\curlG)^+=\frac{1+\iota}{2}\Lambda(\curlG)\myand\Lambda(\curlG)^-=\frac{1-\iota}{2}\Lambda(\curlG).\]
@@ -299,65 +299,67 @@ Finally, one has the following proposition.
 \end{proof}
 
 \subsection{Operators on $p$-adic measures}
-In \cite{CS}, the authors introduce a few operators in the ring $R=\Z_p[[T]]$. Since $\Lambda(\Z_p)$ is canonically isomorphic to this ring via the Mahler transform, those operators have a corresponding simple definition on the Iwasawa algebra. By combining those operators, one obtains the restriction operator, which has a natural interpretation.
+In \cite{CS}, the authors introduce a few operators in the ring $R=\Z_p[[T]]$. Since $\Lambda(\Z_p)$ is canonically isomorphic to this ring via the Mahler transform, those operators have a corresponding simple definition on the Iwasawa algebra. By combining those operators, one obtains the restriction operator, which plays an important role in the theory.
 
-\subsubsection{Operators on $R$}
+\subsubsection*{Operators on $R$}
 Let $g(T)$ be a power series in $R$ and define the operator
 \[\varphi:R\rarr R\]
 as
 \[\varphi(g)(T)=g((1+T)^p-1).\]
 This is well defined \emph{injective} $\Z_p$-algebra endomorphism (see \cite[Lemma 2.2.2]{CS}).
 
-One can the define trace operator
+Next, define the trace operator
 \[\psi:R\rarr R\]
 as
 \[(\varphi\circ\psi)(g)(T)=\frac{1}{p}\sum_{\xi\in\mu_p}g(\xi(1+T)-1).\]
-This is a well-defined continuous $\Z_p$-linear map from $R$ to itself (see \cite[Proposition 2.2.3]{CS}). Moreover,
+This is a well-defined continuous $\Z_p$-linear endomorphism (see \cite[Proposition 2.2.3]{CS}).
+
+The operators $\varphi$ and $\psi$ satisfy the relation
 \[\psi\circ\varphi=1_R.\]
 
 Finally, one can introduce a derivation $D$ on $R$ as follows:
-\[D(g)(T)=(1+T)\frac{\d g}{\d T}.\]
+\[D(g)(T)\eqdef(1+T)g'(T)=(1+T)\frac{\d g}{\d T}.\]
 
-It is enlightening to interpret those operators in a different way. Suppose that $g(T)$ can be written as
+It is enlightening to see how those operators act on power series. Suppose that $g(T)$ can be written as
 \[g(T)\sum_{n=0}^\infty a_n(1+T)^n.\]
 Then $\varphi$ is simply given as
 \[\varphi(g)(T)=\sum_{n=0}^\infty a_n(1+T)^{pn}.\]
-As for $\psi$, as simple calculation shows that
+As for $\psi$, a simple calculation shows that
 \[\psi(g)(T)=\sum_{n=0}^\infty a_{np}(1+T)^n.\]
 Moreover,
 \[D(g)(T)=\sum_{n=0}^\infty na_n(1+T)^n.\]
-Letting $q=1+T$, this proves that the $\varphi$, $\psi$ and $D$ operators correspond formally to the $V_p$, $U_p$ and $q\frac{\d}{\d q}$ operators on $q$-expansions of level $1$ modular forms. With that in mind, it is clear that $\psi\circ\phi$ is the identity on $R$.
+Thinking of $1+T$ as the parameter $q$ at infinity on the modular curve $X(1)$, this suggests that the $\varphi$, $\psi$ and $D$ operators correspond formally to the $V_p$, $U_p$ and $q\frac{\d}{\d q}$ operators on $q$-expansions. With that in mind, it is clear that $\psi\circ\phi$ is the identity on $R$.
 
-\subsubsection{Operators on $\Lambda(\Z_p)$}
-We now introduce the operators on $p$-adic measures, i.e. elements of the Iwasawa algebra $\Lambda(Z_p)$, which correspond to $\varphi$, $\psi$ and $D$ on $R$.
+\subsubsection*{Operators on $\Lambda(\Z_p)$}
+We now introduce the operators on $p$-adic measures which correspond under the Mahler transform to $\varphi$, $\psi$ and $D$ on $R$.
 
-Let $\lambda\in\Lambda(Z_p)$ be a $p$-adic measure on $\Z_p$. Then one can verify  without difficulty that the $\Z_p$-algebra endomorphism
-\[\varphi:\Lambda(Z_p)\rarr\Lambda(Z_p)\]
+Let $\lambda\in\Lambda(\Z_p)$ be a $p$-adic measure on $\Z_p$. Then one can verify  without difficulty that the $\Z_p$-algebra endomorphism
+\[\varphi:\Lambda(\Z_p)\rarr\Lambda(\Z_p)\]
 defined as
 \[\int_{\Z_p}f(x)\d\varphi(\lambda)(x)\eqdef\int_{\Z_p}f(px)\d\lambda(x)\]
 corresponds, via the Mahler transform, to the operator $\varphi:R\rarr R$ introduced above.
 
 A similar calculation shows that the $\Z_p$-linear map
-\[\psi:\Lambda(Z_p)\rarr\Lambda(Z_p)\]
+\[\psi:\Lambda(\Z_p)\rarr\Lambda(\Z_p)\]
 defined as
 \[\int_{\Z_p}f(x)\d\psi(\lambda)(x)\eqdef\int_{\Z_p}\charf_{p\Z_p}(x)f\left (\frac{x}{p}\right )\d\lambda(x)\]
 corresponds to the $\Z_p$-linear map $\psi:R\rarr R$ introduced above.
 
 One can then see, directly or using the corresponding property on $R$, that
 \[\psi\circ\varphi=1_{\Lambda(\Z_p)}.\]
-One also sees that $\varphi\circ\psi$ corresponds to "restriction on $p\Z_p$", since
+One also sees that $\varphi\circ\psi$ corresponds to "restriction to $p\Z_p$", since
 \[\int_{\Z_p}f(x)\d(\varphi\circ\psi)(\lambda)(x)=\int_{\Z_p}f(px)\d\psi(\lambda)(x)=\int_{\Z_p}\charf_{p\Z_p}(x)f(x)\d\lambda(x).\]
 
 Now let $f_0(x)$ be any continuous function on $\Z_p$ and define the measure $f_0\lambda$ as
-\[\int_{\Z_p}f(x)\d(f_0\lambda)(x)=\int_{\Z_p}f_0(x)f(x)\d\lambda(x).\]
+\[\int_{\Z_p}f(x)\d(f_0\lambda)(x)\eqdef\int_{\Z_p}f_0(x)f(x)\d\lambda(x).\]
 For $f_0(x)=x$, one has the relation
 \[\curlM(x\lambda)=D(\curlM(\lambda)),\]
 which follows formally from the identity
 \[x\binom{x}{n}=(n+1)\binom{x}{n+1}+n\binom{x}{n}\]
 (see the proof of Lemma $3.3.5$ in \cite{CS}). Therefore the $D$ operator corresponds to the multiplication by $x$ map on $\Lambda(\Z_p)$.
 
-\subsubsection{Restriction of measures from $\Z_p$ to $\Z_p^\times$}
-We now introduce the restriction operator. In particular, this will allow us to identify the image of $\Lambda(\Z_p^\times)$ inside $\Lambda(\Z_p)$.
+\subsubsection*{Restriction of measures from $\Z_p$ to $\Z_p^\times$}
+We now introduce the restriction operator. In particular, it will allow us to identify the image of $\Lambda(\Z_p^\times)$ inside $\Lambda(\Z_p)$.
 
 Recall that the operator $\delta:R\rarr R$ is defined in section $3.4$ of \cite{CS} as
 \[\delta(g)(T)=g(T)-\varphi\circ\psi(g)(T)=(1-\varphi\circ\psi)(g)(T).\]
@@ -367,37 +369,36 @@ It is not so clear why this operator on power series should be viewed as a restr
 \begin{align*}
 	\int_{\Z_p}f(x)\d\Res(\lambda)(x) 	&= \int_{\Z_p}f(x)\d\lambda(x)-\int_{\Z_p}f(x)\d(\varphi\circ\psi)(\lambda)(x)\\																&= \int_{\Z_p}f(x)\d\lambda(x)-\int_{\Z_p}\charf_{p\Z_p}(x)f(x)\d\lambda(x)\\
 										&= \int_{\Z_p}(1-\charf_{p\Z_p}(x))f(x)\d\lambda(x)\\
-										&= \int_{\Z_p}\charf_{\Z_p^\times}(x)f(x)\d\lambda(x)\\
+										&= \int_{\Z_p}\charf_{\Z_p^\times}(x)f(x)\d\lambda(x).\\
 \end{align*}
-which justifies the notation. Note that the operator $\Res$ on measures is denoted $\#$ in \cite{CS}.
+Note that the operator $\Res$ on measures is denoted $\#$ in \cite{CS}.
 
 The operator $\Res$ is a projection, i.e. $\Res\circ\Res=\Res$. A formal computation shows that
-\[\Res g(T)=g(T) \Leftrightarrow \psi(g)(T)=0\Leftrightarrow g\in R^{\psi=0},\]
+\[g(T)\in\text{Im}\Res\Leftrightarrow\Res g(T)=g(T) \Leftrightarrow \psi(g)(T)=0\Leftrightarrow g\in R^{\psi=0},\]
 where
 \[R^{\psi=0}=\{g\in R|\psi(g)=0\}.\]
 
 \begin{prop}
-	The image of $\Lambda(\Z_p^\times)$ in $\Lambda(\Z_p)$ under the injection $\imath$ is the set of measures fixed by the $\Res$ operator. 
+	The image of $\Lambda(\Z_p^\times)$ in $\Lambda(\Z_p)$ under the injection $\imath$ is the image of the restriction operator $\Res$.
 \end{prop}
 \begin{proof}
 	This follows from Lemma $3.4.1$ and Lemma $3.4.2$ in \cite{CS}.
 \end{proof}
 
-This proposition means that the restriction of $p$-adic measures on $\Z_p$ can be viewed as $p$-adic measures on $\Z_p^
-times$. It also implies that the following diagram
+This proposition proves that the restriction of $p$-adic measures on $\Z_p$ can be viewed as $p$-adic measures on $\Z_p^\times$. It also implies that the following diagram
 \[\xymatrix{
 	\Lambda(\Z_p)\ar[r]^{\curlM} & R\\
 	\Lambda(\Z_p^\times)\ar[u]^{\imath}\ar[r]^{\curlM\circ\imath} & R^{\psi=0}\ar[u]
 }\]
 is commutative.
 
-Using the analogy between $\varphi\leftrightarrow V_p$ and $\psi\leftrightarrow U_p$ discussed above, we see that the restriction operator looks like the $p$-stabilisation operator on modular forms. 
+Using the analogy between $\varphi\leftrightarrow V_p$ and $\psi\leftrightarrow U_p$ discussed above, we see that the restriction operator looks like the $p$-stabilisation operator on modular forms.
 
 \subsection{Moments of $p$-adic measures}
-The special values of the zeta function will be obtained by computing the moments of a pseudo-measure on $\Lambda(\curlG)$. We collect here a few results that help us compute those moments later.
+The special values of the zeta function will be obtained by computing the moments of a pseudo-measure on $\Lambda(\curlG)$. We collect here a few results that will help us compute those moments later.
 
-First, it is follows directly from the results of the previous section that
-\[\int_{\Z_p}x^k\d\lambda(x)=\int_{\Z_p}\d((x^k\lambda)(x))=\curlM(x^k\lambda)(0)\]
+First, it follows directly from the results of the previous section that
+\[\int_{\Z_p}x^k\d\lambda(x)=\int_{\Z_p}\d(x^k\lambda)(x)=\int_{\Z_p}e_0(x)\d(x^k\lambda)(x)=\curlM(x^k\lambda)(0)\]
 and since
 \[\curlM(x\lambda)=D\curlM(\lambda)\]
 we have
@@ -412,7 +413,7 @@ To have a simple relation, \emph{suppose $\psi(\lambda)=\lambda$}. We compute
 \begin{align*}
 	\int_{\Z_p}x^k\d\Res(\lambda)(x) 	&= \int_{\Z_p}x^k\d(1-\varphi\circ\psi)(\lambda)(x) &\\																							&= \int_{\Z_p}x^k\d(1-\varphi)(\lambda)(x)			&\text{since $\psi(\lambda)=\lambda$}\\
 										&= \int_{\Z_p}x^k\d\lambda(x)-\int_{\Z_p}x^k\d\varphi(\lambda)(x) &\\
-										&= \int_{\Z_p}x^k\d\lambda(x)-\int_{\Z_p}(px)^k\d\psi(\lambda)(x) &\\
+										&= \int_{\Z_p}x^k\d\lambda(x)-\int_{\Z_p}(px)^k\d\lambda(x) &\\
 										&= (1-p^k)\int_{\Z_p}x^k\d\lambda(x). &\\
 \end{align*}
 In brief,
@@ -426,46 +427,46 @@ Finally, moments determine measures on $\Z_p^\times$.
 
 \begin{prop}
 	Let $\lambda\in\Lambda(\curlG)$ be a measure. If
-	\[\int_\curlG\chi^k(g)\d\lambda(g)\esp\text{for }k=1,3,5,\dots,\]
+	\[\int_\curlG\chi^k(g)\d\lambda(g)=0\esp\text{for }k=1,3,5,\dots,\]
 	then $\lambda\in\Lambda(\curlG)^+$. Similarly, if
-	\[\int_\curlG\chi^k(g)\d\lambda(g)\esp\text{for }k=2,4,6,\dots,\]
+	\[\int_\curlG\chi^k(g)\d\lambda(g)=0\esp\text{for }k=2,4,6,\dots,\]
 	then $\lambda\in\Lambda(\curlG)^-$. In particular,
-	\[\int_\curlG\chi^k(g)\d\lambda(g)\esp\text{for all }k>0,\]
-	then $\lambda=0$. Similar statements are true for pseudo-measures.
+	\[\int_\curlG\chi^k(g)\d\lambda(g)=0\esp\text{for all }k>0,\]
+	then $\lambda=0$. The same is true for pseudo-measures.
 \end{prop}
 \begin{proof}
 	This is Lemma $4.4.2$ and Corollary $4.2.3$ of \cite{CS}.
 \end{proof}
 
-\subsection{Summary}
-\begin{enumerate}
-\item For a general abelian group, we have
-\[\Dist(\Gfrak,A)\simeq\Lambda(\Gfrak,A)\]
-canonically as abelian groups. When $A$ is a $B$-algebra, this is an isomorphism of $B$-algebras.
-
-\item When $A$ is a $B$-algebra, we have
-\[\Lambda(\Gfrak,A)\simeq\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A),\]
-canonically as $B$-algebras, where the product on the right set is the convolution product.
-
-\item When $A$ is contained in $\C_p$, any $p$-adic measure $\lambda$ extends uniquely to a continuous map
-\[\lambda:C(\Gfrak,\C_p)\rightarrow\C_p.\]
-
-\item When $A=\Z_p$, the image of $\Meas(\Gfrak,\Z_p)$ under the above injection is the set of
-	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
-	such that
-	\[\parallel\lambda\parallel\leq 1\hspace{1cm}\text{and}\hspace{1cm}\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
-	
-\item When $A=\Z_p$ and $\Gfrak=\Z_p$, the Mahler transform $\curlM$ establishes a $\Z_p$-algebra isomorphism
-\[\curlM:\Lambda(\Z_p)\rarr\Z_p[[T]].\]
-
-\item When $A=\Z_p$ and $\Gfrak=\Z_p^\times$, we have a natural injection
-\[\iota:\Lambda(\Z_p^\times)\rarr\Lambda(\Z_p).\]
-
-\item When $A=\Z_p$ and $\Gfrak=\curlG$, we have a $\curlG$-isomorphism $\Lambda(\curlG)\approx\Lambda(\Z_p^\times)$. Moreover, $\Lambda(G)$ can be canonically identified as a $\Z_p$-submodule of $\Lambda(\curlG)$.
-\end{enumerate}
-
-Here are all the maps we introduced for $\Z_p$-valued measures:
-\[\Lambda(G)\simeq\Lambda(\curlG)^+\hookrightarrow\Lambda(\curlG)\overset{\tilde{\chi}}{\approx}\Lambda(\Z_p^\times)\overset{\imath}{\hookrightarrow}\Lambda(\Z_p)\simeq\Dist(\Z_p,\Z_p)=\Meas(\Z_p,\Z_p)\hookrightarrow\Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p).\]
+%\subsection{Summary}
+%\begin{enumerate}
+%\item For a general abelian group, we have
+%\[\Dist(\Gfrak,A)\simeq\Lambda(\Gfrak,A)\]
+%canonically as abelian groups. When $A$ is a $B$-algebra, this is an isomorphism of $B$-algebras.
+%
+%\item When $A$ is a $B$-algebra, we have
+%\[\Lambda(\Gfrak,A)\simeq\Hom_{B-\text{alg}}(\Step(\Gfrak,A),A),\]
+%canonically as $B$-algebras, where the product on the right set is the convolution product.
+%
+%\item When $A$ is contained in $\C_p$, any $p$-adic measure $\lambda$ extends uniquely to a continuous map
+%\[\lambda:C(\Gfrak,\C_p)\rightarrow\C_p.\]
+%
+%\item When $A=\Z_p$, the image of $\Meas(\Gfrak,\Z_p)$ under the above injection is the set of
+%	\[\lambda\in \Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p)\]
+%	such that
+%	\[\parallel\lambda\parallel\leq 1\hspace{1cm}\text{and}\hspace{1cm}\lambda(C(\Gfrak,\Q_p))\subseteq\Q_p.\]
+%	
+%\item When $A=\Z_p$ and $\Gfrak=\Z_p$, the Mahler transform $\curlM$ establishes a $\Z_p$-algebra isomorphism
+%\[\curlM:\Lambda(\Z_p)\rarr\Z_p[[T]].\]
+%
+%\item When $A=\Z_p$ and $\Gfrak=\Z_p^\times$, we have a natural injection
+%\[\iota:\Lambda(\Z_p^\times)\rarr\Lambda(\Z_p).\]
+%
+%\item When $A=\Z_p$ and $\Gfrak=\curlG$, we have a $\curlG$-isomorphism $\Lambda(\curlG)\approx\Lambda(\Z_p^\times)$. Moreover, $\Lambda(G)$ can be canonically identified as a $\Z_p$-submodule of $\Lambda(\curlG)$.
+%\end{enumerate}
+%
+%Here are all the maps we introduced for $\Z_p$-valued measures:
+%\[\Lambda(G)\simeq\Lambda(\curlG)^+\hookrightarrow\Lambda(\curlG)\overset{\tilde{\chi}}{\approx}\Lambda(\Z_p^\times)\overset{\imath}{\hookrightarrow}\Lambda(\Z_p)\simeq\Dist(\Z_p,\Z_p)=\Meas(\Z_p,\Z_p)\hookrightarrow\Hom_{\text{cont}}(C(\Gfrak,\C_p),\C_p).\]
 
 \section{$p$-adic measure attached to compatible systems of local units}
 As we know, the $p$-adic zeta function is associated with the cyclotomic units. Those units come in compatible systems, i.e. they are elements of
