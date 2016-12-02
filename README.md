@@ -1,5 +1,7 @@
 # Notes
 
+This is the private branch
+
 This repo contains notes, expository articles and beamer presentations on various topics.
 
 ## Talk slides
