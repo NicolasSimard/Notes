@@ -1,0 +1,118 @@
+\documentclass{beamer}
+\usetheme{Singapore}
+
+% --------------------------------------------------------------------
+% Packages pour la couleur
+\usepackage{color}
+
+% --------------------------------------------------------------------
+% Voici certains packages souvent utilisés.
+\usepackage{graphicx}		% Importation du package permettant d'inclure d'images dans le document.
+\usepackage{amsmath, amsfonts}	% Pour écrire selon les standards de l'AMS.
+\usepackage{epstopdf}		% Package permettant l'inclusion d'images eps, pour la compilation en pdf.
+\usepackage{epsfig}
+\usepackage{hyperref}
+%\usepackage{subfig}
+\usepackage{multirow}
+
+% --------------------------------------------------------------------
+% Le package "palatino" charge la police Palatino en mode texte et le package "euler" charge la police Euler en mode mathématique. Pour retrouver les polices par défaut, effacez les deux lignes de commandes qui suivent.
+%\usepackage{palatino}
+%\usepackage{euler}
+
+% --------------------------------------------------------------------
+% --------------------------------------------------------------------
+% Commande rapide
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cO}{\mathcal{O}}
+
+\newcommand{\abcdmat}{\begin{pmatrix}
+a & b \\ 
+c & d
+\end{pmatrix}}
+\newcommand{\fa}{\mathfrak{a}}
+\newcommand{\fb}{\mathfrak{b}}
+\newcommand{\fc}{\mathfrak{c}}
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\tpsi}{\theta_\psi}
+\newcommand{\ClK}{\text{Cl}_K}
+
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Gal}{Gal}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{qu}{Question}
+
+\DeclareMathOperator{\reg}{reg}
+
+\title{Petersson Inner Product of Theta Series}
+\subtitle{An experimental approach}
+\author{Nicolas \textsc{Simard}}
+\institute{McGill University}
+\date{December 1st, 2017}
+
+\begin{document}
+
+\frame{
+	\titlepage
+}
+
+\section{Introduction}
+\subsection{Motivation}
+\frame{
+	\frametitle{Stark's observation}
+	Let $K=\Q(\sqrt{-23})$ and let $H$ be the HCF of $K$.
+	Let
+	\[\psi:\Gal(H/K)\rarr \text{GL}_1(\C)\]
+	be a non-trivial one-dimensional Artin representation and let
+	\[\rho =\Ind_{K}^{\Q}\psi:\Gal(H/\Q)\rarr\text{GL}_2(\C)\]
+	be the induced representation. 
+}
+
+\frame{
+	\frametitle{Stark's observation (cont.)}
+	By Deligne-Serre, one has
+	\[L(\rho, s) = L(\theta_\psi,s),\]
+	where
+	\[\tpsi(q) = \eta(q)\eta(23q) = q\prod_{n\geq 1}(1-q^n)(1-q^{23n})\in M_1(\Gamma_0(23),\chi_{-23}).\]
+	Then Stark proves that
+	\[\langle\tpsi,\tpsi\rangle = 3\log\epsilon,\]
+	where $\epsilon$ is the real root of
+	\[x^3-x-1.\]
+}
+
+\subsection{Structure of the Talk}
+\frame{
+	\frametitle{Structure of the talk}
+	\tableofcontents
+}
+
+\section{Petersson Inner Product of Weight One Theta Series}
+
+\section{Petersson Inner Product of Higher Weight Theta Series}
+
+\section{Spaces of Theta Series}
+
+\frame{
+	\frametitle{Thank you!}
+	
+	Presentation and notes available at: \url{https://github.com/NicolasSimard/Notes}
+	
+	Code available at : \url{https://github.com/NicolasSimard/ENT}
+	
+	Or from my webpage: \url{http://www.math.mcgill.ca/nsimard/}
+}
+\end{document}
