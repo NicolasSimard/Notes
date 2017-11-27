@@ -9,8 +9,8 @@
 \usepackage[pdftex,bookmarks,colorlinks,breaklinks]{hyperref} 
 \hypersetup{linkcolor=blue,citecolor=red,filecolor=dullmagenta,urlcolor=blue}
 
-%\usepackage{palatino}%Pour utiliser l'écriture Palatino
-\usepackage{euler}%Change l'aspect des formules mathématiques
+%\usepackage{palatino}%Pour utiliser l'Ã©criture Palatino
+\usepackage{euler}%Change l'aspect des formules mathÃ©matiques
 
 \usepackage{multirow}
 
@@ -101,7 +101,7 @@ If $A$ is a $B$-algebra for some ring $B$, so is $A[\Gfrak]$ and the isomorphism
 For $\Gfrak$ not necessarily finite, we define
 \[\Lambda(\Gfrak,A)=\varprojlim\Lambda(\Gfrak/\Hfrak,A)=\varprojlim A[\Gfrak/\Hfrak],\]
 where the limit is taken over all elements of $\T_\Gfrak$. Given $\Hfrak$ in $\T_\Gfrak$, we have a natural map
-\[\lambda\mapsto\lambda_\Hfrak=\sum_{x\in\Gfrak/\Hfrak}c_\Hfrak(x)x:\Dist(\Gfrak,A)\rarr\Lambda(\Gfrak/\Hfrak,A).\]
+\[\lambda\mapsto\lambda_\Hfrak=\sum_{x\in\Gfrak/\Hfrak}\lambda(x)x:\Dist(\Gfrak,A)\rarr\Lambda(\Gfrak/\Hfrak,A).\]
 Since distributions are finitely additive, we have then a natural map
 \[\Dist(\Gfrak,A)\rarr\Lambda(\Gfrak,A),\]
 which is in fact an isomorphism. In a certain sense, the elements of the Iwasawa algebra $\Lambda(\Gfrak,A)$ are the generating series of distributions. 
@@ -214,7 +214,7 @@ for all $g\in\Gfrak$ (viewed as elements of $\Lambda(\Gfrak)$). For any such pse
 \[\int_\Gfrak\rho(x)\d\lambda(x)\eqdef\frac{\int_\Gfrak\rho(x)\d((g-1)\lambda)(x)}{\int_\Gfrak\rho(x)\d(g-1)(x)}=\frac{\int_\Gfrak\rho(x)\d((g-1)\lambda)(x)}{\rho(g)-1},\]
 where $g$ is any element of $\Gfrak$ not in the kernel of $\rho$. This definition does not depend on this choice of $g$. Note that we used the fact that for any $g\in\Gfrak$,
 \[\int_\Gfrak f\d g=f(g).\]
-In other words, the elements of $\Gfrak$ in $\Lambda(\Gfrak)$ correspond to Dirac distributionsq.
+In other words, the elements of $\Gfrak$ in $\Lambda(\Gfrak)$ correspond to Dirac distributions.
 
 \subsubsection*{The Iwasawa algebra $\Lambda(\Z_p)$ and Mahler's transform}
 When $\Gfrak=\Z_p$, one can say more about $p$-adic measures. This is because the $\C_p$-Banach algebra of continuous functions on $\Z_p$ has a special \emph{Mahler basis}.
@@ -392,7 +392,7 @@ This proposition proves that the restriction of $p$-adic measures on $\Z_p$ can 
 }\]
 is commutative.
 
-Using the analogy between $\varphi\leftrightarrow V_p$ and $\psi\leftrightarrow U_p$ discussed above, we see that the restriction operator looks like the $p$-stabilisation operator on modular forms.
+Using the analogy between $\varphi\leftrightarrow V_p$ and $\psi\leftrightarrow U_p$ discussed above, we see that the restriction operator looks like the $p$-depletion operator on modular forms.
 
 \subsection{Moments of $p$-adic measures}
 The special values of the zeta function will be obtained by computing the moments of a pseudo-measure on $\Lambda(\curlG)$. We collect here a few results that will help us compute those moments later.
@@ -512,7 +512,7 @@ in Lemma $2.5.1$ of \cite{CS}.\footnote{Actually, the map is defined on $R^\time
 					&= \log g(T) - \frac{1}{p}\log\prod_{\xi\in\mu_p}g(\xi(1+T)-1)	&\text{(by definition of $\varphi\circ\curlN$)}\\
 					&= \log g(T) - \frac{1}{p}\sum_{\xi\in\mu_p}\log g(\xi(1+T)-1)	&\text{(formally)}\\
 					&= \log g(T) - (\varphi\circ\psi)(\log g(T))					&\text{(by definition of $\varphi\circ\psi$)}\\
-					&= (\Res\log)(g)(T))											&\text{(by definition of $\Res$)}
+					&= (\Res\log)(g)(T)											&\text{(by definition of $\Res$)}
 \end{align*}
 so that we could define a map
 \[\Res\log\eqdef\curlL.\]
