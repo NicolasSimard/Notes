@@ -30,6 +30,7 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\cH}{\mathcal{H}}
+\newcommand{\cW}{\mathcal{W}}
 \newcommand{\cO}{\mathcal{O}}
 \newcommand{\cA}{\mathcal{A}}
 
@@ -46,6 +47,8 @@ c & d
 
 \DeclareMathOperator{\Ind}{Ind}
 \DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\Hom}{Hom}
 
 \newtheorem{thm}{Theorem}
 \newtheorem{defn}[thm]{Definition}
@@ -281,7 +284,59 @@ c & d
 }
 
 \frame{
-	\frametitle{Some complex multiplication theory}
+	\frametitle{Algebrizing the Petersson inner product}
+	Recall that
+	\[\delta^n E_2\in\C[E_2, E_4, E_6].\]
+	
+	To $p$-adically interpolate, one first needs to algebraize the Petersson inner product.
+	
+	\only<1>{
+	\begin{prop}[Chowla-Selberg period]
+		Let
+		\[\Omega_K =\frac{1}{\sqrt{4\pi|D|}}\left (\prod_{n=1}^{|D|-1}\Gamma\left (\frac{n}{|D|}\right )^{\chi_D(n)}\right )^{w_K/(4h_K)}\]
+		and let $\fc$ be a fractional ideal of $K$.
+		Then
+		\[E_k(\fc)\in\Omega_K\bar{\Q}\]
+		for $k=2,4$ and $6$.
+	\end{prop}
+	}
+	
+	\only<2>{
+	\begin{prop}[CM theory]
+		Let $\Omega_\fc\in\C^\times$ be such that the elliptic curve
+		\[\C/\Omega_\fc \fc\]
+		is defined over $H$.
+		Then
+		\[E_k(\fc)\in(2\pi i\Omega_\fc)^{-k} H\]
+		for $k=2,4$ and $6$.
+	\end{prop}
+	}
+}
+
+\frame{
+	\frametitle{$p$-adic interpolation of Petersson inner product of theta series}
+	\only<1>{Suppose that $D$ is prime and let $p$ be a prime $\neq2,3$ which splits in $K$, say $p\cO_K=\fp\bar{\fp}$.
+	
+	Let $\fa$ and $\fb$ be two fractional ideals of $K$ which are such that
+	\[\fa\overline{\fb}\fc^2=\cO_K\]
+	and fix an isomorphism
+	\[\Q_p/\Z_p\rightarrow\bigcup_{n\geq 1}\bar{\fp}^{-n}\fc/\fc.\]
+	
+	Let also
+	\[\cW=\Hom_{\text{cont}}(\Z_p^\times,\Z_p^\times)\]
+	denote the $p$-adic weight space.
+	}
+	
+	\only<2>{
+	With the notation above, one has the following
+	\begin{theorem}[S.]
+	There exists a $p$-adic analytic function
+	\[F:\cW\rightarrow\C_p\]
+	with the property that
+	\[F(\ell) = (\Frob_\fp^{-1}-p^{2\ell-1})(\Frob_\fp^{-1}-p^{2\ell})\left (\frac{\langle\theta_{\fa,\ell},\theta_{\fb,\ell}\rangle}{(2\pi i\Omega_\fc)^{-4\ell}}\right )\text{for all }\ell>0,\]
+	where $\Frob_\fp = \left (\frac{H/K}{\fp}\right )$ is the Artin symbol.
+	\end{theorem}
+	}
 }
 
 \section{Spaces of Theta Series}
