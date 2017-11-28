@@ -339,6 +339,44 @@ c & d
 	}
 }
 
+\frame{
+	\frametitle{"Petersson inner product" of weight one theta series}
+	Recall that
+	\[\theta_{\fa,0}\in M_1(\Gamma_0(|D|),\chi_D).\]
+	Using the relation
+	\[\theta_{\psi}(q)=\frac{1}{w_K}\sum_{j=1}^{h_K}\psi^{-1}(\fa_j)\theta_{\fa_j,\ell}(q)\]
+	and the explicit formulas for $\langle\theta_\psi,\theta_\psi\rangle$, one has \emph{formally}
+	\[\langle\theta_{\fa,0},\theta_{\fb,0}\rangle=\frac{-1}{3}\log(N(\fc)^6|\Delta(\fc)|)\]
+	when $D$ is prime.
+}
+
+\frame{
+	\frametitle{Value of $F$ outside the range of interpolation}
+	With the same notation as before, one has the following
+	\begin{theorem}[S.]
+	Let $g_0^{(p)}$ be the $p$-adic modular form with $q$-expansion
+	\[g_0^{(p)}(q) = \frac{\Delta(q^p)^{p+1}}{\Delta(q)^p \Delta(q^{p^2})}.\]
+	Then
+	\[F(0) = \frac{-1}{6p}\log_pg_0^{(p)}(P_\fc),\]
+	where $P_\fc$ is a trivialized CM Elliptic curve attached to $\fc$.
+	\end{theorem}
+}
+
+\frame{
+	\frametitle{A formal computation}
+	Formally, one sees that
+	\begin{align*}
+		F(0) &= \frac{-1}{6p}\log_pg_0^{(p)}(P_\fc)\\
+			 &= \frac{-1}{6}(\Frob_{\fp}^{-1}-p^{-1})(\Frob_{\fp}^{-1}-1)\log_p\Delta(\fc)
+	\end{align*}
+	\only<2->{
+	Compare with
+	\[F(\ell) = (\Frob_\fp^{-1}-p^{2\ell-1})(\Frob_\fp^{-1}-p^{2\ell})\left (\frac{\langle\theta_{\fa,\ell},\theta_{\fb,\ell}\rangle}{(2\pi i\Omega_\fc)^{-4\ell}}\right )\]
+	at $\ell = 0$ with the formal expression
+	\[\langle\theta_{\fa,0},\theta_{\fb,0}\rangle=\frac{-1}{3}\log(N(\fc)^6|\Delta(\fc)|).\]
+	}
+}
+
 \section{Spaces of Theta Series}
 
 \frame{
