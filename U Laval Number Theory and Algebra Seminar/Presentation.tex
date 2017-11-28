@@ -216,8 +216,73 @@ c & d
 	\end{qu}
 }
 
-
 \section[Higher Weight]{Petersson Inner Product of Higher Weight Theta Series}
+\subsection{Explicit formulas}
+\frame{
+	\frametitle{Higher weight theta series}
+	Let $\ell$ be a positive integer and let $\psi$ be a Hecke character of infinity type $(2\ell, 0)$, i.e. a homomorphism
+	\[\psi:I_K\rightarrow\C^\times\]
+	such that
+	\[\psi(\alpha\cO_K)=\alpha^{2\ell}\text{ for all }\alpha\in K^\times.\]
+	Then
+	\[\theta_\psi(q) = \sum_{\fa}\psi(\fa)q^{N(\fa)}\in M_{2\ell+1}(\Gamma_0(|D|),\chi_D).\]
+	If $\ell=0$, one recovers the weight one theta series introduced before.	
+	If $\ell>0$, then $\theta_\psi$ is a newform.
+}
+
+\frame{
+	\frametitle{Some notation}
+	Let
+	\[E_2(\tau) = \frac{1}{8\pi\Im(\tau)}-\frac{1}{24} + \sum_{n=1}^\infty\sigma(n)q^n\]
+	be the nearly holomorphic weight $2$ Eisenstein series and let
+	\[E_k(q) = -\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n\]
+	be the usual weight $k$ Eisenstein series for $k\geq 4$, where $q = e^{2\pi i\tau}$.
+	
+	Let also $\delta$ be the Shimura-Maass differential operator, so that
+	\[\delta E_k =\frac{1}{2\pi i}\frac{\partial E_k}{\partial \tau}-\frac{k}{4\pi\Im(\tau)}E_k.\]
+	Then $\partial$ preserves the graded ring
+	\[\C[E_2,E_4,E_6]\]
+	of nearly holomorphic modular forms of level $\text{SL}_2(\Z)$.
+}
+
+\frame{
+	\frametitle{Petersson inner product of higher weight theta series}
+	With the above notation, one has the following
+	\begin{prop}[S.]
+		Let $\ell>0$ and let $\psi$ be a Hecke character of infinity type $(2\ell,0)$.
+		Then
+		\[\langle \theta_\psi,\theta_\psi\rangle = (|D|/4)^\ell\frac{4h_K}{w_K^2}\sum_{\cA\in\ClK}\psi^2(\cA)\delta^{2\ell-1} E_2(\cA).\]
+	\end{prop}
+}
+
+\subsection{$p$-adic interpolation of Petersson inner product of theta series}
+
+\frame{
+	\frametitle{Theta series attached to ideals}
+	Let $\ell\geq0$ and let $\fa$ be a fractional ideal of $K$.
+	Then
+	\[\theta_{\fa,\ell}(q)=\sum_{x\in\fa}x^{2\ell}q^{N(x)/N(\fa)}\in M_{2\ell+1}(\Gamma_0(|D|),\chi_D),\]
+	where $\chi_D$ is the Kronecker symbol. If $\ell>0$, then
+	\[\theta_{\fa,\ell}\in S_{2\ell+1}(\Gamma_0(|D|),\chi_D).\]
+	\only<2->{Moreover,
+	\[\theta_{\psi}(q)=\frac{1}{w_K}\sum_{j=1}^{h_K}\psi^{-1}(\fa_j)\theta_{\fa_j,\ell}(q),\]
+	where $\{\fa_1,\dots,\fa_{h_K}\}$ is a set of class representatives of $\ClK$.
+	}
+}
+
+\frame{
+	\frametitle{Petersson inner product of theta series attached to ideals}
+	Using the above relation between the two set f theta series, one has the following
+	\begin{coro}
+		Let $\ell>0$ and let $\fa$ and $\fb$ be two fractional ideals of $K$. Then 
+		\[\langle\theta_{\fa,\ell},\theta_{\fb,\ell}\rangle=4(|D|/4)^\ell\sum_{\fa\bar{\fb}\fc^2=\lambda_\fc\cO_K}\lambda_\fc^{2\ell}\delta^{2\ell-1}E_2(\fc),\]
+		where the sum is over a set of representatives $\fc$ of ideals classes in $\ClK$ such that $\fa\bar{\fb}\fc^2=\lambda_\fc\cO_K$.
+	\end{coro}
+}
+
+\frame{
+	\frametitle{Some complex multiplication theory}
+}
 
 \section{Spaces of Theta Series}
 
