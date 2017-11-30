@@ -104,9 +104,6 @@ c & d
 	\tableofcontents
 }
 
-\section[Weight One]{Petersson Inner Product of Weight One Theta Series}
-\subsection{Explicit Formulas}
-
 \frame{
 	\frametitle{Notation}
 	Throughout this talks, let
@@ -115,21 +112,26 @@ c & d
 		\item $H$ be the Hilbert class field of $K$,
 		\item $h_K$ be the class number of $K$,
 		\item $w_K$ be the number of roots of unity in $K$ and
-		\item $ClK$ be the class group of $K$.
+		\item $\ClK$ be the class group of $K$.
 	\end{itemize}
 }
 
+\section[Weight One]{Petersson Inner Product of Weight One Theta Series}
+\subsection{Explicit Formulas}
 \frame{
 	\frametitle{Weight one theta series}
 	Let $\psi$ be a class character of $K$, i.e. a homomorphism
 	\[\psi:\ClK\rightarrow\C^\times.\]
 	Then
 	\[\theta_\psi(q) = \sum_{\fa}\psi(\fa)q^{N(\fa)}\in M_1(\Gamma_0(|D|),\chi_D).\]
-	Moreover, $\theta_\psi$ is an eigenform for all Hecke operators.
 	
-	If $\psi^2 = 1$, $\theta_\psi$ is an Eisenstein series.	
-	
-	If $\psi^2\neq 1$, $\theta_\psi$ is a cusp form (in fact, a newform).	
+	\only<2->{
+	\begin{itemize}
+		\item $\theta_\psi$ is an eigenform for all Hecke operators;
+		\item if $\psi^2 = 1$, $\theta_\psi$ is an Eisenstein series;
+		\item if $\psi^2\neq 1$, $\theta_\psi$ is a cusp form (in fact, a newform).
+	\end{itemize}
+	}
 }
 
 \frame{
@@ -147,39 +149,47 @@ c & d
 	\frametitle{Petersson inner product of weight one theta series}
 	The Petersson inner product of any two $f,g\in S_k(\Gamma_0(N),\chi)$ is defined as
 	\[\langle f,g\rangle =\iint_{\Gamma_0(N)\setminus\cH}f(x+iy)\overline{g(x+iy)}y^k\text{d}\mu.\]
-	Then
+	\only<2->{
 	\begin{prop}[S.]
 		Let $\psi$ be a class character which is not a genus character. Then
 		\[\langle\theta_\psi,\theta_\psi\rangle = \frac{-h_K}{3w_K^2}\sum_{\cA\in\ClK}\psi^2(\cA)\log N(\cA)^6|\Delta(\cA)|.\]
 	\end{prop}
+	}
 }
 
 
 \subsection{Generalizing Stark's Observation}
 \frame{
 	\frametitle{Siegel units}
-	Let $\fa$ be a fractional ideal of $K$ and define
+	Define
 	\[|\delta_\cA|=(N(\fa)^6|\Delta(\cO_K)/\Delta(\fa^{-1})|)^{h_K},\]
 	where $\fa$ is any ideal in the class $\cA$.
-	Then $|\delta_\cA|$ is a unit in $H$.
+	Then $|\delta_\cA|$ is the absolute value of a (Siegel) unit in $H$.
 	
+	\only<2->{
 	Since $\psi^2$ is not trivial, one sees that
-	\[\langle \theta_\psi,\theta_\psi\rangle = \frac{1}{3w_K^2}\sum_{\cA\in\ClK}\psi^2(\cA)\log |\delta_\cA|,\]
-	where $\{\fa_1,\dots,\fa_{h_K}\}$ is a set of class representatives for $\ClK$.
+	\[\langle \theta_\psi,\theta_\psi\rangle = \frac{1}{3w_K^2}\sum_{\cA\in\ClK}\psi^2(\cA)\log |\delta_\cA|.\]
+	}
 }
 
 \frame{
 	\frametitle{What about Stark's observation?}
-	One can write
-	\[\langle \theta_\psi,\theta_\psi\rangle=h_K\log\kappa_\psi,\]
-	where
-	\[\kappa_\psi = \prod_{j=1}^{h_K}\Phi(\fa_j)^{-\psi^2(\fa_j)}\]
+	Assume $D<-4$.
+	Then one can write
+	\[\langle \theta_\psi,\theta_\psi\rangle = \frac{-h_K}{3w_K^2}\sum_{\cA\in\ClK}\psi^2(\cA)\log N(\cA)^6|\Delta(\cA)| = h_K\log\kappa_\psi.\]
+	Here,
+	\[\kappa_\psi = \prod_{\cA\in\ClK}\Phi(\cA)^{-\psi^2(\cA)}\]
 	with
-	\[\Phi(\fa) = \sqrt{N(\fa)}|\Delta(\fa)|^{1/12}.\]
+	\[\Phi(\cA) = \sqrt{N(\fa)}|\Delta(\fa)|^{1/12},\]
+	where $\fa$ is any ideal in the class $\cA$.
+	
+	\only<2->{
 	\begin{qu}
 		Is $\kappa_\psi$ a unit in $H$?
 	\end{qu}
-	Calcs in class nbr 3, 4, 5, 6.
+	
+	Script available at \url{https://github.com/NicolasSimard/ENT/blob/master/comps/ULcomps1.gp}
+	}
 }
 
 \frame{
@@ -190,33 +200,22 @@ c & d
 	Moreover, if $\psi^2$ is a non-trivial genus character corresponding to the factorisation $D = D_1D_2$, with $D_1>0$ say, then
 	\[\kappa_\psi = \epsilon_{D_1}^{\frac{4h_{D_1}h_{D_2}}{w_Kw_{D_2}}},\]
 	where $\epsilon_{D_1}$ is the fundamental unit of $\Q(\sqrt{D_1})$, $h_{D_j}$ is the class number of $\Q(\sqrt{D_j})$ and $w_{D_2}$ is the number of roots of unity in $\Q(\sqrt{D_2})$.
-\end{prop}
+	\end{prop}
 }
 
-\frame{
-	\frametitle{Examples}
-	\only<1->{If $K = \Q(\sqrt{-23})$, the Proposition implies that $\kappa_\psi$ is a unit.
-	But is it in the Hilbert class field?
-	}
-	
-	\only<2->{If $K = \Q(\sqrt{-39})$, the Proposition implies
-	\[\kappa_\psi = \epsilon_{13}^\frac{1}{3},\]
-	which is \emph{not} in the Hilbert class field.
-	}
-}
 \frame{
 	\frametitle{Stark's observation: the final word?}
 	Note that $\psi^2$ has rational real part if and only if its order divides $4$ or $3$.
 	\begin{coro}
 		Suppose that $K$ has class number divisible by $2$ or $3$.
-		Then there exists a class character $\psi$ such that
-		\[\kappa_\psi\]
-		is a unit.
+		Then there exists a class character $\psi$ for which $\kappa_\psi$ is a unit.
 	\end{coro}
 	
+	\only<2->{
 	\begin{qu}
 		Is the converse true?
 	\end{qu}
+	}
 }
 
 \section[Higher Weight]{Petersson Inner Product of Higher Weight Theta Series}
@@ -228,24 +227,31 @@ c & d
 	such that
 	\[\psi(\alpha\cO_K)=\alpha^{2\ell}\text{ for all }\alpha\in K^\times.\]
 	Then
-	\[\theta_\psi(q) = \sum_{\fa}\psi(\fa)q^{N(\fa)}\in M_{2\ell+1}(\Gamma_0(|D|),\chi_D).\]
-	If $\ell=0$, one recovers the weight one theta series introduced before.	
-	If $\ell>0$, then $\theta_\psi$ is a newform.
+	\[\theta_\psi(q) = \sum_{\fa}\psi(\fa)q^{N(\fa)}\in M_{2\ell + 1}(\Gamma_0(|D|),\chi_D).\]
+	
+	\only<2->{
+	\begin{itemize}
+		\item For $\ell=0$, one recovers the weight one theta series introduced before;
+		\item for $\ell>0$, $\theta_\psi$ is a newform.
+	\end{itemize}
+	}
 }
 
 \frame{
-	\frametitle{Some notation}
+	\frametitle{Recall}
 	Let
 	\[E_2(\tau) = \frac{1}{8\pi\Im(\tau)}-\frac{1}{24} + \sum_{n=1}^\infty\sigma(n)q^n\]
 	be the nearly holomorphic weight $2$ Eisenstein series and let
 	\[E_k(q) = -\frac{B_k}{2k}+\sum_{n=1}^\infty\sigma_{k-1}(n)q^n\]
 	be the usual weight $k$ Eisenstein series for $k\geq 4$, where $q = e^{2\pi i\tau}$.
 	
+	\only<2->{
 	Let also $\delta$ be the Shimura-Maass differential operator, so that
 	\[\delta E_k =\frac{1}{2\pi i}\frac{\partial E_k}{\partial \tau}-\frac{k}{4\pi\Im(\tau)}E_k.\]
-	Then $\partial$ preserves the graded ring
+	Then $\partial$ raises the weight by $2$ and preserves the graded ring
 	\[\C[E_2,E_4,E_6]\]
 	of nearly holomorphic modular forms of level $\text{SL}_2(\Z)$.
+	}
 }
 
 \frame{
@@ -262,20 +268,24 @@ c & d
 
 \frame{
 	\frametitle{Theta series attached to ideals}
-	Let $\ell\geq0$ and let $\fa$ be a fractional ideal of $K$.
-	Then
+	Let $\ell\geq0$ and let $\fa$ be a fractional ideal of $K$ and define
 	\[\theta_{\fa,\ell}(q)=\sum_{x\in\fa}x^{2\ell}q^{N(x)/N(\fa)}\in M_{2\ell+1}(\Gamma_0(|D|),\chi_D),\]
-	where $\chi_D$ is the Kronecker symbol. If $\ell>0$, then
+	where $\chi_D$ is the Kronecker symbol.
+	
+	\only<2->{
+	\begin{itemize}
+		\item If $\ell>0$, then
 	\[\theta_{\fa,\ell}\in S_{2\ell+1}(\Gamma_0(|D|),\chi_D).\]
-	\only<2->{Moreover,
-	\[\theta_{\psi}(q)=\frac{1}{w_K}\sum_{j=1}^{h_K}\psi^{-1}(\fa_j)\theta_{\fa_j,\ell}(q),\]
-	where $\{\fa_1,\dots,\fa_{h_K}\}$ is a set of class representatives of $\ClK$.
+		\item For any $\ell\geq 0$, one has	
+		\[\theta_{\fa,\ell}=\frac{w_K}{h_K}\sum_{\psi}\psi(\fa)\theta_\psi,\]
+		where the sum is over the $h_K$ Hecke characters of infinity type $(2\ell,0)$.			
+		\end{itemize}
 	}
 }
 
 \frame{
 	\frametitle{Petersson inner product of theta series attached to ideals}
-	Using the above relation between the two set f theta series, one has the following
+	Using the above relation between the two set of theta series, one has the following
 	\begin{coro}
 		Let $\ell>0$ and let $\fa$ and $\fb$ be two fractional ideals of $K$. Then 
 		\[\langle\theta_{\fa,\ell},\theta_{\fb,\ell}\rangle=4(|D|/4)^\ell\sum_{\fa\bar{\fb}\fc^2=\lambda_\fc\cO_K}\lambda_\fc^{2\ell}\delta^{2\ell-1}E_2(\fc),\]
@@ -288,20 +298,20 @@ c & d
 	Recall that
 	\[\delta^n E_2\in\C[E_2, E_4, E_6].\]
 	
-	To $p$-adically interpolate, one first needs to algebraize the Petersson inner product.
+	There are two ways to algebrize CM values of modular forms.
 	
-	\only<1>{
+	\only<2>{
 	\begin{prop}[Chowla-Selberg period]
 		Let
 		\[\Omega_K =\frac{1}{\sqrt{4\pi|D|}}\left (\prod_{n=1}^{|D|-1}\Gamma\left (\frac{n}{|D|}\right )^{\chi_D(n)}\right )^{w_K/(4h_K)}\]
 		and let $\fc$ be a fractional ideal of $K$.
 		Then
-		\[E_k(\fc)\in\Omega_K\bar{\Q}\]
+		\[E_k(\fc)\in\Omega_K^k\bar{\Q}\]
 		for $k=2,4$ and $6$.
 	\end{prop}
 	}
 	
-	\only<2>{
+	\only<3>{
 	\begin{prop}[CM theory]
 		Let $\Omega_\fc\in\C^\times$ be such that the elliptic curve
 		\[\C/\Omega_\fc \fc\]
@@ -310,6 +320,10 @@ c & d
 		\[E_k(\fc)\in(2\pi i\Omega_\fc)^{-k} H\]
 		for $k=2,4$ and $6$.
 	\end{prop}
+	}
+	
+	\only<2->{
+	Script available at \url{https://github.com/NicolasSimard/ENT/blob/master/comps/ULcomps2.gp}
 	}
 }
 
