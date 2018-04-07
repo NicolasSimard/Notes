@@ -434,11 +434,11 @@ c & d
 \frame{
 	\frametitle{Experimenting with Petersson norm of theta series}
 	Consider the algebraic number
-	\[N(\psi, \ell) = \frac{\langle\theta_\psi,\theta_\psi\rangle}{\Omega_K^{4\ell}}\qquad\text{for}\ell>0,\]
+	\[N(\psi) = \frac{\langle\theta_\psi,\theta_\psi\rangle}{\Omega_K^{4\ell}}\qquad\text{for}\ell>0,\]
 	where $\Omega_K$ is the Chowla-Selberg period.
 	
 	\only<2->{When $\ell$ is divisible by $h_K$, it appears numerically that
-	\[N(\psi_0, \ell)\in\Z\]
+	\[N(\psi_0)\in\Z\]
 	for a unique Hecke character $\psi_0$.}
 	
 	\only<3->{This $\psi_0$ is the Hecke character
@@ -446,7 +446,7 @@ c & d
 }
 
 \frame{
-	\frametitle{Computing the Gram matrix}
+	\frametitle{Computing the Gram matrix in the space of theta series}
 	Let
 	\[\Gram(f_1, \dots, f_d) = \det(\langle f_i, f_j\rangle)_{1\leq i,j\leq d}\]
 	be the determinant of the Gram matrix of the Petersson inner product for a basis $\{f_1, \dots, f_d\}$ in a vector space.
@@ -456,6 +456,44 @@ c & d
 		\[\Gram(\theta_{\fa_1,\ell},\dots,\theta_{\fa_{h_K},\ell}) = \left (\frac{w_K^2}{h_K}\right )^{h_K}\left (\prod_{i=1}^{h_k}N(\fa_i)\right )\Gram(\theta_{\psi_1},\dots,\theta_{\psi_{h_K}}).\]
 	\end{prop}
 	}
+}
+
+\frame{
+	\frametitle{Computing the Gram matrix in the space of theta series}
+	Numerically, it appears that
+	\[A(K, \ell) = \prod_{\psi}N(\psi) = \frac{\Gram(\theta_{\psi_1},\dots,\theta_{\psi_{h_K}})}{\Omega_K^{4h_k\ell}}\]
+	is integral (except in some cases when $\ell=1$):
+	\begin{tabular}{|r|l|l|l|l|l|}
+	\hline
+	$D$ &$\ell = 1$&$\ell = 2$&$\ell = 3$&$\ell = 4$\\
+	\hline
+	$-7$&$\frac{1}{3}$&$1$&$17$&$1337$\\
+	\hline
+	$-8$&$\frac{1}{2}$&$5$&$92$&$1448$\\
+	\hline
+	$-11$&$1$&$10$&$139$&$16000$\\
+	\hline
+	$-15$&$4$&$6084$&$2528100$&$5222952900$\\
+	\hline
+	$-19$&$\frac{13}{3}$&$142$&$9251$&$944192$\\
+	\hline
+	$-20$&$64$&$21904$&$189337600$&$2907434214400$\\
+	\hline
+	$-23$&$621$&$7303581$&$1571089526325$&$1233974294487401229$\\
+	\hline
+%	$-24$&$196$&$318096$&$1668559104$&$40661129585664$&$2132329641948020736$\\
+%	$-31$&$7254$&$404717958$&$286258956578406$&$1317537537173886081222$&$30017600595892050334820999334$\\
+%	$-35$&$324$&$5702544$&$39227763600$&$6905530224230400$&$923754523077698457600$\\
+%	$-39$&$4076800$&$16446807606528$&$11435475822966542880000$&$36022829829542913599811866449152$&$146108291500998839487845518889624133868800$\\
+%	$-40$&$3364$&$36820624$&$2380725561600$&$287902986505446400$&$214623119884099402137600$\\
+%	$-43$&$\frac{214}{3}$&$22588$&$16876283$&$22715728832$&$44613898125120$\\
+%	$-47$&$538443750$&$480609496085043750$&$29671067053895770396089843750$&$44774729961060976071988306841858311443750$&$743239229231203737113419110505268943884602814589843750$\\
+	\end{tabular}
+}
+
+\frame{
+	\frametitle{A basis of normalized theta series}
+	
 }
 
 \section{Conclusion}
