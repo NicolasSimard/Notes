@@ -1,0 +1,464 @@
+\documentclass{beamer}
+\usetheme{Singapore}
+
+% --------------------------------------------------------------------
+% Voici certains packages souvent utilisés.
+\usepackage{graphicx}		% Importation du package permettant d'inclure d'images dans le document.
+\usepackage{amsmath, amsfonts}	% Pour écrire selon les standards de l'AMS.
+\usepackage{epstopdf}		% Package permettant l'inclusion d'images eps, pour la compilation en pdf.
+\usepackage{epsfig}
+\usepackage{hyperref}
+%\usepackage{subfig}
+
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{xcolor, colortbl}
+\definecolor{Green}{RGB}{156, 255, 173}
+\definecolor{Red}{RGB}{255, 173, 156}
+
+% --------------------------------------------------------------------
+% --------------------------------------------------------------------
+% Commande rapide
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cA}{\mathcal{A}}
+
+\newcommand{\abcdmat}{\begin{pmatrix}
+a & b \\ 
+c & d
+\end{pmatrix}}
+\newcommand{\fa}{\mathfrak{a}}
+\newcommand{\fb}{\mathfrak{b}}
+\newcommand{\fc}{\mathfrak{c}}
+\newcommand{\fp}{\mathfrak{p}}
+\newcommand{\td}{\text{d}}
+\newcommand{\tpsi}{\theta_\psi}
+\newcommand{\ClK}{\text{Cl}_K}
+
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\Gram}{Gram}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{qu}{Question}
+
+\DeclareMathOperator{\reg}{reg}
+
+\title{Petersson Inner Product of Theta Series}
+\subtitle{PhD Defense}
+\author{Nicolas \textsc{Simard}}
+\institute{McGill University}
+\date{April 12th, 2018}
+
+\begin{document}
+
+\frame{
+	\titlepage
+}
+
+\section{Introduction}
+\frame{
+	\frametitle{$L$-functions at $s=1$}
+	It is a well-known (but fascinating) fact that many $L$-functions contain arithmetic informations in their value at $s=1$:
+	\begin{enumerate}
+		\item $\zeta(s)$ at $s=1$: Infinitely many primes
+		\item $L(\chi, s)$ at $s=1$: Infinitely many primes in arithmetic progressions
+		\item $\zeta_F(s)$ at $s=1$: Class number formula
+	\end{enumerate}
+	\only<2->{
+	\begin{conj}[Stark (Idea)]
+		In general, $L$-functions of Artin representations have a (relatively) explicit expression involving arithmetic invariants of the number fields involved. 
+	\end{conj}
+	}
+}
+
+\frame{
+	\frametitle{An observation of Stark}
+	Let $K=\Q(\sqrt{-23})$ and let $H$ be its Hilbert class field.
+	Let
+	\[\psi:\Gal(H/K)\rightarrow \C^\times = \text{GL}_1(\C)\]
+	be a non-trivial one-dimensional Artin representation and let
+	\[\rho =\Ind_{K}^{\Q}\psi:\Gal(H/\Q)\rightarrow\text{GL}_2(\C)\]
+	be the induced representation. Then one can consider the associated Artin $L$-function
+	\[L(\psi, s) = L(\rho, s).\]
+}
+
+\frame{
+	\frametitle{An observation of Stark}
+	On the one hand, in accordance with his conjecture (which was known in this case), Stark shows that
+	\[L(\rho, 1) = \frac{2\pi}{\sqrt{23}}\log\varepsilon,\]
+	where $\varepsilon$ is the real root of
+	\[x^3-x-1.\]
+	Note that $\varepsilon$ generates $H$ over $K$.
+}
+
+\frame{
+	\frametitle{An observation of Stark}
+	On the other hand, by the Deligne-Serre theorem, one has
+	\[L(\rho, s) = L(\theta_\psi,s),\]
+	where
+	\[\tpsi(q) = \eta(q)\eta(23q) = q\prod_{n\geq 1}(1-q^n)(1-q^{23n})\in M_1(\Gamma_0(23),\chi_{-23}).\]
+	Then Stark proves that
+	\[L(\rho, 1) = \frac{2\pi}{3\sqrt{23}}\langle\tpsi,\tpsi\rangle.\]
+}
+
+\frame{
+	\frametitle{The main motivation}
+	It follows that
+	\[\langle\tpsi,\tpsi\rangle = 3\log\varepsilon.\]
+}
+
+\frame{
+	\frametitle{Structure of the presentation}
+	\tableofcontents
+}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Where we are in the presentation}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\section[Formulas]{Petersson inner product of theta series}
+\frame{
+	\frametitle{Notation}
+	Throughout this presentation, let
+	\begin{itemize}
+		\item $K$ be an imaginary quadratic field of discriminant $D$ with Hilbert class field $H$,
+		\item $h_K, w_K$ and $\ClK$ be the class number, root number and class group of $K$ (respectively)
+		\item $\psi$ be a Hecke character of infinity type $(2\ell, 0)$ for some $\ell\geq 0$, i.e. a homomorphism
+		\[\psi:I_K\longrightarrow\C^\times\]
+		such that $\psi((\alpha)) = \alpha^{2\ell}$ for all $\alpha\in K^\times$
+		\item and $\fa, \fb$ and $\fc$ be fractional ideals of $K$.
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{Theta series attached to $K$}
+	Consider
+	\[
+	\left. \begin{tabular}{rl}
+		$\theta_\psi(q)$ & = $\sum_{\fa\in\cO_K}\psi(\fa)q^{N(\fa)}$\\
+		&\\
+		$\theta_\fa(q)$  & = $\sum_{x\in\fa} x^{2\ell}q^{N(x)/N(\fa)}$
+	\end{tabular}\right \} \in M_{2\ell+1}(\Gamma_0(|D|), \chi_D).
+	\]
+	Then
+	\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|>{\centering\arraybackslash\hspace{0pt}}p{0.1\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|}
+    	\cline{2-3}
+    	\multicolumn{1}{c|}{}& $\theta_\psi$ & $\theta_{\fa,\ell}$\\
+   		\hline
+    	$\ell>0$&\cellcolor{Green}Newform&\cellcolor{Green}Cusp form\\
+    	\hline
+    	\multirow{3}{*}{$\ell=0$}&\cellcolor{Green}$\psi^2\neq1$: Newform&\cellcolor{Red}\\
+    	\cline{2-2}
+    	&\cellcolor{Red}$\psi^2=1$: (genus) Eisenstein series&\multirow{-1}{*}{\cellcolor{Red}Not a cusp form}\\
+    	\hline
+	\end{tabular}
+	\end{center}
+}
+
+\frame{
+	\frametitle{Some examples to keep in mind}
+	\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|>{\centering\arraybackslash\hspace{0pt}}p{0.1\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|}
+    	\cline{2-3}
+    	\multicolumn{1}{c|}{}& $\theta_\psi$ & $\theta_{\fa,\ell}$\\
+   		\hline
+    	$\ell>0$&\cellcolor{Green}&\cellcolor{Green}\\
+    	\hline
+    	\multirow{3}{*}{$\ell=0$}&\cellcolor{Green}$q\prod_{n\geq 1}(1-q^n)(1-q^{23n})$&\cellcolor{Red}\\
+    	\cline{2-2}
+    	&\cellcolor{Red}&\multirow{-2}{*}{\cellcolor{Red}$\theta_{\Z[i]}(q)=\sum\limits_{x,y\in\Z}q^{x^2+y^2}$}\\
+    	\hline
+	\end{tabular}
+	Recall that
+	\[q\prod_{n\geq 1}(1-q^n)(1-q^{23n})\]
+	is the modular form in Stark's example.
+	\end{center}
+}
+
+\frame{
+	\frametitle{Formulas for the Petersson inner product of those theta series}
+	Recall that the Petersson inner product of any cusp forms $f, g\in S_k(\Gamma_0(N), \chi)$ is defined as
+	\[\langle f, g\rangle = \iint_{\Gamma_0(N)\setminus \cH}f(\tau)\bar{g}(\tau)\Im(\tau)^{k}\td\mu(\tau).\]
+	\only<2->{With minor effort, this formula can be used to compute the Petersson inner product numerically:
+	\[\langle f, g\rangle = \sum_{\gamma\in\Gamma_0(N)\setminus\cH}\int_{-\frac{1}{2}}^{\frac{1}{2}}\int_{\sqrt{1-x^2}}^\infty f(\tau)\bar{g}(\tau)y^{k-2}\td y\td x.\]
+	But this is very (very) slow and behaves badly as the level grows.}	
+}
+
+\frame{
+	\frametitle{The quest for more efficient and useful formulas}
+	Let $\psi$ be such that $\theta_\psi$ is a cusp form. Then
+	\begin{enumerate}[<+->]
+		\item Apply Rankin-Selberg:
+		\[\langle \theta_\psi,\theta_\psi\rangle = \textcolor{gray}{\left (\dfrac{\pi}{2}\dfrac{\phi(|D|)}{D^2}\dfrac{(4\pi)^{2\ell+1}}{\Gamma(2\ell+1)}\right )^{-1}L(\chi_D,1)}\res\limits_{s=2\ell+1}L(\Sym^2 \theta_\psi,s)\]
+		\item Isolate the residue of $L(\Sym^2 \theta_\psi,s)$:
+		\[\res_{s=2\ell+1}L(\Sym2 \theta_\psi,1,s)=\textcolor{gray}{\prod_{p|D}(1-p^{-1})}L(\psi^2,2\ell+1)\]
+		\item When $\ell>0$, express $L(\psi^2,2\ell+1)$ in terms of (derivatives of nearly holomorphic) Eisenstein series:
+		\[L(\psi^2,2\ell+1) = \textcolor{gray}{\frac{4(2\pi)^{2\ell+1}\sqrt{|D|}^{2\ell-1}}{w_K\Gamma(2\ell+1)}}\sum_{j=1}^{h_K}\psi^{-2}(\fa_j)N(\fa_j)^{4\ell}\delta^{2\ell-1} E_2(\bar{\fa}_j)\]
+	\end{enumerate}
+}
+
+\frame{
+	\frametitle{The most useful formulas for $p$-adic interpolation}
+	\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|>{\centering\arraybackslash\hspace{0pt}}p{0.1\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|}
+    	\cline{2-3}
+    	\multicolumn{1}{c|}{}& $\langle\theta_\psi,\theta_\psi\rangle$ & $\langle\theta_{\fa,\ell},\theta_{\fb, \ell}\rangle$\\
+   		\hline
+    	\newline$\ell>0$
+    	&\cellcolor{Green}$C_1\sum\limits_{\cA\in\ClK}\psi^2(\cA)\delta^{2\ell-1} E_2(\cA)$
+    	&\cellcolor{Green}\newline\only<2->{$C_2\sum\limits_{\fa\bar{\fb}\fc^2=\lambda_\fc\cO_K}\lambda_\fc^{2\ell}\delta^{2\ell-1}E_2(\fc)$}
+    	\\
+    	\hline
+    	\multirow{2}{*}{$\ell=0$}&\cellcolor{Green}\only<3->{$C_3\sum\limits_{\cA\in\ClK}\psi^2(\cA)\log \Phi(\cA)$}&\cellcolor{Red}\\
+    	\cline{2-2}
+    	&\cellcolor{Red}$\psi^2=1$: not applicable &\multirow{-2}{*}{\cellcolor{Red}not applicable}\\
+    	\hline
+	\end{tabular}
+	\end{center}
+	\only<2>{
+		Using the relation
+		\[\theta_{\fa,\ell}=\frac{w_K}{h_K}\sum_{\psi}\psi(\fa)\tpsi\]
+		and the orthogonality of the newforms $\tpsi$.}
+	\only<3>{
+		Here
+		\[\Phi^{12}(\cA) = N(\cA)^6|\Delta(\cA)|,\]
+		where
+		\[\Delta(q) = q\prod_{n=1}^\infty(1-q^n)^{24}.\]}
+}
+
+\section{Algorithms}
+\frame{
+	\frametitle{Bridging the gap between the "explicit" formulas and the algorithms}
+	Here are some of the things one needs to do before implementing those formulas:
+	\begin{itemize}
+		\item Complete the $L$-functions $L(\Sym^2\tpsi, s)$ and $L(\psi, s)$ and find all the information about their functional equation,
+		\item Find a way to compute with Hecke characters,
+		\item Find an \emph{efficient} way to compute
+		\[\delta^nE_2(\fa),\]
+		\item Choose the computer algebra system that allows you to do all this!
+	\end{itemize}
+}
+
+\frame{
+	\frametitle{The most efficient formula for computations}
+	Experimentally, one finds that the most efficient way to compute the Petersson inner product of theta series is to compute the $q$-expansion of $\delta^nE_2$ by hand:
+	\begin{align*}
+	\begin{split}
+		\delta^nE_2(\tau) = &(-1)^n\left (\frac{1}{8\pi\Im(\tau)} - \frac{n + 1}{24}\right )\frac{n!}{(4\pi\Im(\tau))^n}\\
+							&\qquad{} +\sum_{m\geq 1}\sigma(m)\left (\sum_{r=0}^n(-1)^{n-r}\binom{n}{r}\frac{(r+2)_{n-r}}{(4\pi\Im(\tau))^{n-r}}m^r\right )q^m.
+	\end{split}
+	\end{align*}
+}
+
+\frame{
+	\frametitle{The resulting algorithm}
+	This leads to the following
+	\begin{theorem}[S.]
+		There exists a software package to compute the Petersson inner product of the theta series defined above with the following properties:
+		\begin{itemize}
+			\item It is fast (relative to the definition),
+			\item It supports arbitrary precision (no coefficients stored, no database involved),
+			\item User friendly (easy to download, help functions, well commented source code),
+		\end{itemize}
+	\end{theorem}
+	\begin{proof}
+		See the calculations at the end of the thesis!
+	\end{proof}
+}
+
+\section[Stark's observation]{Generalizing Stark's observation}
+\frame{
+	\frametitle{What about Stark's observation?}
+	Using the above formula when $\ell=0$, one has
+	\[\langle \theta_\psi,\theta_\psi\rangle = \frac{-h_K}{3w_K^2}\sum_{\cA\in\ClK}\psi^2(\cA)\log N(\cA)^6|\Delta(\cA)| = h_K\log\kappa_\psi,\]
+	where
+	\[\kappa_\psi = \prod_{\cA\in\ClK}\Phi(\cA)^{-\psi^2(\cA)},\]
+	with
+	\[\Phi(\cA) = \sqrt{N(\fa)}|\Delta(\fa)|^{1/12}\]
+	as before, where now $\fa$ is any ideal in the class $\cA$.
+	
+	\only<2->{
+	\begin{qu}
+		Is $\kappa_\psi$ a unit in $H$?
+	\end{qu}
+	}
+}
+
+\frame{
+	\frametitle{Generalizing Stark's Observation}
+	\begin{prop}[S.]
+	Let $\psi$ be a class character such that $\psi^2$ is a non-trivial character with rational real part (equivalently, the character of $\Ind_K^\Q\psi$ is rational).
+	Then $\kappa_\psi$ is an algebraic integer which is a unit.
+	Moreover, if $\psi^2$ is a non-trivial genus character corresponding to the factorisation $D = D_1D_2$, with $D_1>0$ say, then
+	\[\kappa_\psi = \epsilon_{D_1}^{\frac{4h_{D_1}h_{D_2}}{w_Kw_{D_2}}},\]
+	where $\epsilon_{D_1}$ is the fundamental unit of $\Q(\sqrt{D_1})$, $h_{D_j}$ is the class number of $\Q(\sqrt{D_j})$ and $w_{D_2}$ is the number of roots of unity in $\Q(\sqrt{D_2})$.
+	\end{prop}
+}
+
+\frame{
+	\frametitle{A corollary and some examples}
+	It follows that
+	\begin{coro}
+		If $K$ has class number divisible by $2$ or $3$, there exists a class character $\psi$ for which $\kappa_\psi$ is a unit.
+	\end{coro}
+	\only<2->{
+	Some examples:
+	\begin{itemize}
+		\item $K = \Q(\sqrt{-23})$ ($h_K=3$): $\kappa_\psi$ is a unit and numerically, $\kappa_\psi=\varepsilon$,
+		\item $K = \Q(\sqrt{-39})$ ($h_K=4$): $\kappa_\psi = \epsilon_{13}^{\frac{1}{3}}$ is a unit, but not in $H$,
+		\item $K = \Q(\sqrt{-47})$ ($h_K=5$): $\kappa_\psi$ doesn't seem to be a unit for any $\psi$.
+	\end{itemize}
+	}
+}
+
+\section{$p$-adic interpolation}
+\frame{
+	\frametitle{Two objectives}
+	Recall that
+	\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|>{\centering\arraybackslash\hspace{0pt}}p{0.1\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|}
+    	\cline{2-3}
+    	\multicolumn{1}{c|}{}& $\langle\theta_\psi,\theta_\psi\rangle$ & $\langle\theta_{\fa,\ell},\theta_{\fb, \ell}\rangle$\\
+   		\hline
+    	\newline$\ell>0$
+    	&\cellcolor{Green}$C_1\sum\limits_{\cA\in\ClK}\psi^2(\cA)\delta^{2\ell-1} E_2(\cA)$
+    	&\cellcolor{Green}\newline$C_2\sum\limits_{\fa\bar{\fb}\fc^2=\lambda_\fc\cO_K}\lambda_\fc^{2\ell}\delta^{2\ell-1}E_2(\fc)$
+    	\\
+    	\hline
+    	\multirow{2}{*}{$\ell=0$}&\cellcolor{Green}$C_3\sum\limits_{\cA\in\ClK}\psi^2(\cA)\log \Phi(\cA)$&\cellcolor{Red}\\
+    	\cline{2-2}
+    	&\cellcolor{Red}$\psi^2=1$: not applicable &\multirow{-2}{*}{\cellcolor{Red}not applicable}\\
+    	\hline
+	\end{tabular}
+	\end{center}
+	Two objectives for the $p$-adic interpolation
+	\begin{enumerate}
+		\item Show that the quantities $\langle\theta_{\fa, \ell}, \theta_{\fb, \ell}\rangle$ can be $p$-adically interpolated for $\ell>0$ (under certain restrictions),
+		\item Evaluate the $p$-adic analytic function obtained at $\ell=0$.
+	\end{enumerate}
+}
+
+\frame{
+	\frametitle{$p$-adic interpolation of Petersson inner product of theta series: setup}
+	Suppose that $D$ is prime and let $p>3$ be a prime $\neq2,3$ which splits in $K$, say $p\cO_K=\fp\bar{\fp}$.
+	
+	Let $\fa$ and $\fb$ be two fractional ideals of $K$ which are such that
+	\[\fa\overline{\fb}\fc^2=\cO_K\]
+	and fix an isomorphism
+	\[\Q_p/\Z_p\rightarrow\bigcup_{n\geq 1}\bar{\fp}^{-n}\fc/\fc.\]
+	
+	Let also
+	\[\cW=\Hom_{\text{cont}}(\Z_p^\times,\Z_p^\times)\]
+	denote the $p$-adic weight space.
+}
+
+\frame{
+	\frametitle{$p$-adic interpolation of Petersson inner product of theta series: result}
+	With the notation above, one has the following
+	\begin{theorem}[S.]
+	There exists a $p$-adic analytic function
+	\[F:\cW\rightarrow\C_p\]
+	with the property that
+	\[F(\ell) = (\Frob_\fp^{-1}-p^{2\ell-1})(\Frob_\fp^{-1}-p^{2\ell})\left (\frac{\langle\theta_{\fa,\ell},\theta_{\fb,\ell}\rangle}{((2\pi i)^{-1}\Omega_\C(\fc))^{4\ell}}\right )\hspace{1cm}\text{for all }\ell>0,\]
+	where $\Frob_\fp = \left (\frac{H/K}{\fp}\right )$ is the Artin symbol.
+	\end{theorem}
+}
+
+\frame{
+	\frametitle{Evaluation of $F$ at $\ell=0$}
+	Let
+	\[g_0(q) = \frac{\Delta(q)}{\Delta(q^p)}\]
+	and let
+	\[g_0^{(p)}(q) = \frac{g_0(q^p)}{g_0^p(q)} = \frac{\Delta^{p+1}(q^p)}{\Delta^p(q) \Delta(q^{p^2})}.\]
+	Then $\log_p g_0^{(p)}$ is a $p$-adic modular form and one has the following
+	\begin{theorem}[S. (loose form)]
+		The following equality holds in $\C_p$:
+		\[F(0) =-\frac{1}{6p}\log_p g_0^{(p)}(\fc).\]
+	\end{theorem}
+}
+
+\frame{
+	\frametitle{Interpretation of the above theorem (in the current setup)}
+	Using the formula for $\langle\theta_\psi,\theta_\psi\rangle$ even if $\psi^2=1$, one has
+	\begin{center}
+	\renewcommand{\arraystretch}{1.5}
+	\begin{tabular}{|>{\centering\arraybackslash\hspace{0pt}}p{0.1\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|>{\centering\arraybackslash\hspace{0pt}}p{0.4\linewidth}|}
+    	\cline{2-3}
+    	\multicolumn{1}{c|}{}& $\langle\theta_\psi,\theta_\psi\rangle$ & $\langle\theta_{\fa,\ell},\theta_{\fb, \ell}\rangle$\\
+   		\hline
+    	\newline$\ell>0$
+    	&\cellcolor{Green}$C_1\sum\limits_{\cA\in\ClK}\psi^2(\cA)\delta^{2\ell-1} E_2(\cA)$
+    	&\cellcolor{Green}\newline$4\delta^{2\ell-1}E_2(\fc)$
+    	\\
+    	\hline
+    	$\ell=0$&\cellcolor{yellow}$C_3\sum\limits_{\cA\in\ClK}\psi^2(\cA)\log \Phi(\cA)$&\cellcolor{yellow}$-\frac{1}{3}\log(N(\fc)^6|\Delta(\fc)|)$\\
+    	\hline
+	\end{tabular}
+	\end{center}
+	\only<2->{On the other had, a \emph{formal} computation gives
+	\begin{align*}
+		F(0) & =-\frac{1}{6p}\log_p \frac{\Delta^{p+1}(q^p)}{\Delta^p(q) \Delta(q^{p^2})}\\
+			 & =-\frac{1}{6}(\Frob_{\fp}^{-1}-p^{-1})(\Frob_{\fp}^{-1}-1)\log_p\Delta(\fc)
+	\end{align*}}
+}
+
+\section[Experiments]{Experimentation, invariants and observations}
+\frame{
+	\frametitle{Experimenting with Petersson norm of theta series}
+	Consider the algebraic number
+	\[N(\psi, \ell) = \frac{\langle\theta_\psi,\theta_\psi\rangle}{\Omega_K^{4\ell}}\qquad\text{for}\ell>0,\]
+	where $\Omega_K$ is the Chowla-Selberg period.
+	
+	\only<2->{When $\ell$ is divisible by $h_K$, it appears numerically that
+	\[N(\psi_0, \ell)\in\Z\]
+	for a unique Hecke character $\psi_0$.}
+	
+	\only<3->{This $\psi_0$ is the Hecke character
+	\[\psi_0((\alpha)) = \alpha^{2\ell/h_K}.\]}
+}
+
+\frame{
+	\frametitle{Computing the Gram matrix}
+	Let
+	\[\Gram(f_1, \dots, f_d) = \det(\langle f_i, f_j\rangle)_{1\leq i,j\leq d}\]
+	be the determinant of the Gram matrix of the Petersson inner product for a basis $\{f_1, \dots, f_d\}$ in a vector space.
+	\only<2->{Then one has the following
+	\begin{prop}
+		Let $\{\fa_1, \dots, \fa_{h_K}\}$ be a set of representatives of $\ClK$ and let $\{\psi_1,\dots, \psi_{h_K}\}$ be the Hecke characters of $K$ of infinity type $(2\ell, 0)$. Then
+		\[\Gram(\theta_{\fa_1,\ell},\dots,\theta_{\fa_{h_K},\ell}) = \left (\frac{w_K^2}{h_K}\right )^{h_K}\left (\prod_{i=1}^{h_k}N(\fa_i)\right )\Gram(\theta_{\psi_1},\dots,\theta_{\psi_{h_K}}).\]
+	\end{prop}
+	}
+}
+
+\section{Conclusion}
+
+
+\end{document}
