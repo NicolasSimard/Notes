@@ -51,6 +51,7 @@ c & d
 \DeclareMathOperator{\Gram}{Gram}
 
 \newtheorem{thm}{Theorem}
+\newtheorem{cont}{"Theorem"}
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{coro}[thm]{Corollary}
@@ -77,7 +78,7 @@ c & d
 \section{Introduction}
 \frame{
 	\frametitle{$L$-functions at $s=1$}
-	It is a well-known (but fascinating) fact that many $L$-functions contain arithmetic informations in their value at $s=1$:
+	It is a fascinating fact that many $L$-functions contain arithmetic information in their value at $s=1$:
 	\begin{enumerate}
 		\item $\zeta(s)$ at $s=1$: Infinitely many primes
 		\item $L(\chi, s)$ at $s=1$: Infinitely many primes in arithmetic progressions
@@ -143,7 +144,7 @@ c & d
 \frame{
 	\frametitle{Notation}
 	Throughout this presentation, let
-	\begin{itemize}
+	\begin{itemize}[<+->]
 		\item $K$ be an imaginary quadratic field of discriminant $D$ with Hilbert class field $H$,
 		\item $h_K, w_K$ and $\ClK$ be the class number, root number and class group of $K$ (respectively)
 		\item $\psi$ be a Hecke character of infinity type $(2\ell, 0)$ for some $\ell\geq 0$, i.e. a homomorphism
@@ -217,7 +218,7 @@ c & d
 		\item Apply Rankin-Selberg:
 		\[\langle \theta_\psi,\theta_\psi\rangle = \textcolor{gray}{\left (\dfrac{\pi}{2}\dfrac{\phi(|D|)}{D^2}\dfrac{(4\pi)^{2\ell+1}}{\Gamma(2\ell+1)}\right )^{-1}L(\chi_D,1)}\res\limits_{s=2\ell+1}L(\Sym^2 \theta_\psi,s)\]
 		\item Isolate the residue of $L(\Sym^2 \theta_\psi,s)$:
-		\[\res_{s=2\ell+1}L(\Sym2 \theta_\psi,1,s)=\textcolor{gray}{\prod_{p|D}(1-p^{-1})}L(\psi^2,2\ell+1)\]
+		\[\res_{s=2\ell+1}L(\Sym^2 \theta_\psi,s)=\textcolor{gray}{\prod_{p|D}(1-p^{-1})}L(\psi^2,2\ell+1)\]
 		\item When $\ell>0$, express $L(\psi^2,2\ell+1)$ in terms of (derivatives of nearly holomorphic) Eisenstein series:
 		\[L(\psi^2,2\ell+1) = \textcolor{gray}{\frac{4(2\pi)^{2\ell+1}\sqrt{|D|}^{2\ell-1}}{w_K\Gamma(2\ell+1)}}\sum_{j=1}^{h_K}\psi^{-2}(\fa_j)N(\fa_j)^{4\ell}\delta^{2\ell-1} E_2(\bar{\fa}_j)\]
 	\end{enumerate}
@@ -268,7 +269,7 @@ c & d
 \frame{
 	\frametitle{Bridging the gap between the "explicit" formulas and the algorithms}
 	Here are some of the things one needs to do before implementing those formulas:
-	\begin{itemize}
+	\begin{itemize}[<+->]
 		\item Complete the $L$-functions $L(\Sym^2\tpsi, s)$ and $L(\psi, s)$ and find all the information about their functional equation,
 		\item Find a way to compute with Hecke characters,
 		\item Find an \emph{efficient} way to compute
@@ -280,14 +281,14 @@ c & d
 \frame{
 	\frametitle{The resulting algorithm}
 	This leads to the following
-	\begin{theorem}[S.]
+	\begin{cont}[S.]
 		There exists a software package in PARI/GP to compute the Petersson inner product of the theta series defined above with the following properties:
 		\begin{itemize}
 			\item It is fast (relative to the definition),
 			\item It supports arbitrary precision (no coefficients stored, no database involved),
 			\item User friendly (easy to download, help functions, well commented source code).
 		\end{itemize}
-	\end{theorem}
+	\end{cont}
 	\only<2->{\begin{proof}
 		See the calculations in Part $3$ of the thesis and look at the source code online!
 	\end{proof}}
@@ -314,7 +315,7 @@ c & d
 \frame{
 	\frametitle{A corollary and some examples}
 	Some examples:
-	\begin{itemize}
+	\begin{itemize}[<+->]
 		\item $K = \Q(\sqrt{-23})$ ($h_K=3$): $\kappa_\psi$ is a unit and numerically, $\kappa_\psi=\varepsilon$,
 		\item $K = \Q(\sqrt{-39})$ ($h_K=4$): $\kappa_\psi = \epsilon_{13}^{\frac{1}{3}}$ is a unit, but not in $H$,
 		\item $K = \Q(\sqrt{-47})$ ($h_K=5$): $\kappa_\psi$ doesn't seem to be a unit for any $\psi$.
@@ -396,8 +397,8 @@ c & d
 	\begin{theorem}[S.]
 	There exists a $p$-adic analytic function
 	\[F:\cW\rightarrow\C_p\]
-	with the property that
-	\[F(\ell) = (\Frob_\fp^{-1}-p^{2\ell-1})(\Frob_\fp^{-1}-p^{2\ell})\left (\frac{\langle\theta_{\fa,\ell},\theta_{\fb,\ell}\rangle}{((2\pi i)^{-1}\Omega_\C(\fc))^{4\ell}}\right )\text{ for all }\ell>0,\]
+	with the property that for all $\ell >  0$,
+	\[\frac{F(\ell)}{\Omega_p(\fc)^{4\ell}} = (\Frob_\fp^{-1}-p^{2\ell-1})(\Frob_\fp^{-1}-p^{2\ell})\left (\frac{\langle\theta_{\fa,\ell},\theta_{\fb,\ell}\rangle}{((2\pi i)^{-1}\Omega_\C(\fc))^{4\ell}}\right ),\]
 	where $\Frob_\fp = \left (\frac{H/K}{\fp}\right )$ is the Artin symbol.
 	\end{theorem}
 }
@@ -426,7 +427,7 @@ c & d
    		\hline
     	\newline$\ell>0$
     	&\cellcolor{Green}$C_1\sum\limits_{\cA\in\ClK}\psi^2(\cA)\delta^{2\ell-1} E_2(\cA)$
-    	&\cellcolor{Green}\newline$C_2\sum\limits_{\fa\bar{\fb}\fc^2=\lambda_\fc\cO_K}\lambda_\fc^{2\ell}\delta^{2\ell-1}E_2(\fc)$
+    	&\cellcolor{Green}\newline$4(|D|/4)^\ell\delta^{2\ell-1}E_2(\fc)$
     	\\
     	\hline
     	\multirow{2}{*}{$\ell=0$}&\cellcolor{Green}$C_3\sum\limits_{\cA\in\ClK}\psi^2(\cA)\log \Phi(\cA)$&\cellcolor{Red}\\
@@ -444,7 +445,7 @@ c & d
    		\hline
     	\newline$\ell>0$
     	&\cellcolor{Green}$C_1\sum\limits_{\cA\in\ClK}\psi^2(\cA)\delta^{2\ell-1} E_2(\cA)$
-    	&\cellcolor{Green}\newline$4\delta^{2\ell-1}E_2(\fc)$
+    	&\cellcolor{Green}\newline$4(|D|/4)^\ell\delta^{2\ell-1}E_2(\fc)$
     	\\
     	\hline
     	$\ell=0$&\cellcolor{yellow}$C_3\sum\limits_{\cA\in\ClK}\psi^2(\cA)\log \Phi(\cA)$&\cellcolor{yellow}$-\frac{1}{3}\log(N(\fc)^6|\Delta(\fc)|)$\\
